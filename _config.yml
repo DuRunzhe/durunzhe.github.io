@@ -1,0 +1,6 @@
+title: BitWasher 的博客
+description: 关于 AI Agent、Skill 设计、浏览器自动化的技术与思考
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
