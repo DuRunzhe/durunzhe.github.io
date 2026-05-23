@@ -1,7 +1,7 @@
 ---
 title: "一种将浏览器操作 CLI 化的 Skill 设计模式"
 date: 2026-05-23
-categories: AI Skill 设计
+categories: skill-design
 ---
 
 # 一种将浏览器操作CLI化的SKILL

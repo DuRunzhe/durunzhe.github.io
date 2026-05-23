@@ -1,7 +1,7 @@
 ---
 title: "操作与数据分离的 Skill 设计模式"
 date: 2026-05-23
-categories: AI Skill 设计
+categories: skill-design
 ---
 
 # 操作与数据分离的SKILL
