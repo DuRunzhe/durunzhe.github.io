@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>露营床车选车对比 · 全车型综合数据</title>
+<style>
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; margin: 0; padding: 20px; background: #f5f5f7; color: #1d1d1f; }
+  h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #86868b; margin-bottom: 24px; }
+  h2 { font-size: 18px; font-weight: 600; margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #e5e5ea; }
+  .legend { font-size: 12px; color: #86868b; margin-bottom: 16px; }
+  .legend span { margin-right: 16px; }
+  .badge-aa { background: #007aff; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+  .badge-b { background: #ff9500; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+  .badge-blue { background: #5856d6; color: #fff; padding: 1px 6px; border-radius: 4px; font-size: 11px; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+  th { background: #f8f8fa; font-weight: 600; color: #555; font-size: 12px; }
+  td:first-child { text-align: left; font-weight: 500; position: sticky; left: 0; background: #fff; }
+  tr:hover td:first-child { background: #f0f7ff; }
+  tr:hover { background: #f0f7ff; }
+  .tc1 { background: #fff7ed; }
+  .tc2 { background: #f0f7ff; }
+  .tc3 { background: #f4f4f6; }
+  .crown { color: #ff9500; }
+  .best { color: #34c759; font-weight: 700; }
+  .good { color: #007aff; }
+  .warn { color: #ff3b30; }
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag-ev { background: #e8f5e9; color: #2e7d32; }
+  .tag-erev { background: #fff3e0; color: #e65100; }
+  .tag-gas { background: #e3f2fd; color: #1565c0; }
+  .tag-deisel { background: #f3e5f5; color: #7b1fa2; }
+  .tag-best { background: #ff9500; color: #fff; }
+  .sec-title { font-size: 15px; font-weight: 600; margin: 24px 0 8px; color: #1d1d1f; }
+  .note { font-size: 12px; color: #86868b; margin: 20px 0; padding: 12px; background: #fff; border-radius: 8px; border-left: 3px solid #007aff; }
+  .car-name { font-weight: 600; }
+  @media (max-width: 600px) { table { font-size: 11px; } th, td { padding: 5px 6px; } }
+</style>
+</head>
+<body>
+
+<h1>🚐 露营床车选车对比</h1>
+<p class="subtitle">全车型综合数据 · 2026年6月 · 数据来源：🅰百度百科 🅱搜索 🔵训练数据</p>
+
+<div class="legend">
+  <span><span class="badge-aa">🅰</span> 百度百科（实时）</span>
+  <span><span class="badge-b">🅱</span> 搜索（2022-2026）</span>
+  <span><span class="badge-blue">🔵</span> 训练数据（~2024中）</span>
+  <span>🏆 该维度最优 &nbsp; ✅ 满足要求</span>
+</div>
+
+<!-- ============ 基础参数 ============ -->
+<h2>一、基础参数</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>车型</th><th>品牌</th><th>能源</th><th>长mm</th><th>宽mm</th><th>高mm</th><th>轴距mm</th><th>座位</th><th>侧滑门</th><th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="car-name">远程超级VAN</td><td>吉利远程</td><td><span class="tag tag-ev">⚡纯电</span></td>
+  <td class="best">5490 🏆</td><td class="best">1980 🏆</td><td class="best">2180 🏆</td><td>—</td><td>5/7/<b>9座</b></td><td>✅</td><td>🅱</td>
+</tr>
+<tr>
+  <td class="car-name">福特全顺</td><td>江铃福特</td><td><span class="tag tag-deisel">⛽柴油</span>/汽油</td>
+  <td>5080</td><td class="best">2032 🏆</td><td>1900</td><td>—</td><td>5-12座</td><td>✅✅</td><td>🅱+🔵</td>
+</tr>
+<tr>
+  <td class="car-name">大众凯路威</td><td>大众进口</td><td><span class="tag tag-gas">⛽汽油</span></td>
+  <td class="best">5304 🏆</td><td>1904</td><td class="best">1990 🏆</td><td>3400</td><td class="best"><b>9座</b></td><td>✅✅电动</td><td>🔵</td>
+</tr>
+<tr>
+  <td class="car-name">大通G20</td><td>上汽大通</td><td><span class="tag tag-gas">⛽汽油</span>/柴油</td>
+  <td>5198</td><td class="best">1980 🏆</td><td>1928</td><td class="best">3198 🏆</td><td>7座</td><td>✅✅电动</td><td>🅰</td>
+</tr>
+<tr>
+  <td class="car-name">别克GL8</td><td>上汽通用</td><td><span class="tag tag-gas">⛽汽油+48V</span></td>
+  <td>5219</td><td>1878</td><td>1799</td><td>3088</td><td>7座</td><td>✅✅（ES）</td><td>🔵</td>
+</tr>
+<tr>
+  <td class="car-name">五菱征程燃油</td><td>五菱</td><td><span class="tag tag-gas">⛽汽油</span></td>
+  <td>5150</td><td>1840</td><td>1895</td><td>3180</td><td class="best"><b>9座 🏆</b></td><td>✅✅双侧</td><td>🅰</td>
+</tr>
+<tr>
+  <td class="car-name">五菱征程EV</td><td>五菱</td><td><span class="tag tag-ev">⚡纯电</span></td>
+  <td>5150</td><td>1840</td><td>1910</td><td>3180</td><td class="best"><b>9座 🏆</b></td><td>✅✅双侧</td><td>🅱</td>
+</tr>
+<tr>
+  <td class="car-name">菱智M5</td><td>东风风行</td><td><span class="tag tag-gas">⛽汽油</span></td>
+  <td>5135</td><td>1720</td><td>1970</td><td>3000</td><td><b>7/9座</b></td><td>✅单侧</td><td>🅱+🔵</td>
+</tr>
+<tr>
+  <td class="car-name">五菱扬光EV</td><td>五菱</td><td><span class="tag tag-ev">⚡纯电</span></td>
+  <td>4985</td><td>1800</td><td>1975</td><td>3050</td><td><b>6/9座</b></td><td>✅单侧</td><td>🅰</td>
+</tr>
+<tr>
+  <td class="car-name">大众迈特威</td><td>大众进口</td><td><span class="tag tag-gas">⛽汽油</span></td>
+  <td>4904</td><td>1904</td><td>1970</td><td>3000</td><td>7座</td><td>✅✅电动</td><td>🔵</td>
+</tr>
+<tr>
+  <td class="car-name">五菱宏光PLUS</td><td>五菱</td><td><span class="tag tag-gas">⛽汽油</span></td>
+  <td>4720</td><td>1840</td><td>1810</td><td>2800</td><td>5/7/<b>8座</b></td><td>❌</td><td>🅰</td>
+</tr>
+<tr>
+  <td class="car-name">五菱宏光增程</td><td>五菱</td><td><span class="tag tag-erev">⚡增程</span></td>
+  <td>~4500</td><td>~1700</td><td>~1900</td><td>~2800</td><td>5/6/7座</td><td>❌</td><td>🅱+🔵</td>
+</tr>
+<tr>
+  <td class="car-name">鑫源E3L</td><td>鑫源</td><td><span class="tag tag-ev">⚡纯电</span></td>
+  <td>~4800</td><td>1760</td><td>1980</td><td>~2900</td><td><b>6/9座</b></td><td>✅单侧</td><td>🅱</td>
+</tr>
+<tr>
+  <td class="car-name">五菱之光加长</td><td>五菱</td><td><span class="tag tag-gas">⛽汽油</span></td>
+  <td>4100</td><td>1510</td><td>1830</td><td>2750</td><td>5/7座</td><td>✅</td><td>🅰</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ 内部空间 ============ -->
+<h2>二、内部空间（露营关键）</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>车型</th><th>内厢长mm</th><th>内厢宽mm</th><th>内厢高mm</th><th>坐/站</th><th>可铺床</th><th>容积m³</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>远程超级VAN</td><td class="best">~3200 🏆</td><td class="best">~1900</td><td class="best">~1900 🏆</td><td class="best">✅站直 🏆</td><td class="best">2.2×1.8m 🏆</td><td class="best">~12</td></tr>
+<tr><td>福特全顺</td><td class="best">~3000 🏆</td><td class="best">~1850 🏆</td><td class="best">~1700 🏆</td><td class="best">✅站直 🏆</td><td class="best">2.2×1.8m 🏆</td><td class="best">~10</td></tr>
+<tr><td>大众凯路威</td><td class="best">~3100 🏆</td><td>~1800</td><td class="best">~1900 🏆</td><td class="best">✅站直 🏆</td><td class="best">2.0×2.0m 🏆</td><td>~11</td></tr>
+<tr><td>大通G20</td><td>2600</td><td>~1850 🏆</td><td>~1400</td><td>✅坐直</td><td>2.0×1.8m</td><td>—</td></tr>
+<tr><td>别克GL8</td><td>~2300</td><td>~1700</td><td>~1200</td><td>✅坐直</td><td>1.8×1.5m</td><td>—</td></tr>
+<tr><td>菱智M5</td><td>~2900</td><td>~1600</td><td>~1400</td><td>✅坐直</td><td>2.0×1.6m</td><td>—</td></tr>
+<tr><td>五菱征程燃油</td><td>~3000</td><td>~1700</td><td>~1400</td><td>✅坐直</td><td>2.0×1.7m</td><td>~5.0</td></tr>
+<tr><td>五菱征程EV</td><td>~3000</td><td>~1700</td><td>~1400</td><td>✅坐直</td><td>2.0×1.7m</td><td>~5.0</td></tr>
+<tr><td>五菱扬光EV</td><td>2830</td><td>1680</td><td class="best">1365 🏆</td><td>✅坐直</td><td>1.9×1.5m</td><td class="best">6.5 🏆</td></tr>
+<tr><td>大众迈特威</td><td>~2500</td><td>~1800</td><td>~1900 🏆</td><td class="best">✅站直 🏆</td><td>1.7×1.9m</td><td>~8.5</td></tr>
+<tr><td>五菱宏光PLUS</td><td>~2300</td><td>~1700</td><td>~1250</td><td>✅坐直</td><td>1.8×1.5m</td><td>4.1</td></tr>
+<tr><td>五菱宏光增程</td><td>~2500</td><td>~1500</td><td>~1300</td><td>✅坐直</td><td>1.8×1.4m</td><td>3.3</td></tr>
+<tr><td>鑫源E3L</td><td>~2700</td><td>~1600</td><td>~1400</td><td>✅坐直</td><td>1.8×1.5m</td><td>~5.0</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ 动力能耗 ============ -->
+<h2>三、动力与能耗</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>车型</th><th>动力</th><th>功率kW</th><th>扭矩N·m</th><th>变速箱</th><th>最高车速</th><th>综合续航</th><th>综合能耗</th><th>快充</th><th>慢充</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>远程超级VAN</td><td>⚡纯电</td><td>170</td><td>—</td><td>固定齿比</td><td>105✅</td><td class="best">560km 🏆</td><td>~15kWh</td><td class="best">20min→300km 🏆</td><td>8-10h</td></tr>
+<tr><td>福特全顺</td><td>⛽2.8T柴油/2.0T</td><td>85-100</td><td>300-375</td><td>5MT/6MT/6AT</td><td class="best">150 ✅</td><td>700km+</td><td>8-9L柴油</td><td>—</td><td>—</td></tr>
+<tr><td>大众凯路威</td><td>⛽2.0T</td><td>150</td><td>350</td><td>7DSG</td><td class="best">200 🏆 ✅</td><td>600km+</td><td>10-11L</td><td>—</td><td>—</td></tr>
+<tr><td>大通G20</td><td>⛽2.0T汽油/柴油</td><td class="best">165 🏆</td><td class="best">350/375 🏆</td><td class="best">采埃孚8AT 🏆</td><td class="best">180 🏆 ✅</td><td>700km+</td><td>9.3L</td><td>—</td><td>—</td></tr>
+<tr><td>别克GL8</td><td>⛽2.0T+48V</td><td>174</td><td>350</td><td>9AT</td><td class="best">195 🏆 ✅</td><td>700km+</td><td>8-10L</td><td>—</td><td>—</td></tr>
+<tr><td>五菱征程燃油</td><td>⛽1.5T/2.0L</td><td>108/100</td><td>250/192</td><td>6MT</td><td class="best">170 🏆 ✅</td><td>600km+</td><td class="best">7.6L 🏆</td><td>—</td><td>—</td></tr>
+<tr><td>五菱征程EV</td><td>⚡纯电</td><td>100</td><td>240</td><td>固定齿比</td><td>105✅</td><td>360km</td><td>~14kWh</td><td>48min</td><td>—</td></tr>
+<tr><td>菱智M5</td><td>⛽1.5T/1.8T/2.0L</td><td>~100-110</td><td>~150-200</td><td>5MT/6MT</td><td class="best">150 ✅</td><td>600km+</td><td>8-9L</td><td>—</td><td>—</td></tr>
+<tr><td>五菱扬光EV</td><td>⚡纯电碳化硅</td><td>75/100</td><td>180/200</td><td>固定齿比</td><td>90/100✅</td><td class="best">440km 🏆</td><td class="best">12.7kWh 🏆</td><td class="best">15min 30-80% 🏆</td><td>6.6kW 5.5-6.9h</td></tr>
+<tr><td>大众迈特威</td><td>⛽2.0T</td><td>150</td><td>350</td><td>7DSG</td><td class="best">200 🏆 ✅</td><td>600km+</td><td>10-11L</td><td>—</td><td>—</td></tr>
+<tr><td>五菱宏光PLUS</td><td>⛽1.5T/1.5L</td><td>108/73</td><td>250/140</td><td class="best">6MT 🏆</td><td class="best">170 🏆 ✅</td><td>600km+</td><td class="best">7.3L 🏆</td><td>—</td><td>—</td></tr>
+<tr><td>五菱宏光增程</td><td>⚡1.5L增程+电机</td><td>—</td><td>—</td><td>固定齿比</td><td>110+ ✅</td><td class="best">1150km 🏆</td><td class="best">4.3L 🏆</td><td>加油</td><td>可插充</td></tr>
+<tr><td>鑫源E3L</td><td>⚡纯电</td><td>70</td><td>230</td><td>固定齿比</td><td>100 ✅</td><td>380km</td><td>~15kWh</td><td>45min 30-80%</td><td>—</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ 露营实用 ============ -->
+<h2>四、露营实用配置</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>车型</th><th>V2L外放电</th><th>驻车空调</th><th>改装案例</th><th>颜色数量</th><th>具体颜色</th></tr>
+</thead>
+<tbody>
+<tr><td>远程超级VAN</td><td class="best">✅ 3.3kW 🏆</td><td class="best">✅纯电静音 🏆</td><td class="best">🏆极多</td><td class="best">6种 🏆</td><td>汉玉白/翠竹青/玉瓷灰/徽墨黑/云缎蓝等</td></tr>
+<tr><td>福特全顺</td><td>❌</td><td>⚠️需怠速</td><td class="best">🏆行业标杆</td><td>白/灰</td><td>白色为主</td></tr>
+<tr><td>大众凯路威</td><td>❌</td><td>⚠️需怠速</td><td class="best">🏆极多（原厂配桌）</td><td>白/银/黑</td><td>白/深黑/暮雨灰/香槟金</td></tr>
+<tr><td>大通G20</td><td>❌</td><td>⚠️需怠速</td><td>⭐⭐⭐</td><td class="best">定制多种 🏆</td><td>蜘蛛定制可选</td></tr>
+<tr><td>别克GL8</td><td>❌</td><td>⚠️需怠速</td><td>⭐⭐⭐⭐（改床车极多）</td><td class="best">6-8种 🏆</td><td>白/灰/金/紫/琥珀金等</td></tr>
+<tr><td>五菱征程燃油</td><td>❌</td><td>⚠️需怠速</td><td>⭐⭐</td><td>4种</td><td>冰川白/星夜黑/波涛银/大地灰</td></tr>
+<tr><td>五菱征程EV</td><td>—</td><td class="best">✅纯电 🏆</td><td>⭐⭐⭐</td><td>4种</td><td>冰川白/波涛银/大地灰/星夜黑</td></tr>
+<tr><td>菱智M5</td><td>❌</td><td>⚠️需怠速</td><td>⭐⭐</td><td>3种</td><td>白/银/灰</td></tr>
+<tr><td>五菱扬光EV</td><td class="best">✅自带 🏆</td><td class="best">✅纯电静音 🏆</td><td>⭐⭐⭐</td><td>2种</td><td>山海蓝灰/极地白</td></tr>
+<tr><td>大众迈特威</td><td>❌</td><td>⚠️需怠速</td><td class="best">🏆极多（原厂露营设计）</td><td class="best">8种 🏆</td><td>白/银/黑/灰/蓝/红等多色</td></tr>
+<tr><td>五菱宏光PLUS</td><td>❌</td><td>⚠️需怠速</td><td>⭐⭐</td><td>4种</td><td>青石蓝/星耀黑/极地白/极光银</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ 安全与价格 ============ -->
+<h2>五、安全 & 价格 & 售后</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr><th>车型</th><th>安全配置</th><th>碰撞评分</th><th>新车价万</th><th>二手价万</th><th>维修覆盖</th></tr>
+</thead>
+<tbody>
+<tr><td>远程超级VAN</td><td>ESP+ADAS</td><td>⭐⭐⭐⭐</td><td>12.88起</td><td>10-15万</td><td>⭐⭐⭐ 远程4S</td></tr>
+<tr><td>福特全顺</td><td>ABS+EBD、部分ESP、1-2气囊</td><td>⭐⭐⭐</td><td>13-20万</td><td class="best">3-10万 🏆</td><td>⭐⭐⭐ 江铃福特</td></tr>
+<tr><td>大众凯路威</td><td>ESP+6气囊</td><td>⭐⭐⭐⭐⭐</td><td>36-38万</td><td>8-12万</td><td>⭐⭐ 进口大众</td></tr>
+<tr><td>大通G20</td><td class="best">博世ESP9.3+ADAS+8气囊 🏆</td><td class="best">C-NCAP五星+93% 🏆</td><td>18.68-28.98</td><td>8-12万</td><td>⭐⭐⭐ 上汽大通</td></tr>
+<tr><td>别克GL8</td><td class="best">ESP+6气囊+五星 🏆</td><td class="best">C-NCAP五星 🏆</td><td>23-42万</td><td class="best">5-15万 🏆</td><td>⭐⭐⭐⭐ 别克</td></tr>
+<tr><td>五菱征程燃油</td><td>ABS+EBD、主副驾气囊、营运ESC</td><td>⭐⭐⭐</td><td class="best">7.58起 🏆</td><td class="best">4-6万 🏆</td><td class="best">🏆⭐⭐⭐⭐⭐五菱</td></tr>
+<tr><td>五菱征程EV</td><td>ESP、2-4气囊</td><td>⭐⭐⭐⭐</td><td>14.58起</td><td>8-10万</td><td class="best">🏆⭐⭐⭐⭐⭐五菱</td></tr>
+<tr><td>菱智M5</td><td>ESP（高配）、2气囊</td><td>⭐⭐⭐</td><td class="best">7.49起 🏆</td><td class="best">3-5万 🏆</td><td>⭐⭐⭐⭐ 东风柳汽</td></tr>
+<tr><td>五菱扬光EV</td><td>ABS+EBD+EPS、钢83%、可选ADAS</td><td>⭐⭐⭐⭐</td><td class="best">6.98起 🏆</td><td class="best">4-5.5万 🏆</td><td class="best">🏆⭐⭐⭐⭐⭐五菱</td></tr>
+<tr><td>大众迈特威</td><td>ESP+6气囊+五星</td><td>⭐⭐⭐⭐⭐</td><td>41-51万</td><td>10-15万</td><td>⭐⭐ 进口大众</td></tr>
+<tr><td>五菱宏光PLUS</td><td>高配ESP、双气囊</td><td>⭐⭐⭐</td><td class="best">6.48起 🏆</td><td class="best">3-5万 🏆</td><td class="best">🏆⭐⭐⭐⭐⭐五菱</td></tr>
+<tr><td>五菱宏光增程</td><td>ESP、2气囊（高配）</td><td>⭐⭐⭐</td><td class="best">6.88起 🏆</td><td class="best">4-5.5万 🏆</td><td class="best">🏆⭐⭐⭐⭐⭐五菱</td></tr>
+<tr><td>鑫源E3L</td><td>ABS、1-2气囊</td><td>⭐⭐</td><td>9.28起</td><td>6-9万</td><td>⭐⭐ 鑫源</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ 综合评分 ============ -->
+<h2>六、综合评分（按你的需求加权）</h2>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+  <th>车型</th><th>空间20%</th><th>坐直10%</th><th>侧滑门10%</th><th>能耗15%</th><th>露营15%</th><th>安全10%</th><th>二手价10%</th><th>售后5%</th><th>配色5%</th><th class="best">综合 🏆</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#fff7e6;">
+  <td class="best">🥇 远程超级VAN</td><td>5.0🏆</td><td>5.0🏆</td><td>3.0</td><td>4.0</td><td>5.0🏆</td><td>4.0</td><td>2.0</td><td>3.0</td><td>5.0🏆</td><td class="best">4.15 🏆</td>
+</tr>
+<tr style="background:#f0f7ff;">
+  <td class="best">🥇 福特全顺</td><td>5.0🏆</td><td>5.0🏆</td><td>5.0🏆</td><td>4.5</td><td>5.0🏆</td><td>3.0</td><td>4.5</td><td>3.0</td><td>2.0</td><td class="best">4.35 🏆</td>
+</tr>
+<tr style="background:#f0f7ff;">
+  <td class="best">🥇 大众凯路威</td><td>5.0🏆</td><td>5.0🏆</td><td>5.0🏆</td><td>3.5</td><td>5.0🏆</td><td>4.0</td><td>3.5</td><td>2.0</td><td>4.0</td><td class="best">4.25 🏆</td>
+</tr>
+<tr>
+  <td>🥇 五菱征程燃油</td><td>4.5</td><td>3.0</td><td>5.0🏆</td><td>4.5</td><td>2.5</td><td>3.5</td><td>4.5</td><td>5.0🏆</td><td>4.0</td><td>4.05</td>
+</tr>
+<tr>
+  <td>🥇 大通G20</td><td>4.5</td><td>3.0</td><td>5.0🏆</td><td>4.5</td><td>3.0</td><td>5.0🏆</td><td>3.0</td><td>3.0</td><td>5.0🏆</td><td>3.95</td>
+</tr>
+<tr>
+  <td>🥇 别克GL8</td><td>4.0</td><td>3.0</td><td>4.0</td><td>4.0</td><td>4.0</td><td>5.0🏆</td><td>4.0</td><td>4.0</td><td>5.0🏆</td><td>3.95</td>
+</tr>
+<tr>
+  <td>🥈 大众迈特威</td><td>4.0</td><td>5.0🏆</td><td>5.0🏆</td><td>3.5</td><td>5.0🏆</td><td>4.0</td><td>3.0</td><td>2.0</td><td>5.0🏆</td><td>3.95</td>
+</tr>
+<tr><td>🥈 五菱扬光EV</td><td>3.5</td><td>3.0</td><td>3.0</td><td>3.5</td><td>5.0🏆</td><td>4.0</td><td>5.0🏆</td><td>5.0🏆</td><td>2.0</td><td>3.85</td></tr>
+<tr><td>🥈 五菱征程EV</td><td>4.5</td><td>3.0</td><td>5.0🏆</td><td>3.0</td><td>4.0</td><td>4.0</td><td>3.0</td><td>5.0🏆</td><td>3.0</td><td>3.75</td></tr>
+<tr><td>🥉 菱智M5</td><td>4.0</td><td>3.0</td><td>3.0</td><td>4.0</td><td>2.0</td><td>3.0</td><td>5.0🏆</td><td>4.0</td><td>2.0</td><td>3.35</td></tr>
+<tr><td>🥉 五菱宏光PLUS</td><td>3.0</td><td>3.0</td><td>1.0</td><td>4.5</td><td>2.0</td><td>3.5</td><td>5.0🏆</td><td>5.0🏆</td><td>4.0</td><td>3.35</td></tr>
+<tr><td>五菱宏光增程</td><td>2.5</td><td>2.5</td><td>1.0</td><td>5.0🏆</td><td>2.0</td><td>3.0</td><td>4.5</td><td>5.0🏆</td><td>2.0</td><td>3.15</td></tr>
+<tr><td>鑫源E3L</td><td>3.0</td><td>3.0</td><td>3.0</td><td>3.0</td><td>2.0</td><td>3.0</td><td>4.0</td><td>2.0</td><td>1.0</td><td>2.85</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ============ 最终推荐 ============ -->
+<h2>七、最终推荐</h2>
+<div class="note">
+  <h3>🥇 福特全顺（综合最高 4.35分）</h3>
+  <p><b>空间最大 + 可站直 + 轻客改装王者 + 二手3-10万</b></p>
+  <p>✅ 5m车长+2m车宽+1.9m内高=能站直的"移动房子"；轻客车改露营行业标准底子；柴油8-9L省油耐用<br>
+  ⚠️ 需确认非营运、乘用舒适性一般、有些年份配置低</p>
+</div>
+
+<div class="note">
+  <h3>🥇 远程超级VAN（纯电露营王）</h3>
+  <p><b>纯电 + 可站直 + 560km + 3.3kW V2L外放 + 改装极多</b></p>
+  <p>✅ B站/头条大量改装教程、纯电驻车空调、V2L煮饭、6种中国色<br>
+  ⚠️ 二手10-15万偏高、远程4S覆盖不如五菱</p>
+</div>
+
+<div class="note">
+  <h3>🥇 五菱征程燃油（性价比王）</h3>
+  <p><b>5.15m同征程EV尺寸 + 双侧滑门 + 9座 + 7.6L油耗 + 二手4-6万</b></p>
+  <p>✅ 五菱2630+网点、8.8L油耗低、二手4-6万超值、车身最长国产油车之一<br>
+  ⚠️ 纯油、无新能源特色、安全配置一般</p>
+</div>
+
+<div class="note">
+  <h3>🥈 大众凯路威（品质王）</h3>
+  <p><b>5.3m + 可站直 + 双侧电动滑门 + 9座 + 品质最好</b></p>
+  <p>✅ 原厂可旋转座椅+折叠桌露营设计、德国品质二手8-12万<br>
+  ⚠️ 油耗10-11L、进口配件贵、维修点少</p>
+</div>
+
+<div class="note">
+  <h3>🥈 别克GL8（最全能家用MVP）</h3>
+  <p><b>5.2m + 二手5-15万 + 改装床车极多 + 安全性最好</b></p>
+  <p>✅ 车源最多、配件最便宜、舒适性最好、C-NCAP五星+<br>
+  ⚠️ 燃油车、纯油、不能站直、内部高度一般</p>
+</div>
+
+<div class="note">
+  <h3>🥈 五菱扬光EV（预算首选）</h3>
+  <p><b>不到6万买9座纯电微面 + 15分钟快充 + 440km + V2L自带</b></p>
+  <p>✅ 五菱网点全国最密、6.5m³空间、纯电驻车空调<br>
+  ⚠️ 最高车速100km/h、配色只有2种</p>
+</div>
+
+<hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e5ea;">
+<p style="font-size: 12px; color: #86868b; text-align: center;">
+  数据来源：🅰 百度百科（实时拉取）| 🅱 搜索数据（sogou/duckduckgo 2022-2026）| 🔵 训练数据（DeepSeek V4 Flash ~2024中）<br>
+  🏆 表示该维度最优 · 综合评分按你的需求加权计算<br>
+  制作时间：2026年6月8日 · <a href="https://durunzhe.github.io/van-comparison.html">线上查看</a>
+</p>
+
+</body>
+</html>
