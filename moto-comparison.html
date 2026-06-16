@@ -6,7 +6,7 @@
 <title>🏍️ 关注的摩托车清单 · 全车型对比数据</title>
 <style>
   * { box-sizing: border-box; }
-  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; margin: 0; padding: 20px 16px; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; margin: 0; padding: 20px 16px; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; overflow-x: hidden; }
 
   /* Container */
   .container { max-width: 1200px; margin: 0 auto; }
@@ -17,9 +17,11 @@
       position: fixed !important;
       top: 20px;
       left: -310px;
-      width: 280px;
+      width: auto;
+      max-width: min(280px, 90vw);
       max-height: calc(100vh - 40px);
       overflow-y: auto;
+      overflow-x: hidden;
       z-index: 100;
       font-size: 12px;
       margin: 0 !important;
@@ -28,6 +30,8 @@
     }
     .toc-box.expanded { left: 16px; }
     .toc-box h2 { font-size: 16px !important; margin: 0 0 8px !important; }
+    .toc-box ul { white-space: normal !important; }
+    .toc-box ul li { word-wrap: break-word; word-break: break-word; }
     .container { padding-left: 0; }
     /* 浮动按钮 */
     .toc-toggle {
@@ -47,7 +51,7 @@
       transition: left 0.3s ease;
       font-family: inherit;
     }
-    .toc-toggle.expanded { left: 296px; }
+    /* .toc-toggle.expanded { left: 296px; } 改为不滑动 */
   }
   @media (max-width: 1099px) {
     .toc-box { position: static !important; max-height: none !important; overflow: visible !important; width: auto !important; }
