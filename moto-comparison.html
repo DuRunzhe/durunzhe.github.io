@@ -120,12 +120,32 @@
     th, td { font-size: 11px; padding: 5px 6px; }
     td img { width: 100px; }
   }
+
+  /* 排版优化 */
+  .section-card { border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+  /* 表格斑马纹 + hover */
+  tbody tr:nth-child(even) { background: #f8f9fc; }
+  tbody tr:hover { background: #e8f0fe; }
+  /* 表格首列加粗 */
+  td:first-child { font-weight: 500; color: #1d1d1f; }
+  /* 章节编号徽章 */
+  .section-badge { display: inline-block; background: #007aff; color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 11px; margin-right: 6px; }
+  /* 文章 H1 级别间距调整 */
+  h1 { margin-bottom: 16px; }
+  h1 + p:first-of-type { margin-top: -8px; }
+  hr + h1 { margin-top: 8px; }
+  /* 标题颜色分类 */
+  .h1-main { border-left: 4px solid #007aff; padding-left: 12px; }
+  .h1-core { border-left: 4px solid #34c759; padding-left: 12px; }
+  .h1-feature { border-left: 4px solid #ff9500; padding-left: 12px; }
+  .h1-misc { border-left: 4px solid #8e8e93; padding-left: 12px; }
+  .h1-note { border-left: 4px solid #ff3b30; padding-left: 12px; }
 </style>
 </head>
 <body>
 <div class="container">
   <a class="back-link" href="https://durunzhe.github.io/">← 返回博客首页</a>
-<h1 id="sec-1">🏍️ 关注的摩托车清单</h1>
+<h1 id="sec-1" class="h1-main">🏍️ 关注的摩托车清单</h1>
   <p class="subtitle">全车型对比数据 · 版本文档 · 购买决策参考</p>
   <p class="update-note">最后更新：2026-06-16 00:52 · 来源：比特匠（QQ Bot）</p>
 <button class="toc-toggle" onclick="toggleToc()" aria-label="展开/收起目录">📑 目录</button>
@@ -133,17 +153,17 @@
 <h2 id="sec-toc">📑 目录</h2>
 <ul style="list-style:none; padding-left:0; margin:0;">
 <li><a href="#sec-3">🏍️ 复古跨骑 / 巡航车（6 款独立板块）</a></li>
-<li><a href="#sec-29">🛵 第三批：8 款 ADV 踏板车（含前批漏的）</a>
-  <ul style="list-style:none; padding-left:16px; font-size:13px;">
-    <li>├ <a href="#sec-43">🆚 全维度对比（11 款踏板）</a>（已合并入 25 款表）</li>
-  </ul>
-</li>
-<li><a href="#sec-71">🆕 25 款踏板综合主表（核心）</a>
+<li><a href="#sec-71">🆕 25 款踏板综合主表（核心 · 主结论）</a>
   <ul style="list-style:none; padding-left:16px; font-size:13px;">
     <li>├ <a href="#sec-73">🆚 8 维核心对比（25 款）</a></li>
     <li>├ <a href="#sec-74">🏆 各维度冠军</a></li>
     <li>├ <a href="#sec-75">🎯 8 种典型用户购买建议</a></li>
     <li>├ 💡 针对你的最终建议 · 🏆 3 选 1 决赛圈</li>
+  </ul>
+</li>
+<li><a href="#sec-29">🛵 第三批：8 款 ADV 补充资料</a>
+  <ul style="list-style:none; padding-left:16px; font-size:13px;">
+    <li>├ <a href="#sec-43">🆚 全维度对比（11 款踏板）</a>（已合并入 25 款表）</li>
   </ul>
 </li>
 <li><a href="#sec-59">⭐ 特别关注：<strong>新大洲本田 NS150GX</strong>（2025 款完整章节）</a>
@@ -923,18 +943,7 @@
 如果你只是想要"看起来像越野" → <strong>光阳 Dink G150</strong>（性价比最高）</p>
 <hr />
 <hr />
-<h1 id="sec-29">🛵 第三批关注：8 款 ADV 踏板车（含前一批漏的）</h1>
-<p><strong>记录时间</strong>：2026-06-14 01:02<br />
-<strong>背景</strong>：用户引用了 "<strong>通勤+偶尔林道+≤2 万</strong>" 的完整推荐表，<strong>含 4 款未列车型</strong>：</p>
-<p>⚠️ <strong>漏掉补上</strong>：<br />
-- 升仕 368G（3.4 万）<br />
-- 光阳 赛艇 S350 / DT X 360（3.7-3.9 万）<br />
-- 标致 XP400（5.5 万）<br />
-- <strong>大阳 V锐 ADV150</strong>（1.1 万）⭐（对位推荐冠军）</p>
-
-<hr />
-<hr />
-<h1 id="sec-71">🆕 25 款踏板综合主表（核心 · 含 8 维对比 + 冠军 + 8 种典型 + 最终建议）</h1>
+<h1 id="sec-71" class="h1-core">🆕 25 款踏板综合主表（核心 · 含 8 维对比 + 冠军 + 8 种典型 + 最终建议）</h1>
 <p><strong>记录时间</strong>：2026-06-14 05:13<br />
 <strong>背景</strong>：用户要求 "<strong>做关注里的这些踏板车全方位对比，给出购买建议</strong>"<br />
 <strong>范围</strong>：17 款踏板（不含 6 款复古跨骑）  </p>
@@ -1638,6 +1647,18 @@
 <hr />
 <hr />
 <hr />
+
+<h1 id="sec-29" class="h1-misc">🛵 第三批关注：8 款 ADV 踏板车（含前一批漏的）</h1>
+<p><strong>记录时间</strong>：2026-06-14 01:02<br />
+<strong>背景</strong>：用户引用了 "<strong>通勤+偶尔林道+≤2 万</strong>" 的完整推荐表，<strong>含 4 款未列车型</strong>：</p>
+<p>⚠️ <strong>漏掉补上</strong>：<br />
+- 升仕 368G（3.4 万）<br />
+- 光阳 赛艇 S350 / DT X 360（3.7-3.9 万）<br />
+- 标致 XP400（5.5 万）<br />
+- <strong>大阳 V锐 ADV150</strong>（1.1 万）⭐（对位推荐冠军）</p>
+
+<hr />
+<hr />
 <h2 id="sec-30">📋 11 款踏板全表（第二批 + 第三批合并）</h2>
 <div class="merge-note" style="background:#fff8e1; border-left:3px solid #ff9500; padding:8px 12px; border-radius:6px; margin:8px 0; font-size:13px;">📦 <strong>已合并</strong>：11 款数据已合并入 25 款踏板综合主表（🆕 核心 · sec-71）。下方表格保留以便追溯原始数据，<strong>新数据请追加到 25 款综合表末尾</strong>。</div>
 <h3 id="sec-31">🏆 A. <strong>通勤+偶尔林道+≤2 万对位</strong>（用户当前关注重点）</h3>
@@ -2077,7 +2098,7 @@
 <p><strong>预算紧 + 通勤为主 + 偶尔烂路</strong> → 👉 <strong>光阳 Dink G150</strong>（¥13,980 + 500km + 合资）<br />
 <strong>预算紧 + 真正要越野</strong> → 👉 <strong>力帆 KPV 150</strong>（¥12,980 + 180mm 离地）<br />
 <strong>预算宽 + 智能 + 合资</strong> → 👉 <strong>NS150 XC</strong>（¥19,980 + 3 轴 IMU）</p>
-<h1 id="sec-59">🆕 第五批关注：1 款运动豪华通勤踏板</h1>
+<h1 id="sec-59" class="h1-feature">🆕 第五批关注：1 款运动豪华通勤踏板</h1>
 <p><strong>记录时间</strong>：2026-06-14 05:08<br />
 <strong>背景</strong>：用户明确要求 "<strong>关注本田 NS150GX，对比关注的摩托车里的踏板车</strong>"<br />
 <strong>来源</strong>：用户口述 + web_search/web_fetch（58moto 详解 + 新大洲本田官网）</p>
@@ -2646,7 +2667,7 @@
 <p><strong>总车型数</strong>：<strong>23 款</strong>（6 跨骑 + 17 踏板）<br />
 <strong>NS150GX 定位</strong>：合资豪华运动通勤踏板，<strong>NSS350 操控下放到 1.5-1.7 万</strong><br />
 <strong>下次更新触发</strong>：用户试驾反馈 / 选择 / 优惠信息 / 新车信息</p>
-<h1 id="sec-109">🌳 本田专题（含 5 款本田多版本决策 + 2026 1-6 月事件）</h1>
+<h1 id="sec-109" class="h1-feature">🌳 本田专题（含 5 款本田多版本决策 + 2026 1-6 月事件）</h1>
 <p><strong>用户反馈</strong>：需要考虑车型不同配置<br />
 <strong>范围</strong>：5 款本田（NS150GX / NS150ES / NS150LA Pro / NWT150 / NS150 XC）<br />
 <strong>来源</strong>：web 查证（58moto / 汽车之家 / 官网 / 两轮视界）</p>
@@ -3391,7 +3412,7 @@
 - [YJ1] 有驾 9458911384747421774「新大洲本田放出未知车型预告，召集车友猜真容」（yoojia.com/article/9458911384747421774.html）</p>
 <hr />
 
-<h1 id="sec-126">💰 性价比 + 边际价值分析（多版本专题）</h1>
+<h1 id="sec-126" class="h1-feature">💰 性价比 + 边际价值分析（多版本专题）</h1>
 <p><strong>用户反馈</strong>：再看看哪个配置是花大钱办小事的鸡肋，哪个配置是花小钱办大事，由此看看哪个版本是性价比天花板<br />
 <strong>范围</strong>：6 款多版本车（NS150GX / NS150ES / NWT150 / NS150 XC / 力帆 KPV 150 / 光阳 Dink G150）<br />
 <strong>方法</strong>："差价 vs 多出的配置"逐项计算，<strong>每件均价</strong>衡量性价比</p>
