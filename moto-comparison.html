@@ -11,24 +11,47 @@
   /* Container */
   .container { max-width: 1200px; margin: 0 auto; }
 
-  /* TOC 左侧悬浮固定（桌面端） */
+  /* TOC 左侧悬浮可收起（桌面端） */
   @media (min-width: 1100px) {
     .toc-box {
       position: fixed !important;
       top: 20px;
-      left: 16px;
+      left: -310px;
       width: 280px;
       max-height: calc(100vh - 40px);
       overflow-y: auto;
       z-index: 100;
       font-size: 12px;
       margin: 0 !important;
+      transition: left 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
+    .toc-box.expanded { left: 16px; }
     .toc-box h2 { font-size: 16px !important; margin: 0 0 8px !important; }
-    .container { padding-left: 320px; }
+    .container { padding-left: 0; }
+    /* 浮动按钮 */
+    .toc-toggle {
+      position: fixed !important;
+      top: 20px;
+      left: 0;
+      z-index: 101;
+      background: #007aff;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+      transition: left 0.3s ease;
+      font-family: inherit;
+    }
+    .toc-toggle.expanded { left: 296px; }
   }
   @media (max-width: 1099px) {
     .toc-box { position: static !important; max-height: none !important; overflow: visible !important; width: auto !important; }
+    .toc-toggle { display: none; }
   }
 
   /* Header */
@@ -101,6 +124,7 @@
 <h1 id="sec-1">🏍️ 关注的摩托车清单</h1>
   <p class="subtitle">全车型对比数据 · 版本文档 · 购买决策参考</p>
   <p class="update-note">最后更新：2026-06-16 00:52 · 来源：比特匠（QQ Bot）</p>
+<button class="toc-toggle" onclick="toggleToc()" aria-label="展开/收起目录">📑 目录</button>
 <div class="toc-box" style="background:#f8f9fc; border-left:3px solid #007aff; padding:12px 16px; border-radius:8px; margin:16px 0 24px; font-size:14px;">
 <h2 id="sec-toc">📑 目录</h2>
 <ul style="list-style:none; padding-left:0; margin:0;">
@@ -5148,6 +5172,21 @@
 <li>维度冠军表更新：最便宜/最低座高/最运动/安全配置天花板 更新，+3 个新维度（125性价比/ADV性价比/综合性价比）</li>
 </ul>
 </div>
+<script>
+function toggleToc() {
+  var box = document.querySelector('.toc-box');
+  var btn = document.querySelector('.toc-toggle');
+  box.classList.toggle('expanded');
+  btn.classList.toggle('expanded');
+  btn.textContent = box.classList.contains('expanded') ? '📑 收起' : '📑 目录';
+}
+// 移动端检测
+if (window.innerWidth < 1100) {
+  // 移动端自动展开 TOC（因为没有按钮）
+  var box = document.querySelector('.toc-box');
+  if (box) box.classList.add('expanded');
+}
+</script>
 </body>
 </html>
 <h3 id="sec-158">💰 版本边际价值分析（用户分析 2026-06-15）</h3>
