@@ -192,12 +192,12 @@
   var overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
   overlay.id = 'lightbox';
-  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint">点击空白处 / 按 Esc 关闭</div>';
+  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint">点击空白处或按 Esc 关闭（点图片不关）</div>';
   document.body.appendChild(overlay);
   var img = document.getElementById('lightbox-img');
   var cap = document.getElementById('lightbox-cap');
   function close() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-  overlay.addEventListener('click', function(e) { if (e.target === overlay || e.target === img) close(); });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('active')) close(); });
   function bindLinks() {
     var links = document.querySelectorAll('a.lightbox-link');
