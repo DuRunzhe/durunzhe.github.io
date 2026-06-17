@@ -207,9 +207,37 @@
   overlay.className = 'lightbox-overlay';
   overlay.id = 'lightbox';
   overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint">点击空白处或图片 / 按 Esc 关闭</div>';
-  document.body.appendChild(overlay);
-  var img = document.getElementById('lightbox-img');
-  var cap = document.getElementById('lightbox-cap');
+  // 修复：脚本位于 <head>，执行时 <body> 尚未建立，需等 DOMContentLoaded 后再 appendChild
+  function setupLightbox() {
+    if (!document.body) return;
+    document.body.appendChild(overlay);
+    // 必须在 appendChild 之后取——img/cap 是 overlay.innerHTML 的子元素
+    img = document.getElementById('lightbox-img');
+    cap = document.getElementById('lightbox-cap');
+    bindGlobalEvents();
+    bindLinks();
+  }
+  function bindGlobalEvents() {
+    document.addEventListener('click', function(e) {
+      if (!isOpen()) return;
+      if (e.target === overlay || e.target === img) close();
+    }, true);
+    document.addEventListener('keydown', function(e) {
+      if (isOpen() && (e.key === 'Escape' || e.keyCode === 27)) {
+        e.preventDefault();
+        close();
+      }
+    }, true);
+    // 触屏滑动关闭（向上/向下）作为补充
+    var touchStartY = 0;
+    overlay.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; }, { passive: true });
+    overlay.addEventListener('touchend', function(e) {
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dy) > 100) close();
+    }, { passive: true });
+  }
+  var img = null;
+  var cap = null;
   function close() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
   function open(href, alt, title) {
     img.src = href;
@@ -219,24 +247,6 @@
     document.body.style.overflow = 'hidden';
   }
   function isOpen() { return overlay.classList.contains('active'); }
-  // 关闭逻辑：改用 document 全局事件 + capture 阶段，更可靠（不受 DOM 移动 / 事件冒泡问题影响）
-  document.addEventListener('click', function(e) {
-    if (!isOpen()) return;
-    if (e.target === overlay || e.target === img) close();
-  }, true);
-  document.addEventListener('keydown', function(e) {
-    if (isOpen() && (e.key === 'Escape' || e.keyCode === 27)) {
-      e.preventDefault();
-      close();
-    }
-  }, true);
-  // 触屏滑动关闭（向上/向下）作为补充
-  var touchStartY = 0;
-  overlay.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; }, { passive: true });
-  overlay.addEventListener('touchend', function(e) {
-    var dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dy) > 100) close();
-  }, { passive: true });
   function bindLinks() {
     var links = document.querySelectorAll('a.lightbox-link');
     for (var i = 0; i < links.length; i++) {
@@ -248,9 +258,9 @@
     }
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindLinks);
+    document.addEventListener('DOMContentLoaded', setupLightbox);
   } else {
-    bindLinks();
+    setupLightbox();
   }
   // 暴露 close 供调试 / 页面其他位置调用
   window.__lightboxClose = close;
