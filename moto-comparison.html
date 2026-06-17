@@ -68,15 +68,21 @@
   h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; color: #333; }
 
   /* Table wrapper (horizontal scroll) */
-  .table-wrap { overflow-x: auto; margin: 12px 0 20px; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); background: #fff; }
+  .table-wrap { margin: 12px 0 20px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); background: #fff; }
   .table-wrap table { box-shadow: none; border-radius: 0; }
-  .table-wrap::-webkit-scrollbar { height: 6px; }
-  .table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
-  .table-wrap { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-  th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
+  th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; word-break: break-word; overflow-wrap: anywhere; }
   th { background: #f8f8fa; font-weight: 600; color: #555; font-size: 12px; }
   td { font-size: 13px; }
+  @media (min-width: 768px) {
+    th, td { white-space: nowrap; padding: 10px 14px; }
+    td { font-size: 14px; }
+    th { font-size: 13px; }
+  }
+  @media (max-width: 480px) {
+    th, td { padding: 6px 6px; font-size: 11px; }
+    th { font-size: 10px; }
+  }
   tr:last-child td { border-bottom: none; }
 
   /* 表格内图片：固定宽度，保持比例，圆角 */
