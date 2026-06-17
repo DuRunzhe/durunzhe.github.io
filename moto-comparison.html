@@ -201,18 +201,39 @@
   var img = document.getElementById('lightbox-img');
   var cap = document.getElementById('lightbox-cap');
   function close() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-  overlay.addEventListener('click', function(e) { if (e.target === overlay || e.target === img) close(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('active')) close(); });
+  function open(href, alt, title) {
+    img.src = href;
+    img.alt = alt || '';
+    cap.textContent = title || alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function isOpen() { return overlay.classList.contains('active'); }
+  // 关闭逻辑：改用 document 全局事件 + capture 阶段，更可靠（不受 DOM 移动 / 事件冒泡问题影响）
+  document.addEventListener('click', function(e) {
+    if (!isOpen()) return;
+    if (e.target === overlay || e.target === img) close();
+  }, true);
+  document.addEventListener('keydown', function(e) {
+    if (isOpen() && (e.key === 'Escape' || e.keyCode === 27)) {
+      e.preventDefault();
+      close();
+    }
+  }, true);
+  // 触屏滑动关闭（向上/向下）作为补充
+  var touchStartY = 0;
+  overlay.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; }, { passive: true });
+  overlay.addEventListener('touchend', function(e) {
+    var dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dy) > 100) close();
+  }, { passive: true });
   function bindLinks() {
     var links = document.querySelectorAll('a.lightbox-link');
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener('click', function(e) {
         e.preventDefault();
-        img.src = this.href;
-        img.alt = this.querySelector('img') ? this.querySelector('img').alt : '';
-        cap.textContent = (this.title || img.alt || '');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        var childImg = this.querySelector('img');
+        open(this.href, childImg ? childImg.alt : '', this.title);
       });
     }
   }
@@ -221,6 +242,8 @@
   } else {
     bindLinks();
   }
+  // 暴露 close 供调试 / 页面其他位置调用
+  window.__lightboxClose = close;
 })();
 
 // Table 自动 wrapper：避免窄屏表格溢出裁切（手在背景里看到，但表格装不下的部分可横向滚动）
