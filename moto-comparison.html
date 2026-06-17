@@ -167,18 +167,33 @@
     justify-content: center;
     cursor: zoom-out;
     padding: 20px;
+    overflow: hidden;  /* fit 模式不滚动，full 模式才滚 */
   }
   .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay.full { overflow: auto; align-items: flex-start; }
+  /* Stepped zoom: fit = 适狱，full = 原始尺寸 */
   .lightbox-overlay img {
-    max-width: 95%;
-    max-height: 95vh;
     object-fit: contain;
-    cursor: default;
     box-shadow: 0 8px 32px rgba(0,0,0,0.5);
     border-radius: 6px;
+    transition: max-width 0.25s ease, max-height 0.25s ease, cursor 0.15s;
+  }
+  .lightbox-overlay .lightbox-img-fit {
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    cursor: zoom-in;
+  }
+  .lightbox-overlay .lightbox-img-full {
+    max-width: none;
+    max-height: none;
+    width: auto;
+    height: auto;
+    cursor: zoom-out;
   }
   .lightbox-caption {
-    position: absolute;
+    position: fixed;  /* full 模式下不要 absolute 跟着滚 */
     top: 20px; left: 50%;
     transform: translateX(-50%);
     color: #fff;
@@ -187,14 +202,16 @@
     padding: 6px 16px;
     border-radius: 20px;
     pointer-events: none;
+    z-index: 1;
   }
   .lightbox-close-hint {
-    position: absolute;
+    position: fixed;
     bottom: 20px; left: 50%;
     transform: translateX(-50%);
     color: rgba(255,255,255,0.7);
     font-size: 13px;
     pointer-events: none;
+    z-index: 1;
   }
   a.lightbox-link { text-decoration: none; }
   a.lightbox-link img { transition: transform 0.2s ease; }
@@ -202,11 +219,15 @@
 </style>
 <script>
 // Lightbox 触发：点击 .lightbox-link 包裹的图片，在原页弹大图
+// Stepped zoom 模式：点击图切换 fit <-> full
+//  fit: 适狱显示，cursor: zoom-in
+//  full: 原始尺寸 + overlay 可滚动，cursor: zoom-out
+//  点击 overlay 空白 / Esc / 触屏下滑 关闭
 (function() {
   var overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
   overlay.id = 'lightbox';
-  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint">点击空白处或图片 / 按 Esc 关闭</div>';
+  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint" id="lightbox-hint">点击空白处关闭 · 点击图片切换缩放 · 按 Esc 关闭</div>';
   // 修复：脚本位于 <head>，执行时 <body> 尚未建立，需等 DOMContentLoaded 后再 appendChild
   function setupLightbox() {
     if (!document.body) return;
@@ -217,10 +238,33 @@
     bindGlobalEvents();
     bindLinks();
   }
+  function setZoom(mode) {
+    // mode: 'fit' | 'full'
+    img.classList.remove('lightbox-img-fit', 'lightbox-img-full');
+    img.classList.add('lightbox-img-' + mode);
+    if (mode === 'full') {
+      overlay.classList.add('full');
+    } else {
+      overlay.classList.remove('full');
+    }
+  }
   function bindGlobalEvents() {
+    // 点击事件：点击 img 切缩放、点击 overlay 空白关闭
     document.addEventListener('click', function(e) {
       if (!isOpen()) return;
-      if (e.target === overlay || e.target === img) close();
+      if (e.target === img) {
+        // 点击图本身 = 切换缩放状态
+        if (img.classList.contains('lightbox-img-fit')) {
+          setZoom('full');
+        } else {
+          setZoom('fit');
+        }
+        e.stopPropagation();  // 防止冒泡到 overlay 触发关闭
+        return;
+      }
+      if (e.target === overlay) {
+        close();
+      }
     }, true);
     document.addEventListener('keydown', function(e) {
       if (isOpen() && (e.key === 'Escape' || e.keyCode === 27)) {
@@ -238,11 +282,19 @@
   }
   var img = null;
   var cap = null;
-  function close() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-  function open(href, alt, title) {
+  function close() {
+    overlay.classList.remove('active', 'full');
+    if (img) {
+      img.classList.remove('lightbox-img-fit', 'lightbox-img-full');
+      img.src = '';
+    }
+    document.body.style.overflow = '';
+  }
+  function open(href, alt) {
     img.src = href;
     img.alt = alt || '';
-    cap.textContent = title || alt || '';
+    cap.textContent = alt || '';
+    setZoom('fit');  // 默认适狱
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -253,7 +305,7 @@
       links[i].addEventListener('click', function(e) {
         e.preventDefault();
         var childImg = this.querySelector('img');
-        open(this.href, childImg ? childImg.alt : '', this.title);
+        open(this.href, childImg ? childImg.alt : '');
       });
     }
   }
@@ -264,6 +316,7 @@
   }
   // 暴露 close 供调试 / 页面其他位置调用
   window.__lightboxClose = close;
+  window.__lightboxSetZoom = setZoom;
 })();
 
 // Table 自动 wrapper：避免窄屏表格溢出裁切（手在背景里看到，但表格装不下的部分可横向滚动）
