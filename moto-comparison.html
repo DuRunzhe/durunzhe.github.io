@@ -140,7 +140,85 @@
   .h1-feature { border-left: 4px solid #ff9500; padding-left: 12px; }
   .h1-misc { border-left: 4px solid #8e8e93; padding-left: 12px; }
   .h1-note { border-left: 4px solid #ff3b30; padding-left: 12px; }
+
+  /* Lightbox 图片弹窗（点击看大图） */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 20px;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img {
+    max-width: 95%;
+    max-height: 95vh;
+    object-fit: contain;
+    cursor: default;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border-radius: 6px;
+  }
+  .lightbox-caption {
+    position: absolute;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+    background: rgba(0,0,0,0.5);
+    padding: 6px 16px;
+    border-radius: 20px;
+    pointer-events: none;
+  }
+  .lightbox-close-hint {
+    position: absolute;
+    bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    pointer-events: none;
+  }
+  a.lightbox-link { text-decoration: none; }
+  a.lightbox-link img { transition: transform 0.2s ease; }
+  a.lightbox-link:hover img { transform: scale(1.05); }
 </style>
+<script>
+// Lightbox 触发：点击 .lightbox-link 包裹的图片，在原页弹大图
+(function() {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.id = 'lightbox';
+  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint">点击空白处 / 按 Esc 关闭</div>';
+  document.body.appendChild(overlay);
+  var img = document.getElementById('lightbox-img');
+  var cap = document.getElementById('lightbox-cap');
+  function close() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+  overlay.addEventListener('click', function(e) { if (e.target === overlay || e.target === img) close(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('active')) close(); });
+  function bindLinks() {
+    var links = document.querySelectorAll('a.lightbox-link');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        img.src = this.href;
+        img.alt = this.querySelector('img') ? this.querySelector('img').alt : '';
+        cap.textContent = (this.title || img.alt || '');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindLinks);
+  } else {
+    bindLinks();
+  }
+})();
+</script>
 </head>
 <body>
 <div class="container">
@@ -230,42 +308,42 @@
 <tbody>
 <tr>
 <td><strong>五羊本田 CGX150</strong></td>
-<td><img alt="CGX150" src="img/motos/cgx150.jpg" /></td>
+<td><a class="lightbox-link" href="img/motos/cgx150.jpg" title="点击看大图"><img alt="CGX150" src="img/motos/cgx150.jpg" style="cursor:pointer;" /></a></td>
 <td>¥10,080-11,680 (标/边包/特别)</td>
 <td>Cafe Racer（真复古）</td>
 <td>⭐ 关注中</td>
 </tr>
 <tr>
 <td><strong>轻骑 大脚怪</strong></td>
-<td><img alt="大脚怪 250" src="img/motos/dajiaoguai250.jpg" /></td>
+<td><a class="lightbox-link" href="img/motos/dajiaoguai250.jpg" title="点击看大图"><img alt="大脚怪 250" src="img/motos/dajiaoguai250.jpg" style="cursor:pointer;" /></a></td>
 <td>¥14,580-15,980 (全地形/林道)</td>
 <td>英伦绅士攀爬</td>
 <td>⭐ 关注中</td>
 </tr>
 <tr>
 <td><strong>升仕 350GK</strong></td>
-<td><img alt="350GK" src="img/motos/350gk.jpg" /></td>
+<td><a class="lightbox-link" href="img/motos/350gk.jpg" title="点击看大图"><img alt="350GK" src="img/motos/350gk.jpg" style="cursor:pointer;" /></a></td>
 <td>¥15,800-22,800</td>
 <td>现代运动街车</td>
 <td>⭐ 关注中</td>
 </tr>
 <tr>
 <td><strong>春风 250CL-X</strong></td>
-<td><img alt="250CL-X" src="img/motos/250clx.jpg" /></td>
+<td><a class="lightbox-link" href="img/motos/250clx.jpg" title="点击看大图"><img alt="250CL-X" src="img/motos/250clx.jpg" style="cursor:pointer;" /></a></td>
 <td>¥18,980</td>
 <td>现代复古 X 大灯</td>
 <td>⭐ 关注中</td>
 </tr>
 <tr>
 <td><strong>Honda CL300</strong></td>
-<td><img alt="CL300" src="img/motos/cl300.jpg" /></td>
+<td><a class="lightbox-link" href="img/motos/cl300.jpg" title="点击看大图"><img alt="CL300" src="img/motos/cl300.jpg" style="cursor:pointer;" /></a></td>
 <td>~¥19,780 (原 35,000)</td>
 <td>Honda Scrambler 工业风</td>
 <td>⭐ 关注中</td>
 </tr>
 <tr>
 <td><strong>贝纳利 幼狮 250</strong></td>
-<td><img alt="幼狮 250" src="img/motos/leoncino250.jpg" /></td>
+<td><a class="lightbox-link" href="img/motos/leoncino250.jpg" title="点击看大图"><img alt="幼狮 250" src="img/motos/leoncino250.jpg" style="cursor:pointer;" /></a></td>
 <td>¥19,800-22,000</td>
 <td>意大利肌肉</td>
 <td>⭐ 关注中</td>
@@ -653,7 +731,7 @@
 <td>¥19,980</td>
 <td>合资 ADV 踏板</td>
 <td>⭐ 关注中</td>
-<td><img alt="NS150 XC" src="img/motos/ns150xc.jpg" style="max-width:120px; height:auto;" /></td>
+<td><a class="lightbox-link" href="img/motos/ns150xc.jpg" title="点击看大图"><img alt="NS150 XC" src="img/motos/ns150xc.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 <tr>
 <td>2</td>
@@ -661,7 +739,7 @@
 <td>¥13,980 ⭐</td>
 <td>台湾合资大厂</td>
 <td>⭐ 关注中</td>
-<td><img alt="Dink G150" src="img/motos/dinkg150.jpg" style="max-width:120px; height:auto;" /></td>
+<td><a class="lightbox-link" href="img/motos/dinkg150.jpg" title="点击看大图"><img alt="Dink G150" src="img/motos/dinkg150.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 <tr>
 <td>3</td>
