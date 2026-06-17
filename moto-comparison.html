@@ -68,7 +68,11 @@
   h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; color: #333; }
 
   /* Table wrapper (horizontal scroll) */
-  .table-wrap { overflow-x: auto; margin: 12px 0 20px; -webkit-overflow-scrolling: touch; }
+  .table-wrap { overflow-x: auto; margin: 12px 0 20px; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); background: #fff; }
+  .table-wrap table { box-shadow: none; border-radius: 0; }
+  .table-wrap::-webkit-scrollbar { height: 6px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+  .table-wrap { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
   th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; white-space: nowrap; }
   th { background: #f8f8fa; font-weight: 600; color: #555; font-size: 12px; }
@@ -216,6 +220,26 @@
     document.addEventListener('DOMContentLoaded', bindLinks);
   } else {
     bindLinks();
+  }
+})();
+
+// Table 自动 wrapper：避免窄屏表格溢出裁切（手在背景里看到，但表格装不下的部分可横向滚动）
+(function() {
+  function wrapTables() {
+    document.querySelectorAll('table').forEach(function(t) {
+      if (t.parentNode && t.parentNode.classList && t.parentNode.classList.contains('table-wrap')) return;
+      // 跳过包含嵌套表格的（防多重重包）
+      if (t.closest('table')) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
+      t.parentNode.insertBefore(wrap, t);
+      wrap.appendChild(t);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wrapTables);
+  } else {
+    wrapTables();
   }
 })();
 </script>
