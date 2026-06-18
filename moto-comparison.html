@@ -7,15 +7,23 @@
 <style>
   * { box-sizing: border-box; }
   body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; margin: 0; padding: 24px 20px; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; overflow-x: hidden; }
+
+  /* Container */
   .container { max-width: 1200px; margin: 0 auto; padding: 0 8px; }
+
+  /* TOC 左侧悬浮可收起（桌面端） */
   @media (min-width: 1100px) {
     .toc-box {
       position: fixed !important;
-      top: 20px; left: -310px; width: auto;
+      top: 20px;
+      left: -310px;
+      width: auto;
       max-width: min(280px, 90vw);
       max-height: calc(100vh - 40px);
-      overflow-y: auto; overflow-x: hidden;
-      z-index: 100; font-size: 12px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      font-size: 12px;
       margin: 0 !important;
       transition: left 0.3s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -25,53 +33,312 @@
     .toc-box ul { white-space: normal !important; }
     .toc-box ul li { word-wrap: break-word; word-break: break-word; }
     .container { padding-left: 0; }
+    /* 浮动按钮 */
     .toc-toggle {
-      position: fixed !important; top: 24px; left: 0; z-index: 101;
-      background: #007aff; color: white; padding: 10px 14px;
-      border-radius: 0 8px 8px 0; cursor: pointer; border: none;
-      font-size: 13px; font-weight: 600;
+      position: fixed !important;
+      top: 24px;
+      left: 0;
+      z-index: 101;
+      background: #007aff;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
       box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+      transition: left 0.3s ease;
+      font-family: inherit;
     }
-    .toc-toggle.expanded { left: 300px; border-radius: 0 8px 8px 0; }
-    .article-body { padding-left: 0; }
+    /* .toc-toggle.expanded { left: 296px; } 改为不滑动 */
   }
-  .back-link { display: inline-block; margin-bottom: 12px; color: #007aff; text-decoration: none; font-size: 14px; }
-  .back-link:hover { text-decoration: underline; }
-  h1.h1-main { font-size: 28px; margin: 0 0 8px; color: #1d1d1f; }
-  h2 { font-size: 22px; margin: 32px 0 12px; color: #1d1d1f; border-bottom: 2px solid #e8e8ed; padding-bottom: 6px; }
-  h3 { font-size: 18px; margin: 20px 0 8px; color: #333; }
-  h4 { font-size: 15px; margin: 14px 0 6px; color: #555; }
-  .subtitle { font-size: 15px; color: #666; margin: 0 0 4px; }
-  .update-note { font-size: 12px; color: #999; margin: 0 0 16px; }
-  .toc-toggle { display: none; }
-  .toc-box { background: #f8f9fc; border-left: 3px solid #007aff; padding: 12px 16px; border-radius: 8px; margin: 16px 0 24px; font-size: 14px; }
-  .rules-box { background: #fff8e1; border-left: 3px solid #ff9500; padding: 12px 16px; border-radius: 8px; margin: 16px 0 24px; font-size: 14px; }
-  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
-  th { background: #f0f0f5; padding: 8px 10px; text-align: left; border: 1px solid #ddd; font-weight: 600; }
-  td { padding: 6px 10px; border: 1px solid #ddd; vertical-align: top; }
-  tr:nth-child(even) { background: #fafafa; }
-  tr:hover { background: #f0f7ff; }
-  .table-wrap { overflow-x: auto; margin: 12px 0; border-radius: 6px; }
-  .table-wrap table { margin: 0; }
-  blockquote { margin: 12px 0; padding: 10px 16px; background: #f8f9fc; border-left: 4px solid #007aff; border-radius: 0 6px 6px 0; font-size: 14px; }
-  code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
-  pre { background: #1e1e1e; color: #d4d4d4; padding: 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
-  pre code { background: none; padding: 0; color: inherit; }
-  img { max-width: 100%; height: auto; border-radius: 6px; }
-  hr { border: none; border-top: 1px solid #e8e8ed; margin: 24px 0; }
+  @media (max-width: 1099px) {
+    .toc-box { position: static !important; max-height: none !important; overflow: visible !important; width: auto !important; }
+    .toc-toggle { display: none; }
+  }
+
+  /* Header */
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: #86868b; margin-bottom: 8px; }
+  .update-note { font-size: 12px; color: #a0a0a5; margin-bottom: 24px; }
+
+  /* Section headers */
+  h2 { font-size: 20px; font-weight: 600; margin: 32px 0 12px; padding-bottom: 8px; border-bottom: 2px solid #e5e5ea; }
+  h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; color: #333; }
+
+  /* Table wrapper (horizontal scroll within table only) */
+  .table-wrap { overflow-x: auto; margin: 12px 0 20px; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); background: #fff; }
+  .table-wrap table { box-shadow: none; border-radius: 0; width: auto; min-width: 100%; }
+  .table-wrap::-webkit-scrollbar { height: 8px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 4px; }
+  .table-wrap::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+  .table-wrap { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.25) transparent; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; word-break: break-word; overflow-wrap: anywhere; }
+  th { background: #f8f8fa; font-weight: 600; color: #555; font-size: 12px; }
+  td { font-size: 13px; }
+  @media (min-width: 768px) {
+    th, td { white-space: nowrap; padding: 10px 14px; }
+    td { font-size: 14px; }
+    th { font-size: 13px; }
+  }
+  @media (max-width: 480px) {
+    th, td { padding: 6px 6px; font-size: 11px; }
+    th { font-size: 10px; }
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* 表格内图片：固定宽度，保持比例，圆角 */
+  td img { width: 150px; height: auto; border-radius: 8px; object-fit: contain; display: block; margin: 0 auto; }
+  /* 表格外图片不做限制 */
+  p img { max-width: 100%; height: auto; border-radius: 8px; }
+
+  /* Code / pre */
+  pre { background: #f0f0f2; padding: 12px 16px; border-radius: 8px; font-size: 13px; overflow-x: auto; }
+
+  /* Blockquotes */
+  blockquote { border-left: 3px solid #007aff; margin: 12px 0; padding: 8px 16px; background: #f8f9fc; border-radius: 4px; font-size: 14px; color: #333; }
+  blockquote p { margin: 4px 0; }
+
+  /* Lists */
+  ul, ol { padding-left: 20px; font-size: 14px; }
+  li { margin: 4px 0; }
+
+  /* Horizontal rule */
+  hr { border: none; border-top: 1px solid #e0e0e4; margin: 24px 0; }
+
+  /* Paragraphs */
+  p { font-size: 14px; margin: 8px 0; }
+
+  /* Strong */
+  strong { font-weight: 600; }
+
+  /* Emoji badges */
+  .badge-yes { color: #34c759; }
+  .badge-no { color: #ff3b30; }
+  .badge-warn { color: #ff9500; }
+
+  /* Link */
   a { color: #007aff; text-decoration: none; }
   a:hover { text-decoration: underline; }
-  ul, ol { padding-left: 24px; }
-  li { margin: 4px 0; }
-  .merge-note { background: #fff8e1; border-left: 3px solid #ff9500; padding: 8px 12px; border-radius: 6px; margin: 8px 0; font-size: 13px; }
-  .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; flex-direction: column; }
+
+  /* Back link */
+  .back-link { display: inline-block; margin-bottom: 16px; font-size: 14px; color: #007aff; }
+
+  @media (max-width: 600px) {
+    body { padding: 16px 12px; }
+    h1 { font-size: 20px; }
+    h2 { font-size: 17px; }
+    h3 { font-size: 14px; }
+    th, td { font-size: 11px; padding: 5px 6px; }
+    td img { width: 100px; }
+  }
+
+  /* 排版优化 */
+  .section-card { border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+  /* 表格斑马纹 + hover */
+  tbody tr:nth-child(even) { background: #f8f9fc; }
+  tbody tr:hover { background: #e8f0fe; }
+  /* 表格首列加粗 */
+  td:first-child { font-weight: 500; color: #1d1d1f; }
+  /* 章节编号徽章 */
+  .section-badge { display: inline-block; background: #007aff; color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 11px; margin-right: 6px; }
+  /* 文章 H1 级别间距调整 */
+  h1 { margin-bottom: 16px; }
+  h1 + p:first-of-type { margin-top: -8px; }
+  hr + h1 { margin-top: 8px; }
+  /* 标题颜色分类 */
+  .h1-main { border-left: 4px solid #007aff; padding-left: 12px; }
+  .h1-core { border-left: 4px solid #34c759; padding-left: 12px; }
+  .h1-feature { border-left: 4px solid #ff9500; padding-left: 12px; }
+  .h1-misc { border-left: 4px solid #8e8e93; padding-left: 12px; }
+  .h1-note { border-left: 4px solid #ff3b30; padding-left: 12px; }
+
+  /* Lightbox 图片弹窗（点击看大图） */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 20px;
+    overflow: hidden;  /* fit 模式不滚动，full 模式才滚 */
+  }
   .lightbox-overlay.active { display: flex; }
-  .lightbox-img-fit { max-width: 90vw; max-height: 90vh; object-fit: contain; cursor: zoom-in; }
-  .lightbox-img-full { max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-out; }
-  .lightbox-overlay.full { overflow: auto; }
-  .lightbox-caption { color: white; text-align: center; margin-top: 12px; font-size: 14px; }
-  .lightbox-close-hint { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 8px; }
+  .lightbox-overlay.full { overflow: auto; align-items: flex-start; }
+  /* Stepped zoom: fit = 适狱，full = 原始尺寸 */
+  .lightbox-overlay img {
+    object-fit: contain;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border-radius: 6px;
+    transition: max-width 0.25s ease, max-height 0.25s ease, cursor 0.15s;
+  }
+  .lightbox-overlay .lightbox-img-fit {
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    cursor: zoom-in;
+  }
+  .lightbox-overlay .lightbox-img-full {
+    max-width: none;
+    max-height: none;
+    width: auto;
+    height: auto;
+    cursor: zoom-out;
+  }
+  .lightbox-caption {
+    position: fixed;  /* full 模式下不要 absolute 跟着滚 */
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 14px;
+    background: rgba(0,0,0,0.5);
+    padding: 6px 16px;
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .lightbox-close-hint {
+    position: fixed;
+    bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  a.lightbox-link { text-decoration: none; }
+  a.lightbox-link img { transition: transform 0.2s ease; }
+  a.lightbox-link:hover img { transform: scale(1.05); }
 </style>
+<script>
+// Lightbox 触发：点击 .lightbox-link 包裹的图片，在原页弹大图
+// Stepped zoom 模式：点击图切换 fit <-> full
+//  fit: 适狱显示，cursor: zoom-in
+//  full: 原始尺寸 + overlay 可滚动，cursor: zoom-out
+//  点击 overlay 空白 / Esc / 触屏下滑 关闭
+(function() {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.id = 'lightbox';
+  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint" id="lightbox-hint">点击空白处关闭 · 点击图片切换缩放 · 按 Esc 关闭</div>';
+  // 修复：脚本位于 <head>，执行时 <body> 尚未建立，需等 DOMContentLoaded 后再 appendChild
+  function setupLightbox() {
+    if (!document.body) return;
+    document.body.appendChild(overlay);
+    // 必须在 appendChild 之后取——img/cap 是 overlay.innerHTML 的子元素
+    img = document.getElementById('lightbox-img');
+    cap = document.getElementById('lightbox-cap');
+    bindGlobalEvents();
+    bindLinks();
+  }
+  function setZoom(mode) {
+    // mode: 'fit' | 'full'
+    img.classList.remove('lightbox-img-fit', 'lightbox-img-full');
+    img.classList.add('lightbox-img-' + mode);
+    if (mode === 'full') {
+      overlay.classList.add('full');
+    } else {
+      overlay.classList.remove('full');
+    }
+  }
+  function bindGlobalEvents() {
+    // 点击事件：点击 img 切缩放、点击 overlay 空白关闭
+    document.addEventListener('click', function(e) {
+      if (!isOpen()) return;
+      if (e.target === img) {
+        // 点击图本身 = 切换缩放状态
+        if (img.classList.contains('lightbox-img-fit')) {
+          setZoom('full');
+        } else {
+          setZoom('fit');
+        }
+        e.stopPropagation();  // 防止冒泡到 overlay 触发关闭
+        return;
+      }
+      if (e.target === overlay) {
+        close();
+      }
+    }, true);
+    document.addEventListener('keydown', function(e) {
+      if (isOpen() && (e.key === 'Escape' || e.keyCode === 27)) {
+        e.preventDefault();
+        close();
+      }
+    }, true);
+    // 触屏滑动关闭（向上/向下）作为补充
+    var touchStartY = 0;
+    overlay.addEventListener('touchstart', function(e) { touchStartY = e.touches[0].clientY; }, { passive: true });
+    overlay.addEventListener('touchend', function(e) {
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dy) > 100) close();
+    }, { passive: true });
+  }
+  var img = null;
+  var cap = null;
+  function close() {
+    overlay.classList.remove('active', 'full');
+    if (img) {
+      img.classList.remove('lightbox-img-fit', 'lightbox-img-full');
+      img.src = '';
+    }
+    document.body.style.overflow = '';
+  }
+  function open(href, alt) {
+    img.src = href;
+    img.alt = alt || '';
+    cap.textContent = alt || '';
+    setZoom('fit');  // 默认适狱
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function isOpen() { return overlay.classList.contains('active'); }
+  function bindLinks() {
+    var links = document.querySelectorAll('a.lightbox-link');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        var childImg = this.querySelector('img');
+        open(this.href, childImg ? childImg.alt : '');
+      });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLightbox);
+  } else {
+    setupLightbox();
+  }
+  // 暴露 close 供调试 / 页面其他位置调用
+  window.__lightboxClose = close;
+  window.__lightboxSetZoom = setZoom;
+})();
+
+// Table 自动 wrapper：避免窄屏表格溢出裁切（手在背景里看到，但表格装不下的部分可横向滚动）
+(function() {
+  function wrapTables() {
+    document.querySelectorAll('table').forEach(function(t) {
+      if (t.parentNode && t.parentNode.classList && t.parentNode.classList.contains('table-wrap')) return;
+      // 跳过包含嵌套表格的（防多重重包）
+      if (t.closest('table')) return;
+      var wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
+      t.parentNode.insertBefore(wrap, t);
+      wrap.appendChild(t);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wrapTables);
+  } else {
+    wrapTables();
+  }
+})();
+</script>
 </head>
 <body>
 <div class="container">
@@ -83,171 +350,169 @@
 <div class="toc-box" style="background:#f8f9fc; border-left:3px solid #007aff; padding:12px 16px; border-radius:8px; margin:16px 0 24px; font-size:14px;">
 <h2 id="sec-toc">📑 目录</h2>
 <ul style="list-style:none; padding-left:0; margin:0;">
-<li><a href="#sec-1">🏍️ 关注的摩托车清单</a></li>
-  <li>├ <a href="#sec-2">📚 知识澄清</a></li>
-    <li>├ <a href="#sec-3">卤素 vs LED 不只是亮度差</a></li>
-  <li>├ <a href="#sec-4">🏍️ 复古跨骑 / 巡航车</a></li>
-    <li>├ <a href="#sec-5">📑 章节结构（速览/评比/参数/边际）</a></li>
-    <li>├ <a href="#sec-6">📋 6 款车型速览</a></li>
-  <li>├ <a href="#sec-7">🏆 复古 6 款综合评比</a></li>
-    <li>├ <a href="#sec-8">🔍 详细参数记录</a></li>
-  <li>├ <a href="#sec-9">🛵 踏板车 / ADV 踏板</a></li>
-    <li>├ <a href="#sec-10">📑 章节结构（速览/评比/参数/边际）</a></li>
-  <li>├ <a href="#sec-11">📋 4 款 ADV 踏板速览</a></li>
-  <li>├ <a href="#sec-12">🔍 详细参数</a></li>
-    <li>├ <a href="#sec-13">力帆 KPV 150 与 光阳 Dink G150 边际</a></li>
-    <li>├ <a href="#sec-14">💰 边际（力帆 KPV 150）</a></li>
-    <li>├ <a href="#sec-15">💰 边际（光阳 Dink G150）</a></li>
-  <li>├ <a href="#sec-16">🆚 4 款核心维度对比</a></li>
-  <li>├ <a href="#sec-17">🏆 各维度冠军</a></li>
-  <li>├ <a href="#sec-18">🤔 选择建议</a></li>
-  <li>├ <a href="#sec-19">⚠️ 重要提醒</a></li>
+  <li><a href="#sec-2">📚 知识澄清</a></li>
+    <li><a href="#sec-3">卤素 vs LED 不只是亮度差</a></li>
+  <li><a href="#sec-4">🏍️ 复古跨骑 / 巡航车</a></li>
+    <li><a href="#sec-5">📑 章节结构（速览/评比/参数/边际）</a></li>
+    <li><a href="#sec-6">📋 6 款车型速览</a></li>
+  <li><a href="#sec-7">🏆 复古 6 款综合评比</a></li>
+    <li><a href="#sec-8">🔍 详细参数记录</a></li>
+  <li><a href="#sec-9">🛵 踏板车 / ADV 踏板</a></li>
+    <li><a href="#sec-10">📑 章节结构（速览/评比/参数/边际）</a></li>
+  <li><a href="#sec-11">📋 4 款 ADV 踏板速览</a></li>
+  <li><a href="#sec-12">🔍 详细参数</a></li>
+    <li><a href="#sec-13">力帆 KPV 150 与 光阳 Dink G150 边际</a></li>
+    <li><a href="#sec-14">💰 边际（力帆 KPV 150）</a></li>
+    <li><a href="#sec-15">💰 边际（光阳 Dink G150）</a></li>
+  <li><a href="#sec-16">🆚 4 款核心维度对比</a></li>
+  <li><a href="#sec-17">🏆 各维度冠军</a></li>
+  <li><a href="#sec-18">🤔 选择建议</a></li>
+  <li><a href="#sec-19">⚠️ 重要提醒</a></li>
 <li><a href="#sec-20">🛵 8 款 ADV 踏板车（含力帆 KPV 150 + 光阳 Dink G150）</a></li>
-  <li>├ <a href="#sec-21">📋 11 款踏板全表</a></li>
-    <li>├ <a href="#sec-22">📍 B. 中端（2-3 万）</a></li>
-    <li>├ <a href="#sec-23">🛵 C. 中高端（3-4 万）</a></li>
-    <li>├ <a href="#sec-24">🏆 D. 旗舰（4-5 万+）</a></li>
-  <li>├ <a href="#sec-25">🔍 新加 4 款详参</a></li>
-  <li>├ <a href="#sec-26">🆚 全维度对比（11 款踏板）</a></li>
-  <li>├ <a href="#sec-27">💡 我的真实建议</a></li>
-  <li>├ <a href="#sec-28">🛵 跨界 ADV 补充对比（力帆 KPV 150 + 光阳 Dink G150）</a></li>
-    <li>├ <a href="#sec-29">5️⃣ 力帆 KPV 150（3 版本）</a></li>
+  <li><a href="#sec-21">📋 11 款踏板全表</a></li>
+    <li><a href="#sec-22">📍 B. 中端（2-3 万）</a></li>
+    <li><a href="#sec-23">🛵 C. 中高端（3-4 万）</a></li>
+    <li><a href="#sec-24">🏆 D. 旗舰（4-5 万+）</a></li>
+  <li><a href="#sec-25">🔍 新加 4 款详参</a></li>
+  <li><a href="#sec-26">🆚 全维度对比（11 款踏板）</a></li>
+  <li><a href="#sec-27">💡 我的真实建议</a></li>
+  <li><a href="#sec-28">🛵 跨界 ADV 补充对比（力帆 KPV 150 + 光阳 Dink G150）</a></li>
+    <li><a href="#sec-29">5️⃣ 力帆 KPV 150（3 版本）</a></li>
 <li><a href="#sec-30">🛵 5 款 150cc 通勤 / ADV 踏板</a></li>
-  <li>├ <a href="#sec-31">📋 5 款车核心速览</a></li>
-  <li>├ <a href="#sec-32">🔍 5 款车核心参数</a></li>
-  <li>├ <a href="#sec-33">🆚 5 款车各维度冠军</a></li>
-  <li>├ <a href="#sec-34">🎯 5 款车选择建议</a></li>
-  <li>├ <a href="#sec-35">📊 与前 3 批 17 款的关系</a></li>
-  <li>├ <a href="#sec-36">💡 这 5 款与之前 11 款踏板的关系</a></li>
-  <li>├ <a href="#sec-37">⚠️ 重叠 / 容易混淆的车型</a></li>
+  <li><a href="#sec-31">📋 5 款车核心速览</a></li>
+  <li><a href="#sec-32">🔍 5 款车核心参数</a></li>
+  <li><a href="#sec-33">🆚 5 款车各维度冠军</a></li>
+  <li><a href="#sec-34">🎯 5 款车选择建议</a></li>
+  <li><a href="#sec-35">📊 与前 3 批 17 款的关系</a></li>
+  <li><a href="#sec-36">💡 这 5 款与之前 11 款踏板的关系</a></li>
+  <li><a href="#sec-37">⚠️ 重叠 / 容易混淆的车型</a></li>
 <li><a href="#sec-38">🆕 1 款运动豪华通勤踏板</a></li>
 <li><a href="#sec-39">🆕 17 款踏板全方位对比 + 购买建议</a></li>
-  <li>├ <a href="#sec-40">🆚 8 维核心对比（25 款踏板）</a></li>
-  <li>├ <a href="#sec-41">🏆 各维度冠军（25 款对比）</a></li>
-  <li>├ <a href="#sec-42">🎯 8 种典型用户购买建议</a></li>
-    <li>├ <a href="#sec-43">1️⃣ 极简通勤族（城市代步、买菜的）</a></li>
-    <li>├ <a href="#sec-44">2️⃣ 通勤 + 偶尔林道（你想问的）</a></li>
-    <li>├ <a href="#sec-45">3️⃣ 真正要越野（真的走烂路/林道）</a></li>
-    <li>├ <a href="#sec-46">4️⃣ 性能党（动力 / 续航 / 重量党）</a></li>
-    <li>├ <a href="#sec-47">5️⃣ 安全配置党（要毫米波雷达 / 记录仪 / 胎压）</a></li>
-    <li>├ <a href="#sec-48">6️⃣ 智能豪华党（要 TFT / T-BOX / Smart Key / 双快充）</a></li>
-    <li>├ <a href="#sec-49">7️⃣ 颜值党（要复古 / 平踏 / 镀铬）</a></li>
-    <li>├ <a href="#sec-50">8️⃣ 预算极宽（30K+ 想玩大排量）</a></li>
-  <li>├ <a href="#sec-51">💡 最终建议</a></li>
-  <li>├ <a href="#sec-52">⚠️ 三件套"高不成低不就"提醒</a></li>
+  <li><a href="#sec-40">🆚 8 维核心对比（25 款踏板）</a></li>
+  <li><a href="#sec-41">🏆 各维度冠军（25 款对比）</a></li>
+  <li><a href="#sec-42">🎯 8 种典型用户购买建议</a></li>
+    <li><a href="#sec-43">1️⃣ 极简通勤族（城市代步、买菜的）</a></li>
+    <li><a href="#sec-44">2️⃣ 通勤 + 偶尔林道（你想问的）</a></li>
+    <li><a href="#sec-45">3️⃣ 真正要越野（真的走烂路/林道）</a></li>
+    <li><a href="#sec-46">4️⃣ 性能党（动力 / 续航 / 重量党）</a></li>
+    <li><a href="#sec-47">5️⃣ 安全配置党（要毫米波雷达 / 记录仪 / 胎压）</a></li>
+    <li><a href="#sec-48">6️⃣ 智能豪华党（要 TFT / T-BOX / Smart Key / 双快充）</a></li>
+    <li><a href="#sec-49">7️⃣ 颜值党（要复古 / 平踏 / 镀铬）</a></li>
+    <li><a href="#sec-50">8️⃣ 预算极宽（30K+ 想玩大排量）</a></li>
+  <li><a href="#sec-51">💡 最终建议</a></li>
+  <li><a href="#sec-52">⚠️ 三件套"高不成低不就"提醒</a></li>
 <li><a href="#sec-53">🆕 18 款踏板全参数对比 + 特别关注维度精排</a></li>
-    <li>├ <a href="#sec-54">📑 章节结构（速览/评比/参数/边际）</a></li>
-  <li>├ <a href="#sec-55">📋 表 1：核心参数（18 款 × 12 列）</a></li>
-    <li>├ <a href="#sec-56">📋 18 款表独有列 → 25 款表映射</a></li>
-  <li>├ <a href="#sec-57">🔧 表 2：智能配置（18 款 × 11 列）</a></li>
-  <li>├ <a href="#sec-58">🎒 表 3：实用与外观（你最关注的实用性维度）</a></li>
-  <li>├ <a href="#sec-59">🎯 你特别关注的 8 个维度精排</a></li>
-    <li>├ <a href="#sec-60">维度 1：💰 价格（≤2 万）</a></li>
-    <li>├ <a href="#sec-61">维度 2：🇯🇵 合资 / 🌏 进口 / 🇨🇳 国产</a></li>
-    <li>├ <a href="#sec-62">维度 3：🚗 通勤友好度</a></li>
-    <li>├ <a href="#sec-63">维度 4：🏕️ 林道 / 越野能力</a></li>
-    <li>├ <a href="#sec-64">维度 5：🧠 智能配置（你最关注）</a></li>
-    <li>├ <a href="#sec-65">维度 6：🔋 续航</a></li>
-    <li>├ <a href="#sec-66">维度 7：🎒 实用性</a></li>
-    <li>├ <a href="#sec-67">维度 8：🛡️ 品牌 / 维护</a></li>
-  <li>├ <a href="#sec-68">🏆 3 选 1 决赛圈（按你"特别关注"维度重算）</a></li>
-    <li>├ <a href="#sec-69">🎯 重新算的最终建议</a></li>
-  <li>├ <a href="#sec-70">⚠️ 关键提醒</a></li>
+    <li><a href="#sec-54">📑 章节结构（速览/评比/参数/边际）</a></li>
+  <li><a href="#sec-55">📋 表 1：核心参数（18 款 × 12 列）</a></li>
+    <li><a href="#sec-56">📋 18 款表独有列 → 25 款表映射</a></li>
+  <li><a href="#sec-57">🔧 表 2：智能配置（18 款 × 11 列）</a></li>
+  <li><a href="#sec-58">🎒 表 3：实用与外观（你最关注的实用性维度）</a></li>
+  <li><a href="#sec-59">🎯 你特别关注的 8 个维度精排</a></li>
+    <li><a href="#sec-60">维度 1：💰 价格（≤2 万）</a></li>
+    <li><a href="#sec-61">维度 2：🇯🇵 合资 / 🌏 进口 / 🇨🇳 国产</a></li>
+    <li><a href="#sec-62">维度 3：🚗 通勤友好度</a></li>
+    <li><a href="#sec-63">维度 4：🏕️ 林道 / 越野能力</a></li>
+    <li><a href="#sec-64">维度 5：🧠 智能配置（你最关注）</a></li>
+    <li><a href="#sec-65">维度 6：🔋 续航</a></li>
+    <li><a href="#sec-66">维度 7：🎒 实用性</a></li>
+    <li><a href="#sec-67">维度 8：🛡️ 品牌 / 维护</a></li>
+  <li><a href="#sec-68">🏆 3 选 1 决赛圈（按你"特别关注"维度重算）</a></li>
+    <li><a href="#sec-69">🎯 重新算的最终建议</a></li>
+  <li><a href="#sec-70">⚠️ 关键提醒</a></li>
 <li><a href="#sec-71">⚠️ ABS/TCS 重大勘误</a></li>
-  <li>├ <a href="#sec-72">❌ 重大错误清单</a></li>
-  <li>├ <a href="#sec-73">✅ ABS/TCS 智能配置表</a></li>
-  <li>├ <a href="#sec-74">🏆 重新算 3 选 1 决赛圈（修正后）</a></li>
-    <li>├ <a href="#sec-75">🔄 4 大新结论</a></li>
-  <li>├ <a href="#sec-76">📝 教训记录</a></li>
+  <li><a href="#sec-72">❌ 重大错误清单</a></li>
+  <li><a href="#sec-73">✅ ABS/TCS 智能配置表</a></li>
+  <li><a href="#sec-74">🏆 重新算 3 选 1 决赛圈（修正后）</a></li>
+    <li><a href="#sec-75">🔄 4 大新结论</a></li>
+  <li><a href="#sec-76">📝 教训记录</a></li>
 <li><a href="#sec-77">🌳 本田专题（5 款本田多版本决策）</a></li>
-  <li>├ <a href="#sec-78">🌳 5 款本田的版本树</a></li>
-    <li>├ <a href="#sec-79">1️⃣ NS150GX（4 版本）—— 智能豪华通勤</a></li>
-    <li>├ <a href="#sec-80">3️⃣ NWT150（3 版本）—— 安全配置王</a></li>
-    <li>├ <a href="#sec-81">4️⃣ NS150 XC（2 版本）—— 合资 ADV</a></li>
+  <li><a href="#sec-78">🌳 5 款本田的版本树</a></li>
+    <li><a href="#sec-79">1️⃣ NS150GX（4 版本）—— 智能豪华通勤</a></li>
+    <li><a href="#sec-80">3️⃣ NWT150（3 版本）—— 安全配置王</a></li>
+    <li><a href="#sec-81">4️⃣ NS150 XC（2 版本）—— 合资 ADV</a></li>
 <li><a href="#sec-82">🆕 特别关注车型</a></li>
-  <li>├ <a href="#sec-83">🏍️ 新大洲本田 NS150GX</a></li>
-    <li>├ <a href="#sec-84">📑 章节结构（速览/评比/参数/边际）</a></li>
-    <li>├ <a href="#sec-85">💰 价格（4 个版本）</a></li>
-    <li>├ <a href="#sec-86">📐 关键参数</a></li>
-    <li>├ <a href="#sec-87">🎨 设计 &amp; 操控亮点</a></li>
-    <li>├ <a href="#sec-88">🎯 定位解读</a></li>
-    <li>├ <a href="#sec-89">📊 与关注清单的踏板车对比</a></li>
-    <li>├ <a href="#sec-90">💡 我对 NS150GX 的真实评价</a></li>
-    <li>├ <a href="#sec-91">🎯 选择建议（结合你的关注重点）</a></li>
-    <li>├ <a href="#sec-92">⚠️ 重要提醒</a></li>
-    <li>├ <a href="#sec-93">💰 边际（版本价值分析）</a></li>
-    <li>├ <a href="#sec-94">📝 引言</a></li>
-    <li>├ <a href="#sec-95">📝 引言</a></li>
-  <li>├ <a href="#sec-96">🏍️ 升仕 150V（ZT1P58MJ-S）</a></li>
-    <li>├ <a href="#sec-97">📑 章节结构（速览/评比/参数/边际）</a></li>
-    <li>├ <a href="#sec-98">💰 价格</a></li>
-    <li>├ <a href="#sec-99">📐 关键参数</a></li>
-    <li>├ <a href="#sec-100">✅ 标配安全配置</a></li>
-    <li>├ <a href="#sec-101">📱 智能配置</a></li>
-    <li>├ <a href="#sec-102">🪣 储物能力</a></li>
-    <li>├ <a href="#sec-103">💡 灯光</a></li>
-    <li>├ <a href="#sec-104">⚖️ 与升仕 150X 的关系</a></li>
-    <li>├ <a href="#sec-105">💰 边际（版本价值分析）</a></li>
-  <li>├ <a href="#sec-106">📦 保留待查看 · 🚨 座桶冠军更新：升仕 150V 反超 NS150GX</a></li>
-  <li>├ <a href="#sec-107">📦 保留待查看 · 📊 18 款踏板座桶容量</a></li>
-  <li>├ <a href="#sec-108">📦 保留待查看 · 🆚 已知 2 款"通勤载物"对决</a></li>
-  <li>├ <a href="#sec-109">📦 保留待查看 · 💡 重新算"通勤载物"3 选 1</a></li>
-  <li>├ <a href="#sec-110">🆕 特色章节-本田 2026 年 1-6 月踏板发布时间线</a></li>
-    <li>├ <a href="#sec-111">📑 章节结构（速览/评比/参数/边际）</a></li>
-    <li>├ <a href="#sec-112">🟢 3/20 · 五羊本田 • 杭州春季发布会</a></li>
-    <li>├ <a href="#sec-113">🟢 3/27 · 本田中国 • 上海发布会（7 款，含 2 款踏板）</a></li>
-    <li>├ <a href="#sec-114">🟢 4/10 · 新大洲本田 • 成都都江堰发布会（5 款，含 2 款踏板）</a></li>
-    <li>├ <a href="#sec-115">🟢 4/15 · 2026 款 NSS350 实际悄悄上市</a></li>
-    <li>├ <a href="#sec-116">🟢 5/13 · 新大洲本田 • 单独发布</a></li>
-    <li>├ <a href="#sec-117">🟢 5/21 · 本田日本（仅日本，未进国内）</a></li>
-    <li>├ <a href="#sec-118">🟢 5/25 · 新大洲本田 • 正式发布</a></li>
-    <li>├ <a href="#sec-119">🟢 6/7 · 新大洲本田 • 新车预告</a></li>
-    <li>├ <a href="#sec-120">📊 汇总</a></li>
-    <li>├ <a href="#sec-121">🔗 1-6 月盘点数据源索引</a></li>
-  <li>├ <a href="#sec-122">🆚 本田合资 150 平踏 4 车深度对比（NWT150/NWG150/NS150ES/NS150GX）</a></li>
-    <li>├ <a href="#sec-123">📑 章节结构（速览/评比/参数/边际）</a></li>
-    <li>├ <a href="#sec-124">📋 4 款车一览</a></li>
-    <li>├ <a href="#sec-125">📐 关键参数对比</a></li>
-    <li>├ <a href="#sec-126">🛡 安全 / 操控</a></li>
-    <li>├ <a href="#sec-127">🏆 各维度冠军</a></li>
-    <li>├ <a href="#sec-128">🎯 选择建议</a></li>
-    <li>├ <a href="#sec-129">⚠️ 数据可信度</a></li>
-    <li>├ <a href="#sec-130">🔗 数据源索引</a></li>
-    <li>├ <a href="#sec-131">边际汇总（本节 4 款本田）</a></li>
-    <li>├ <a href="#sec-132">💰 边际（NS150ES）</a></li>
-    <li>├ <a href="#sec-133">💰 边际（NS150 XC）</a></li>
-  <li>├ <a href="#sec-134">💰 版本边际价值分析</a></li>
-    <li>├ <a href="#sec-135">一、关键升级的「边际成本」</a></li>
-    <li>├ <a href="#sec-136">二、🌟 花小钱办大事（强烈推荐加钱）</a></li>
-    <li>├ <a href="#sec-137">三、💸 花大钱办小事（不推荐加钱）</a></li>
-    <li>├ <a href="#sec-138">四、🏆 性价比天花板</a></li>
-    <li>├ <a href="#sec-139">六、避坑提醒 ⚠️</a></li>
-    <li>├ <a href="#sec-140">🎯 一句话总结</a></li>
-    <li>├ <a href="#sec-141">🔗 补充：其他车型版本价值分析（历史分析整合）</a></li>
-  <li>├ <a href="#sec-142">📦 保留待查看 · 💸 落地价估算 + 4S 砍话术</a></li>
-    <li>├ <a href="#sec-143">📜 法律依据</a></li>
-    <li>├ <a href="#sec-144">💰 落地价估算</a></li>
-    <li>├ <a href="#sec-145">🎯 4S 店多余一句砍话术</a></li>
-    <li>├ <a href="#sec-146">🔍 怎么确认自己买的是不是 150cc 以下</a></li>
-    <li>├ <a href="#sec-147">⚠️ 为什么 4S 店有时“算错”</a></li>
-  <li>├ <a href="#sec-148">🏍️ 150CC 踏板最终推荐</a></li>
-    <li>├ <a href="#sec-149">📑 章节结构（速览/评比/参数/边际）</a></li>
-    <li>├ <a href="#sec-150">一、普通踏板（城市通勤/平踏/运动/复古）</a></li>
-    <li>├ <a href="#sec-151">二、ADV 踏板（跨界探险/轻越野）</a></li>
-    <li>├ <a href="#sec-152">三、🚨 值得购买 TOP 5 推荐</a></li>
-    <li>├ <a href="#sec-153">四、按用户类型精选</a></li>
-    <li>├ <a href="#sec-154">五、避坑提醒 ⚠️</a></li>
-    <li>├ <a href="#sec-155">六、一句话总结</a></li>
-    <li>├ <a href="#sec-156">🔗 与文件已有内容的交叉关系</a></li>
-  <li>├ <a href="#sec-157">📦 保留待查看 · 📋 附录</a></li>
-  <li>├ <a href="#sec-158">📦 保留待查看 · ⚠️ 数据缺失追踪</a></li>
-  <li>├ <a href="#sec-159">---</a></li>
+  <li><a href="#sec-83">🏍️ 新大洲本田 NS150GX</a></li>
+    <li><a href="#sec-84">📑 章节结构（速览/评比/参数/边际）</a></li>
+    <li><a href="#sec-85">💰 价格（4 个版本）</a></li>
+    <li><a href="#sec-86">📐 关键参数</a></li>
+    <li><a href="#sec-87">🎨 设计 &amp; 操控亮点</a></li>
+    <li><a href="#sec-88">🎯 定位解读</a></li>
+    <li><a href="#sec-89">📊 与关注清单的踏板车对比</a></li>
+    <li><a href="#sec-90">💡 我对 NS150GX 的真实评价</a></li>
+    <li><a href="#sec-91">🎯 选择建议（结合你的关注重点）</a></li>
+    <li><a href="#sec-92">⚠️ 重要提醒</a></li>
+    <li><a href="#sec-93">💰 边际（版本价值分析）</a></li>
+    <li><a href="#sec-94">📝 引言</a></li>
+    <li><a href="#sec-95">📝 引言</a></li>
+  <li><a href="#sec-96">🏍️ 升仕 150V（ZT1P58MJ-S）</a></li>
+    <li><a href="#sec-97">📑 章节结构（速览/评比/参数/边际）</a></li>
+    <li><a href="#sec-98">💰 价格</a></li>
+    <li><a href="#sec-99">📐 关键参数</a></li>
+    <li><a href="#sec-100">✅ 标配安全配置</a></li>
+    <li><a href="#sec-101">📱 智能配置</a></li>
+    <li><a href="#sec-102">🪣 储物能力</a></li>
+    <li><a href="#sec-103">💡 灯光</a></li>
+    <li><a href="#sec-104">⚖️ 与升仕 150X 的关系</a></li>
+    <li><a href="#sec-105">💰 边际（版本价值分析）</a></li>
+  <li><a href="#sec-106">📦 保留待查看 · 🚨 座桶冠军更新：升仕 150V 反超 NS150GX</a></li>
+  <li><a href="#sec-107">📦 保留待查看 · 📊 18 款踏板座桶容量</a></li>
+  <li><a href="#sec-108">📦 保留待查看 · 🆚 已知 2 款"通勤载物"对决</a></li>
+  <li><a href="#sec-109">📦 保留待查看 · 💡 重新算"通勤载物"3 选 1</a></li>
+  <li><a href="#sec-110">🆕 特色章节-本田 2026 年 1-6 月踏板发布时间线</a></li>
+    <li><a href="#sec-111">📑 章节结构（速览/评比/参数/边际）</a></li>
+    <li><a href="#sec-112">🟢 3/20 · 五羊本田 • 杭州春季发布会</a></li>
+    <li><a href="#sec-113">🟢 3/27 · 本田中国 • 上海发布会（7 款，含 2 款踏板）</a></li>
+    <li><a href="#sec-114">🟢 4/10 · 新大洲本田 • 成都都江堰发布会（5 款，含 2 款踏板）</a></li>
+    <li><a href="#sec-115">🟢 4/15 · 2026 款 NSS350 实际悄悄上市</a></li>
+    <li><a href="#sec-116">🟢 5/13 · 新大洲本田 • 单独发布</a></li>
+    <li><a href="#sec-117">🟢 5/21 · 本田日本（仅日本，未进国内）</a></li>
+    <li><a href="#sec-118">🟢 5/25 · 新大洲本田 • 正式发布</a></li>
+    <li><a href="#sec-119">🟢 6/7 · 新大洲本田 • 新车预告</a></li>
+    <li><a href="#sec-120">📊 汇总</a></li>
+    <li><a href="#sec-121">🔗 1-6 月盘点数据源索引</a></li>
+  <li><a href="#sec-122">🆚 本田合资 150 平踏 4 车深度对比（NWT150/NWG150/NS150ES/NS150GX）</a></li>
+    <li><a href="#sec-123">📑 章节结构（速览/评比/参数/边际）</a></li>
+    <li><a href="#sec-124">📋 4 款车一览</a></li>
+    <li><a href="#sec-125">📐 关键参数对比</a></li>
+    <li><a href="#sec-126">🛡 安全 / 操控</a></li>
+    <li><a href="#sec-127">🏆 各维度冠军</a></li>
+    <li><a href="#sec-128">🎯 选择建议</a></li>
+    <li><a href="#sec-129">⚠️ 数据可信度</a></li>
+    <li><a href="#sec-130">🔗 数据源索引</a></li>
+    <li><a href="#sec-131">边际汇总（本节 4 款本田）</a></li>
+    <li><a href="#sec-132">💰 边际（NS150ES）</a></li>
+    <li><a href="#sec-133">💰 边际（NS150 XC）</a></li>
+  <li><a href="#sec-134">💰 版本边际价值分析</a></li>
+    <li><a href="#sec-135">一、关键升级的「边际成本」</a></li>
+    <li><a href="#sec-136">二、🌟 花小钱办大事（强烈推荐加钱）</a></li>
+    <li><a href="#sec-137">三、💸 花大钱办小事（不推荐加钱）</a></li>
+    <li><a href="#sec-138">四、🏆 性价比天花板</a></li>
+    <li><a href="#sec-139">六、避坑提醒 ⚠️</a></li>
+    <li><a href="#sec-140">🎯 一句话总结</a></li>
+    <li><a href="#sec-141">🔗 补充：其他车型版本价值分析（历史分析整合）</a></li>
+  <li><a href="#sec-142">📦 保留待查看 · 💸 落地价估算 + 4S 砍话术</a></li>
+    <li><a href="#sec-143">📜 法律依据</a></li>
+    <li><a href="#sec-144">💰 落地价估算</a></li>
+    <li><a href="#sec-145">🎯 4S 店多余一句砍话术</a></li>
+    <li><a href="#sec-146">🔍 怎么确认自己买的是不是 150cc 以下</a></li>
+    <li><a href="#sec-147">⚠️ 为什么 4S 店有时“算错”</a></li>
+  <li><a href="#sec-148">🏍️ 150CC 踏板最终推荐</a></li>
+    <li><a href="#sec-149">📑 章节结构（速览/评比/参数/边际）</a></li>
+    <li><a href="#sec-150">一、普通踏板（城市通勤/平踏/运动/复古）</a></li>
+    <li><a href="#sec-151">二、ADV 踏板（跨界探险/轻越野）</a></li>
+    <li><a href="#sec-152">三、🚨 值得购买 TOP 5 推荐</a></li>
+    <li><a href="#sec-153">四、按用户类型精选</a></li>
+    <li><a href="#sec-154">五、避坑提醒 ⚠️</a></li>
+    <li><a href="#sec-155">六、一句话总结</a></li>
+    <li><a href="#sec-156">🔗 与文件已有内容的交叉关系</a></li>
+  <li><a href="#sec-157">📦 保留待查看 · 📋 附录</a></li>
+  <li><a href="#sec-158">📦 保留待查看 · ⚠️ 数据缺失追踪</a></li>
+  <li><a href="#sec-159">---</a></li>
 <li><a href="#sec-160">📦 附录：保留待查看章节索引</a></li>
-  <li>├ <a href="#sec-161">索引</a></li>
-  <li>├ <a href="#sec-162">8 个核心章节（速览/评比/参数/边际）</a></li>
+  <li><a href="#sec-161">索引</a></li>
+  <li><a href="#sec-162">8 个核心章节（速览/评比/参数/边际）</a></li>
 </ul>
 </div>
-<div class="article-body">
 
 <p><strong>记录时间</strong>：2026-06-14<br>
 <strong>记录人</strong>：墨墨（QQ Bot）<br>
@@ -257,7 +522,7 @@
 <h2 id="sec-2">📚 知识澄清</h2>
 <p>收录<strong>与具体车型无关、但读者容易踩坑或搞混</strong>的知识点专题。每条独立成节，方便后续按需追加。</p>
 <h3 id="sec-3">卤素 vs LED 不只是亮度差</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -297,7 +562,7 @@
 <td>❌ 偏现代</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>📍 触发场景</strong>
 - 复古跨骑里"大脚怪"是 6 车里<strong>唯一卤素</strong>车型——并非配置缩水，是 Cafe Racer 复古风格的<strong>主动选择</strong>（卤素灯 = 复古灵魂）
 - LED 在夜路 / 烂路更安全（亮度 + 寿命 + 能耗都赢）
@@ -309,7 +574,7 @@
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -339,10 +604,10 @@
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-6">📋 6 款车型速览</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -354,45 +619,45 @@
 <tbody>
 <tr>
 <td><strong>五羊本田 CGX150</strong></td>
-<td><img alt="CGX150" src="img/motos/cgx150.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/cgx150.jpg" title="点击看大图"><img alt="CGX150" src="img/motos/cgx150.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 <td>¥10,080-11,680 (标/边包/特别)</td>
 <td>Cafe Racer（真复古）</td>
 </tr>
 <tr>
 <td><strong>轻骑 大脚怪</strong></td>
-<td><img alt="大脚怪 250" src="img/motos/dajiaoguai250.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/dajiaoguai250.jpg" title="点击看大图"><img alt="大脚怪 250" src="img/motos/dajiaoguai250.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 <td>¥14,580-15,980 (全地形/林道)</td>
 <td>英伦绅士攀爬</td>
 </tr>
 <tr>
 <td><strong>升仕 350GK</strong></td>
-<td><img alt="350GK" src="img/motos/350gk.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/350gk.jpg" title="点击看大图"><img alt="350GK" src="img/motos/350gk.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 <td>¥15,800-22,800</td>
 <td>现代运动街车</td>
 </tr>
 <tr>
 <td><strong>春风 250CL-X</strong></td>
-<td><img alt="250CL-X" src="img/motos/250clx.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/250clx.jpg" title="点击看大图"><img alt="250CL-X" src="img/motos/250clx.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 <td>¥18,980</td>
 <td>现代复古 X 大灯</td>
 </tr>
 <tr>
 <td><strong>Honda CL300</strong></td>
-<td><img alt="CL300" src="img/motos/cl300.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/cl300.jpg" title="点击看大图"><img alt="CL300" src="img/motos/cl300.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 <td>~¥19,780 (原 35,000)</td>
 <td>Honda Scrambler 工业风</td>
 </tr>
 <tr>
 <td><strong>贝纳利 幼狮 250</strong></td>
-<td><img alt="幼狮 250" src="img/motos/leoncino250.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/leoncino250.jpg" title="点击看大图"><img alt="幼狮 250" src="img/motos/leoncino250.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 <td>¥19,800-22,000</td>
 <td>意大利肌肉</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-7">🏆 复古 6 款综合评比</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -461,7 +726,7 @@
 <td>意系调校 / 圆灯设计</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>📌 关键备注</strong>（来源 / 数据 / 用户当前状态）：
 - <strong>数据来源</strong>：用户 2026-06-14 引用其他对话内容
 - <strong>本 session 未做原始对比</strong>（已向用户说明）
@@ -641,7 +906,7 @@
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -671,13 +936,13 @@
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-11">📋 4 款 ADV 踏板速览</h2>
 <blockquote>
 <p>💡 <strong>博文查看提示</strong>：moto-comparison.html 已加 lightbox，<strong>点击车图可看大图</strong>（点空白/点图片/按 Esc 都关闭）。8 张图全部生效。</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -693,31 +958,31 @@
 <td><strong>新大洲本田 NS150 XC</strong></td>
 <td>¥19,980</td>
 <td>合资 ADV 踏板</td>
-<td><img alt="NS150 XC" src="img/motos/ns150xc.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/ns150xc.jpg" title="点击看大图"><img alt="NS150 XC" src="img/motos/ns150xc.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 <tr>
 <td>2</td>
 <td><strong>光阳 Dink G150</strong></td>
 <td>¥13,980 ⭐</td>
 <td>台湾合资大厂</td>
-<td><img alt="Dink G150" src="img/motos/dinkg150.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/dinkg150.jpg" title="点击看大图"><img alt="Dink G150" src="img/motos/dinkg150.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 <tr>
 <td>3</td>
 <td><strong>Aprilia SR GT 200</strong></td>
 <td>¥20,300</td>
 <td>意系进口</td>
-<td><img alt="SR GT 200" src="img/motos/srgt200.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/srgt200.jpg" title="点击看大图"><img alt="SR GT 200" src="img/motos/srgt200.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 <tr>
 <td>4</td>
 <td><strong>力帆 KPV 150</strong></td>
 <td>¥12,980</td>
 <td>国产越野王</td>
-<td><img alt="KPV 150" src="img/motos/kpv150.jpg"></td>
+<td><a class="lightbox-link" href="img/motos/kpv150.jpg" title="点击看大图"><img alt="KPV 150" src="img/motos/kpv150.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>📦 <strong>车图数据源</strong>：<a href="https://m.58moto.com">m.58moto.com</a> 详情页 <code>originGoodPic</code>（2026-06-17 首次查证）
 - KPV 150 = <code>m.58moto.com/garage/detail/6904</code>（ID 6904，之前扫描误判查无）
@@ -914,7 +1179,7 @@
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 踏板车 / ADV 踏板</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -937,7 +1202,7 @@
 <td>🔥 划算</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⚠️ <strong>2026 款价格没确认</strong>，按 2021 款 ¥12,980 估算。</p>
 <p><strong>KPV 150 性价比天花板</strong>：<strong>高配版</strong>——TCS + 胎压 + 7寸 TFT 一步到位，<strong>国产越野王满配</strong>。</p>
 <h3 id="sec-15">💰 边际（光阳 Dink G150）</h3>
@@ -950,7 +1215,7 @@
 <p><strong>Dink G150 性价比定位</strong>：<strong>单版本极简主义</strong>——无需纠结选版，所有配置一步到位（合资满配 + 续航 500km），<strong>4 款 ADV 中综合最甜</strong>。</p>
 <hr>
 <h2 id="sec-16">🆚 4 款核心维度对比</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -1095,13 +1360,13 @@
 <td>—</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>📊 <strong>数据源</strong>：以上参数主要来自 <a href="https://m.58moto.com">m.58moto.com</a> 参数页（<strong>2026-06-17 首次查证</strong>）。力帆 KPV 150 不在摩托范收录中，标"🔴"者仍需其他源补全。</p>
 </blockquote>
 <hr>
 <h2 id="sec-17">🏆 各维度冠军</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -1146,10 +1411,10 @@
 <td>价格 + 续航 + 合资 ✅</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-18">🤔 选择建议</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>你的需求</th>
@@ -1182,7 +1447,7 @@
 <td>力帆 KPV 150（不要选 NS150 XC）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-19">⚠️ 重要提醒</h2>
 <p><strong>NS150 XC 的"ADV"是名不副实的</strong>——搜狐评测原话：</p>
@@ -1204,7 +1469,7 @@
 <hr>
 <h2 id="sec-21">📋 11 款踏板全表</h2>
 <h3>🏆 A. <strong>通勤+偶尔林道+≤2 万对位</strong></h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -1249,9 +1514,9 @@
 <td>3 轴 IMU + 合资 + 28L 座桶</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-22">📍 B. 中端（2-3 万）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -1274,9 +1539,9 @@
 <td>300cc 城市休旅</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-23">🛵 C. 中高端（3-4 万）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -1299,9 +1564,9 @@
 <td>KYMCO 真 ADV 踏板（<strong>鸟嘴+KEYLESS+TCS</strong>）⚠️ <strong>之前讨论的"赛艇 X350"是运动平踏，不是这款</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-24">🏆 D. 旗舰（4-5 万+）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -1330,7 +1595,7 @@
 <td>旗舰跨界大踏板</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-25">🔍 新加 4 款详参</h2>
 <h3>1. <strong>大阳 V锐 ADV150</strong> ⭐</h3>
@@ -1447,7 +1712,7 @@
 </ul>
 <hr>
 <h2 id="sec-26">🆚 全维度对比（11 款踏板）</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -1560,11 +1825,11 @@
 <td>❌</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2>🎯 关注重点：<strong>通勤+偶尔林道+≤2 万</strong></h2>
 <p>引用中给的"最对位 4 台"：</p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -1599,10 +1864,10 @@
 <td>智能 + 合资 + 28L 座桶</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-27">💡 我的真实建议</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>你的核心诉求</th>
@@ -1635,7 +1900,7 @@
 <td>力帆 KPV 150（NS150 XC 是名不副实）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>预算紧 + 通勤为主 + 偶尔烂路</strong> → 👉 <strong>光阳 Dink G150</strong>（¥13,980 + 500km + 合资）
 <strong>预算紧 + 真正要越野</strong> → 👉 <strong>力帆 KPV 150</strong>（¥12,980 + 180mm 离地）
 <strong>预算宽 + 智能 + 合资</strong> → 👉 <strong>NS150 XC</strong>（¥19,980 + 3 轴 IMU）</p>
@@ -1644,7 +1909,7 @@
 <p><strong>背景</strong>：在 8 款 ADV 踏板车里，<strong>力帆 KPV 150（国产越野王）</strong>和<strong>光阳 Dink G150（台湾合资满配）</strong>是性价比和续航的代表。本节详细对比这两个车型。</p>
 <p><strong>来源</strong>：web 查证（58moto / 汽车之家 / 官网 / 两轮视界）</p>
 <h3 id="sec-29">5️⃣ 力帆 KPV 150（3 版本）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -1669,10 +1934,10 @@
 <td>+ ABS+TCS+胎压+<strong>7 寸 TFT</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⚠️ 力帆 KPV 150 三版本具体价格没拿到（页面只显示 2021 款 ¥12,980），<strong>2026 款价格待查</strong>。</p>
 <h3>6️⃣ 光阳 Dink G150（<strong>单版本满配</strong>！）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -1687,7 +1952,7 @@
 <td><strong>满配</strong>（双 ABS+TCS+Keyless+LED+500km 续航）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>重大发现</strong>：Dink G150 <strong>就一个版本</strong>！不用纠结选哪个，<strong>直接买</strong>。</p>
 <hr>
 <hr>
@@ -1698,7 +1963,7 @@
 <p>⚠️ <strong>重要纠错</strong>：NS150ES / NS150LA 是 <strong>新大洲本田</strong>合资，<strong>不是豪爵</strong>（上一份被标错了）</p>
 <hr>
 <h2 id="sec-31">📋 5 款车核心速览</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车</th>
@@ -1739,7 +2004,7 @@
 <td><strong>毫米波雷达 + 1080P 行车记录仪 + 胎压</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-32">🔍 5 款车核心参数</h2>
 <h3>1. <strong>宗申 猎鹰 150ADV</strong>（ADV 入门）</h3>
@@ -1871,7 +2136,7 @@
 </ul>
 <hr>
 <h2 id="sec-33">🆚 5 款车各维度冠军</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -1921,10 +2186,10 @@
 <td>镀铬复古 + 平踏</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-34">🎯 5 款车选择建议</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>你的核心诉求</th>
@@ -1961,10 +2226,10 @@
 <td>升仕 150X（性能续航双第一）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-35">📊 与前 3 批 17 款的关系</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>批次</th>
@@ -2005,10 +2270,10 @@
 <td><strong>22 款</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-36">💡 这 5 款与之前 11 款踏板的关系</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -2043,11 +2308,11 @@
 <td><strong>官方 + 实测数据齐全</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>第四批是"通勤用户特供清单"</strong>——更便宜、更实用、合资品质。</p>
 <hr>
 <h2 id="sec-37">⚠️ 重叠 / 容易混淆的车型</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>用户引用中提到</th>
@@ -2072,7 +2337,7 @@
 <td>❌ <strong>新车</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>确认：第四批 5 款与之前 17 款无重叠</strong> ✅</p>
 <hr>
 <p><strong>总车型数</strong>：6 跨骑 + 11 踏板（前三批）+ <strong>5 通勤踏板（第四批）= 22 款</strong><br>
@@ -2095,7 +2360,7 @@
 来源：大盘点数据整合 + 18 款表独有列扩展（最大功率 / 最大扭矩 / 油箱 / 核心定位 已并入）
 记录时间：2026-06-18 18 款表独有列并入</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -2506,7 +2771,7 @@
 <td>旗舰跨界</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>注：标 * 的数据来自 web 补充，标 — 的为文件未记录详细数据；⚠️ 标记表示未上市或性价比待考</p>
 </blockquote>
@@ -2515,7 +2780,7 @@
 <blockquote>
 <p>新增 8 款车后更新的冠军表</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -2634,7 +2899,7 @@
 <td>🆕 新增（之前分析结论）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-42">🎯 8 种典型用户购买建议</h2>
 <h3 id="sec-43">1️⃣ 极简通勤族（城市代步、买菜的）</h3>
@@ -2686,7 +2951,7 @@
 </ul>
 <hr>
 <h2 id="sec-51">💡 最终建议</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>场景</th>
@@ -2727,9 +2992,9 @@
 <td>合资 ADV，165mm 离地，IMU + 28L 座桶，<strong>比 GX 多林道能力 + 贵 3K</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3>🏆 我最推荐的 <strong>3 选 1 决赛圈</strong></h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -2758,7 +3023,7 @@
 <td>通勤+极致安全，<strong>毫米波雷达=命</strong>，<strong>比 GX 贵 2K</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p><strong>如果你只有一辆的钱、只想通勤</strong>：选 <strong>NS150GX</strong>（最均衡、智能、合资、运动通勤对位）<br>
 <strong>如果你想省心能走烂路</strong>：选 <strong>光阳 Dink G150</strong>（续航王 + 合资 + 偶尔烂路）<br>
@@ -2766,7 +3031,7 @@
 </blockquote>
 <hr>
 <h2 id="sec-52">⚠️ 三件套"高不成低不就"提醒</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -2795,7 +3060,7 @@
 <td>5.5 万的法系，<strong>售后网点少</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>性价比陷阱</strong>：3-5 万段是 "合资 vs 进口 vs 国产" 混战，没有明显的赢家和输家。除非预算真到这档，<strong>建议优先 1.5-1.7 万的合资段</strong>。</p>
 <hr>
 <p><strong>决赛圈</strong>：NS150GX 🥇 / 光阳 Dink G150 🥈 / NWT150 PRO 🥉<br>
@@ -2807,7 +3072,7 @@
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -2837,7 +3102,7 @@
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <p><strong>记录时间</strong>：2026-06-14 05:23（2026-06-16 补入升仕 150V）
 <strong>背景</strong>：用户要求 "<strong>全参数对比，特别我关注的维度</strong>"<br>
@@ -2845,7 +3110,7 @@
 <strong>来源</strong>：已存文件数据 + web 补充 + 推理</p>
 <hr>
 <h2 id="sec-55">📋 表 1：核心参数（18 款 × 12 列）</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -3135,7 +3400,7 @@
 <td>旗舰跨界</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>标 * 的来自 web 补充；标 — 的为文件未记录（很多 3-5 万段未深挖）</p>
 </blockquote>
@@ -3143,7 +3408,7 @@
 <blockquote>
 <p>2026-06-18 重构：18 款表的独有列已<strong>映射/合并</strong>到 25 款表（"🆚 8 维核心对比"）</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>18 款表独有列</th>
@@ -3183,11 +3448,11 @@
 <td>🟢 名称不同但内容一致</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>结论</strong>：18 款表 13 列中 <strong>10 列已并入 25 款表</strong>（同名/同义），<strong>2 列未并入</strong>（最大扭矩/油箱，部分行已含）。后续可在 25 款表添加新列。</p>
 <hr>
 <h2 id="sec-57">🔧 表 2：智能配置（18 款 × 11 列）</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -3374,11 +3639,11 @@
 <td>—</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>智能配置冠军</strong>：<strong>NS150GX</strong>（10 项里 9 项有，独缺毫米波雷达）</p>
 <hr>
 <h2 id="sec-58">🎒 表 3：实用与外观（你最关注的实用性维度）</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -3460,7 +3725,7 @@
 <td>—</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>实用冠军</strong>：
 - 座桶容量：<strong>升仕 150V（两顶全盔）</strong> &gt; NS150 XC（28L） &gt; NS150GX
 - 载物：<strong>NS150LA Pro（平踏）</strong> &gt; 其余
@@ -3468,7 +3733,7 @@
 <hr>
 <h2 id="sec-59">🎯 你特别关注的 8 个维度精排</h2>
 <h3 id="sec-60">维度 1：💰 价格（≤2 万）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>≤2 万（<strong>10 款</strong>）</th>
@@ -3551,12 +3816,12 @@
 <td></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>你 "≤2 万" 关注 = <strong>10 款</strong>（含 150V）；≤1.5 万 = <strong>6 款</strong>（含 150V）</p>
 </blockquote>
 <h3 id="sec-61">维度 2：🇯🇵 合资 / 🌏 进口 / 🇨🇳 国产</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>合资（<strong>9 款</strong>）</th>
@@ -3596,9 +3861,9 @@
 <td></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-62">维度 3：🚗 通勤友好度</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -3633,9 +3898,9 @@
 <td>11L 油箱 + 500km+ 续航 + 双全盔座桶 + 5 寸 TFT + 无钥匙</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-63">维度 4：🏕️ 林道 / 越野能力</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -3688,9 +3953,9 @@
 <td>公路胎，运动踏板定位</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-64">维度 5：🧠 智能配置（你最关注）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -3725,9 +3990,9 @@
 <td>3/10（ABS+TCS+胎压）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-65">维度 6：🔋 续航</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -3786,9 +4051,9 @@
 <td>8.5L</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-66">维度 7：🎒 实用性</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -3823,9 +4088,9 @@
 <td>三件套（胎压+记录仪+雷达）= 长途实用</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-67">维度 8：🛡️ 品牌 / 维护</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -3860,11 +4125,11 @@
 <td>国产二线</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-68">🏆 3 选 1 决赛圈（按你"特别关注"维度重算）</h2>
 <p>你的特别关注维度：<strong>价格 ≤ 2 万 / 合资 / 通勤友好 / 智能豪华 / 实用性</strong></p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -3929,9 +4194,9 @@
 <td>季军 ⭐⭐⭐⭐</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-69">🎯 重新算的最终建议</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>你最看重</th>
@@ -3960,7 +4225,7 @@
 <td><strong>NS150LA Pro</strong>（唯一平踏合资）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-70">⚠️ 关键提醒</h2>
 <ol>
@@ -3982,7 +4247,7 @@
 <strong>结论</strong>：表 2 多处严重不准，已修正</p>
 <hr>
 <h2 id="sec-72">❌ 重大错误清单</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -4043,10 +4308,10 @@
 <td>🟡 漏数据</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-73">✅ ABS/TCS 智能配置表</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -4149,10 +4414,10 @@
 <td>DDG 触发反爬未查，后续补</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-74">🏆 重新算 3 选 1 决赛圈（修正后）</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -4253,7 +4518,7 @@
 <td>🥉 季军</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-75">🔄 4 大新结论</h3>
 <ol>
 <li><strong>NS150XC 的弯道 ABS 是 17 款里唯一</strong>——比 GX 强，<strong>重买推荐 XC（如果不在意贵 3K）</strong></li>
@@ -4282,7 +4547,7 @@
 <hr>
 <h2 id="sec-78">🌳 5 款本田的版本树</h2>
 <h3 id="sec-79">1️⃣ NS150GX（4 版本）—— 智能豪华通勤</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -4312,12 +4577,12 @@
 <td>+ 配色/贴花</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>版本建议</strong>：
 - 通勤为主 → <strong>标准版</strong>（15,980 已满配智能）
 - 想要尾箱 + 胎压 → <strong>高配版</strong>（多 1,200 多 4 件配置，<strong>血赚</strong>）</p>
 <h3>2️⃣ NS150ES（<strong>4 版本</strong>！）—— 合资通勤实惠</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -4347,14 +4612,14 @@
 <td>+ 护杠 + 上述所有</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>版本建议</strong>：
 - 极致便宜合资 → <strong>STD ¥13,380</strong>（比 GX 便宜 2,600，<strong>智能配置几乎一样</strong>！）
 - 想要气囊减震 + 胎压 → <strong>PRO ¥15,780</strong>
 - 想要护杠 → STD 箱杠 / PRO 箱杠（<strong>+ 500</strong>）</p>
 <p>⚠️ <strong>重大发现</strong>：NS150ES STD ¥13,380 实际和 NS150GX 标准版 ¥15,980 配置几乎一样（<strong>双 ABS+TCS+TFT+T-BOX+Smart Key 都全</strong>），<strong>便宜 2,600</strong>！</p>
 <h3 id="sec-80">3️⃣ NWT150（3 版本）—— 安全配置王</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -4379,13 +4644,13 @@
 <td>+ <strong>毫米波雷达</strong>（后方盲区+变道辅助）+ 前行测 + 胎压 + 高位风挡 + 护杠 + 智能尾箱 + W-LINK + NFC+蓝牙解锁</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>版本建议</strong>：
 - 实用主义 → <strong>标配版 ¥14,980</strong>（<strong>作者原话：性价比之选</strong>）
 - 直接顶配 → <strong>Pro ¥17,980</strong>（<strong>作者原话：跳过中间档</strong>）
 - <strong>高配版不值得</strong>（+1,800 多胎压+DJI 互联，鸡肋）</p>
 <h3 id="sec-81">4️⃣ NS150 XC（2 版本）—— 合资 ADV</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -4405,7 +4670,7 @@
 <td>+ 尾箱 + 护杠 + 后行车记录仪</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>版本建议</strong>：
 - 想体验弯道 ABS → <strong>STD ¥19,980</strong>（<strong>STD 已满配</strong>）
 - 想要尾箱护杠 → <strong>PRO ¥21,280</strong>（+ 1,300）</p>
@@ -4421,7 +4686,7 @@
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -4451,10 +4716,10 @@
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-85">💰 价格（4 个版本）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -4484,10 +4749,10 @@
 <td>+ 配色或贴花</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-86">📐 关键参数</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>项目</th>
@@ -4556,7 +4821,7 @@
 <td>阻尼式，能放全盔+手套</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3>🔧 核心配置（<strong>高配版</strong>为基准）</h3>
 <h4>安全 / 制动</h4>
@@ -4613,7 +4878,7 @@
 <hr>
 <h3 id="sec-89">📊 与关注清单的踏板车对比</h3>
 <h4>A. 同价位本田四兄弟（<strong>最直接对比</strong>）</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -4751,14 +5016,14 @@
 <td>-</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>4 款本田内战结论</strong>：
 - 想要<strong>安全配置天花板</strong> → NWT150 PRO（毫米波雷达+胎压+记录仪）
 - 想要<strong>运动操控+豪华配置</strong> → <strong>NS150GX</strong>（金卡纳+TFT+T-BOX+TCS+ABS）⭐
 - 想要<strong>合资通勤实惠</strong> → NS150ES Pro（<strong>最便宜</strong>的本田）
 - 想要<strong>复古平踏颜值</strong> → NS150LA Pro（镀铬+平踏）</p>
 <h4>B. 与其他关注踏板的价格 / 定位对照</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -4847,10 +5112,10 @@
 <td>法系旗舰；NS150GX 不到 1/3 价格但配置接近</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3>🏆 各维度冠军（<strong>所有 17 款踏板</strong> vs NS150GX）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -4920,7 +5185,7 @@
 <td>中上（4 个版本）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-90">💡 我对 NS150GX 的真实评价</h3>
 <h4>✅ 优点</h4>
@@ -4946,7 +5211,7 @@
 - 关注<strong>通勤+偶尔林道+≤2 万</strong>
 - 关注<strong>合资本田</strong>（NS150 XC / NWT150 PRO / NS150ES Pro / NS150LA Pro）</p>
 <p><strong>如果你的核心需求是</strong>：</p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>你的需求</th>
@@ -4996,7 +5261,7 @@
 <td>180mm 离地+12,980 价（牺牲合资）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-92">⚠️ 重要提醒</h3>
 <ol>
@@ -5011,7 +5276,7 @@
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 NS150GX 章节</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -5051,7 +5316,7 @@
 <td>🔥🔥 <strong>血赚</strong> ⭐</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>NS150GX 性价比天花板</strong>：<strong>高配版 ¥17,180</strong>——比标准版贵 1,200 元，多 4 件实用配置（行测+胎压+50L 尾箱+高透风挡），<strong>血赚</strong>。</p>
 <p>🚫 <strong>不推荐</strong>：标准魅力版 / 高配魅力版（+300 纯外观溢价，<strong>鸡肋</strong>）</p>
 <hr>
@@ -5075,7 +5340,7 @@
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -5105,10 +5370,10 @@
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-98">💰 价格</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -5121,9 +5386,9 @@
 <td><strong>¥11,800</strong> 🔥</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-99">📐 关键参数</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>项目</th>
@@ -5183,9 +5448,9 @@
 <td>极致轻量化的核心</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-100">✅ 标配安全配置</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>配置</th>
@@ -5206,7 +5471,7 @@
 <td>标配</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-101">📱 智能配置</h3>
 <ul>
 <li><strong>5 英寸 TFT 彩屏仪表</strong> — 蓝牙 / WiFi 连接</li>
@@ -5216,7 +5481,7 @@
 <li><strong>发动机启停 + 脉冲点火</strong> — 标配</li>
 </ul>
 <h3 id="sec-102">🪣 储物能力</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>位置</th>
@@ -5233,7 +5498,7 @@
 <td>两个封闭式储物口（私密性好但取用不便）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-103">💡 灯光</h3>
 <ul>
 <li>闪电形位置灯</li>
@@ -5241,7 +5506,7 @@
 <li>三合一集成尾灯</li>
 </ul>
 <h3 id="sec-104">⚖️ 与升仕 150X 的关系</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -5291,13 +5556,13 @@
 <td><strong>跨骑风格运动踏板</strong>（结构与 150V 不同）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>⚠️ 注意：升仕 150X 是<strong>跨骑风格运动踏板</strong>（无平踏平台），150V 是<strong>传统踏板形态</strong>（有座桶储物）。两者同价同厂同平台，但定位不同——150V 更侧重储物+续航实用性，150X 更运动极速更高。</p>
 </blockquote>
 <h3 id="sec-105">💰 边际（版本价值分析）</h3>
 <p>升仕 150V <strong>单版本</strong> ¥11,800，无选择空间，所以"边际"看的是<strong>与竞品的升级 vs 成本对比</strong>：</p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>对比维度</th>
@@ -5338,7 +5603,7 @@
 <td><strong>省 ¥1,180</strong>：KPV 越野 180mm 离地完胜，但<strong>150V 通勤/合资/智能完胜</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h4>🏆 升仕 150V 的真实边际定位</h4>
 <ul>
 <li><strong>单版本极简选择</strong>：没有 6 款多版本车那种"选 Pro 还是 Pro 箱杠"的纠结——<strong>闭眼买</strong></li>
@@ -5383,7 +5648,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 状态：保留待查看。如需查阅可直接浏览，无需纳入核心阅读路径。</p>
 <p>原始 H2 标题：<code>## 📊 18 款踏板座桶容量</code>（已重命名）</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -5528,7 +5793,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p><strong>DDG 触发反爬</strong>，剩 15 款没拿到具体数据；3-5 万段大踏板座桶通常 28-32L 区间。</p>
 </blockquote>
@@ -5539,7 +5804,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 状态：保留待查看。如需查阅可直接浏览，无需纳入核心阅读路径。</p>
 <p>原始 H2 标题：<code>## 🆚 已知 2 款"通勤载物"对决</code>（已重命名）</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -5592,7 +5857,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>NS150GX 大胜</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>结论</strong>：NS150GX 高配版 = <strong>80L 总储物 + ¥17,180</strong>，NS150 XC PRO = <strong>78L 总储物 + ¥21,280</strong></p>
 <p><strong>NS150GX 高配版便宜 4,100 + 多 2L 储物 + 智能配置 9/10</strong>——<strong>全面胜出</strong>！</p>
 <hr>
@@ -5602,7 +5867,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 状态：保留待查看。如需查阅可直接浏览，无需纳入核心阅读路径。</p>
 <p>原始 H2 标题：<code>## 💡 重新算"通勤载物"3 选 1</code>（已重命名）</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -5635,7 +5900,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>省钱版王者</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>用户已购车 RA2</strong> 是复古跨骑，第二辆如果"通勤+载物"为主，<strong>NS150GX 高配版 ¥17,180 是最对位的</strong>。</p>
 <hr>
 <h2 id="sec-110">🆕 特色章节-本田 2026 年 1-6 月踏板发布时间线</h2>
@@ -5643,7 +5908,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -5673,7 +5938,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <blockquote>
 <p>2026-06-15 用户需求：查询本田今年 1-6 月都发布了哪些踏板车（含老车型 2026 改款）</p>
@@ -5693,7 +5958,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 - ❌ "3.78 万 ADV350" = 自媒体推测价，官方实际 42380 元起 [H5]
 - ❌ 2026 款 Spacy 睿御 110 = 2025-11 发布（不在范围）[W3]</p>
 <h3 id="sec-112">🟢 3/20 · 五羊本田 • 杭州春季发布会</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5726,9 +5991,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"电动版祖玛"，复古电摩 [WX]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-113">🟢 3/27 · 本田中国 • 上海发布会（7 款，含 2 款踏板）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5754,12 +6019,12 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>7 寸 TFT+手把加热+胎压；前后双通道 ABS+HSTC（可关）+ESS；<strong>5 月初实际上市</strong> [H1]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>同场非踏板：CB500F（29480 元起）/CBR500R（32480 元起）/NX500（31480 元起）/CB500SF 四缸（42980 元起）/CBR500R FOUR 四缸（44980 元起） [H4]</p>
 </blockquote>
 <h3 id="sec-114">🟢 4/10 · 新大洲本田 • 成都都江堰发布会（5 款，含 2 款踏板）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5785,14 +6050,14 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"小小 LA"，通勤定位 [SX1]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <blockquote>
 <p>注：4/10 NS150GX 只是亮相/预览，<strong>正式发布在 5/25</strong> [SX1]</p>
 </blockquote>
 <h3 id="sec-115">🟢 4/15 · 2026 款 NSS350 实际悄悄上市</h3>
 <p>（见 3/27 条目，摩托范 12166547/58moto 报道）</p>
 <h3 id="sec-116">🟢 5/13 · 新大洲本田 • 单独发布</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5811,9 +6076,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"神车小拉"；<strong>加量降价</strong>（比上代便宜 500）；760mm 座高/108kg/5.7L 油箱；全系无钥匙启动+全车 LED+20W 双 USB [SL1]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-117">🟢 5/21 · 本田日本（仅日本，未进国内）</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5832,9 +6097,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>日本本土发售，国内平行进口未确认</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-118">🟢 5/25 · 新大洲本田 • 正式发布</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5853,9 +6118,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>2025-03 首发合资 150 销冠，月销 6100+；2026 款<strong>降价 700 元</strong>；升级：炽焰橙配色/7 寸 TFT/胎压监测/气囊后减震/大灯/风挡/操控细节 [GX2][GX3]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-119">🟢 6/7 · 新大洲本田 • 新车预告</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -5868,9 +6133,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"美学、质感、鎏光、勾勒光影美学" 15 秒暗光预告，<strong>Coming soon...</strong>（6 月底或 7 月） [YJ1]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-120">📊 汇总</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -5971,7 +6236,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>— [YJ1]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>统计</strong>：1-6 月共 11 款（全新 5 款 + 老改款 6 款），五羊 3 款 / 新本 4 款 + 1 预告 / 本田中国 2 款 / 日本限 1 款</p>
 <p><strong>与已有批次的交叉关系</strong>：以上新车中 NS150ES、NS150GX 2026 款、NS125LA 2026 款是已有批次的年款升级版，如需更新参数可引用本表</p>
 <p><strong>数据可信度</strong>：
@@ -6013,7 +6278,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -6043,14 +6308,14 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <blockquote>
 <p>2026-06-15 15:22-15:38 用户需求：加上 NWT150 做 4 车深度对比
 数据源：本田/五羊/新大洲官方 + 摩托范/58moto/腾讯/网易/IThome/搜狐/中关村在线/有驾/汽车之家/抖音多源验证</p>
 </blockquote>
 <h3 id="sec-124">📋 4 款车一览</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -6111,7 +6376,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>在售（25款月销 6100+）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-125">📐 关键参数对比</h3>
 <blockquote>
 <p><strong>数据源标注</strong>（紧凑内联版，完整列表见末尾「🔗 数据源索引」）：
@@ -6120,7 +6385,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 - [E1] 摩托范 12149693 全面解析 / [E2] 摩托范 12207416 / [E3] 摩托范 12212175 深度测评 / [E4] 知乎 2029268363054990885 / [E5] 知乎 2016318308442448656（工信部）/ [E6] motovisionhub NS150ES 评测
 - [G1] 新大洲本田官网 NS150GX_2026_124 / [G2] 摩托范 12277465 2026款深度 / [G3] 摩托范 12235408 / [G4] 摩托范 12149316 / [G5] 头条 7491264519012975143</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>参数</th>
@@ -6244,9 +6509,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-126">🛡 安全 / 操控</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>配置</th>
@@ -6349,9 +6614,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-127">🏆 各维度冠军</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>维度</th>
@@ -6470,9 +6735,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>[N2]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-128">🎯 选择建议</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>场景</th>
@@ -6549,7 +6814,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>[W4]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h3 id="sec-129">⚠️ 数据可信度</h3>
 <ul>
 <li>✅ <strong>多源验证</strong>（核心数据）：</li>
@@ -6601,7 +6866,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 本田合资 4 车深度对比</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -6641,7 +6906,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>⚠️ 偏贵</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⚠️ <strong>关键发现</strong>：NS150ES STD ¥13,380 = NS150GX 标准版 ¥15,980 的"<strong>配置 90% 同款</strong>"！
 - NS150ES STD 有：双 ABS+TCS+7 寸 TFT+T-BOX+Smart Key+脉冲+怠速启停
 - NS150GX 标准版多：双快充+蓝牙+高配行车记录仪（标准没有）
@@ -6651,7 +6916,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 本田合资 4 车深度对比</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -6691,14 +6956,14 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🐔 <strong>作者原话：跳过中间档</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>NWT150 性价比天花板</strong>：<strong>Pro 版 ¥17,980</strong>——直跳 8 件实用配置（雷达+记录+风挡+护杠+智能尾箱+W-LINK+NFC+蓝牙），<strong>171元/件 血赚</strong>。</p>
 <p>🚫 <strong>不推荐</strong>：高配版 ¥16,780（DJI 互联是少数派功能，<strong>作者原话：跳过中间档</strong>）</p>
 <h3 id="sec-133">💰 边际（NS150 XC）</h3>
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 本田合资 4 车深度对比</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -6717,7 +6982,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>⚠️ 持平（实用主义买 STD 即可）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>NS150 XC 性价比天花板</strong>：<strong>STD ¥19,980</strong>——STD 已满配弯道 ABS+KYB 倒减+IMU+28L 座桶，<strong>PRO 的 1,300 元加的是锦上添花</strong>。</p>
 <hr>
 <h2 id="sec-134">💰 版本边际价值分析</h2>
@@ -6727,7 +6992,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 </blockquote>
 <h3 id="sec-135">一、关键升级的「边际成本」</h3>
 <h4>NWT150 升级链</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -6752,9 +7017,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>完整投屏 + 部分细节优化（升级感较弱）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h4>NS150ES 升级链</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -6779,7 +7044,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>原厂尾箱 + 护杠</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-136">二、🌟 花小钱办大事（强烈推荐加钱）</h3>
 <h4>🥇 冠军：NWT150 标准版 → 标准尾箱版（+380 元）</h4>
@@ -6793,7 +7058,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <hr>
 <h4>🥈 亚军：NS150ES STD 箱+杠 → Pro（+1,900 元）</h4>
 <p><strong>1,900 元换 4 项核心升级</strong>，单项均价 475 元。</p>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>单项</th>
@@ -6822,7 +7087,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>1,800~2,800 元</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>1,900 元拿下，性价比爆表。</p>
 <p>✅ <strong>结论</strong>：NS150ES 最香的升级，没有之一。</p>
 <hr>
@@ -6862,7 +7127,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <hr>
 <h3 id="sec-138">四、🏆 性价比天花板</h3>
 <h4>📊 边际 ROI 排行榜</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>排名</th>
@@ -6916,7 +7181,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>~120%</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h4>🏆 综合性价比之王：<strong>NS150ES Pro（15,780 元）</strong></h4>
 <p><strong>为什么是它</strong>：
 - 比 NWT150 高配版（16,980）便宜 <strong>1,200 元</strong>
@@ -6966,7 +7231,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <strong>注意</strong>：车系性价比天花板是新版分析的汇总结论，以最新边际价值分析为准。</p>
 </blockquote>
 <h4>NS150GX（4 版本）</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -6995,10 +7260,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🐔 <strong>花大钱办小事</strong>（纯外观）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>性价比天花板</strong>：<strong>高配版（¥17,180）</strong>——标准+1,200 多 4 件实用配置，血赚。</p>
 <h4>NS150 XC（2 版本，合资 ADV）</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -7015,10 +7280,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🔥 实用但非必需（STD 已满配弯道 ABS）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>性价比天花板</strong>：<strong>STD（¥18,680）</strong>——STD 已满配弯道 ABS+KYB 避震+日信刹车，PRO 的 1,300 元加的是锦上添花。</p>
 <h4>跨车系性价比天花板 3 选 1</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>需求</th>
@@ -7047,7 +7312,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>全铝车架 108kg，性能党首选</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h2 id="sec-142">📦 保留待查看 · 💸 落地价估算 + 4S 砍话术</h2>
 <blockquote>
@@ -7064,7 +7329,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 </ul>
 <hr>
 <h3 id="sec-144">💰 落地价估算</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>版本</th>
@@ -7105,7 +7370,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>≈ 17,610 元</strong></td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>💡 比之前估的<strong>便宜 1,300~1,500 元</strong>，<strong>算是个利好</strong>。</p>
 <hr>
 <h3 id="sec-145">🎯 4S 店多余一句砍话术</h3>
@@ -7134,7 +7399,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p>本章节固定格式（2026-06-18 重构）：<strong>速览</strong> → <strong>评比</strong> → <strong>参数</strong> → <strong>边际</strong></p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>段</th>
@@ -7164,14 +7429,14 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>版本价值 / ROI 分析</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <blockquote>
 <p>用户分析 2026-06-15</p>
 </blockquote>
 <h3 id="sec-150">一、普通踏板（城市通勤/平踏/运动/复古）</h3>
 <h4>💎 第一梯队：强烈推荐</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -7216,9 +7481,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>合资复古颜值天花板，Pro 配 50L 尾箱+风挡</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h4>✅ 第二梯队：值得考虑</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -7263,9 +7528,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>国产 125 销量王，风冷+省油王</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h4>⚠️ 第三梯队：观望/性价比一般</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -7306,11 +7571,11 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>2026-06 上市，<strong>无 ABS</strong>（老问题）</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-151">二、ADV 踏板（跨界探险/轻越野）</h3>
 <h4>💎 强烈推荐</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -7329,9 +7594,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>150 ADV 性价比王，水冷四气门+ABS+TCS+两级可调风挡+790mm 座高</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h4>✅ 值得考虑</h4>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>车型</th>
@@ -7360,7 +7625,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>进口 ADV 踏板老将，现车在售</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-152">三、🚨 值得购买 TOP 5 推荐</h3>
 <h4>🥇 1. 升仕 150X（11,800 元）——国产卷王</h4>
@@ -7393,7 +7658,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 👉 <strong>适合人群</strong>：颜值党、文艺青年、女生（座高友好）</p>
 <hr>
 <h3 id="sec-153">四、按用户类型精选</h3>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>需求</th>
@@ -7443,7 +7708,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>27,800</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <h3 id="sec-154">五、避坑提醒 ⚠️</h3>
 <ol>
@@ -7489,7 +7754,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <p>以下数据在所有可查平台（摩托范/汽车之家/知乎/抖音/官方页/百度文库/中关村在线/腾讯/网易/搜狐/头条/什么值得买/百度贴吧/有驾）均<strong>未找到明确数据</strong>。标记后后续有信息源可快速补全。
 本次查询数据时间：2026-06-15 15:22-15:47（web_search + web_fetch 共约 30+ 次）</p>
 </blockquote>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -7534,7 +7799,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>2025 款为 107km/h，2026 款动力未变，预计一致 [W4]</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p><strong>可选的下次补全路径</strong>（按推荐排序）：
 1. 🥇 致电/到店实测 NS150ES（离地间隙）
 2. 🥇 到店实测 NS150GX（离地间隙）
@@ -7548,7 +7813,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 用途：历史快照 / 数据补全 / 阶段对比，无需纳入核心阅读路径。</p>
 </blockquote>
 <h2 id="sec-161">索引</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -7593,9 +7858,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>📦 保留待查看</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <h2 id="sec-162">8 个核心章节（速览/评比/参数/边际）</h2>
-<div class="table-wrap"><table>
+<table>
 <thead>
 <tr>
 <th>#</th>
@@ -7672,43 +7937,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>✅ TOP 5 推荐</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <hr>
 <p><em>更新时间：2026-06-18（5 phase commit + 6 重构任务完成）</em>
 <em>修改记录见 git history：<code>git log --oneline drafts/关注的摩托车.md</code></em></p>
 </div>
-</div>
-<script>
-function toggleToc() {
-  var box = document.querySelector('.toc-box');
-  var btn = document.querySelector('.toc-toggle');
-  box.classList.toggle('expanded');
-  btn.classList.toggle('expanded');
-  btn.textContent = box.classList.contains('expanded') ? '📑 收起' : '📑 目录';
-}
-if (window.innerWidth < 1100) {
-  var box = document.querySelector('.toc-box');
-  if (box) box.classList.add('expanded');
-}
-</script>
-<script>
-(function() {
-  function wrapTables() {
-    document.querySelectorAll('table').forEach(function(t) {
-      if (t.parentNode && t.parentNode.classList && t.parentNode.classList.contains('table-wrap')) return;
-      if (t.closest('table')) return;
-      var wrap = document.createElement('div');
-      wrap.className = 'table-wrap';
-      t.parentNode.insertBefore(wrap, t);
-      wrap.appendChild(t);
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', wrapTables);
-  } else {
-    wrapTables();
-  }
-})();
-</script>
 </body>
 </html>
