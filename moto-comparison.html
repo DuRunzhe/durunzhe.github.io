@@ -7942,5 +7942,19 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <p><em>更新时间：2026-06-18（5 phase commit + 6 重构任务完成）</em>
 <em>修改记录见 git history：<code>git log --oneline drafts/关注的摩托车.md</code></em></p>
 </div>
+<script>
+function toggleToc() {
+  var box = document.querySelector('.toc-box');
+  var btn = document.querySelector('.toc-toggle');
+  box.classList.toggle('expanded');
+  btn.classList.toggle('expanded');
+  btn.textContent = box.classList.contains('expanded') ? '📑 收起' : '📑 目录';
+}
+// 移动端检测
+if (window.innerWidth < 1100) {
+  var box = document.querySelector('.toc-box');
+  if (box) box.classList.add('expanded');
+}
+</script>
 </body>
 </html>
