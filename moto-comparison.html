@@ -68,13 +68,16 @@
   h3 { font-size: 16px; font-weight: 600; margin: 24px 0 8px; color: #333; }
 
   /* Table wrapper (horizontal scroll within table only) */
-  .table-wrap { overflow-x: auto; margin: 12px 0 20px; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); background: #fff; }
-  .table-wrap table { box-shadow: none; border-radius: 0; width: auto; min-width: 100%; }
+  .table-wrap { display: block; width: 100%; max-width: 100%; overflow-x: auto; overflow-y: hidden; margin: 12px 0 20px; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); background: #fff; -webkit-overflow-scrolling: touch; }
+  .table-wrap > table { display: table; box-shadow: none; border-radius: 0; width: auto; min-width: 100%; border-collapse: collapse; }
+  .table-wrap::-webkit-scrollbar { height: 8px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 4px; }
+  .table-wrap::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
   .table-wrap::-webkit-scrollbar { height: 8px; }
   .table-wrap::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 4px; }
   .table-wrap::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
   .table-wrap { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.25) transparent; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
   th, td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; word-break: break-word; overflow-wrap: anywhere; }
   th { background: #f8f8fa; font-weight: 600; color: #555; font-size: 12px; }
   td { font-size: 13px; }
@@ -345,7 +348,7 @@
   <a class="back-link" href="https://durunzhe.github.io/">← 返回博客首页</a>
 <h1 id="sec-1" class="h1-main">🏍️ 关注的摩托车清单</h1>
   <p class="subtitle">全车型对比数据 · 版本文档 · 购买决策参考</p>
-  <p class="update-note">最后更新：2026-06-18 08:30 · 来源：比特匠（QQ Bot）</p>
+  <p class="update-note">最后更新：2026-06-18 10:45 · 来源：比特匠（QQ Bot）</p>
 <button class="toc-toggle" onclick="toggleToc()" aria-label="展开/收起目录">📑 目录</button>
 <div class="toc-box" style="background:#f8f9fc; border-left:3px solid #007aff; padding:12px 16px; border-radius:8px; margin:16px 0 24px; font-size:14px;">
 <h2 id="sec-toc">📑 目录</h2>
@@ -528,7 +531,7 @@
 <h2 id="sec-1">📚 知识澄清</h2>
 <p>收录<strong>与具体车型无关、但读者容易踩坑或搞混</strong>的知识点专题。每条独立成节，方便后续按需追加。</p>
 <h3 id="sec-2">卤素 vs LED 不只是亮度差</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -568,7 +571,7 @@
 <td>❌ 偏现代</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>📍 触发场景</strong>
 - 复古跨骑里"大脚怪"是 6 车里<strong>唯一卤素</strong>车型——并非配置缩水，是 Cafe Racer 复古风格的<strong>主动选择</strong>（卤素灯 = 复古灵魂）
 - LED 在夜路 / 烂路更安全（亮度 + 寿命 + 能耗都赢）
@@ -577,7 +580,7 @@
 <hr>
 <h2 id="sec-3">🏍️ 复古跨骑 / 巡航车</h2>
 <h3 id="sec-4">📋 6 款车型速览</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -624,10 +627,10 @@
 <td>意大利肌肉</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-5">🏆 复古 6 款综合评比</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -696,7 +699,7 @@
 <td>意系调校 / 圆灯设计</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>📌 关键备注</strong>（来源 / 数据 / 用户当前状态）：
 - <strong>数据来源</strong>：用户 2026-06-14 引用其他对话内容
 - <strong>本 session 未做原始对比</strong>（已向用户说明）
@@ -883,7 +886,7 @@
 来源：大盘点数据整合 + 18 款表独有列扩展（最大功率 / 最大扭矩 / 油箱 / 核心定位 已并入）
 记录时间：2026-06-18 18 款表独有列并入</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -1294,7 +1297,7 @@
 <td>旗舰跨界</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>注：标 * 的数据来自 web 补充，标 — 的为文件未记录详细数据；⚠️ 标记表示未上市或性价比待考</p>
 </blockquote>
@@ -1303,7 +1306,7 @@
 <blockquote>
 <p>新增 8 款车后更新的冠军表</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -1422,7 +1425,7 @@
 <td>🆕 新增（之前分析结论）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-10">🎯 8 种典型用户购买建议</h3>
 <h3 id="sec-11">1️⃣ 极简通勤族（城市代步、买菜的）</h3>
@@ -1474,7 +1477,7 @@
 </ul>
 <hr>
 <h3 id="sec-19">💡 最终建议</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>场景</th>
@@ -1515,9 +1518,9 @@
 <td>合资 ADV，165mm 离地，IMU + 28L 座桶，<strong>比 GX 多林道能力 + 贵 3K</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3>🏆 我最推荐的 <strong>3 选 1 决赛圈</strong></h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -1546,7 +1549,7 @@
 <td>通勤+极致安全，<strong>毫米波雷达=命</strong>，<strong>比 GX 贵 2K</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p><strong>如果你只有一辆的钱、只想通勤</strong>：选 <strong>NS150GX</strong>（最均衡、智能、合资、运动通勤对位）<br>
 <strong>如果你想省心能走烂路</strong>：选 <strong>光阳 Dink G150</strong>（续航王 + 合资 + 偶尔烂路）<br>
@@ -1554,7 +1557,7 @@
 </blockquote>
 <hr>
 <h3 id="sec-20">⚠️ 三件套"高不成低不就"提醒</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -1583,7 +1586,7 @@
 <td>5.5 万的法系，<strong>售后网点少</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>性价比陷阱</strong>：3-5 万段是 "合资 vs 进口 vs 国产" 混战，没有明显的赢家和输家。除非预算真到这档，<strong>建议优先 1.5-1.7 万的合资段</strong>。</p>
 <hr>
 <p><strong>决赛圈</strong>：NS150GX 🥇 / 光阳 Dink G150 🥈 / NWT150 PRO 🥉<br>
@@ -1601,7 +1604,7 @@
 <hr>
 <h3 id="sec-22">📋 11 款踏板全表</h3>
 <h3>🏆 A. <strong>通勤+偶尔林道+≤2 万对位</strong></h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -1646,9 +1649,9 @@
 <td>3 轴 IMU + 合资 + 28L 座桶</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-23">📍 B. 中端（2-3 万）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -1671,9 +1674,9 @@
 <td>300cc 城市休旅</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-24">🛵 C. 中高端（3-4 万）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -1696,9 +1699,9 @@
 <td>KYMCO 真 ADV 踏板（<strong>鸟嘴+KEYLESS+TCS</strong>）⚠️ <strong>之前讨论的"赛艇 X350"是运动平踏，不是这款</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-25">🏆 D. 旗舰（4-5 万+）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -1727,7 +1730,7 @@
 <td>旗舰跨界大踏板</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-26">🔍 新加 4 款详参</h3>
 <h3>1. <strong>大阳 V锐 ADV150</strong> ⭐</h3>
@@ -1844,7 +1847,7 @@
 </ul>
 <hr>
 <h3 id="sec-27">🆚 全维度对比（11 款踏板）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -1957,11 +1960,11 @@
 <td>❌</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3>🎯 关注重点：<strong>通勤+偶尔林道+≤2 万</strong></h3>
 <p>引用中给的"最对位 4 台"：</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -1996,10 +1999,10 @@
 <td>智能 + 合资 + 28L 座桶</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-28">💡 我的真实建议</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>你的核心诉求</th>
@@ -2032,7 +2035,7 @@
 <td>力帆 KPV 150（NS150 XC 是名不副实）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>预算紧 + 通勤为主 + 偶尔烂路</strong> → 👉 <strong>光阳 Dink G150</strong>（¥13,980 + 500km + 合资）
 <strong>预算紧 + 真正要越野</strong> → 👉 <strong>力帆 KPV 150</strong>（¥12,980 + 180mm 离地）
 <strong>预算宽 + 智能 + 合资</strong> → 👉 <strong>NS150 XC</strong>（¥19,980 + 3 轴 IMU）</p>
@@ -2041,7 +2044,7 @@
 <p><strong>背景</strong>：在 8 款 ADV 踏板车里，<strong>力帆 KPV 150（国产越野王）</strong>和<strong>光阳 Dink G150（台湾合资满配）</strong>是性价比和续航的代表。本节详细对比这两个车型。</p>
 <p><strong>来源</strong>：web 查证（58moto / 汽车之家 / 官网 / 两轮视界）</p>
 <h3 id="sec-30">5️⃣ 力帆 KPV 150（3 版本）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2066,10 +2069,10 @@
 <td>+ ABS+TCS+胎压+<strong>7 寸 TFT</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>⚠️ 力帆 KPV 150 三版本具体价格没拿到（页面只显示 2021 款 ¥12,980），<strong>2026 款价格待查</strong>。</p>
 <h3>6️⃣ 光阳 Dink G150（<strong>单版本满配</strong>！）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2084,7 +2087,7 @@
 <td><strong>满配</strong>（双 ABS+TCS+Keyless+LED+500km 续航）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>重大发现</strong>：Dink G150 <strong>就一个版本</strong>！不用纠结选哪个，<strong>直接买</strong>。</p>
 <hr>
 <hr>
@@ -2095,7 +2098,7 @@
 <hr>
 <h3 id="sec-32">🌳 5 款本田的版本树</h3>
 <h3 id="sec-33">1️⃣ NS150GX（4 版本）—— 智能豪华通勤</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2125,12 +2128,12 @@
 <td>+ 配色/贴花</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>版本建议</strong>：
 - 通勤为主 → <strong>标准版</strong>（15,980 已满配智能）
 - 想要尾箱 + 胎压 → <strong>高配版</strong>（多 1,200 多 4 件配置，<strong>血赚</strong>）</p>
 <h3>2️⃣ NS150ES（<strong>4 版本</strong>！）—— 合资通勤实惠</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2160,14 +2163,14 @@
 <td>+ 护杠 + 上述所有</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>版本建议</strong>：
 - 极致便宜合资 → <strong>STD ¥13,380</strong>（比 GX 便宜 2,600，<strong>智能配置几乎一样</strong>！）
 - 想要气囊减震 + 胎压 → <strong>PRO ¥15,780</strong>
 - 想要护杠 → STD 箱杠 / PRO 箱杠（<strong>+ 500</strong>）</p>
 <p>⚠️ <strong>重大发现</strong>：NS150ES STD ¥13,380 实际和 NS150GX 标准版 ¥15,980 配置几乎一样（<strong>双 ABS+TCS+TFT+T-BOX+Smart Key 都全</strong>），<strong>便宜 2,600</strong>！</p>
 <h3 id="sec-34">3️⃣ NWT150（3 版本）—— 安全配置王</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2192,13 +2195,13 @@
 <td>+ <strong>毫米波雷达</strong>（后方盲区+变道辅助）+ 前行测 + 胎压 + 高位风挡 + 护杠 + 智能尾箱 + W-LINK + NFC+蓝牙解锁</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>版本建议</strong>：
 - 实用主义 → <strong>标配版 ¥14,980</strong>（<strong>作者原话：性价比之选</strong>）
 - 直接顶配 → <strong>Pro ¥17,980</strong>（<strong>作者原话：跳过中间档</strong>）
 - <strong>高配版不值得</strong>（+1,800 多胎压+DJI 互联，鸡肋）</p>
 <h3 id="sec-35">4️⃣ NS150 XC（2 版本）—— 合资 ADV</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2218,7 +2221,7 @@
 <td>+ 尾箱 + 护杠 + 后行车记录仪</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>版本建议</strong>：
 - 想体验弯道 ABS → <strong>STD ¥19,980</strong>（<strong>STD 已满配</strong>）
 - 想要尾箱护杠 → <strong>PRO ¥21,280</strong>（+ 1,300）</p>
@@ -2231,7 +2234,7 @@
 <hr>
 <h3 id="sec-37">🏍️ 新大洲本田 NS150GX</h3>
 <h3 id="sec-38">💰 价格（4 个版本）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2261,10 +2264,10 @@
 <td>+ 配色或贴花</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-39">📐 关键参数</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>项目</th>
@@ -2333,7 +2336,7 @@
 <td>阻尼式，能放全盔+手套</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3>🔧 核心配置（<strong>高配版</strong>为基准）</h3>
 <h4>安全 / 制动</h4>
@@ -2390,7 +2393,7 @@
 <hr>
 <h3 id="sec-42">📊 与关注清单的踏板车对比</h3>
 <h4>A. 同价位本田四兄弟（<strong>最直接对比</strong>）</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -2528,14 +2531,14 @@
 <td>-</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>4 款本田内战结论</strong>：
 - 想要<strong>安全配置天花板</strong> → NWT150 PRO（毫米波雷达+胎压+记录仪）
 - 想要<strong>运动操控+豪华配置</strong> → <strong>NS150GX</strong>（金卡纳+TFT+T-BOX+TCS+ABS）⭐
 - 想要<strong>合资通勤实惠</strong> → NS150ES Pro（<strong>最便宜</strong>的本田）
 - 想要<strong>复古平踏颜值</strong> → NS150LA Pro（镀铬+平踏）</p>
 <h4>B. 与其他关注踏板的价格 / 定位对照</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -2624,10 +2627,10 @@
 <td>法系旗舰；NS150GX 不到 1/3 价格但配置接近</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3>🏆 各维度冠军（<strong>所有 17 款踏板</strong> vs NS150GX）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -2697,7 +2700,7 @@
 <td>中上（4 个版本）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-43">💡 我对 NS150GX 的真实评价</h3>
 <h4>✅ 优点</h4>
@@ -2723,7 +2726,7 @@
 - 关注<strong>通勤+偶尔林道+≤2 万</strong>
 - 关注<strong>合资本田</strong>（NS150 XC / NWT150 PRO / NS150ES Pro / NS150LA Pro）</p>
 <p><strong>如果你的核心需求是</strong>：</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>你的需求</th>
@@ -2773,7 +2776,7 @@
 <td>180mm 离地+12,980 价（牺牲合资）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-45">⚠️ 重要提醒</h3>
 <ol>
@@ -2788,7 +2791,7 @@
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 NS150GX 章节</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -2828,7 +2831,7 @@
 <td>🔥🔥 <strong>血赚</strong> ⭐</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>NS150GX 性价比天花板</strong>：<strong>高配版 ¥17,180</strong>——比标准版贵 1,200 元，多 4 件实用配置（行测+胎压+50L 尾箱+高透风挡），<strong>血赚</strong>。</p>
 <p>🚫 <strong>不推荐</strong>：标准魅力版 / 高配魅力版（+300 纯外观溢价，<strong>鸡肋</strong>）</p>
 <hr>
@@ -2848,7 +2851,7 @@
 </blockquote>
 <h3 id="sec-49">🏍️ 升仕 150V（ZT1P58MJ-S）</h3>
 <h3 id="sec-50">💰 价格</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -2861,9 +2864,9 @@
 <td><strong>¥11,800</strong> 🔥</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-51">📐 关键参数</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>项目</th>
@@ -2923,9 +2926,9 @@
 <td>极致轻量化的核心</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-52">✅ 标配安全配置</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>配置</th>
@@ -2946,7 +2949,7 @@
 <td>标配</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-53">📱 智能配置</h3>
 <ul>
 <li><strong>5 英寸 TFT 彩屏仪表</strong> — 蓝牙 / WiFi 连接</li>
@@ -2956,7 +2959,7 @@
 <li><strong>发动机启停 + 脉冲点火</strong> — 标配</li>
 </ul>
 <h3 id="sec-54">🪣 储物能力</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>位置</th>
@@ -2973,7 +2976,7 @@
 <td>两个封闭式储物口（私密性好但取用不便）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-55">💡 灯光</h3>
 <ul>
 <li>闪电形位置灯</li>
@@ -2981,7 +2984,7 @@
 <li>三合一集成尾灯</li>
 </ul>
 <h3 id="sec-56">⚖️ 与升仕 150X 的关系</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -3031,13 +3034,13 @@
 <td><strong>跨骑风格运动踏板</strong>（结构与 150V 不同）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>⚠️ 注意：升仕 150X 是<strong>跨骑风格运动踏板</strong>（无平踏平台），150V 是<strong>传统踏板形态</strong>（有座桶储物）。两者同价同厂同平台，但定位不同——150V 更侧重储物+续航实用性，150X 更运动极速更高。</p>
 </blockquote>
 <h3 id="sec-57">💰 边际（版本价值分析）</h3>
 <p>升仕 150V <strong>单版本</strong> ¥11,800，无选择空间，所以"边际"看的是<strong>与竞品的升级 vs 成本对比</strong>：</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>对比维度</th>
@@ -3078,7 +3081,7 @@
 <td><strong>省 ¥1,180</strong>：KPV 越野 180mm 离地完胜，但<strong>150V 通勤/合资/智能完胜</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>🏆 升仕 150V 的真实边际定位</h4>
 <ul>
 <li><strong>单版本极简选择</strong>：没有 6 款多版本车那种"选 Pro 还是 Pro 箱杠"的纠结——<strong>闭眼买</strong></li>
@@ -3113,7 +3116,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 </blockquote>
 <h3 id="sec-59">一、普通踏板（城市通勤/平踏/运动/复古）</h3>
 <h4>💎 第一梯队：强烈推荐</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3158,9 +3161,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>合资复古颜值天花板，Pro 配 50L 尾箱+风挡</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>✅ 第二梯队：值得考虑</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3205,9 +3208,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>国产 125 销量王，风冷+省油王</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>⚠️ 第三梯队：观望/性价比一般</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3248,11 +3251,11 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>2026-06 上市，<strong>无 ABS</strong>（老问题）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-60">二、ADV 踏板（跨界探险/轻越野）</h3>
 <h4>💎 强烈推荐</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3271,9 +3274,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>150 ADV 性价比王，水冷四气门+ABS+TCS+两级可调风挡+790mm 座高</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>✅ 值得考虑</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3302,7 +3305,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>进口 ADV 踏板老将，现车在售</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-61">三、🚨 值得购买 TOP 5 推荐</h3>
 <h4>🥇 1. 升仕 150X（11,800 元）——国产卷王</h4>
@@ -3335,7 +3338,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 👉 <strong>适合人群</strong>：颜值党、文艺青年、女生（座高友好）</p>
 <hr>
 <h3 id="sec-62">四、按用户类型精选</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>需求</th>
@@ -3385,7 +3388,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>27,800</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-63">五、避坑提醒 ⚠️</h3>
 <ol>
@@ -3434,7 +3437,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 - ❌ "3.78 万 ADV350" = 自媒体推测价，官方实际 42380 元起 [H5]
 - ❌ 2026 款 Spacy 睿御 110 = 2025-11 发布（不在范围）[W3]</p>
 <h3 id="sec-67">🟢 3/20 · 五羊本田 • 杭州春季发布会</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3467,9 +3470,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"电动版祖玛"，复古电摩 [WX]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-68">🟢 3/27 · 本田中国 • 上海发布会（7 款，含 2 款踏板）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3495,12 +3498,12 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>7 寸 TFT+手把加热+胎压；前后双通道 ABS+HSTC（可关）+ESS；<strong>5 月初实际上市</strong> [H1]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>同场非踏板：CB500F（29480 元起）/CBR500R（32480 元起）/NX500（31480 元起）/CB500SF 四缸（42980 元起）/CBR500R FOUR 四缸（44980 元起） [H4]</p>
 </blockquote>
 <h3 id="sec-69">🟢 4/10 · 新大洲本田 • 成都都江堰发布会（5 款，含 2 款踏板）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3526,14 +3529,14 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"小小 LA"，通勤定位 [SX1]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>注：4/10 NS150GX 只是亮相/预览，<strong>正式发布在 5/25</strong> [SX1]</p>
 </blockquote>
 <h3 id="sec-70">🟢 4/15 · 2026 款 NSS350 实际悄悄上市</h3>
 <p>（见 3/27 条目，摩托范 12166547/58moto 报道）</p>
 <h3 id="sec-71">🟢 5/13 · 新大洲本田 • 单独发布</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3552,9 +3555,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"神车小拉"；<strong>加量降价</strong>（比上代便宜 500）；760mm 座高/108kg/5.7L 油箱；全系无钥匙启动+全车 LED+20W 双 USB [SL1]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-72">🟢 5/21 · 本田日本（仅日本，未进国内）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3573,9 +3576,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>日本本土发售，国内平行进口未确认</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-73">🟢 5/25 · 新大洲本田 • 正式发布</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3594,9 +3597,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>2025-03 首发合资 150 销冠，月销 6100+；2026 款<strong>降价 700 元</strong>；升级：炽焰橙配色/7 寸 TFT/胎压监测/气囊后减震/大灯/风挡/操控细节 [GX2][GX3]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-74">🟢 6/7 · 新大洲本田 • 新车预告</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车型</th>
@@ -3609,9 +3612,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>"美学、质感、鎏光、勾勒光影美学" 15 秒暗光预告，<strong>Coming soon...</strong>（6 月底或 7 月） [YJ1]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-75">📊 汇总</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>时间</th>
@@ -3712,7 +3715,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>— [YJ1]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>统计</strong>：1-6 月共 11 款（全新 5 款 + 老改款 6 款），五羊 3 款 / 新本 4 款 + 1 预告 / 本田中国 2 款 / 日本限 1 款</p>
 <p><strong>与已有批次的交叉关系</strong>：以上新车中 NS150ES、NS150GX 2026 款、NS125LA 2026 款是已有批次的年款升级版，如需更新参数可引用本表</p>
 <p><strong>数据可信度</strong>：
@@ -3755,7 +3758,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 数据源：本田/五羊/新大洲官方 + 摩托范/58moto/腾讯/网易/IThome/搜狐/中关村在线/有驾/汽车之家/抖音多源验证</p>
 </blockquote>
 <h3 id="sec-78">📋 4 款车一览</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -3816,7 +3819,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>在售（25款月销 6100+）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-79">📐 关键参数对比</h3>
 <blockquote>
 <p><strong>数据源标注</strong>（紧凑内联版，完整列表见末尾「🔗 数据源索引」）：
@@ -3825,7 +3828,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 - [E1] 摩托范 12149693 全面解析 / [E2] 摩托范 12207416 / [E3] 摩托范 12212175 深度测评 / [E4] 知乎 2029268363054990885 / [E5] 知乎 2016318308442448656（工信部）/ [E6] motovisionhub NS150ES 评测
 - [G1] 新大洲本田官网 NS150GX_2026_124 / [G2] 摩托范 12277465 2026款深度 / [G3] 摩托范 12235408 / [G4] 摩托范 12149316 / [G5] 头条 7491264519012975143</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>参数</th>
@@ -3949,9 +3952,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-80">🛡 安全 / 操控</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>配置</th>
@@ -4054,9 +4057,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-81">🏆 各维度冠军</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -4175,9 +4178,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>[N2]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-82">🎯 选择建议</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>场景</th>
@@ -4254,7 +4257,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>[W4]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-83">⚠️ 数据可信度</h3>
 <ul>
 <li>✅ <strong>多源验证</strong>（核心数据）：</li>
@@ -4306,7 +4309,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 本田合资 4 车深度对比</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4346,7 +4349,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>⚠️ 偏贵</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>⚠️ <strong>关键发现</strong>：NS150ES STD ¥13,380 = NS150GX 标准版 ¥15,980 的"<strong>配置 90% 同款</strong>"！
 - NS150ES STD 有：双 ABS+TCS+7 寸 TFT+T-BOX+Smart Key+脉冲+怠速启停
 - NS150GX 标准版多：双快充+蓝牙+高配行车记录仪（标准没有）
@@ -4356,7 +4359,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 本田合资 4 车深度对比</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4396,14 +4399,14 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🐔 <strong>作者原话：跳过中间档</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>NWT150 性价比天花板</strong>：<strong>Pro 版 ¥17,980</strong>——直跳 8 件实用配置（雷达+记录+风挡+护杠+智能尾箱+W-LINK+NFC+蓝牙），<strong>171元/件 血赚</strong>。</p>
 <p>🚫 <strong>不推荐</strong>：高配版 ¥16,780（DJI 互联是少数派功能，<strong>作者原话：跳过中间档</strong>）</p>
 <h3 id="sec-87">💰 边际（NS150 XC）</h3>
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 本田合资 4 车深度对比</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4422,7 +4425,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>⚠️ 持平（实用主义买 STD 即可）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>NS150 XC 性价比天花板</strong>：<strong>STD ¥19,980</strong>——STD 已满配弯道 ABS+KYB 倒减+IMU+28L 座桶，<strong>PRO 的 1,300 元加的是锦上添花</strong>。</p>
 <hr>
 <h3 id="sec-88">💰 版本边际价值分析</h3>
@@ -4432,7 +4435,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 </blockquote>
 <h3 id="sec-89">一、关键升级的「边际成本」</h3>
 <h4>NWT150 升级链</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4457,9 +4460,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>完整投屏 + 部分细节优化（升级感较弱）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>NS150ES 升级链</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4484,7 +4487,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>原厂尾箱 + 护杠</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-90">二、🌟 花小钱办大事（强烈推荐加钱）</h3>
 <h4>🥇 冠军：NWT150 标准版 → 标准尾箱版（+380 元）</h4>
@@ -4498,7 +4501,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <hr>
 <h4>🥈 亚军：NS150ES STD 箱+杠 → Pro（+1,900 元）</h4>
 <p><strong>1,900 元换 4 项核心升级</strong>，单项均价 475 元。</p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>单项</th>
@@ -4527,7 +4530,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>1,800~2,800 元</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>1,900 元拿下，性价比爆表。</p>
 <p>✅ <strong>结论</strong>：NS150ES 最香的升级，没有之一。</p>
 <hr>
@@ -4567,7 +4570,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <hr>
 <h3 id="sec-92">四、🏆 性价比天花板</h3>
 <h4>📊 边际 ROI 排行榜</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -4621,7 +4624,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>~120%</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h4>🏆 综合性价比之王：<strong>NS150ES Pro（15,780 元）</strong></h4>
 <p><strong>为什么是它</strong>：
 - 比 NWT150 高配版（16,980）便宜 <strong>1,200 元</strong>
@@ -4671,7 +4674,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <strong>注意</strong>：车系性价比天花板是新版分析的汇总结论，以最新边际价值分析为准。</p>
 </blockquote>
 <h4>NS150GX（4 版本）</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4700,10 +4703,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🐔 <strong>花大钱办小事</strong>（纯外观）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>性价比天花板</strong>：<strong>高配版（¥17,180）</strong>——标准+1,200 多 4 件实用配置，血赚。</p>
 <h4>NS150 XC（2 版本，合资 ADV）</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -4720,10 +4723,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🔥 实用但非必需（STD 已满配弯道 ABS）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>性价比天花板</strong>：<strong>STD（¥18,680）</strong>——STD 已满配弯道 ABS+KYB 避震+日信刹车，PRO 的 1,300 元加的是锦上添花。</p>
 <h4>跨车系性价比天花板 3 选 1</h4>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>需求</th>
@@ -4752,7 +4755,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>全铝车架 108kg，性能党首选</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <hr>
 <h2 id="sec-96">📦 保留待查看 · 🚨 座桶冠军更新：升仕 150V 反超 NS150GX</h2>
@@ -4772,7 +4775,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 状态：保留待查看。如需查阅可直接浏览，无需纳入核心阅读路径。</p>
 <p>原始 H2 标题：<code>## 📊 18 款踏板座桶容量</code>（已重命名）</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -4917,7 +4920,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p><strong>DDG 触发反爬</strong>，剩 15 款没拿到具体数据；3-5 万段大踏板座桶通常 28-32L 区间。</p>
 </blockquote>
@@ -4929,7 +4932,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 状态：保留待查看。如需查阅可直接浏览，无需纳入核心阅读路径。</p>
 <p>原始 H2 标题：<code>## 🆚 已知 2 款"通勤载物"对决</code>（已重命名）</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -4982,7 +4985,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>NS150GX 大胜</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>结论</strong>：NS150GX 高配版 = <strong>80L 总储物 + ¥17,180</strong>，NS150 XC PRO = <strong>78L 总储物 + ¥21,280</strong></p>
 <p><strong>NS150GX 高配版便宜 4,100 + 多 2L 储物 + 智能配置 9/10</strong>——<strong>全面胜出</strong>！</p>
 <hr>
@@ -4993,7 +4996,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 状态：保留待查看。如需查阅可直接浏览，无需纳入核心阅读路径。</p>
 <p>原始 H2 标题：<code>## 💡 重新算"通勤载物"3 选 1</code>（已重命名）</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -5026,7 +5029,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>省钱版王者</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>用户已购车 RA2</strong> 是复古跨骑，第二辆如果"通勤+载物"为主，<strong>NS150GX 高配版 ¥17,180 是最对位的</strong>。</p>
 <hr>
 <hr>
@@ -5047,7 +5050,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <p>以下数据在所有可查平台（摩托范/汽车之家/知乎/抖音/官方页/百度文库/中关村在线/腾讯/网易/搜狐/头条/什么值得买/百度贴吧/有驾）均<strong>未找到明确数据</strong>。标记后后续有信息源可快速补全。
 本次查询数据时间：2026-06-15 15:22-15:47（web_search + web_fetch 共约 30+ 次）</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -5092,7 +5095,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>2025 款为 107km/h，2026 款动力未变，预计一致 [W4]</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>可选的下次补全路径</strong>（按推荐排序）：
 1. 🥇 致电/到店实测 NS150ES（离地间隙）
 2. 🥇 到店实测 NS150GX（离地间隙）
@@ -5106,7 +5109,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p>💡 <strong>博文查看提示</strong>：moto-comparison.html 已加 lightbox，<strong>点击车图可看大图</strong>（点空白/点图片/按 Esc 都关闭）。8 张图全部生效。</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -5146,7 +5149,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><a class="lightbox-link" href="img/motos/kpv150.jpg" title="点击看大图"><img alt="KPV 150" src="img/motos/kpv150.jpg" style="max-width:120px; height:auto; cursor:pointer;" /></a></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>📦 <strong>车图数据源</strong>：<a href="https://m.58moto.com">m.58moto.com</a> 详情页 <code>originGoodPic</code>（2026-06-17 首次查证）
 - KPV 150 = <code>m.58moto.com/garage/detail/6904</code>（ID 6904，之前扫描误判查无）
@@ -5343,7 +5346,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p><strong>来源</strong>：原 6 款边际分析（2026-06-17）→ 2026-06-18 拆分到 踏板车 / ADV 踏板</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>升级路径</th>
@@ -5366,7 +5369,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🔥 划算</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>⚠️ <strong>2026 款价格没确认</strong>，按 2021 款 ¥12,980 估算。</p>
 <p><strong>KPV 150 性价比天花板</strong>：<strong>高配版</strong>——TCS + 胎压 + 7寸 TFT 一步到位，<strong>国产越野王满配</strong>。</p>
 <h3 id="sec-108">💰 边际（光阳 Dink G150）</h3>
@@ -5379,7 +5382,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <p><strong>Dink G150 性价比定位</strong>：<strong>单版本极简主义</strong>——无需纠结选版，所有配置一步到位（合资满配 + 续航 500km），<strong>4 款 ADV 中综合最甜</strong>。</p>
 <hr>
 <h3 id="sec-109">🆚 4 款核心维度对比</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -5524,13 +5527,13 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>📊 <strong>数据源</strong>：以上参数主要来自 <a href="https://m.58moto.com">m.58moto.com</a> 参数页（<strong>2026-06-17 首次查证</strong>）。力帆 KPV 150 不在摩托范收录中，标"🔴"者仍需其他源补全。</p>
 </blockquote>
 <hr>
 <h3 id="sec-110">🏆 各维度冠军</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -5575,10 +5578,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>价格 + 续航 + 合资 ✅</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-111">🤔 选择建议</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>你的需求</th>
@@ -5611,7 +5614,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>力帆 KPV 150（不要选 NS150 XC）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-112">⚠️ 重要提醒</h3>
 <p><strong>NS150 XC 的"ADV"是名不副实的</strong>——搜狐评测原话：</p>
@@ -5629,7 +5632,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <p>⚠️ <strong>重要纠错</strong>：NS150ES / NS150LA 是 <strong>新大洲本田</strong>合资，<strong>不是豪爵</strong>（上一份被标错了）</p>
 <hr>
 <h3 id="sec-114">📋 5 款车核心速览</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>车</th>
@@ -5670,7 +5673,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>毫米波雷达 + 1080P 行车记录仪 + 胎压</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-115">🔍 5 款车核心参数</h3>
 <h3>1. <strong>宗申 猎鹰 150ADV</strong>（ADV 入门）</h3>
@@ -5802,7 +5805,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 </ul>
 <hr>
 <h3 id="sec-116">🆚 5 款车各维度冠军</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -5852,10 +5855,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>镀铬复古 + 平踏</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-117">🎯 5 款车选择建议</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>你的核心诉求</th>
@@ -5892,10 +5895,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>升仕 150X（性能续航双第一）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-118">📊 与前 3 批 17 款的关系</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>批次</th>
@@ -5936,10 +5939,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>22 款</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-119">💡 这 5 款与之前 11 款踏板的关系</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -5974,11 +5977,11 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>官方 + 实测数据齐全</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>第四批是"通勤用户特供清单"</strong>——更便宜、更实用、合资品质。</p>
 <hr>
 <h3 id="sec-120">⚠️ 重叠 / 容易混淆的车型</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>用户引用中提到</th>
@@ -6003,7 +6006,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>❌ <strong>新车</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>确认：第四批 5 款与之前 17 款无重叠</strong> ✅</p>
 <hr>
 <p><strong>总车型数</strong>：6 跨骑 + 11 踏板（前三批）+ <strong>5 通勤踏板（第四批）= 22 款</strong><br>
@@ -6024,7 +6027,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <strong>来源</strong>：已存文件数据 + web 补充 + 推理</p>
 <hr>
 <h3 id="sec-123">📋 表 1：核心参数（18 款 × 12 列）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -6314,7 +6317,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>旗舰跨界</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>标 * 的来自 web 补充；标 — 的为文件未记录（很多 3-5 万段未深挖）</p>
 </blockquote>
@@ -6322,7 +6325,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <blockquote>
 <p>2026-06-18 重构：18 款表的独有列已<strong>映射/合并</strong>到 25 款表（"🆚 8 维核心对比"）</p>
 </blockquote>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>18 款表独有列</th>
@@ -6362,11 +6365,11 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🟢 名称不同但内容一致</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>结论</strong>：18 款表 13 列中 <strong>10 列已并入 25 款表</strong>（同名/同义），<strong>2 列未并入</strong>（最大扭矩/油箱，部分行已含）。后续可在 25 款表添加新列。</p>
 <hr>
 <h3 id="sec-125">🔧 表 2：智能配置（18 款 × 11 列）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -6553,11 +6556,11 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>智能配置冠军</strong>：<strong>NS150GX</strong>（10 项里 9 项有，独缺毫米波雷达）</p>
 <hr>
 <h3 id="sec-126">🎒 表 3：实用与外观（你最关注的实用性维度）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -6639,7 +6642,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>—</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>实用冠军</strong>：
 - 座桶容量：<strong>升仕 150V（两顶全盔）</strong> &gt; NS150 XC（28L） &gt; NS150GX
 - 载物：<strong>NS150LA Pro（平踏）</strong> &gt; 其余
@@ -6647,7 +6650,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <hr>
 <h3 id="sec-127">🎯 你特别关注的 8 个维度精排</h3>
 <h3 id="sec-128">维度 1：💰 价格（≤2 万）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>≤2 万（<strong>10 款</strong>）</th>
@@ -6730,12 +6733,12 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <blockquote>
 <p>你 "≤2 万" 关注 = <strong>10 款</strong>（含 150V）；≤1.5 万 = <strong>6 款</strong>（含 150V）</p>
 </blockquote>
 <h3 id="sec-129">维度 2：🇯🇵 合资 / 🌏 进口 / 🇨🇳 国产</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>合资（<strong>9 款</strong>）</th>
@@ -6775,9 +6778,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-130">维度 3：🚗 通勤友好度</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -6812,9 +6815,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>11L 油箱 + 500km+ 续航 + 双全盔座桶 + 5 寸 TFT + 无钥匙</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-131">维度 4：🏕️ 林道 / 越野能力</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -6867,9 +6870,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>公路胎，运动踏板定位</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-132">维度 5：🧠 智能配置（你最关注）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -6904,9 +6907,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>3/10（ABS+TCS+胎压）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-133">维度 6：🔋 续航</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -6965,9 +6968,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>8.5L</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-134">维度 7：🎒 实用性</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -7002,9 +7005,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>三件套（胎压+记录仪+雷达）= 长途实用</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-135">维度 8：🛡️ 品牌 / 维护</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>排名</th>
@@ -7039,11 +7042,11 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>国产二线</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-136">🏆 3 选 1 决赛圈（按你"特别关注"维度重算）</h3>
 <p>你的特别关注维度：<strong>价格 ≤ 2 万 / 合资 / 通勤友好 / 智能豪华 / 实用性</strong></p>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -7108,9 +7111,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>季军 ⭐⭐⭐⭐</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-137">🎯 重新算的最终建议</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>你最看重</th>
@@ -7139,7 +7142,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>NS150LA Pro</strong>（唯一平踏合资）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-138">⚠️ 关键提醒</h3>
 <ol>
@@ -7162,7 +7165,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <strong>结论</strong>：表 2 多处严重不准，已修正</p>
 <hr>
 <h3 id="sec-140">❌ 重大错误清单</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -7223,10 +7226,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🟡 漏数据</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-141">✅ ABS/TCS 智能配置表</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -7329,10 +7332,10 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>DDG 触发反爬未查，后续补</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <h3 id="sec-142">🏆 重新算 3 选 1 决赛圈（修正后）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>维度</th>
@@ -7433,7 +7436,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>🥉 季军</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-143">🔄 4 大新结论</h3>
 <ol>
 <li><strong>NS150XC 的弯道 ABS 是 17 款里唯一</strong>——比 GX 强，<strong>重买推荐 XC（如果不在意贵 3K）</strong></li>
@@ -7471,7 +7474,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 </ul>
 <hr>
 <h3 id="sec-147">💰 落地价估算</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>版本</th>
@@ -7512,7 +7515,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td><strong>≈ 17,610 元</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>💡 比之前估的<strong>便宜 1,300~1,500 元</strong>，<strong>算是个利好</strong>。</p>
 <hr>
 <h3 id="sec-148">🎯 4S 店多余一句砍话术</h3>
@@ -7544,7 +7547,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 用途：历史快照 / 数据补全 / 阶段对比，无需纳入核心阅读路径。</p>
 </blockquote>
 <h3 id="sec-152">8 个核心章节（按阅读顺序）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -7629,9 +7632,9 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>✅ TOP 5 推荐</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3 id="sec-153">保留待查看章节（11 个）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -7696,7 +7699,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <td>📦 保留待查看</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr>
 <p><em>更新时间：2026-06-18 09:15（全面重组：8 核心章节顺序 + 4 段式 + 11 保留待查看）</em>
 <em>修改记录见 git history：<code>git log --oneline drafts/关注的摩托车.md</code></em></p>
