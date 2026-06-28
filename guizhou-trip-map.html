@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>贵州自驾游 · 高德地图点位</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 { color: #1a73e8; margin: 0 0 16px; font-size: 1.5em; }
+        h2 { color: #1a73e8; margin: 24px 0 12px; font-size: 1.2em; border-bottom: 2px solid #1a73e8; padding-bottom: 8px; }
+        h3 { color: #333; margin: 0 0 8px; font-size: 1.05em; }
+        .summary {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe082 100%);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ffd54f;
+        }
+        .summary p { margin: 6px 0; }
+        .map-button {
+            display: block;
+            background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+            color: white;
+            padding: 16px;
+            text-align: center;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 1.15em;
+            font-weight: 600;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(26,115,232,0.3);
+        }
+        .map-button:active { transform: translateY(1px); }
+        .day {
+            background: white;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .day-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+        .day-distance {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+        }
+        .spot {
+            margin: 10px 0;
+            padding: 10px 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #1a73e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .spot-info { flex: 1; min-width: 200px; }
+        .spot-name {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.02em;
+        }
+        .spot-name:hover { text-decoration: underline; }
+        .spot-coord {
+            color: #888;
+            font-size: 0.78em;
+            font-family: ui-monospace, "SF Mono", monospace;
+            display: block;
+            margin-top: 2px;
+        }
+        .spot-tag {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            margin-right: 4px;
+        }
+        .spot-tag.warn { background: #fff3e0; color: #e65100; }
+        .spot-tag.kid { background: #fce4ec; color: #c2185b; }
+        .nav-btn {
+            background: #1a73e8;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+        .nav-btn:active { background: #1557b0; }
+        .day-nav {
+            display: block;
+            background: #34a853;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+        .legend {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 0.9em;
+        }
+        .legend span { margin-right: 12px; }
+        .footer {
+            text-align: center;
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 30px;
+            padding: 16px;
+        }
+        @media (max-width: 600px) {
+            .spot { flex-direction: column; align-items: stretch; }
+            .nav-btn { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>🗺️ 贵州自驾游 · 高德地图点位</h1>
+
+<div class="summary">
+    <p><strong>📅 行程：</strong>2026-07-04（周五）→ 2026-07-14（周一），共 11 天</p>
+    <p><strong>👨‍👩‍👧 人数：</strong>3 成人 + 1 儿童</p>
+    <p><strong>📏 总里程：</strong>~3460km</p>
+    <p><strong>🚗 车辆：</strong>1 辆（2 主驾 + 2 副驾 轮换）</p>
+    <p><strong>💰 人均预算：</strong>~4280 元</p>
+</div>
+
+<!-- 一键打开所有点位 -->
+<a class="map-button" id="all-markers-btn" href="#" target="_blank">
+    📍 一键打开高德地图（全部 15 个点位）
+</a>
+
+<div class="legend">
+    <strong>图例：</strong>
+    <span class="spot-tag kid">👶 儿童友好</span>
+    <span class="spot-tag warn">⚠️ 看天气</span>
+    <span class="spot-tag">📷 必玩</span>
+</div>
+
+<h2>📅 每日点位 + 一键导航</h2>
+
+<!-- Day 1 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 1（7/4 周五）</span>
+        <span class="day-distance">驻马店 → 襄阳 | 450km / 5h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="114.024989" data-lat="32.980166">🏠 驻马店（出发）</a>
+            <span class="spot-coord">114.024989, 32.980166</span>
+        </div>
+        <a href="#" class="nav-btn" data-from="114.024989,32.980166,驻马店" data-to="112.139015,32.010730,襄阳古城">🚗 出发导航</a>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="112.067220" data-lat="31.929560">🏯 襄阳古隆中 <span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">112.067220, 31.929560</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="112.067220,31.929560,襄阳古隆中">📍 去这里</a>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="112.139015" data-lat="32.010730">🏯 襄阳古城（昭明台）<span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">112.139015, 32.010730</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="112.139015,32.010730,襄阳古城">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="114.024989,32.980166,驻马店" data-to="112.139015,32.010730,襄阳古城">🗺️ 整段导航：驻马店 → 襄阳古城</a>
+</div>
+
+<!-- Day 2 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 2（7/5 周六）</span>
+        <span class="day-distance">襄阳 → 恩施 | 480km / 6h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="109.488000" data-lat="30.272000">🎭 土家女儿城 <span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">109.488000, 30.272000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="109.488000,30.272000,土家女儿城">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="112.139015,32.010730,襄阳古城" data-to="109.488000,30.272000,恩施女儿城">🗺️ 整段导航：襄阳 → 恩施</a>
+</div>
+
+<!-- Day 3 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 3（7/6 周日）⭐ 恩施大峡谷</span>
+        <span class="day-distance">恩施大峡谷 | 一日游</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="109.318000" data-lat="30.376000">🏔️ 恩施大峡谷（游客中心）<span class="spot-tag">📷</span><span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">109.318000, 30.376000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="109.318000,30.376000,恩施大峡谷">📍 去这里</a>
+    </div>
+</div>
+
+<!-- Day 4 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 4（7/7 周一）</span>
+        <span class="day-distance">恩施 → 遵义 → 贵阳 | 650km / 7h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="106.926220" data-lat="27.725150">🏛️ 遵义会议会址 <span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">106.926220, 27.725150</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="106.926220,27.725150,遵义会议会址">📍 去这里</a>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="106.713300" data-lat="26.578300">🌃 贵阳花果园（住宿）<span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">106.713300, 26.578300</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="106.713300,26.578300,贵阳花果园">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="109.488000,30.272000,恩施女儿城" data-to="106.713300,26.578300,贵阳" data-via="106.926220,27.725150">🗺️ 整段导航：恩施 → 遵义会址 → 贵阳</a>
+</div>
+
+<!-- Day 5 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 5（7/8 周二）⭐ 黄果树瀑布</span>
+        <span class="day-distance">贵阳 → 黄果树 | 130km / 2h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="105.665000" data-lat="25.911000">💦 黄果树瀑布景区 <span class="spot-tag">📷</span></a>
+            <span class="spot-coord">105.665000, 25.911000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="105.665000,25.911000,黄果树瀑布">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="106.713300,26.578300,贵阳" data-to="105.665000,25.911000,黄果树瀑布">🗺️ 整段导航：贵阳 → 黄果树</a>
+</div>
+
+<!-- Day 6 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 6（7/9 周三）</span>
+        <span class="day-distance">黄果树 → 织金洞 → 荔波 | 300km / 5h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="105.770000" data-lat="26.665000">🕳️ 织金洞景区</a>
+            <span class="spot-coord">105.770000, 26.665000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="105.770000,26.665000,织金洞">📍 去这里</a>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="107.886000" data-lat="25.421000">🏘️ 荔波县城（住宿）</a>
+            <span class="spot-coord">107.886000, 25.421000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="107.886000,25.421000,荔波县城">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="105.665000,25.911000,黄果树" data-to="107.886000,25.421000,荔波" data-via="105.770000,26.665000">🗺️ 整段导航：黄果树 → 织金洞 → 荔波</a>
+</div>
+
+<!-- Day 7 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 7（7/10 周四）⭐ 小七孔玩水</span>
+        <span class="day-distance">荔波小七孔 | 一日游</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="107.736000" data-lat="25.281000">💎 荔波小七孔（西门）<span class="spot-tag">📷</span><span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">107.736000, 25.281000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="107.736000,25.281000,荔波小七孔">📍 去这里</a>
+    </div>
+</div>
+
+<!-- Day 8 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 8（7/11 周五）⭐ 千户苗寨</span>
+        <span class="day-distance">荔波 → 西江 | 240km / 3h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="108.207000" data-lat="26.490000">🏘️ 西江千户苗寨（北门）<span class="spot-tag">📷</span><span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">108.207000, 26.490000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="108.207000,26.490000,西江千户苗寨">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="107.886000,25.421000,荔波" data-to="108.207000,26.490000,西江千户苗寨">🗺️ 整段导航：荔波 → 西江苗寨</a>
+</div>
+
+<!-- Day 9 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 9（7/12 周六）⭐ 镇远 + 梵净山</span>
+        <span class="day-distance">西江 → 镇远 → 梵净山 → 铜仁 | 330km / 4h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="108.428000" data-lat="27.054000">🏯 镇远古城 <span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">108.428000, 27.054000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="108.428000,27.054000,镇远古城">📍 去这里</a>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="108.681000" data-lat="27.900000">⛰️ 梵净山（江口）<span class="spot-tag warn">⚠️ 看天气</span></a>
+            <span class="spot-coord">108.681000, 27.900000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="108.681000,27.900000,梵净山">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="108.207000,26.490000,西江" data-to="108.681000,27.900000,梵净山" data-via="108.428000,27.054000">🗺️ 整段导航：西江 → 镇远 → 梵净山</a>
+</div>
+
+<!-- Day 10 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 10（7/13 周日）⭐ 凤凰夜景</span>
+        <span class="day-distance">铜仁 → 凤凰 | 80km / 1.5h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="109.599000" data-lat="27.948000">🌉 凤凰古城（虹桥）<span class="spot-tag">📷</span><span class="spot-tag kid">👶</span></a>
+            <span class="spot-coord">109.599000, 27.948000</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="109.599000,27.948000,凤凰古城">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="108.681000,27.900000,梵净山" data-to="109.599000,27.948000,凤凰古城">🗺️ 整段导航：铜仁 → 凤凰</a>
+</div>
+
+<!-- Day 11 -->
+<div class="day">
+    <div class="day-header">
+        <span class="day-title">Day 11（7/14 周一）返程</span>
+        <span class="day-distance">凤凰 → 驻马店 | 800km / 9h</span>
+    </div>
+    <div class="spot">
+        <div class="spot-info">
+            <a href="#" class="spot-name" data-lng="114.024989" data-lat="32.980166">🏠 驻马店（回家）</a>
+            <span class="spot-coord">114.024989, 32.980166</span>
+        </div>
+        <a href="#" class="nav-btn" data-nav-to="114.024989,32.980166,驻马店">📍 去这里</a>
+    </div>
+    <a href="#" class="day-nav" data-from="109.599000,27.948000,凤凰古城" data-to="114.024989,32.980166,驻马店">🗺️ 整段导航：凤凰 → 驻马店</a>
+</div>
+
+<div class="footer">
+    <p>🗺️ 点位图 v1.0 · 2026-06-28 生成</p>
+    <p>坐标为参考值，到现场请以高德地图官方 POI 为准</p>
+</div>
+
+<script>
+    // 所有点位 (用于"一键打开全部")
+    const allMarkers = [
+        { lng: 114.024989, lat: 32.980166, name: "驻马店（起点）" },
+        { lng: 112.067220, lat: 31.929560, name: "襄阳古隆中" },
+        { lng: 112.139015, lat: 32.010730, name: "襄阳古城" },
+        { lng: 109.488000, lat: 30.272000, name: "恩施女儿城" },
+        { lng: 109.318000, lat: 30.376000, name: "恩施大峡谷" },
+        { lng: 106.926220, lat: 27.725150, name: "遵义会议会址" },
+        { lng: 106.713300, lat: 26.578300, name: "贵阳花果园" },
+        { lng: 105.665000, lat: 25.911000, name: "黄果树瀑布" },
+        { lng: 105.770000, lat: 26.665000, name: "织金洞" },
+        { lng: 107.886000, lat: 25.421000, name: "荔波县城" },
+        { lng: 107.736000, lat: 25.281000, name: "荔波小七孔" },
+        { lng: 108.207000, lat: 26.490000, name: "西江千户苗寨" },
+        { lng: 108.428000, lat: 27.054000, name: "镇远古城" },
+        { lng: 108.681000, lat: 27.900000, name: "梵净山" },
+        { lng: 109.599000, lat: 27.948000, name: "凤凰古城" },
+    ];
+
+    // 单个点导航 (在地图上选点)
+    document.querySelectorAll('.spot-name').forEach(el => {
+        el.addEventListener('click', e => {
+            e.preventDefault();
+            const lng = el.dataset.lng;
+            const lat = el.dataset.lat;
+            const name = el.textContent.trim();
+            const url = `https://uri.amap.com/marker?position=${lng},${lat}&name=${encodeURIComponent(name)}&src=autoedit&callnative=1`;
+            window.open(url, '_blank');
+        });
+    });
+
+    // 出发导航 / 去这里
+    document.querySelectorAll('.nav-btn').forEach(el => {
+        el.addEventListener('click', e => {
+            e.preventDefault();
+            let url;
+            if (el.dataset.from && el.dataset.to) {
+                // 出发导航
+                url = `https://uri.amap.com/navigation?from=${el.dataset.from}&to=${el.dataset.to}&mode=car&policy=0&src=autoedit&callnative=1`;
+            } else if (el.dataset.navTo) {
+                // 去这里 (导航到该点)
+                url = `https://uri.amap.com/navigation?to=${el.dataset.navTo}&mode=car&policy=0&src=autoedit&callnative=1`;
+            }
+            if (url) window.open(url, '_blank');
+        });
+    });
+
+    // 整段导航
+    document.querySelectorAll('.day-nav').forEach(el => {
+        el.addEventListener('click', e => {
+            e.preventDefault();
+            let url = `https://uri.amap.com/navigation?from=${el.dataset.from}&to=${el.dataset.to}&mode=car&policy=0&src=autoedit&callnative=1`;
+            if (el.dataset.via) {
+                url += `&via=${el.dataset.via}`;
+            }
+            window.open(url, '_blank');
+        });
+    });
+
+    // 一键打开所有点位
+    const allMarkersStr = allMarkers.map(m => `${m.lng},${m.lat},${m.name}`).join('|');
+    const allMarkersUrl = `https://uri.amap.com/marker?markers=${encodeURIComponent(allMarkersStr)}&src=autoedit&callnative=1`;
+    document.getElementById('all-markers-btn').href = allMarkersUrl;
+</script>
+
+</body>
+</html>
