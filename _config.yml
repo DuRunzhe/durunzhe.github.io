@@ -3,4 +3,4 @@ description: 关于 AI Agent、Skill 设计、浏览器自动化的技术与思�
 theme: minima
 markdown: kramdown
 plugins:
-  # - jekyll-feed   # 禁用 jekyll-feed（不识别 feed: false 字段），改用根目录自己的 feed.xml
+  - jekyll-feed
