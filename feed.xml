@@ -1,0 +1,27 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
+  <generator uri="https://jekyllrb.com/">Jekyll</generator>
+  <link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/atom+xml" />
+  <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html" />
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ '/' | absolute_url }}</id>
+  <title type="html">{{ site.title | xml_escape }}</title>
+  <subtitle>{{ site.description | xml_escape }}</subtitle>
+
+  {% for post in site.posts %}
+  {% unless post.private %}
+  <entry>
+    <title type="html">{{ post.title | xml_escape }}</title>
+    <link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html" />
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <id>{{ post.id | absolute_url | xml_escape }}</id>
+    <content type="html" xml:base="{{ post.url | absolute_url }}"><![CDATA[{{ post.content | strip | xml_escape }}]]></content>
+  </entry>
+  {% endunless %}
+  {% endfor %}
+</feed>
