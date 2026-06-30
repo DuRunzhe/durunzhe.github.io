@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🚗 福建自驾游 · 高德导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 顶部 ========== */
+header {
+  background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+header p {
+  font-size: 12px;
+  opacity: 0.95;
+}
+header p .route { font-weight: 600; }
+
+/* ========== 顶部导航 ========== */
+.day-nav {
+  background: white;
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 76px;
+  z-index: 99;
+  border-bottom: 1px solid #e8eaec;
+  -webkit-overflow-scrolling: touch;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  background: #f0f1f3;
+  color: #555;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.day-nav a.active,
+.day-nav a:active {
+  background: #FF6F00;
+  color: white;
+}
+
+/* ========== Day 区段 ========== */
+.day {
+  padding: 16px 14px;
+}
+
+.day-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(to right, #fff5e6, white);
+  border-left: 5px solid #FF6F00;
+  border-radius: 4px;
+}
+
+.day-title .day-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FF6F00;
+  margin-right: 10px;
+}
+.day-title .day-info {
+  flex: 1;
+}
+.day-title h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.day-title .meta {
+  font-size: 11px;
+  color: #888;
+}
+.day-title .route-arrow {
+  font-size: 16px;
+  color: #FF6F00;
+  font-weight: 600;
+}
+
+/* ========== 分组 ========== */
+.group {
+  margin-bottom: 18px;
+}
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+.group-title .emoji {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* ========== POI 卡片 ========== */
+.poi {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ecedef;
+}
+
+.poi-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.poi-name .tag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.tag.attract { background: #fef0ef; color: #c7392b; }
+.tag.hotel { background: #f0ecfa; color: #6b46c1; }
+.tag.food { background: #fff5e8; color: #d97706; }
+.tag.service { background: #e0f0fc; color: #2563eb; }
+
+.poi-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.poi-info .price {
+  color: #FF6F00;
+  font-weight: 600;
+}
+
+.poi-actions {
+  display: flex;
+  gap: 8px;
+}
+.poi-actions a {
+  flex: 1;
+  display: block;
+  text-align: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+.btn-nav {
+  background: #FF6F00;
+  color: white;
+}
+.btn-search {
+  background: #f0f1f3;
+  color: #555;
+}
+
+/* ========== 使用说明 ========== */
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #FF6F00;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+/* ========== 浮动返回顶部按钮 ========== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FF6F00;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🚗 福建自驾游 · 高德导航点位</h1>
+  <p><span class="route">驻马店 → 福州 → 平潭 → 泉州 → 驻马店</span></p>
+  <p style="margin-top:4px;">9 天行程 · 点击任意点位 → 高德 App 自动导航</p>
+</header>
+
+<!-- 日期快速跳转 -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day1">D1 九江</a>
+  <a href="#day2">D2 福州</a>
+  <a href="#day3">D3 福州</a>
+  <a href="#day4">D4 平潭</a>
+  <a href="#day5">D5 平潭</a>
+  <a href="#day6">D6 泉州</a>
+  <a href="#day7">D7 泉州</a>
+  <a href="#day8">D8 鹰潭</a>
+  <a href="#day9">D9 回家</a>
+</nav>
+
+<!-- ========== Day 1 ========== -->
+<section class="day" id="day1">
+  <div class="day-title">
+    <span class="day-num">D1</span>
+    <div class="day-info">
+      <h2>7.3 周五 · 驻马店 → 九江</h2>
+      <div class="meta">580 km · 6.5 h · 主要中转</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  
+    <div class="group">
+      <div class="group-title"><span class="emoji">🏠</span>出发地</div>
+
+      <div class="poi">
+        <div class="poi-name">🚗 驻马店 · 出发地（家）
+          <span class="tag attract">D1 起点</span>
+        </div>
+        <div class="poi-info">📍 驻马店市 · ⏰ 06:30 加满油 → 上京港澳 G4 → 九江。<br>点击下方按钮开始第一段导航（起点自动定位）。</div>
+        <div class="poi-actions">
+          <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=114.0249,32.9802,%E9%A9%BB%E9%A9%AC%E5%BA%97%E5%B8%82%E6%94%BF%E5%BA%9C&mode=car&src=fjtravel">🚗 开始导航</a>
+          <a class="btn-search" target="_blank" href="https://uri.amap.com/marker?markers=114.0249,32.9802,%E9%A9%BB%E9%A9%AC%E5%BA%97%E5%B8%82%E6%94%BF%E5%BA%9C&src=fjtravel">📍 标记位置</a>
+        </div>
+      </div>
+    </div>
+
+<div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">浔阳楼
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">📍 九江市浔阳区长江边 · 傍晚抵达后游玩</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.0010,29.7093,%E6%B5%94%E9%98%B3%E6%A5%BC&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=浔阳楼&city=九江&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">长江大桥（九江段）
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">📍 步行可达浔阳楼 · 看夜景最佳</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.0180,29.7208,%E4%B9%9D%E6%B1%9F%E9%95%BF%E6%B1%9F%E5%A4%A7%E6%A1%A5&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=九江长江大桥&city=九江&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+
+    <div class="poi">
+      <div class="poi-name">九江希尔顿欢朋酒店
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 九江火车站附近 · 便于第二天上高速 · <span class="price">¥380/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.9938,29.7041,%E4%B9%9D%E6%B1%9F%E5%B8%8C%E5%B0%94%E9%A1%BF%E6%AC%A2%E6%9C%8B%E9%85%92%E5%BA%97&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=九江希尔顿欢朋&city=九江&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">九江亚朵 S 酒店
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 浔阳区 · <span class="price">¥480/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=九江亚朵酒店&city=九江&src=fjtravel">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=九江亚朵&city=九江&src=fjtravel">📍 详情</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">欢喜锅（赣菜）
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">📍 浔阳区老街 · 赣菜代表 · 人均 ¥60</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=欢喜锅&city=九江&src=fjtravel">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=欢喜锅 浔阳&city=九江&src=fjtravel">📍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">老房子（赣菜）
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">📍 浔阳区 · 萝卜饼 + 茶饼当地味道</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=老房子赣菜&city=九江&src=fjtravel">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=老房子 浔阳&city=九江&src=fjtravel">📍 详情</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站</div>
+
+    <div class="poi">
+      <div class="poi-name">横店服务区（孝感段）
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">⏰ 09:00 · 加油 + 早餐</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=横店服务区 孝感&src=fjtravel">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/navigation?from=驻马店&to=九江&via=113.8400,30.9100,横店服务区&mode=car&src=fjtravel">📍 路线</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">小池服务区（黄梅段）
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">⏰ 11:30 · 加油 + 简餐</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=小池服务区 黄梅&src=fjtravel">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/navigation?from=九江&to=驻马店&via=115.9970,30.0700,小池服务区&mode=car&src=fjtravel">📍 路线</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">黄石服务区
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">⏰ 13:30 · 上厕所</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=黄石服务区&src=fjtravel">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/navigation?to=115.0380,30.2270,黄石服务区&mode=car&src=fjtravel">📍 路线</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 2 ========== -->
+<section class="day" id="day2">
+  <div class="day-title">
+    <span class="day-num">D2</span>
+    <div class="day-info">
+      <h2>7.4 周六 · 九江 → 福州</h2>
+      <div class="meta">540 km · 6 h · 三坊七巷夜景</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">三坊七巷
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 福州市鼓楼区 · ⏰ 17:00-22:00 · 步行游览</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.3018,26.0874,%E4%B8%89%E5%9D%8A%E4%B8%83%E5%B7%B7&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=三坊七巷&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">南后街
+        <span class="tag attract">街景</span>
+      </div>
+      <div class="poi-info">📍 三坊七巷主街 · ⏰ 黄昏最美</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.3015,26.0870,%E5%8D%97%E5%90%8E%E8%A1%97&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=南后街&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">林觉民·冰心故居
+        <span class="tag attract">人文</span>
+      </div>
+      <div class="poi-info">📍 三坊七巷内 · 免费 · 福州老照片</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.3020,26.0870,%E6%9E%97%E8%A7%89%E6%B0%91%E5%86%B0%E5%BF%83%E6%95%85%E5%B1%85&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=林觉民故居&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">水榭戏台
+        <span class="tag attract">演出</span>
+      </div>
+      <div class="poi-info">📍 三坊七巷内 · ⏰ 19:00 免费闽剧 · 10 分钟</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.3022,26.0868,%E6%B0%B4%E6%A6%AD%E6%88%8F%E5%8F%B0&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=水榭戏台 福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">永和鱼丸
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 南后街 · 老字号 · 三坊七巷入口</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=永和鱼丸 三坊七巷&city=福州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">同利肉燕
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 南后街 · 福建肉燕代表</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=同利肉燕&city=福州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">木金肉丸
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 南后街 · 福建传统小吃</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=木金肉丸&city=福州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+
+    <div class="poi">
+      <div class="poi-name">福州悦华酒店
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 三坊七巷附近 · <span class="price">¥550/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=福州悦华酒店&city=福州&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">三坊七巷亚朵 S
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 三坊七巷 · <span class="price">¥600/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=三坊七巷亚朵&city=福州&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区</div>
+
+    <div class="poi">
+      <div class="poi-name">景德镇服务区
+        <span class="tag service">⏰ 09:00</span>
+      </div>
+      <div class="poi-info">📍 大型综合 · 可买瓷器小礼物</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=景德镇服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">三清山服务区
+        <span class="tag service">⏰ 11:30</span>
+      </div>
+      <div class="poi-info">📍 加油</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=三清山服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">武夷山服务区
+        <span class="tag service">⏰ 12:30</span>
+      </div>
+      <div class="poi-info">📍 午餐</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=武夷山服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">南平服务区
+        <span class="tag service">⏰ 14:30</span>
+      </div>
+      <div class="poi-info">📍 加油 + 加水</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=南平服务区 高速&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 3 ========== -->
+<section class="day" id="day3">
+  <div class="day-title">
+    <span class="day-num">D3</span>
+    <div class="day-info">
+      <h2>7.5 周日 · 福州一日</h2>
+      <div class="meta">20 km · 市内 · 博物院 + 鼓山</div>
+    </div>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">福建博物院
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 鼓楼区湖头街 · ⏰ 08:30-10:00 · 免费 · 恐龙化石</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.2988,26.0846,%E7%A6%8F%E5%BB%BA%E5%8D%9A%E7%89%A9%E9%99%A2&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=福建博物院&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">西湖公园
+        <span class="tag attract">儿童</span>
+      </div>
+      <div class="poi-info">📍 鼓楼区 · 紧邻福建博物院 · 划船 ¥40</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.2980,26.0830,%E7%A6%8F%E5%B7%9E%E8%A5%BF%E6%B9%96%E5%85%AC%E5%9B%AD&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=福州西湖公园&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">鼓山涌泉寺
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 晋安区鼓山镇 · ⏰ 14:30-18:30 · 缆车 ¥60/人</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.4078,26.0719,%E9%BC%93%E5%B1%B1%E6%B6%8C%E6%B3%89%E5%AF%BA&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=鼓山涌泉寺&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">鼓岭石鼓山庄
+        <span class="tag attract">避暑</span>
+      </div>
+      <div class="poi-info">📍 鼓岭度假区 · ⏰ 19:00 看日落 + 晚餐</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=鼓岭石鼓山庄&city=福州&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">台江码头（闽江夜游）
+        <span class="tag attract">夜游</span>
+      </div>
+      <div class="poi-info">📍 台江区 · ⏰ 21:00 · ¥98/人 · 1h</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.3070,26.0617,%E5%8F%B0%E6%B1%9F%E7%A0%81%E5%A4%B4&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=台江码头&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">烟台山历史风貌区 ⛈雨备
+        <span class="tag attract">雨备</span>
+      </div>
+      <div class="poi-info">📍 仓山区 · 近代洋楼群 · 拍照避雨</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.3145,26.0743,%E7%83%9F%E5%8F%B0%E5%B1%B1%E5%8E%86%E5%8F%B2%E9%A3%8E%E8%B2%8C%E5%8C%BA&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=烟台山历史风貌区&city=福州&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">老福州（三坊七巷分店）
+        <span class="tag food">大菜</span>
+      </div>
+      <div class="poi-info">📍 三坊七巷 · ⏰ 11:30 午餐 · 荔枝肉 + 佛跳墙 · 人均 ¥80</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=老福州 三坊七巷&city=福州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">老街锅边糊（早餐）
+        <span class="tag food">早餐</span>
+      </div>
+      <div class="poi-info">📍 鼓楼区老街 · ⏰ 07:30</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=锅边糊 福州 鼓楼&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 4 ========== -->
+<section class="day" id="day4">
+  <div class="day-title">
+    <span class="day-num">D4</span>
+    <div class="day-info">
+      <h2>7.6 周一 · 福州 → 平潭</h2>
+      <div class="meta">140 km · 2.5 h · 桥上拍照</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">平潭公铁大桥
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 沈海高速 · ⏰ 09:30 · 桥上海景拍照</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7533,25.4886,%E5%B9%B3%E6%BD%AD%E5%85%AC%E9%93%81%E5%A4%A7%E6%A1%A5&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=平潭公铁大桥&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">东海仙境 · 仙人井
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 平潭苏澳镇 · ⏰ 14:00 · ¥15/人 · 海蚀悬崖</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7545,25.4500,%E4%B8%9C%E6%B5%B7%E4%BB%99%E5%A2%83%E4%BB%99%E4%BA%BA%E4%BA%95&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=东海仙境 仙人井 平潭&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">龙凤头海滨浴场
+        <span class="tag attract">儿童</span>
+      </div>
+      <div class="poi-info">📍 平潭龙王头 · ⏰ 16:00-18:00 · 免费 · 玩沙玩水</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7876,25.4994,%E9%BE%99%E5%87%A4%E5%A4%B4%E6%B5%B7%E6%BB%A8%E6%B5%B4%E5%9C%BA&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=平潭龙凤头海滨浴场&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">海坛古城
+        <span class="tag attract">夜游</span>
+      </div>
+      <div class="poi-info">📍 平潭综合实验区 · ⏰ 19:30 · 仿古街区灯光</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7950,25.5100,%E6%B5%B7%E5%9D%9B%E5%8F%A4%E5%9F%8E&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=海坛古城&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">十三妹平潭特色菜
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 平潭城区 · ⏰ 12:00 · 地道实惠</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=十三妹 平潭特色菜&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">陈阿姨海鲜加工
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 龙凤头附近 · ⏰ 18:00 · 海鲜排档</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=陈阿姨海鲜加工 平潭&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+
+    <div class="poi">
+      <div class="poi-name">平潭龙凤头度假酒店
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 龙凤头 · 出门即海 · <span class="price">¥550/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=平潭龙凤头度假酒店&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">平潭宇诚海景酒店
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 海坛古城 · 一线海景 · <span class="price">¥680/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=平潭宇诚海景酒店&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">北港文创民宿
+        <span class="tag hotel">特色</span>
+      </div>
+      <div class="poi-info">📍 北港文创村 · <span class="price">¥400/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=平潭北港文创民宿&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 5 ========== -->
+<section class="day" id="day5">
+  <div class="day-title">
+    <span class="day-num">D5</span>
+    <div class="day-info">
+      <h2>7.7 周二 · 平潭环岛 + 蓝眼泪</h2>
+      <div class="meta">100 km · 岛上 · 摄影日</div>
+    </div>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">北港文创村
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 平潭北港 · ⏰ 10:00 · 彩色石头厝</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7688,25.4751,%E5%B9%B3%E6%BD%AD%E5%8C%97%E6%B8%AF%E6%96%87%E5%88%9B%E6%9D%91&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=平潭北港文创村&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">镜沙黑礁石
+        <span class="tag attract">摄影</span>
+      </div>
+      <div class="poi-info">📍 平潭镜沙村 · ⏰ 11:00 · 黑色玄武岩 + 海水</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7521,25.4698,%E9%95%9C%E6%B2%99&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=平潭镜沙 黑礁石&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">国彩村风车田
+        <span class="tag attract">亲子</span>
+      </div>
+      <div class="poi-info">📍 平潭国彩村 · ⏰ 14:00 · 风车 + 海</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7445,25.4423,%E5%B9%B3%E6%BD%AD%E5%9B%BD%E5%BD%A9%E6%9D%91%E9%A3%8E%E8%BD%A6%E7%94%B0&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=平潭国彩村风车田&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">坛南湾
+        <span class="tag attract">日落</span>
+      </div>
+      <div class="poi-info">📍 平潭坛南湾 · ⏰ 17:00 看日落 · 蓝眼泪观测点</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.7553,25.4045,%E5%9D%9B%E5%8D%97%E6%B9%BE&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=平潭坛南湾&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">模镜村 / 屿北村
+        <span class="tag attract">文创</span>
+      </div>
+      <div class="poi-info">📍 平潭模镜 · ⏰ 15:30 · 安静文创小店</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=平潭模镜村&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">追蓝时光餐吧
+        <span class="tag food">明星</span>
+      </div>
+      <div class="poi-info">📍 北港村 · ⏰ 12:30 · 二楼可看海 · 人均 ¥100</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=追蓝时光餐吧 平潭&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">老船长海鲜楼
+        <span class="tag food">海鲜</span>
+      </div>
+      <div class="poi-info">📍 北港 · 平潭鱼丸 + 海蛎煎</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=老船长海鲜楼 平潭&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">一品螟
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 平潭城区 · ⏰ 18:30 · 海鲜粥</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=一品螟 平潭&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 6 ========== -->
+<section class="day" id="day6">
+  <div class="day-title">
+    <span class="day-num">D6</span>
+    <div class="day-info">
+      <h2>7.8 周三 · 平潭 → 泉州</h2>
+      <div class="meta">270 km · 3.5 h · 西街开元寺</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">西街
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 鲤城区 · ⏰ 15:30-20:00 · 老字号小吃街</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=118.5896,24.9093,%E6%B3%89%E5%B7%9E%E8%A5%BF%E8%A1%97&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=泉州西街&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">开元寺
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 鲤城区西街 · ⏰ 16:00-18:30 · 免费 · 东西塔 + 弘一法师</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=118.5868,24.9075,%E6%B3%89%E5%B7%9E%E5%BC%80%E5%85%83%E5%AF%BA&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=泉州开元寺&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">钟楼
+        <span class="tag attract">夜景</span>
+      </div>
+      <div class="poi-info">📍 鲤城区 · ⏰ 20:00 · 钟楼夜景</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=118.5893,24.9087,%E6%B3%89%E5%B7%9E%E9%92%9F%E6%A5%BC&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=泉州钟楼&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">西街 1915 文创空间
+        <span class="tag attract">文艺</span>
+      </div>
+      <div class="poi-info">📍 西街老建筑 · 老建筑改造文创店</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=西街1915 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">春哥铁板烧
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 西街附近 · ⏰ 18:30 · 闽南特色饭</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=春哥铁板烧 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">亚佛润饼
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 西街 · 传统甜咸润饼</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=亚佛润饼 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">老记面线糊
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 西街 · 早餐必吃 · 面线糊</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=老记面线糊 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">秉正石花膏
+        <span class="tag food">甜品</span>
+      </div>
+      <div class="poi-info">📍 西街 · 夏季甜品 · 蜂蜜 + 石花膏</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=秉正石花膏 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">侯阿婆肉夹包
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 西街深巷 · 福建肉夹包</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=侯阿婆肉夹包 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">鹤上镇海鲜（长乐）
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 长乐鹤上 · ⏰ 11:30 · 福州长乐机场附近</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=鹤上镇海鲜 长乐&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+
+    <div class="poi">
+      <div class="poi-name">大拾堂老宅民宿
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 西街 · 老宅改造文艺风 · <span class="price">¥450/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=大拾堂 泉州&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">慢居 · 杨桃公馆
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 西街 · 设计师酒店 · <span class="price">¥520/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=慢居杨桃公馆 泉州&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区</div>
+
+    <div class="poi">
+      <div class="poi-name">大练岛服务区
+        <span class="tag service">⏰ 10:30</span>
+      </div>
+      <div class="poi-info">📍 过桥后第一个</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=大练岛服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">福清宏路服务区
+        <span class="tag service">⏰ 11:30</span>
+      </div>
+      <div class="poi-info">📍 沈海高速 · 福州段</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=福清宏路服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">莆田服务区
+        <span class="tag service">⏰ 13:00</span>
+      </div>
+      <div class="poi-info">📍 沈海高速 · 莆田段</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=莆田服务区 沈海高速&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 7 ========== -->
+<section class="day" id="day7">
+  <div class="day-title">
+    <span class="day-num">D7</span>
+    <div class="day-info">
+      <h2>7.9 周四 · 泉州一日深度</h2>
+      <div class="meta">30 km · 市内 · 清源山 + 洛阳桥</div>
+    </div>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">清源山 · 老君岩
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 丰泽区 · ⏰ 09:00-12:00 · ¥70/人 · 中国最大道教石雕</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=118.5917,24.9506,%E6%B8%85%E6%BA%90%E5%B1%B1%E8%80%81%E5%90%9B%E5%B2%A9&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=清源山 老君岩&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">洛阳桥
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 洛江区 · ⏰ 15:30 · 免费 · 中国四大名桥</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=118.6790,24.9812,%E6%B4%9B%E9%98%B3%E6%A1%A5&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=泉州洛阳桥&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">蟳埔村
+        <span class="tag attract">核心</span>
+      </div>
+      <div class="poi-info">📍 丰泽区 · ⏰ 17:00 · 簪花围拍照 · 蚝壳厝</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=118.6890,24.8789,%E8%9F%B3%E5%9F%94%E6%9D%91&mode=car&src=fjtravel">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=蟳埔村&src=fjtravel">🔍 详情</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">闽台缘博物馆 ⛈雨备
+        <span class="tag attract">雨备</span>
+      </div>
+      <div class="poi-info">📍 丰泽区 · 免费 · 5A · 替代清源山</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=闽台缘博物馆&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">海上丝绸之路艺术公园
+        <span class="tag attract">夜游</span>
+      </div>
+      <div class="poi-info">📍 东海片区 · ⏰ 20:00 · 郑和雕像 + 海景</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=海上丝绸之路艺术公园 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">蟳埔阿嬷体验馆
+        <span class="tag food">簪花</span>
+      </div>
+      <div class="poi-info">📍 蟳埔村 · ¥68 起 · 阿嬷手工 · 氛围最佳</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=蟳埔阿嬷体验馆&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">蟳埔渔家女
+        <span class="tag food">簪花</span>
+      </div>
+      <div class="poi-info">📍 蟳埔村 · ¥98 起 · 含化妆 + 服装</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=蟳埔渔家女&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">阿秋牛排
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 清源山下 · ⏰ 12:00 · 人均 ¥60 · 西式牛排 + 闽南味</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=阿秋牛排 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">斯丹姜母鸭
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 泉州 · 接地气闽菜</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=斯丹姜母鸭&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 8 ========== -->
+<section class="day" id="day8">
+  <div class="day-title">
+    <span class="day-num">D8</span>
+    <div class="day-info">
+      <h2>7.10 周五 · 泉州 → 鹰潭</h2>
+      <div class="meta">500 km · 6 h · 赶路中转</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅（最后采购）</div>
+
+    <div class="poi">
+      <div class="poi-name">西街秉正石花膏（瓶装）
+        <span class="tag food">带走</span>
+      </div>
+      <div class="poi-info">📍 西街 · ⏰ 06:30 · 瓶装可带回家</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=秉正石花膏&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">源和堂蜜饯
+        <span class="tag food">带走</span>
+      </div>
+      <div class="poi-info">📍 泉州老字号蜜饯</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=源和堂 泉州&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+
+    <div class="poi">
+      <div class="poi-name">鹰潭华侨酒店
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 月湖区 · <span class="price">¥280/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=鹰潭华侨酒店&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">鹰潭希尔顿欢朋
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 月湖区 · <span class="price">¥420/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=鹰潭希尔顿欢朋&src=fjtravel">🚗 导航</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区</div>
+
+    <div class="poi">
+      <div class="poi-name">南平段服务区
+        <span class="tag service">⏰ 09:00</span>
+      </div>
+      <div class="poi-info">📍 福建段中部</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=南平服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">武夷山段加油站
+        <span class="tag service">⏰ 11:00</span>
+      </div>
+      <div class="poi-info">📍 **必加** · 山区段</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=武夷山服务区 加油站&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">建瓯服务区
+        <span class="tag service">⏰ 12:30</span>
+      </div>
+      <div class="poi-info">📍 午餐</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=建瓯服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 鹰潭 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌆</span>鹰潭</div>
+
+    <div class="poi">
+      <div class="poi-name">铜锣湾广场
+        <span class="tag attract">轻逛</span>
+      </div>
+      <div class="poi-info">📍 月湖区 · ⏰ 16:30 · 商场</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=鹰潭铜锣湾广场&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">信江湿地公园
+        <span class="tag attract">散步</span>
+      </div>
+      <div class="poi-info">📍 月湖区 · 傍晚散步</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=信江湿地公园 鹰潭&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 9 ========== -->
+<section class="day" id="day9">
+  <div class="day-title">
+    <span class="day-num">D9</span>
+    <div class="day-info">
+      <h2>7.11 周六 · 鹰潭 → 驻马店</h2>
+      <div class="meta">800 km · 9 h · 🎉 回家</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区</div>
+
+    <div class="poi">
+      <div class="poi-name">南昌东服务区
+        <span class="tag service">⏰ 09:30</span>
+      </div>
+      <div class="poi-info">📍 江西段第一个大服务区</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=南昌东服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">黄石服务区
+        <span class="tag service">⏰ 11:30</span>
+      </div>
+      <div class="poi-info">📍 湖北段 · 午餐 · 热干面</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=黄石服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">武汉外环服务区
+        <span class="tag service">⏰ 13:00</span>
+      </div>
+      <div class="poi-info">📍 武汉外围</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=武汉外环服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">信阳服务区
+        <span class="tag service">⏰ 15:00</span>
+      </div>
+      <div class="poi-info">📍 河南段第一个</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=信阳服务区&src=fjtravel">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;padding:24px 0;color:#FF6F00;font-weight:600;">
+    🎉 抵驻马店 → 回家
+  </div>
+</section>
+
+<!-- ========== 使用说明 ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li><b>点击任意点位的【🚗 导航】按钮</b></li>
+    <li>手机会自动唤起高德地图 App</li>
+    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
+    <li>在 App 里可切换驾车 / 步行 / 公交</li>
+    <li>如未装高德 App，会自动跳转到网页版地图</li>
+  </ol>
+  <div class="tip">
+    💡 小贴士：<br>
+    • 提前下载高德地图 App，登录账号开启路径记录<br>
+    • 离线地图下载：福建 / 广东 / 江西三省（自驾无忧）<br>
+    • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// 顶部日期导航当前状态
+const navLinks = document.querySelectorAll('.day-nav a');
+const sections = document.querySelectorAll('.day');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+});
+
+// 点击卡片时给视觉反馈
+document.querySelectorAll('.poi').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (!e.target.closest('a')) {
+      card.style.transform = 'scale(0.98)';
+      setTimeout(() => card.style.transform = '', 150);
+    }
+  });
+});
+
+// IntersectionObserver 高亮当前 Day
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
