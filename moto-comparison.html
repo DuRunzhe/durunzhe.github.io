@@ -34,33 +34,80 @@
     .container { padding: 24px 20px; }
     table { font-size: 13px; }
     th, td { padding: 6px 8px; }
+    .toc-toggle, .toc-box, .toc-backdrop { display: none; }
+  }
+
+  /* TOC 弹层（点击空白会关闭） */
+  .toc-toggle {
+    position: fixed;
+    top: 80px;
+    right: 16px;
+    z-index: 9999;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 22px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    transition: transform 0.15s, background 0.15s;
+  }
+  .toc-toggle:hover { background: #0066d6; transform: scale(1.05); }
+  .toc-toggle.open { background: #555; }
+
+  .toc-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .toc-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .toc-box {
+    position: fixed;
+    top: 130px;
+    right: 16px;
+    width: 300px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #e8e8ed;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.18s, transform 0.18s;
+  }
+  .toc-box.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .toc-box h2 { font-size: 17px !important; margin: 0 0 12px !important; border-bottom: 2px solid #007aff !important; padding-bottom: 8px !important; }
+  .toc-box ul { list-style: none; padding-left: 0; margin: 0; }
+  .toc-box ul li { margin: 8px 0; font-size: 13px; line-height: 1.55; }
+  .toc-box a { color: #1d1d1f; text-decoration: none; display: block; padding: 4px 8px; border-radius: 6px; transition: background 0.1s; }
+  .toc-box a:hover { background: #f0f0f5; color: #007aff; }
+
+  @media (max-width: 600px) {
+    .toc-toggle, .toc-box, .toc-backdrop { display: none; }
   }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="toc-box" style="background:#f8f9fc; border-left:3px solid #007aff; padding:12px 16px; border-radius:8px; margin:16px 0 24px; font-size:14px;">
-<h2 id="sec-toc">📑 目录</h2>
-<ul style="list-style:none; padding-left:0; margin:0;">
-  <li><a href="#sec-knowledge">📚 知识澄清</a></li>
-  <li><a href="#sec-retro">🏍️ 复古跨骑 / 巡航车</a></li>
-  <li><a href="#sec-mid-adv">🏍️ 中排量 ADV 跨骑</a></li>
-  <li><a href="#sec-entry-adv">🏍️ 入门级 ADV 跨骑(小排量 150-300cc)</a></li>
-  <li><a href="#sec-scooter">🆕 踏板综合评比</a></li>
-  <li><a href="#sec-adv-scooter">🛵 ADV 踏板车综合评比</a></li>
-  <li><a href="#sec-honda">🌳 本田专题(5 款本田多版本决策)</a></li>
-  <li><a href="#sec-special">🆕 特别关注车型</a></li>
-  <li><a href="#sec-150cc">🏍️ 150CC 踏板最终推荐</a></li>
-  <li><a href="#sec-honda-timeline">🆕 特色章节-本田 2026 年 1-6 月踏板发布时间线</a></li>
-  <li><a href="#sec-storage-king">📦 保留待查看 · 🚨 座桶冠军更新:升仕 150V 反超 NS150GX</a></li>
-  <li><a href="#sec-18-scooters-storage">📦 保留待查看 · 📊 18 款踏板座桶容量</a></li>
-  <li><a href="#sec-storage-comparison">📦 保留待查看 · 🆚 已知 2 款&quot;通勤载物&quot;对决</a></li>
-  <li><a href="#sec-storage-3-choice">📦 保留待查看 · 💡 重新算&quot;通勤载物&quot;3 选 1</a></li>
-  <li><a href="#sec-appendix">📦 保留待查看 · 📋 附录</a></li>
-  <li><a href="#sec-data-missing">📦 保留待查看 · ⚠️ 数据缺失追踪</a></li>
-  <li><a href="#sec-scooters-todo">📦 保留待查看 · 🛵 踏板车 / ADV 踏板</a></li>
-</ul>
-</div>
+
 
 <hr>
 <h2 id="sec-knowledge">📚 知识澄清</h2>
@@ -8104,5 +8151,85 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
 <p><em>更新时间：2026-06-30 06:36</em></p>
 <p><em>数据来源：摩托范 · 比特匠整理</em></p>
 </div>
+<div class="toc-backdrop" id="tocBackdrop"></div>
+<button class="toc-toggle" id="tocToggle" type="button">📑 目录</button>
+<div class="toc-box" id="tocPopup">
+<h2>📑 目录（17 章）</h2>
+<ul>
+  <li><a href="#sec-knowledge">📚 知识澄清</a></li>
+  <li><a href="#sec-retro">🏍️ 复古跨骑 / 巡航车</a></li>
+  <li><a href="#sec-mid-adv">🏍️ 中排量 ADV 跨骑</a></li>
+  <li><a href="#sec-entry-adv">🏍️ 入门级 ADV 跨骑(小排量 150-300cc)</a></li>
+  <li><a href="#sec-scooter">🆕 踏板综合评比</a></li>
+  <li><a href="#sec-adv-scooter">🛵 ADV 踏板车综合评比</a></li>
+  <li><a href="#sec-honda">🌳 本田专题(5 款本田多版本决策)</a></li>
+  <li><a href="#sec-special">🆕 特别关注车型</a></li>
+  <li><a href="#sec-150cc">🏍️ 150CC 踏板最终推荐</a></li>
+  <li><a href="#sec-honda-timeline">🆕 特色章节-本田 2026 年 1-6 月踏板发布时间线</a></li>
+  <li><a href="#sec-storage-king">📦 保留待查看 · 🚨 座桶冠军更新:升仕 150V 反超 NS150GX</a></li>
+  <li><a href="#sec-18-scooters-storage">📦 保留待查看 · 📊 18 款踏板座桶容量</a></li>
+  <li><a href="#sec-storage-comparison">📦 保留待查看 · 🆚 已知 2 款&quot;通勤载物&quot;对决</a></li>
+  <li><a href="#sec-storage-3-choice">📦 保留待查看 · 💡 重新算&quot;通勤载物&quot;3 选 1</a></li>
+  <li><a href="#sec-appendix">📦 保留待查看 · 📋 附录</a></li>
+  <li><a href="#sec-data-missing">📦 保留待查看 · ⚠️ 数据缺失追踪</a></li>
+  <li><a href="#sec-scooters-todo">📦 保留待查看 · 🛵 踏板车 / ADV 踏板</a></li>
+</ul>
+</div>
+<script>
+(function() {
+  var btn = document.getElementById('tocToggle');
+  var popup = document.getElementById('tocPopup');
+  var backdrop = document.getElementById('tocBackdrop');
+  if (!btn || !popup || !backdrop) return;
+
+  function isOpen() { return popup.classList.contains('open'); }
+  function open() {
+    popup.classList.add('open');
+    backdrop.classList.add('open');
+    btn.classList.add('open');
+    btn.textContent = '✕ 关闭';
+  }
+  function close() {
+    popup.classList.remove('open');
+    backdrop.classList.remove('open');
+    btn.classList.remove('open');
+    btn.textContent = '📑 目录';
+  }
+  function toggle() { isOpen() ? close() : open(); }
+
+  // 1. 点击按钮 → 切换
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggle();
+  });
+
+  // 2. 点击 backdrop → 关闭
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === backdrop) close();
+  });
+
+  // 3. 点击空白处（document 其他区域）→ 关闭
+  document.addEventListener('click', function(e) {
+    if (!isOpen()) return;
+    if (popup.contains(e.target)) return;
+    if (btn.contains(e.target)) return;
+    if (backdrop.contains(e.target)) return;
+    close();
+  });
+
+  // 4. 点击 TOC 链接 → 关闭（让用户看到滚动后的目标）
+  var links = popup.querySelectorAll('a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function() {
+      setTimeout(close, 100);
+    });
+  }
+
+  // 5. Esc 键 → 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isOpen()) close();
+  });
+})();
+</script>
 </body>
 </html>
