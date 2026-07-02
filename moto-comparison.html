@@ -8483,7 +8483,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
   var overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
   overlay.id = 'lightbox';
-  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><a class="lightbox-link" href="" title="点击看大图"><img alt="" src="" style="max-width:120px; height:auto; cursor:pointer;" /></a><div class="lightbox-close-hint" id="lightbox-hint">点击空白处关闭 · 点击图片切换缩放 · 按 Esc 关闭</div>';
+  overlay.innerHTML = '<div class="lightbox-caption" id="lightbox-cap"></div><img id="lightbox-img" src="" alt="" /><div class="lightbox-close-hint" id="lightbox-hint">点击空白处关闭 · 点击图片切换缩放 · 按 Esc 关闭</div>';
   // 修复：脚本位于 <head>，执行时 <body> 尚未建立，需等 DOMContentLoaded 后再 appendChild
   function setupLightbox() {
     if (!document.body) return;
@@ -8573,6 +8573,7 @@ NS150ES / NWT150 / NS150 XC → 🆚 本田合资 150 平踏 4 车深度对比 �
   // 暴露 close 供调试 / 页面其他位置调用
   window.__lightboxClose = close;
   window.__lightboxSetZoom = setZoom;
+})();
 </script>
 </body>
 </html>
