@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🏔 北灵山摩托一日游 · 导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f0f4eb;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 顶部 ========== */
+header {
+  background: linear-gradient(135deg, #2d7d46 0%, #4caf50 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+header p {
+  font-size: 12px;
+  opacity: 0.95;
+}
+header p .route { font-weight: 600; }
+
+/* ========== 顶部信息卡 ========== */
+.info-bar {
+  background: white;
+  padding: 12px 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e0e8d8;
+  font-size: 13px;
+  color: #555;
+}
+.info-bar span { display: flex; align-items: center; gap: 4px; }
+
+/* ========== 路线总览 ========== */
+.route-overview {
+  padding: 16px;
+}
+.route-overview h2 {
+  font-size: 14px;
+  color: #2d7d46;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.route-step {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.route-step .step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #2d7d46;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.route-step .step-num.return { background: #888; }
+.route-step .step-info { flex: 1; }
+.route-step .step-time {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 2px;
+}
+.route-step .step-place {
+  font-weight: 600;
+  font-size: 15px;
+}
+.route-step .step-desc {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* ========== POI 卡片 ========== */
+.section-title {
+  padding: 14px 16px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d7d46;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.poi-card {
+  background: white;
+  border-radius: 12px;
+  margin: 0 14px 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+.poi-header {
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.poi-icon { font-size: 20px; }
+.poi-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+.poi-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.poi-tag.start { background: #e8f5e9; color: #2d7d46; }
+.poi-tag.mountain { background: #e3f2fd; color: #1565c0; }
+.poi-tag.end { background: #fce4ec; color: #c62828; }
+.poi-info {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+.poi-actions {
+  padding: 10px 14px 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.poi-actions a {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 9px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+.btn-nav {
+  background: #FF6F00;
+  color: white;
+}
+.btn-search {
+  background: #f0f1f3;
+  color: #333;
+}
+.btn-home {
+  background: #2d7d46;
+  color: white;
+}
+
+/* ========== 底部备注 ========== */
+.notes {
+  margin: 20px 14px;
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 13px;
+  color: #555;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.notes h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+.notes ul {
+  list-style: none;
+  padding: 0;
+}
+.notes li {
+  padding: 4px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.notes li::before {
+  content: "•";
+  position: absolute;
+  left: 4px;
+  color: #2d7d46;
+}
+.notes .warn { color: #e65100; font-weight: 500; }
+
+/* ========== 页脚 ========== */
+footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 11px;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏔 北灵山摩托一日游</h1>
+  <p>2026年7月5日（周日） · 高山草甸 · 点击任意按钮 → 高德 App 直接导航</p>
+</header>
+
+<div class="info-bar">
+  <span>🛣 170km</span>
+  <span>⏰ 07:00→16:00</span>
+  <span>🌡 山区15°C</span>
+  <span>🏍 摩托骑行</span>
+</div>
+
+<!-- 路线总览 -->
+<div class="route-overview">
+  <h2>📍 路线总览</h2>
+  <div class="route-step">
+    <div class="step-num">1</div>
+    <div class="step-info">
+      <div class="step-time">07:00</div>
+      <div class="step-place">枫泉花园 → 塔儿寺村</div>
+      <div class="step-desc">走京拉线 G109，约2小时</div>
+    </div>
+  </div>
+  <div class="route-step">
+    <div class="step-num">2</div>
+    <div class="step-info">
+      <div class="step-time">09:00</div>
+      <div class="step-place">塔儿寺村 → 北灵山</div>
+      <div class="step-desc">摩托/徒步上山，最后3-4km土路</div>
+    </div>
+  </div>
+  <div class="route-step">
+    <div class="step-num">3</div>
+    <div class="step-info">
+      <div class="step-time">12:30</div>
+      <div class="step-place">北灵山 → 塔儿寺村</div>
+      <div class="step-desc">下山吃烤虹鳟鱼</div>
+    </div>
+  </div>
+  <div class="route-step">
+    <div class="step-num return">↩</div>
+    <div class="step-info">
+      <div class="step-time">14:00</div>
+      <div class="step-place">塔儿寺村 → 枫泉花园</div>
+      <div class="step-desc">原路返程，约2小时到家</div>
+    </div>
+  </div>
+</div>
+
+<!-- POI -->
+<div class="section-title">🗺 导航点位</div>
+
+<!-- 起点 -->
+<div class="poi-card">
+  <div class="poi-header">
+    <span class="poi-icon">🏠</span>
+    <span class="poi-name">枫泉花园</span>
+    <span class="poi-tag start">起点</span>
+  </div>
+  <div class="poi-info">📍 北京市顺义区空港街道 · 出发地</div>
+  <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?from=枫泉花园&to=河北省张家口市涿鹿县塔儿寺村&mode=motor&callnative=1">🚗 出发导航</a>
+  </div>
+</div>
+
+<!-- 塔儿寺村 -->
+<div class="poi-card">
+  <div class="poi-header">
+    <span class="poi-icon">🏘</span>
+    <span class="poi-name">塔儿寺村</span>
+    <span class="poi-tag mountain">停车点</span>
+  </div>
+  <div class="poi-info">📍 河北省张家口市涿鹿县 · 导航终点 · 停车后上山<br>村里有农家院，烤虹鳟鱼是特色</div>
+  <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.4930,40.0662,塔儿寺村&mode=motor&callnative=1">🚗 导航到这里</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=塔儿寺村&city=涿鹿&src=beiling">🔍 搜索位置</a>
+  </div>
+</div>
+
+<!-- 北灵山 -->
+<div class="poi-card">
+  <div class="poi-header">
+    <span class="poi-icon">⛰</span>
+    <span class="poi-name">北灵山</span>
+    <span class="poi-tag mountain">目的地</span>
+  </div>
+  <div class="poi-info">📍 河北省涿鹿县 · 海拔约1900m · 高山草甸<br>从塔儿寺村上山约40分钟-1小时，最后3-4km土路</div>
+  <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.5051,40.0787,北灵山&mode=motor&callnative=1">🚗 导航到这里</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=北灵山&city=涿鹿&src=beiling">🔍 搜索位置</a>
+  </div>
+</div>
+
+<!-- 返程 -->
+<div class="poi-card">
+  <div class="poi-header">
+    <span class="poi-icon">🏡</span>
+    <span class="poi-name">返程回家</span>
+    <span class="poi-tag end">终点</span>
+  </div>
+  <div class="poi-info">📍 原路返回 · 约170km · 预计16:00到家</div>
+  <div class="poi-actions">
+    <a class="btn-home" target="_blank" href="https://uri.amap.com/navigation?from=河北省张家口市涿鹿县塔儿寺村&to=枫泉花园&mode=motor&callnative=1">🏠 回家导航</a>
+  </div>
+</div>
+
+<!-- 注意事项 -->
+<div class="notes">
+  <h3>⚠️ 注意事项</h3>
+  <ul>
+    <li>塔儿寺村入口有村民收费，<span class="warn">10元/人</span></li>
+    <li>最后3-4km土路，摩托可上但注意低速通过</li>
+    <li>山区信号差，<span class="warn">提前下载高德离线地图</span></li>
+    <li>天气多变，带冲锋衣，山顶风大</li>
+    <li>无痕山野，走时带走垃圾</li>
+  </ul>
+</div>
+
+<footer>
+  北灵山摩托一日游 · 2026-07-05
+</footer>
+
+<script>
+(function() {
+  document.querySelectorAll('.btn-nav[data-lon]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var lon = this.getAttribute('data-lon');
+      var lat = this.getAttribute('data-lat');
+      var name = this.getAttribute('data-name') || '';
+      var url = 'https://uri.amap.com/navigation?to=' + lon + ',' + lat + ',' + encodeURIComponent(name) + '&mode=motor&src=beiling&callnative=1';
+      window.open(url, '_blank');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
