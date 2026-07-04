@@ -2,6 +2,7 @@
 title: "北灵山摩托一日游行程单"
 date: 2026-07-05
 categories: 摩托骑行
+permalink: /beiling-shan-trip
 ---
 
 
