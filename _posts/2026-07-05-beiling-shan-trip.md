@@ -5,7 +5,6 @@ categories: 摩托骑行
 permalink: /beiling-shan-trip
 ---
 
-
 # 北灵山摩托一日游
 
 **时间：** 2026年7月5日（周日）
@@ -32,17 +31,17 @@ permalink: /beiling-shan-trip
 ## 导航链接
 
 **去程：枫泉 → 塔儿寺村**
-[点击导航](https://uri.amap.com/navigation?from=枫泉花园&to=河北省张家口市涿鹿县塔儿寺村&mode=motor)
+https://uri.amap.com/navigation?from=枫泉花园&to=河北省张家口市涿鹿县塔儿寺村&mode=motor
 
 **塔儿寺村 → 北灵山**
-[点击导航](https://uri.amap.com/navigation?from=塔儿寺村&to=北灵山&mode=motor)
+https://uri.amap.com/navigation?from=塔儿寺村&to=北灵山&mode=motor
 
 **返程：塔儿寺村 → 回家**
-[点击导航](https://uri.amap.com/navigation?from=塔儿寺村&to=枫泉花园&mode=motor)
+https://uri.amap.com/navigation?from=塔儿寺村&to=枫泉花园&mode=motor
 
 **搜索备用：**
-[搜索塔儿寺村](https://www.amap.com/search?query=塔儿寺村)
-[搜索北灵山](https://www.amap.com/search?query=北灵山)
+https://www.amap.com/search?query=塔儿寺村
+https://www.amap.com/search?query=北灵山
 
 ---
 
