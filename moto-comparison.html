@@ -12,6 +12,34 @@
   h2 { font-size: 20px; margin-top: 36px; border-bottom: 2px solid #e8e8ed; padding-bottom: 8px; color: #1d1d1f; }
   h3 { font-size: 16px; margin-top: 24px; color: #333; }
   h4 { font-size: 14px; margin-top: 16px; color: #555; }
+  /* 可折叠 H5 详情（h5-details） - 2026-07-05 */
+  details.h5-details { margin: 10px 0 14px 0; border-left: 3px solid #e0e0e5; padding-left: 0; }
+  details.h5-details > summary {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1d1d1f;
+    padding: 6px 10px;
+    background: #f5f5f7;
+    border-radius: 4px;
+    user-select: none;
+    list-style: none;
+    display: block;
+    transition: background 0.15s;
+  }
+  details.h5-details > summary:hover { background: #ebebf0; }
+  details.h5-details > summary::-webkit-details-marker { display: none; }
+  details.h5-details > summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 8px;
+    color: #007aff;
+    font-size: 11px;
+    transition: transform 0.15s;
+  }
+  details.h5-details[open] > summary::before { content: "▼"; }
+  details.h5-details > summary + * { margin-top: 10px; }
+
   table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 14px; }
   th { background: #f0f0f5; text-align: left; padding: 8px 12px; border: 1px solid #ddd; }
   td { padding: 7px 12px; border: 1px solid #eee; vertical-align: top; }
@@ -4116,9 +4144,13 @@
 
 <hr>
 <h4 id="7-贝纳利-TRK-552X-越野版--给满给好的硬派-ADV-TRK-502-升级版">7. <strong>贝纳利 TRK 552X 越野版</strong>--「给满给好」的硬派 ADV(TRK 502 升级版)🔥 🆕</h4>
+
 <p><strong>¥29,980 起</strong> = 548.9cc 双缸(61.2 匹 / 55N·m)+ 20L 大油箱 + 200mm 离地 + 马祖奇减震 + 博世 ABS/TCS + 7寸 TFT + 满配越野胎/护杠/手把加热 = <strong>同价位 ADV 配置王</strong>(比 NX500 便宜 1500 配置多一截)</p>
 
-<h5>📊 关键速览</h5>
+<details class="h5-details">
+<summary>📊 关键速览</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4159,8 +4191,12 @@
 <td>2024 公路 ¥29,980(限时)/ 2024 越野 ¥31,880(限时)/ 2025 越野 ¥37,680(限时落地)</td>
 </tr>
 </tbody></table>
+</details>
 
-<h5>🆚 vs TRK 502(核心升级点)</h5>
+<details class="h5-details">
+<summary>🆚 vs TRK 502(核心升级点)</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4195,8 +4231,12 @@
 <td><strong>¥31,880-37,680</strong> ⬇️</td>
 </tr>
 </tbody></table>
+</details>
 
-<h5>💰 价格(4 个版本)</h5>
+<details class="h5-details">
+<summary>💰 价格(4 个版本)</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4230,8 +4270,12 @@
 <p>⚠️ <strong>2026 款价格越降越狠</strong>:2025 款越野版 ¥37,680 → 2026 款探险版 ¥33,880(<strong>降 ¥3,800</strong>),反而<strong>座高更低、配置更亲民</strong>。</p>
 <p>⚠️ <strong>2024 款限时价格仍有效</strong>:2024 公路版 ¥29,980 / 越野版 ¥31,880 仍是可选项,适合<strong>只要裸车+自己加装</strong>的用户。</p>
 </blockquote>
+</details>
 
-<h5>⚙️ 发动机 &amp; 动力</h5>
+<details class="h5-details">
+<summary>⚙️ 发动机 &amp; 动力</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4288,8 +4332,12 @@
 <td><strong>450-500km</strong></td>
 </tr>
 </tbody></table>
+</details>
 
-<h5>📐 车体参数</h5>
+<details class="h5-details">
+<summary>📐 车体参数</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4358,8 +4406,12 @@
 <td><strong>DID 链条</strong>(2025 款新配)</td>
 </tr>
 </tbody></table>
+</details>
 
-<h5>📱 智能化 &amp; 电控</h5>
+<details class="h5-details">
+<summary>📱 智能化 &amp; 电控</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4408,13 +4460,21 @@
 <td>🟡 待证(工信部 408 期申报图后减震多线束,疑电子调节)</td>
 </tr>
 </tbody></table>
+</details>
 
-<h5>🎨 配色</h5>
+<details class="h5-details">
+<summary>🎨 配色</summary>
+
+
 <blockquote>
 <p>🔴 待补(贝纳利中国官网应可查证,本书暂未收录)</p>
 </blockquote>
+</details>
 
-<h5>🔖 数据来源</h5>
+<details class="h5-details">
+<summary>🔖 数据来源</summary>
+
+
 <ul>
 <li><strong>摩托范详细对比文</strong>(2026-07-04):<a href="https://m.58moto.com/news/12372761?share=1">https://m.58moto.com/news/12372761?share=1</a></li>
 <li><strong>摩托范升级评文</strong>(2026-07-03):<a href="https://m.58moto.com/news/12345562?share=1">https://m.58moto.com/news/12345562?share=1</a></li>
@@ -4422,8 +4482,12 @@
 <li><strong>贝纳利中国官网</strong>:<a href="https://www.benelli.com/cn-zh/products/trk-552x">https://www.benelli.com/cn-zh/products/trk-552x</a></li>
 <li><strong>懂车帝上市价</strong>(2024-04):公路版 ¥32,680 / 越野版含三箱 ¥36,680</li>
 </ul>
+</details>
 
-<h5>🆚 NX500 vs TRK 552X(摩托范文章核心对比)</h5>
+<details class="h5-details">
+<summary>🆚 NX500 vs TRK 552X(摩托范文章核心对比)</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4566,8 +4630,12 @@
 <blockquote>
 <p>💡 <strong>摩托范文章核心结论</strong>:"如果你买 ADV 是为了去<strong>诗和远方</strong>,而不是在城里代步,那 TRK 552X 这种<strong>从里到外都为烂路设计的硬派作风</strong>,显然更能给你说走就走的底气。" "NX500 不是没优点,比如它<strong>更轻的整备质量</strong>+ 本田<strong>品控和保值率</strong>确实是行业标杆。"</p>
 </blockquote>
+</details>
 
-<h5>📊 骑行优缺点</h5>
+<details class="h5-details">
+<summary>📊 骑行优缺点</summary>
+
+
 <p><strong>✅ 优点</strong></p>
 <ul>
 <li><strong>拉力的底子</strong>--钢管编织车架,10 年验证,远超 NX500 街车平台</li>
@@ -4584,8 +4652,12 @@
 <li>最高车速 172km/h 实际中后段加速比账面数据纸面</li>
 <li>越野版原厂三箱(¥31,880)改加宽加高后视镜、原厂货架后观感质感</li>
 </ul>
+</details>
 
-<h5>🛣️ 适用场景</h5>
+<details class="h5-details">
+<summary>🛣️ 适用场景</summary>
+
+
 <table>
 <thead>
 <tr>
@@ -4625,8 +4697,12 @@
 <td>车重 + 离地高不是为赛道设计</td>
 </tr>
 </tbody></table>
+</details>
 
-<h5>🎯 2025 款(含三箱)¥37,680 落地价补充</h5>
+<details class="h5-details">
+<summary>🎯 2025 款(含三箱)¥37,680 落地价补充</summary>
+
+
 <blockquote>
 <p><strong>补充项</strong>:2025 款是 2024 越野版的「<strong>官方落地价版</strong>」,限时权益下 ¥37,680 为<strong>最终落地价</strong>(含原车三箱 + 购置税 + 车船税 + 交强险 + 牌照登记费 + 极速交车特权),裸车价约 3 万出头。</p>
 </blockquote>
@@ -4683,13 +4759,18 @@
 <p>✅ <strong>选携建议</strong>:2025 款在 2024 越野版(¥31,880)基础上多了 <strong>¥5,800</strong>,换来了 <strong>TCS + DID 链条 + 分段式全包围护杠 + 外观升级</strong>。如主要诉求是<strong>越野安全</strong>(TCS)和<strong>外观</strong>,2025 款更值;如仅需三箱+越野胎+基础配置,2024 越野版性价比更高。</p>
 <p><strong>与 NX500 对比的隐性优势</strong>:2025 款是<strong>同价位</strong>唯一<strong>出厂就带博世 TCS</strong> 的中排 ADV 车型(NX500 的 HSTC 供应商是日立,不是博世;且 552X 2025 款的电控体系比 2024 越野版更完整)。</p>
 </blockquote>
+</details>
 
-<h5>🎯 定位</h5>
+<details class="h5-details">
+<summary>🎯 定位</summary>
+
+
 <blockquote>
 <p><strong>同价位(3 万出头)最优硬派 ADV 配置选</strong>。要里子(拉力车架+越野能力)→ TRK 552X;要牌子(本田信仰+保值)→ NX500;要里子+配置满+便宜 → TRK 552X 越野版 ¥31,880;要电子离合+轻便+省心 → NX500 高配版 ¥33,480。</p>
 </blockquote>
 
 <hr>
+</details>
 <h4 id="7a-贝纳利-TRK-552-公路版-2025--加量不加价的公路霸主">7a. <strong>贝纳利 TRK 552(公路版)2025 款</strong>--「加量不加价」的公路霸主 🔥 🆕</h4>
 <p><strong>¥32,680</strong> = 228kg <strong>轻量化(减重 18kg)</strong> + 550cc 双缸 45kW/55N·m + 5寸 TFT + 博世 ABS+TCS + 5档可调加热手把+坐垫 + 20L 油箱 = <strong>公路 ADV「加量不加价」标杆</strong></p>
 
