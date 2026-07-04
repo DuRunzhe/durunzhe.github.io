@@ -32,17 +32,17 @@ permalink: /beiling-shan-trip
 ## 导航链接
 
 **去程：枫泉 → 塔儿寺村**
-https://uri.amap.com/navigation?from=枫泉花园&to=河北省张家口市涿鹿县塔儿寺村&mode=motor
+[点击导航](https://uri.amap.com/navigation?from=枫泉花园&to=河北省张家口市涿鹿县塔儿寺村&mode=motor)
 
 **塔儿寺村 → 北灵山**
-https://uri.amap.com/navigation?from=塔儿寺村&to=北灵山&mode=motor
+[点击导航](https://uri.amap.com/navigation?from=塔儿寺村&to=北灵山&mode=motor)
 
 **返程：塔儿寺村 → 回家**
-https://uri.amap.com/navigation?from=塔儿寺村&to=枫泉花园&mode=motor
+[点击导航](https://uri.amap.com/navigation?from=塔儿寺村&to=枫泉花园&mode=motor)
 
 **搜索备用：**
-https://www.amap.com/search?query=塔儿寺村
-https://www.amap.com/search?query=北灵山
+[搜索塔儿寺村](https://www.amap.com/search?query=塔儿寺村)
+[搜索北灵山](https://www.amap.com/search?query=北灵山)
 
 ---
 
