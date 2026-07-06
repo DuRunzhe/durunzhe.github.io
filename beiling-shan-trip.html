@@ -180,6 +180,53 @@ header p .route { font-weight: 600; }
   color: white;
 }
 
+/* ========== 使用说明 ========== */
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2d7d46;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+/* ========== 浮动返回顶部按钮 ========== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #2d7d46;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+
 /* ========== 注意事项 ========== */
 .notes {
   margin: 16px 14px;
@@ -350,9 +397,34 @@ footer {
   </ul>
 </div>
 
-<footer>
-  北灵山摩托一日游 · 2026-07-05 · 点击导航按钮直接拉起高德 App
-</footer>
+<!-- ========== 使用说明 ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li><b>点击任意点位的【🚗 导航】按钮</b></li>
+    <li>手机会自动唤起高德地图 App</li>
+    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
+    <li>在 App 里可切换驾车 / 步行 / 摩托</li>
+    <li>如未装高德 App，会自动跳转到网页版地图</li>
+  </ol>
+  <div class="tip">
+    💡 小贴士：<br>
+    • 提前下载高德地图 App，登录账号开启路径记录<br>
+    • 山区信号差，<span style="color:#e65100;font-weight:600;">提前下载离线地图</span><br>
+    • 塔儿寺村入口村民收费 10元/人<br>
+    • 最后 3-4km 土路，摩托可上但注意低速
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// 返回顶部按钮滚动时显示/隐藏
+const toTop = document.querySelector('.to-top');
+window.addEventListener('scroll', () => {
+  toTop.style.opacity = window.scrollY > 300 ? '1' : '0';
+}, { passive: true });
+</script>
 
 </body>
 </html>
