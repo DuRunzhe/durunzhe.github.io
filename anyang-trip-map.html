@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🚄🚗 安阳高铁+自驾周末 · 先殷墟+文字博物馆+老城夜游 · 高德导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 顶部 ========== */
+header {
+  background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+header p {
+  font-size: 12px;
+  opacity: 0.95;
+}
+header p .route { font-weight: 600; }
+
+/* ========== 顶部导航（日期跳转） ========== */
+.day-nav {
+  background: white;
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 76px;
+  z-index: 99;
+  border-bottom: 1px solid #e8eaec;
+  -webkit-overflow-scrolling: touch;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  background: #f0f1f3;
+  color: #555;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.day-nav a.active,
+.day-nav a:active {
+  background: #FF6F00;
+  color: white;
+}
+
+/* ========== Day 区段 ========== */
+.day {
+  padding: 16px 14px;
+}
+
+.day-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(to right, #fff5e6, white);
+  border-left: 5px solid #FF6F00;
+  border-radius: 4px;
+}
+
+.day-title .day-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FF6F00;
+  margin-right: 10px;
+}
+.day-title .day-info {
+  flex: 1;
+}
+.day-title h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.day-title .meta {
+  font-size: 11px;
+  color: #888;
+}
+.day-title .route-arrow {
+  font-size: 16px;
+  color: #FF6F00;
+  font-weight: 600;
+}
+
+/* ========== 分组 ========== */
+.group {
+  margin-bottom: 18px;
+}
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+.group-title .emoji {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* ========== POI 卡片 ========== */
+.poi {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ecedef;
+}
+
+.poi-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.poi-name .tag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+/* ========== 标签颜色（通用） ========== */
+.tag.attract   { background: #fef0ef; color: #c7392b; }
+.tag.hotel     { background: #f0ecfa; color: #6b46c1; }
+.tag.food      { background: #fff5e8; color: #d97706; }
+.tag.service   { background: #e0f0fc; color: #2563eb; }
+.tag.optional  { background: #f0f9ff; color: #0891b2; }
+.tag.peak      { background: #fff8e1; color: #f57f17; }
+.tag.stop      { background: #e3f2fd; color: #1565c0; }
+.tag.start     { background: #e8f5e9; color: #2d7d46; }
+.tag.end       { background: #fce4ec; color: #c62828; }
+
+.poi-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.poi-info .price { color: #FF6F00; font-weight: 600; }
+
+.poi-actions {
+  display: flex;
+  gap: 8px;
+}
+.poi-actions a {
+  flex: 1;
+  display: block;
+  text-align: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+.btn-nav {
+  background: #FF6F00;
+  color: white;
+}
+.btn-search {
+  background: #f0f1f3;
+  color: #555;
+}
+
+/* ========== 使用说明 ========== */
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #FF6F00;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+/* ========== 浮动返回顶部按钮 ========== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FF6F00;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部（按需修改） ========== -->
+<header>
+  <h1>🚄🚗 安阳高铁+自驾周末 · 先殷墟+文字博物馆+老城夜游</h1>
+  <p><span class="route">北京西 → 安阳东（取车）→ 文峰区+殷都区 → 安阳东（还车）→ 北京西</span></p>
+  <p style="margin-top:4px;">2 天 · 高铁+安阳自驾 · 点击任意点位 → 高德 App 自动导航</p>
+</header>
+
+<!-- 日期快速跳转（按实际天数调整） -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day1">D1 7/11 殷墟+老城</a>
+  <a href="#day2">D2 7/12 文字博物馆+返京</a>
+</nav>
+
+<!-- ========== Day 1（复制此块，按天数增加） ========== -->
+<!-- ========== Day 1 ========== -->
+<section class="day" id="day1">
+  <div class="day-title">
+    <span class="day-num">D1</span>
+    <div class="day-info">
+      <h2>7/11 周六 · 高铁站取车 → 殷墟 → 老城夜游</h2>
+      <div class="meta">12:00 到安阳东站 · 自驾模式 · 主题：殷商文明 + 古城烟火</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 高铁站起点+取车 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🚄🚗</span>高铁站·取车</div>
+    <div class="poi">
+      <div class="poi-name">安阳东站（高铁站）
+        <span class="tag start">起点</span>
+      </div>
+      <div class="poi-info">📍 12:00 到站 · 步行到停车场取车 · 12:30 出发（不用先去酒店）</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%AE%89%E9%98%B3%E4%B8%9C%E7%AB%99&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午餐 13:00（先去吃饭，殷都区没午餐）-->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>午餐 13:00（开车 25min）</div>
+    <div class="poi">
+      <div class="poi-name">百年妙真（铁西店）
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 铁西区 · 招牌：妙真牛肉拼芹石花+高炉烧饼夹牛肉 · <span class="price">¥60/人</span> · 1921 年老字号</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%99%BE%E5%B9%B4%E5%A6%99%E7%9C%9F&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">盛德利（彰德路店）
+        <span class="tag food">备选</span>
+      </div>
+      <div class="poi-info">📍 彰德路 · 招牌：安阳烩菜+粉浆饭 · <span class="price">¥50/人</span> · 殷商壁画</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%9B%9B%E5%BE%B7%E5%88%A9&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 殷墟双件套 14:00-17:30（自驾+先殷墟）-->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛️</span>殷墟双件套 14:30-17:30（开车 20min）</div>
+    <div class="poi">
+      <div class="poi-name">殷墟博物馆（新馆，2024 年开）
+        <span class="tag attract">必去</span>
+      </div>
+      <div class="poi-info">📍 殷都区 · 4000+ 件文物（司母戊鼎+甲骨文） · 室内 2.5h · <span class="price">讲解 ¥200-300/2h</span> · 37℃ 高温救星</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%AE%B7%E5%A2%9F%E5%8D%9A%E7%89%A9%E9%A6%86&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">殷墟王陵遗址
+        <span class="tag attract">必去</span>
+      </div>
+      <div class="poi-info">📍 殷都区（离新馆 5min） · M260 大墓+祭祀坑 · 户外 1h · ⚠️ 雨天带伞</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%AE%B7%E5%A2%9F%E7%8E%8B%E9%99%B5%E9%81%97%E5%9D%80&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店办入住 18:00（殷墟直接开回酒店）-->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店（办入住+休整）</div>
+    <div class="poi">
+      <div class="poi-name">亚朵酒店（安阳万达广场店）
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 文峰区·万达广场 · <span class="price">¥400-550/晚</span> · 离老城 1.5km / 文字博物馆 5min / 高铁站 25min</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%BA%9A%E6%9C%B5%E9%85%92%E5%BA%97&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">桔子水晶（安阳万达广场店）
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 文峰区·万达广场 · <span class="price">¥350-500/晚</span> · 设计感强</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%A1%94%E5%AD%90%E6%B0%B4%E6%99%B6%E9%85%92%E5%BA%97&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">全季酒店（安阳文峰区店）
+        <span class="tag hotel">备选</span>
+      </div>
+      <div class="poi-info">📍 文峰区 · <span class="price">¥300-400/晚</span> · 中端性价比</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%A8%E5%AD%A3%E9%85%92%E5%BA%97&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 晚餐 18:30 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍖</span>晚餐 18:30</div>
+    <div class="poi">
+      <div class="poi-name">家风老馆子（铁西店）
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 铁西区 · 招牌：坛子焖鸡（3h 慢炖） · <span class="price">¥80/人</span> · 三层楼二楼卡座能看街景</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%AE%B6%E9%A3%8E%E8%80%81%E9%A6%86%E5%AD%90&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">聚宾楼
+        <span class="tag food">备选</span>
+      </div>
+      <div class="poi-info">📍 市区 · 招牌：扣碗酥肉+安阳三熏（熏鸡/熏蛋/熏猪下水） · <span class="price">¥70/人</span></div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%81%9A%E5%AE%BE%E6%A5%BC&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">老槐树羊肉馆
+        <span class="tag food">备选</span>
+      </div>
+      <div class="poi-info">📍 市区 · 招牌：铜锅涮肉（内蒙手切） · <span class="price">¥100/人</span></div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E6%A7%90%E6%A0%91%E7%BE%8A%E8%82%89%E9%A6%86&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 夜游 20:00-21:30 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌃</span>老城夜游 20:00-21:30（走路/短开）</div>
+    <div class="poi">
+      <div class="poi-name">仓巷街
+        <span class="tag attract">必去</span>
+      </div>
+      <div class="poi-info">📍 古城北半城 · 528m 明清古建 · 2022 国家级夜间消费集聚区 · 1.5h</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%BB%93%E5%B7%B7%E8%A1%97&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">文峰塔（天宁寺）
+        <span class="tag attract">地标</span>
+      </div>
+      <div class="poi-info">📍 文峰南路 · 伞状古塔全国孤例 · 五代后周 952 年 · 30min</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%96%87%E5%B3%B0%E5%A1%94&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">魁星阁
+        <span class="tag attract">免费</span>
+      </div>
+      <div class="poi-info">📍 古城东南角楼 · 明洪武 1369 年 · 俯瞰老城 · 30min</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%AD%81%E6%98%9F%E9%98%81&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">洹河夜游
+        <span class="tag attract">推荐</span>
+      </div>
+      <div class="poi-info">📍 洹河 · 数字光影+实景演艺+游船 · 2023 国家示范案例 · <span class="price">¥100-150/人</span> · 1-1.5h</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%B4%B9%E6%B2%B3%E5%A4%9C%E6%B8%B8&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">彰德府城隍庙
+        <span class="tag optional">可选</span>
+      </div>
+      <div class="poi-info">📍 鼓楼东街 · 5 进院落 6 座大殿 · 安阳最大明清建筑群 · 1h</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BD%B0%E5%BE%B7%E5%BA%9C%E5%9F%8E%E9%9A%8D%E5%BA%99&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 2 ========== -->
+<section class="day" id="day2">
+  <div class="day-title">
+    <span class="day-num">D2</span>
+    <div class="day-info">
+      <h2>7/12 周日 · 文字博物馆 → 还车 → 返京</h2>
+      <div class="meta">主题：汉字溯源 + 自驾还车 + 高铁返京</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 早餐 7:30 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🥣</span>早餐 7:30</div>
+    <div class="poi">
+      <div class="poi-name">老申记扁粉菜（铁三路店）
+        <span class="tag food">早餐</span>
+      </div>
+      <div class="poi-info">📍 铁三路 · 扁粉菜+现炸油饼 · <span class="price">¥15/人</span> · 7:30 前到，9 点后挤爆</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E7%94%B3%E8%AE%B0%E6%89%81%E7%B2%89%E8%8F%9C&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">马记老字号羊汤
+        <span class="tag food">备选</span>
+      </div>
+      <div class="poi-info">📍 铁三路附近 · 羊汤+高炉烧饼 · <span class="price">¥20/人</span> · "三不换"</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%A9%AC%E8%AE%B0%E7%BE%8A%E6%B1%A4&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 退房 8:30 + 行李放车上（不寄存）-->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🛏️🚗</span>退房·行李上车 8:30</div>
+    <div class="poi">
+      <div class="poi-name">酒店→车（退房+行李直接装车）
+        <span class="tag stop">行李上车</span>
+      </div>
+      <div class="poi-info">📍 8:30 退房 · 行李搬上车（不寄存） · 9:00 出发去文字博物馆</div>
+    </div>
+  </div>
+
+  <!-- 文字博物馆 9:00-12:00 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛️</span>文字博物馆 9:00-12:00</div>
+    <div class="poi">
+      <div class="poi-name">中国文字博物馆
+        <span class="tag attract">必去</span>
+      </div>
+      <div class="poi-info">📍 人民大道东段 656 号 · 国家级博物馆 · 甲骨文+汉字演化 · 室内 3h · <span class="price">讲解 ¥200-300</span> · ⚠️ <b>必须公众号预约</b>（0372-2266059）</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%AD%E5%9B%BD%E6%96%87%E5%AD%97%E5%8D%9A%E7%89%A9%E9%A6%86&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午餐 12:00 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>临走午餐 12:00</div>
+    <div class="poi">
+      <div class="poi-name">盛德利（彰德路店）
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 彰德路 · 招牌：安阳烩菜+粉浆饭 · <span class="price">¥50/人</span> · 顺路去高铁站</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%9B%9B%E5%BE%B7%E5%88%A9&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 还车 13:00 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🚗</span>还车 13:00</div>
+    <div class="poi">
+      <div class="poi-name">安阳东站停车场（还车）
+        <span class="tag stop">还车</span>
+      </div>
+      <div class="poi-info">📍 13:00 开车到东站 · 停车场还车 · 步行进站 5min</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%AE%89%E9%98%B3%E4%B8%9C%E7%AB%99&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 高铁站 13:30 候车 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🚄</span>高铁站 13:30 候车</div>
+    <div class="poi">
+      <div class="poi-name">安阳东站（高铁站）
+        <span class="tag end">返京</span>
+      </div>
+      <div class="poi-info">📍 13:30 候车 · <b>14:00-15:00 车次回京</b> · 车程 1.5-2h · 12306 必提前订票</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%AE%89%E9%98%B3%E4%B8%9C%E7%AB%99&city=%E5%AE%89%E9%98%B3&src=openclaw">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用说明（不动） ========== -->
+
+<!-- ========== 使用说明（不动） ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li><b>点击任意点位的【🚗 导航】按钮</b></li>
+    <li>手机会自动唤起高德地图 App</li>
+    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
+    <li>在 App 里可切换驾车 / 步行 / 公交</li>
+    <li>如未装高德 App，会自动跳转到网页版地图</li>
+  </ol>
+  <div class="tip">
+    💡 小贴士：<br>
+    • 提前下载高德地图 App，登录账号开启路径记录<br>
+    • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// 顶部日期导航当前状态高亮
+const navLinks = document.querySelectorAll('.day-nav a');
+const sections = document.querySelectorAll('.day');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+});
+
+// IntersectionObserver 高亮当前 Day
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
