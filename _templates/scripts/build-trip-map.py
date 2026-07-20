@@ -33,10 +33,22 @@ def render_poi(item, default_city, src_tag):
     addr = item["addr"]
     tag = item["tag"]
     info = item.get("info", "")
+    coords = item.get("coords")  # 可选 [lng, lat] - 真坐标版
     encoded_name = urllib.parse.quote(name)
     encoded_addr = urllib.parse.quote(addr)
-    nav_url = f'https://uri.amap.com/navigation?to={encoded_addr}&mode=car&src={src_tag}'
-    search_url = f'https://uri.amap.com/search?keyword={encoded_name}&city={default_city}&src={src_tag}'
+
+    if coords and len(coords) == 2:
+        # 真坐标模式：navigation?to=lng,lat,name（完美 deep link）
+        lng, lat = coords
+        nav_url = f'https://uri.amap.com/navigation?to={lng},{lat},{encoded_name}&mode=car&src={src_tag}'
+        search_url = f'https://uri.amap.com/search?keyword={encoded_name}&src={src_tag}'
+        btn_label = '📍 在高德查'
+    else:
+        # 地址链模式：导航页只能唤起高德 web，手动搜
+        nav_url = f'https://uri.amap.com/navigation?to={encoded_addr}&mode=car&src={src_tag}'
+        search_url = f'https://uri.amap.com/search?keyword={encoded_name}&city={default_city}&src={src_tag}'
+        btn_label = f'📱 手动搜 {name}'
+
     return f'''    <div class="poi">
       <div class="poi-name">{name}
         <span class="tag {tag}">{TAG_LABEL.get(tag, "POI")}</span>
@@ -46,7 +58,7 @@ def render_poi(item, default_city, src_tag):
         <div class="addr" style="margin-top:4px;">📌 {addr}</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="{nav_url}">📱 手动搜 {name}</a>
+        <a class="btn-nav" target="_blank" href="{nav_url}">{btn_label}</a>
         <a class="btn-search" target="_blank" href="{search_url}">🔍 搜索</a>
       </div>
     </div>'''
