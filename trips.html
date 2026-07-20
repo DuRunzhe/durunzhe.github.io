@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🗺️ 比特匠旅行集 · 高德导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+  color: white;
+  padding: 22px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+header p {
+  font-size: 12px;
+  opacity: 0.95;
+}
+header .route { font-weight: 600; }
+header .private {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+/* 容器 */
+.container {
+  padding: 16px 14px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 分类标题 */
+.cat {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  margin: 16px 0 10px;
+  padding-left: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 卡片网格 */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* 行程卡片 */
+.trip {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  border: 1px solid #ecedef;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.trip:active {
+  background: #fafafa;
+  transform: scale(0.99);
+}
+
+.trip-head {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.trip-title {
+  font-size: 15px;
+  font-weight: 600;
+  flex: 1;
+  color: #1a1a1a;
+}
+.trip-days {
+  font-size: 11px;
+  color: white;
+  background: #FF6F00;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+.trip-route {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.trip-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.stat {
+  font-size: 10px;
+  background: #f0f1f3;
+  color: #666;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.stat.attract { background: #fef0ef; color: #c7392b; }
+.stat.food    { background: #fff5e8; color: #d97706; }
+.stat.hotel   { background: #f0ecfa; color: #6b46c1; }
+.stat.service { background: #e0f0fc; color: #2563eb; }
+
+/* 提示 */
+.tip-box {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-size: 12px;
+  color: #888;
+  line-height: 1.6;
+}
+.tip-box b { color: #FF6F00; }
+
+/* 返回顶部 */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FF6F00;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+  display: none;
+}
+.to-top.show { display: block; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗺️ 比特匠旅行集 · 高德导航点位</h1>
+  <p><span class="route">8 个行程 · 56 天 · 153 个导航点位</span></p>
+  <span class="private">🔒 私享链接 · 不公开索引</span>
+</header>
+
+<div class="container">
+
+  <div class="cat">🌾 草原 / 沙漠</div>
+  <div class="cards">
+
+    <a class="trip" href="inner-mongolia-trip-map.html">
+      <div class="trip-head">
+        <div class="trip-title">🚗 内蒙草原 5 天环线</div>
+        <span class="trip-days">5 天</span>
+      </div>
+      <div class="trip-route">北京顺义 → 承德 → 塞罕坝 → 乌兰布统 → 达达线 → 经棚 → 达里湖 → 北京顺义 · 约 1700km</div>
+      <div class="trip-stats">
+        <span class="stat attract">景点 22</span>
+        <span class="stat food">餐厅 8</span>
+        <span class="stat hotel">酒店 3</span>
+        <span class="stat service">服务区 2</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="cat">🏯 城市 / 古镇 / 山地</div>
+  <div class="cards">
+
+    <a class="trip" href="guizhou-trip-map.html">
+      <div class="trip-head">
+        <div class="trip-title">🚗 贵州山地自驾游</div>
+        <span class="trip-days">11 天</span>
+      </div>
+      <div class="trip-route">驻马店 → 襄阳 → 恩施 → 贵阳 → 凤凰 → 驻马店 · 黔东南环线</div>
+      <div class="trip-stats">
+        <span class="stat attract">景点 14</span>
+        <span class="stat food">餐厅 4</span>
+        <span class="stat hotel">酒店 7</span>
+        <span class="stat service">服务区 14</span>
+      </div>
+    </a>
+
+    <a class="trip" href="fujian-trip-map.html">
+      <div class="trip-head">
+        <div class="trip-title">🚗 福建自驾游</div>
+        <span class="trip-days">9 天</span>
+      </div>
+      <div class="trip-route">驻马店 → 福州 → 平潭 → 泉州 → 驻马店 · 沿海大环线</div>
+      <div class="trip-stats">
+        <span class="stat attract">景点 33</span>
+        <span class="stat food">餐厅 24</span>
+        <span class="stat hotel">酒店 11</span>
+        <span class="stat service">服务区 17</span>
+      </div>
+    </a>
+
+    <a class="trip" href="fujian-coast-self-drive.html">
+      <div class="trip-head">
+        <div class="trip-title">🚄🚗 福建沿海 9 天完整攻略</div>
+        <span class="trip-days">9 天</span>
+      </div>
+      <div class="trip-route">驻马店 → 福州 → 平潭 → 泉州 · 长攻略正文版</div>
+      <div class="trip-stats">
+        <span class="stat">攻略正文（非点位页）</span>
+      </div>
+    </a>
+
+    <a class="trip" href="anyang-trip-map.html">
+      <div class="trip-head">
+        <div class="trip-title">🚄🚗 安阳高铁+自驾周末</div>
+        <span class="trip-days">2 天</span>
+      </div>
+      <div class="trip-route">北京西 → 安阳东（取车）→ 文峰区+殷都区 → 安阳东（还车）→ 北京西</div>
+      <div class="trip-stats">
+        <span class="stat attract">景点 7</span>
+        <span class="stat food">餐厅 8</span>
+        <span class="stat hotel">酒店 3</span>
+      </div>
+    </a>
+
+    <a class="trip" href="gubei-water-town-trip-map.html">
+      <div class="trip-head">
+        <div class="trip-title">🚗 古北水镇 2 日自驾</div>
+        <span class="trip-days">2 天</span>
+      </div>
+      <div class="trip-route">北京顺义 → 古北水镇 → 北京 · 司马台长城+温泉</div>
+      <div class="trip-stats">
+        <span class="stat attract">景点 2</span>
+        <span class="stat food">餐厅 2</span>
+        <span class="stat hotel">酒店 2</span>
+        <span class="stat service">服务区 2</span>
+      </div>
+    </a>
+
+    <a class="trip" href="tianjin-trip-map.html">
+      <div class="trip-head">
+        <div class="trip-title">🚗 天津 1 日游</div>
+        <span class="trip-days">1 天</span>
+      </div>
+      <div class="trip-route">北京顺义 → 天津市区 → 北京 · 意式风情区+五大道</div>
+      <div class="trip-stats">
+        <span class="stat attract">景点 4</span>
+        <span class="stat food">餐厅 4</span>
+        <span class="stat service">服务区 1</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="cat">🏍 摩托 / 短途</div>
+  <div class="cards">
+
+    <a class="trip" href="beiling-shan-trip.html">
+      <div class="trip-head">
+        <div class="trip-title">🏔 北灵山摩托一日游</div>
+        <span class="trip-days">1 天</span>
+      </div>
+      <div class="trip-route">北京 → 北灵山 → 北京 · 骑行版</div>
+      <div class="trip-stats">
+        <span class="stat">点位 5</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="tip-box">
+    💡 <b>使用说明</b><br>
+    每个行程链接到独立的<b>高德导航点位页</b>，里面整合了 POI 卡片、地址链/坐标 deep link、Day 跳转等。<br>
+    <br>
+    <b>私享说明</b>：本聚合页仅通过直接 URL 访问，<b>不</b>出现在 Google/Bing 搜索索引，也不挂在任何公开博客文章的链接里。<br>
+    <br>
+    ⚠️ <b>状态总览</b>：8 个页面 · 56 天 · 153 个 POI · 其中 3 个 POI 已获得精确坐标（可完美 deep link 唤起高德 App），其余等待坐标补全。
+  </div>
+
+</div>
+
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('toTop').classList.toggle('show', window.scrollY > 200);
+});
+</script>
+
+</body>
+</html>
