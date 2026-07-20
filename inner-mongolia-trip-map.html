@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>🌾 内蒙草原 5 天环线 · 高德导航点位</title>
+<title>🚗 内蒙草原 5 天环线 · 高德导航点位（地址链版）</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
@@ -19,7 +19,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ========== 顶部 ========== */
 header {
   background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
   color: white;
@@ -29,28 +28,10 @@ header {
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-header h1 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-header p {
-  font-size: 12px;
-  opacity: 0.95;
-}
+header h1 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+header p { font-size: 12px; opacity: 0.95; }
 header p .route { font-weight: 600; }
 
-.banner-tip {
-  background: #fff8e1;
-  color: #5d4037;
-  font-size: 11px;
-  padding: 8px 14px;
-  border-bottom: 1px solid #ffe082;
-  text-align: center;
-  line-height: 1.5;
-}
-
-/* ========== 顶部导航（日期跳转） ========== */
 .day-nav {
   background: white;
   padding: 10px 12px;
@@ -73,951 +54,757 @@ header p .route { font-weight: 600; }
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  transition: all 0.2s;
 }
-.day-nav a.active,
-.day-nav a:active {
-  background: #FF6F00;
-  color: white;
+.day-nav a.active, .day-nav a:active {
+  background: #FF6F00; color: white;
 }
 
-/* ========== Day 区段 ========== */
-.day {
-  padding: 16px 14px;
-}
+.day { padding: 16px 14px; }
 
 .day-title {
-  display: flex;
-  align-items: center;
-  margin-bottom: 14px;
+  display: flex; align-items: center; margin-bottom: 14px;
   padding: 10px 14px;
   background: linear-gradient(to right, #fff5e6, white);
   border-left: 5px solid #FF6F00;
   border-radius: 4px;
 }
+.day-title .day-num { font-size: 20px; font-weight: 700; color: #FF6F00; margin-right: 10px; }
+.day-title .day-info { flex: 1; }
+.day-title h2 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+.day-title .meta { font-size: 11px; color: #888; }
+.day-title .route-arrow { font-size: 16px; color: #FF6F00; font-weight: 600; }
 
-.day-title .day-num {
-  font-size: 20px;
-  font-weight: 700;
-  color: #FF6F00;
-  margin-right: 10px;
-}
-.day-title .day-info {
-  flex: 1;
-}
-.day-title h2 {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 2px;
-}
-.day-title .meta {
-  font-size: 11px;
-  color: #888;
-}
-.day-title .route-arrow {
-  font-size: 16px;
-  color: #FF6F00;
-  font-weight: 600;
-}
-
-/* ========== 分组 ========== */
-.group {
-  margin-bottom: 18px;
-}
+.group { margin-bottom: 18px; }
 .group-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 8px;
-  padding: 0 4px;
-  display: flex;
-  align-items: center;
+  font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px; padding: 0 4px;
+  display: flex; align-items: center;
 }
-.group-title .emoji {
-  margin-right: 6px;
-  font-size: 15px;
-}
+.group-title .emoji { margin-right: 6px; font-size: 15px; }
 
-/* ========== POI 卡片 ========== */
 .poi {
-  background: white;
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  border: 1px solid #ecedef;
+  background: white; border-radius: 10px; padding: 12px 14px;
+  margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #ecedef;
 }
-
 .poi-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-between;
 }
-
 .poi-name .tag {
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 7px;
-  border-radius: 10px;
-  white-space: nowrap;
-  margin-left: 8px;
+  font-size: 10px; font-weight: 500; padding: 2px 7px;
+  border-radius: 10px; white-space: nowrap; margin-left: 8px;
 }
-/* ========== 标签颜色（与模板一致） ========== */
 .tag.attract   { background: #fef0ef; color: #c7392b; }
 .tag.hotel     { background: #f0ecfa; color: #6b46c1; }
 .tag.food      { background: #fff5e8; color: #d97706; }
 .tag.service   { background: #e0f0fc; color: #2563eb; }
-.tag.optional  { background: #f0f9ff; color: #0891b2; }
-.tag.peak      { background: #fff8e1; color: #f57f17; }
-.tag.stop      { background: #e3f2fd; color: #1565c0; }
 .tag.start     { background: #e8f5e9; color: #2d7d46; }
 .tag.end       { background: #fce4ec; color: #c62828; }
+.tag.stop      { background: #e3f2fd; color: #1565c0; }
 
-.poi-info {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-.poi-info .addr {
-  display: block;
-  color: #555;
-  font-size: 11px;
-  padding: 4px 6px;
-  background: #f5f6f8;
-  border-radius: 3px;
-  margin: 3px 0 4px;
-  word-break: break-all;
-  line-height: 1.5;
-}
-.poi-info .price { color: #FF6F00; font-weight: 600; }
-.poi-info .note  { color: #c62828; }
+.poi-info { font-size: 12px; color: #888; margin-bottom: 10px; line-height: 1.5; }
+.poi-info .addr { color: #555; font-family: ui-monospace, monospace; font-size: 11px; word-break: break-all; }
 
-.poi-actions {
-  display: flex;
-  gap: 8px;
-}
+.poi-actions { display: flex; gap: 8px; }
 .poi-actions a {
-  flex: 1;
-  display: block;
-  text-align: center;
-  padding: 8px 6px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
+  flex: 1; display: block; text-align: center;
+  padding: 8px 6px; border-radius: 6px;
+  text-decoration: none; font-size: 13px; font-weight: 500;
   -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.2s;
 }
-.poi-actions a:active { opacity: 0.7; }
+.btn-nav { background: #FF6F00; color: white; }
+.btn-search { background: #f0f1f3; color: #555; }
 
-.btn-nav {
-  background: #FF6F00;
-  color: white;
-}
-.btn-search {
-  background: #f0f1f3;
-  color: #555;
-}
-
-/* ========== 使用说明 ========== */
 .usage {
-  background: white;
-  padding: 16px;
-  border-radius: 10px;
-  margin: 16px 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  background: white; padding: 16px; border-radius: 10px;
+  margin: 16px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
-.usage h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #FF6F00;
-}
-.usage ol {
-  padding-left: 22px;
-  font-size: 13px;
-  color: #555;
-  line-height: 1.7;
-}
+.usage h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #FF6F00; }
+.usage ol { padding-left: 22px; font-size: 13px; color: #555; line-height: 1.7; }
 .usage .tip {
-  margin-top: 10px;
-  font-size: 12px;
-  color: #888;
-  padding: 8px 10px;
-  background: #fff8e1;
-  border-radius: 6px;
+  margin-top: 10px; font-size: 12px; color: #555;
+  padding: 10px 12px; background: #fff8e1; border-radius: 6px; line-height: 1.6;
 }
+.usage .tip b { color: #FF6F00; }
 
-/* ========== 浮动返回顶部按钮 ========== */
 .to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #FF6F00;
-  color: white;
-  border: none;
-  font-size: 18px;
-  font-weight: 600;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  z-index: 50;
+  position: fixed; bottom: 20px; right: 20px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #FF6F00; color: white; border: none;
+  font-size: 18px; font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2); cursor: pointer; z-index: 50;
 }
 </style>
 </head>
 <body>
 
-<!-- ========== 顶部 ========== -->
 <header>
-  <h1>🌾 内蒙草原 5 天环线 · 高德导航点位</h1>
-  <p><span class="route">北京 → 承德 → 塞罕坝 → 乌兰布统 → 达达线+热阿线 → 经棚 → 达里湖 → 北京</span></p>
-  <p style="margin-top:4px;">5 天 · 1700km · 两驱 SUV · 不走回头路</p>
+  <h1>🚗 内蒙草原 5 天环线 · 高德导航点位</h1>
+  <p><span class="route">北京顺义 → 承德 → 塞罕坝 → 乌兰布统 → 达达线 → 经棚 → 达里湖 → 北京顺义</span></p>
+  <p style="margin-top:4px;">共 42 个点位 · 7-8 月限定 · 两驱 SUV 全程可达 · 约 1700km</p>
 </header>
 
-<div class="banner-tip">
-  💡 因无精确经纬度，<b>📱 手动搜 [地名]</b> 按钮在高德 App 内手动搜索地名后开始导航。流程：点按钮 → 打开高德网页版 → 点「打开高德 App」→ 在 App 搜索框手动输入 → 点「去这里」。
-</div>
-
-<!-- 日期快速跳转 -->
 <nav class="day-nav" id="dayNav">
-  <a href="#day1">D1 北京→乌兰布统</a>
-  <a href="#day2">D2 乌兰布统</a>
-  <a href="#day3">D3 达达线+热阿线</a>
-  <a href="#day4">D4 克什克腾深度</a>
-  <a href="#day5">D5 达里湖→北京</a>
+  <a href="#day1">D1 北京</a>
+  <a href="#day2">D2 乌兰布统核心区</a>
+  <a href="#day3">D3 达达线</a>
+  <a href="#day4">D4 克什克腾石阵</a>
+  <a href="#day5">D5 达里湖</a>
 </nav>
 
-<!-- ========== Day 1 ========== -->
 <section class="day" id="day1">
   <div class="day-title">
     <span class="day-num">D1</span>
     <div class="day-info">
-      <h2>北京 → 承德 → 塞罕坝 → 乌兰布统</h2>
-      <div class="meta">460km · 6.5h · 京承/承围线</div>
+      <h2>北京 → 塞罕坝 → 乌兰布统</h2>
+      <div class="meta">约 460km · 6.5h · 林海+草原初见</div>
     </div>
     <span class="route-arrow">→</span>
-  </div>
-
-  <!-- 起点 -->
-  <div class="group">
-    <div class="group-title"><span class="emoji">🏠</span>起点</div>
-    <div class="poi">
-      <div class="poi-name">顺义枫泉花园
-        <span class="tag start">家</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">北京市顺义区空港街道 枫泉花园</span>
-        7:30 出发
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%8C%97%E4%BA%AC%E5%B8%82%E9%A1%BA%E4%B9%89%E5%8C%BA%E7%A9%BA%E6%B8%AF%E8%A1%97%E9%81%93+%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip">📱 手动搜 枫泉花园</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E5%B8%82%E9%A1%BA%E4%B9%89%E5%8C%BA+%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
   </div>
 
   <!-- 景点 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏛</span>景点（路上三个免费加分点）</div>
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
 
     <div class="poi">
-      <div class="poi-name">塞罕坝国家森林公园
-        <span class="tag attract">穿林海</span>
+      <div class="poi-name">枫泉花园
+        <span class="tag start">起点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">河北省承德市围场满族蒙古族自治县 塞罕坝机械林场</span>
-        15:30 路过 · 落叶松林海+草甸过渡带 · <span class="price">免费</span>
+        <div>📍 起点 7:30 · 走京承高速</div>
+        <div class="addr" style="margin-top:4px;">📌 北京市顺义区空港街道枫泉花园</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%9B%B4%E5%9C%BA%E6%BB%A1%E6%97%8F%E8%92%99%E5%8F%A4%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8E%BF+%E5%A1%9E%E7%BD%95%E5%9D%9A%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=momotrip">📱 手动搜 塞罕坚机械林场</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9A&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%8C%97%E4%BA%AC%E5%B8%82%E9%A1%BA%E4%B9%89%E5%8C%BA%E7%A9%BA%E6%B8%AF%E8%A1%97%E9%81%93%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip">📱 手动搜 枫泉花园</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">塞罕坝·七星湖
-        <span class="tag attract">+1h</span>
+      <div class="poi-name">塞罕坝机械林场
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">河北省承德市围场满族蒙古族自治县 塞罕坝机械林场总场 七星湖景区</span>
-        16:00 · 木栈道+晨雾+落叶松 · <span class="price">免费</span>
+        <div>📍 15:30 · 穿林海而过</div>
+        <div class="addr" style="margin-top:4px;">📌 河北省承德市围场满族蒙古族自治县塞罕坝机械林场</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%9B%B4%E5%9C%BA%E5%8E%BF+%E5%A1%9E%E7%BD%95%E5%9D%9A+%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip">📱 手动搜 七星湖</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9A+%E4%B8%83%E6%98%9F%E6%B9%96&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%9B%B4%E5%9C%BA%E6%BB%A1%E6%97%8F%E8%92%99%E5%8F%A4%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8E%BF%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=momotrip">📱 手动搜 塞罕坝机械林场</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
+    <div class="poi">
+      <div class="poi-name">七星湖
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 16:00 · 木栈道+晨雾+落叶松 · 免费</div>
+        <div class="addr" style="margin-top:4px;">📌 河北省承德市围场满族蒙古族自治县塞罕坝七星湖</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%9B%B4%E5%9C%BA%E6%BB%A1%E6%97%8F%E8%92%99%E5%8F%A4%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8E%BF%E5%A1%9E%E7%BD%95%E5%9D%9D%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip">📱 手动搜 七星湖</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%83%E6%98%9F%E6%B9%96&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
     <div class="poi">
       <div class="poi-name">御道口·月亮湖
-        <span class="tag attract">+30m</span>
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">河北省承德市围场满族蒙古族自治县 御道口草原森林风景区 月亮湖</span>
-        17:00 · 月牙形草原湖 · <span class="price">含塞罕坝联票</span>
+        <div>📍 17:00 · 月牙形草原湖</div>
+        <div class="addr" style="margin-top:4px;">📌 河北省承德市围场满族蒙古族自治县御道口月亮湖</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%9B%B4%E5%9C%BA%E5%8E%BF+%E5%BE%A1%E9%81%93%E5%8F%A3+%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">📱 手动搜 月亮湖</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BE%A1%E9%81%93%E5%8F%A3+%E6%9C%88%E4%BA%AE%E6%B9%96&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%9B%B4%E5%9C%BA%E6%BB%A1%E6%97%8F%E8%92%99%E5%8F%A4%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8E%BF%E5%BE%A1%E9%81%93%E5%8F%A3%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">📱 手动搜 御道口·月亮湖</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">乌兰布统影视基地
-        <span class="tag attract">⭐日落</span>
+      <div class="poi-name">影视基地
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 影视基地</span>
-        18:30 · 欧式草原+暖光铺草甸 · <b>还珠格格取景地</b>
+        <div>📍 18:30 · 欧式草原+暖光日落 · 今日重头戏</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统影视基地</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&mode=car&src=momotrip">📱 手动搜 影视基地</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&mode=car&src=momotrip">📱 手动搜 影视基地</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
-  <!-- 餐饮 -->
+  <!-- 餐厅 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🍜</span>餐饮</div>
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
 
     <div class="poi">
-      <div class="poi-name">承德·老三羊汤
-        <span class="tag food">午餐</span>
+      <div class="poi-name">老三羊汤
+        <span class="tag food">餐厅</span>
       </div>
       <div class="poi-info">
-        <span class="addr">河北省承德市双桥区 老三羊汤</span>
-        12:00 · 羊汤+烧饼 · 人均 <span class="price">¥50</span>
+        <div>📍 12:00 午餐 · 羊汤+烧饼</div>
+        <div class="addr" style="margin-top:4px;">📌 河北省承德市双桥区老三羊汤</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%8F%8C%E6%A1%A5%E5%8C%BA+%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&mode=car&src=momotrip">📱 手动搜 老三羊汤</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%89%BF%E5%BE%B7+%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E6%89%BF%E5%BE%B7%E5%B8%82%E5%8F%8C%E6%A1%A5%E5%8C%BA%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&mode=car&src=momotrip">📱 手动搜 老三羊汤</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">老舅老蒙肉饼（红山军马场）
-        <span class="tag food">晚餐</span>
+      <div class="poi-name">老舅老蒙肉饼
+        <span class="tag food">餐厅</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 红山军马场 老舅老蒙肉饼</span>
-        20:00 · 当地特色 · 人均 <span class="price">¥80</span>
+        <div>📍 20:00 晚餐 · 当地特色</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统老舅老蒙肉饼</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&mode=car&src=momotrip">📱 手动搜 老舅老蒙肉饼</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&mode=car&src=momotrip">📱 手动搜 老舅老蒙肉饼</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
   <!-- 酒店 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏨</span>酒店（红山军马场）</div>
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
 
     <div class="poi">
-      <div class="poi-name">乌兰布统红山宾馆
-        <span class="tag hotel">首选</span>
+      <div class="poi-name">红山宾馆
+        <span class="tag hotel">酒店</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 红山军马场 红山宾馆</span>
-        <span class="price">¥400-500/晚</span> · 老牌位置中心
+        <div>📍 入住 17:30 · 老牌位置中心</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统红山宾馆</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&mode=car&src=momotrip">📱 手动搜 红山宾馆</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&mode=car&src=momotrip">📱 手动搜 红山宾馆</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
+  </div>
+  <!-- 服务区 / 加油站 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站</div>
 
     <div class="poi">
-      <div class="poi-name">将军泡子蒙古大营
-        <span class="tag hotel optional">备选</span>
+      <div class="poi-name">密云服务区
+        <span class="tag service">服务区</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 将军泡子 蒙古大营</span>
-        <span class="price">¥350-450/晚</span> · 看泡子日出方便
+        <div>📍 9:30 · 第一次休整</div>
+        <div class="addr" style="margin-top:4px;">📌 北京市密云区京承高速密云服务区</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90+%E8%92%99%E5%8F%A4%E5%A4%A7%E8%90%A5&mode=car&src=momotrip">📱 手动搜 蒙古大营</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90+%E8%92%99%E5%8F%A4%E5%A4%A7%E8%90%A5&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%8C%97%E4%BA%AC%E5%B8%82%E5%AF%86%E4%BA%91%E5%8C%BA%E4%BA%AC%E6%89%BF%E9%AB%98%E9%80%9F%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=momotrip">📱 手动搜 密云服务区</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== Day 2 ========== -->
 <section class="day" id="day2">
   <div class="day-title">
     <span class="day-num">D2</span>
     <div class="day-info">
-      <h2>乌兰布统核心区（柏油可达）</h2>
-      <div class="meta">80km · 12h · 公主湖+将军泡子+影视基地</div>
+      <h2>乌兰布统核心区</h2>
+      <div class="meta">约 80km · 12h · 全程柏油 · 草原三件套</div>
     </div>
     <span class="route-arrow">→</span>
   </div>
 
-  <div class="group">
-    <div class="group-title"><span class="emoji">🌅</span>日出 + 草原三件套</div>
-
-    <div class="poi">
-      <div class="poi-name">私家牧场（看日出）
-        <span class="tag attract">日出</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 北沟附近 私家牧场</span>
-        5:30 · 晨雾+草浪+草原日出 · <span class="price">免费</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E5%8C%97%E6%B2%9F&mode=car&src=momotrip">📱 手动搜 北沟</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E5%8C%97%E6%B2%9F+%E7%A7%81%E5%AE%B6%E7%89%A7%E5%9C%BA&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">公主湖
-        <span class="tag attract">8:30</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 公主湖</span>
-        蓝齐格格传说 · 欧式草原湖泊 · 轻徒步 30 分钟
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E5%85%AC%E4%B8%BB%E6%B9%96&mode=car&src=momotrip">📱 手动搜 公主湖</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E5%85%AC%E4%B8%BB%E6%B9%96&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">盘龙峡谷
-        <span class="tag attract optional">隐藏点</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 盘龙峡谷</span>
-        9:30 · 公主湖与将军泡子之间 · 草原小峡谷+野花+怪石
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&mode=car&src=momotrip">📱 手动搜 盘龙峡谷</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">五彩山
-        <span class="tag attract">10:30</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 五彩山</span>
-        乌兰布统北 · 色彩斑斓山丘 · 摄影点
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E4%BA%94%E5%BD%A9%E5%B1%B1&mode=car&src=momotrip">📱 手动搜 五彩山</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E4%BA%94%E5%BD%A9%E5%B1%B1&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">金莲花湿地（7-8 月限定）
-        <span class="tag attract peak">限季</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 金莲花湿地</span>
-        15:30 · 漫山遍野金莲
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&mode=car&src=momotrip">📱 手动搜 金莲花湿地</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">东沟
-        <span class="tag attract optional">人少</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 东沟</span>
-        17:00 · 比西沟人少 70%，野花密
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E4%B8%9C%E6%B2%9F&mode=car&src=momotrip">📱 手动搜 东沟</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E4%B8%9C%E6%B2%9F&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">将军泡子（⭐ 日落）
-        <span class="tag attract">⭐日落</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 将军泡子</span>
-        17:30 · 日落摄影圣地 · 马蹄踏出的湖泊
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&mode=car&src=momotrip">📱 手动搜 将军泡子</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="group">
-    <div class="group-title"><span class="emoji">🍜</span>餐饮</div>
-
-    <div class="poi">
-      <div class="poi-name">蒙古牧户家（手把肉）
-        <span class="tag food">午餐</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 蒙古牧户家</span>
-        12:00 · 骨头带肉清水煮+奶茶+奶豆腐 · 人均 <span class="price">¥100</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E8%92%99%E5%8F%A4%E6%89%8B%E6%8A%8A%E8%82%89&mode=car&src=momotrip">📱 手动搜 蒙古手把肉</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E8%92%99%E5%8F%A4+%E6%89%8B%E6%8A%8A%E8%82%89&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">铜锅涮肉（红山军马场）
-        <span class="tag food">晚餐</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 红山军马场 铜锅涮肉</span>
-        19:30 · 草原羊肉鲜嫩无膻 · 人均 <span class="price">¥120</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA+%E9%93%9C%E9%94%85%E6%BE%A1%E8%82%89&mode=car&src=momotrip">📱 手动搜 铜锅澡肉</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA+%E9%93%9C%E9%94%85%E6%BE%A1%E8%82%89&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="group">
-    <div class="group-title"><span class="emoji">🏨</span>酒店（红山军马场 · 同 D1）</div>
-    <div class="poi">
-      <div class="poi-name">乌兰布统红山宾馆（同 D1）
-        <span class="tag hotel">首选</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 乌兰布统乡 红山军马场 红山宾馆</span>
-        <span class="price">¥400-500/晚</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B9%A1+%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&mode=car&src=momotrip">📱 手动搜 红山宾馆</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== Day 3 ========== -->
-<section class="day" id="day3">
-  <div class="day-title">
-    <span class="day-num">D3</span>
-    <div class="day-info">
-      <h2>达达线 + 热阿线环线（草原公路精华）</h2>
-      <div class="meta">280km · 8h · G303 → 达达线 → 热阿线 → 经棚镇</div>
-    </div>
-    <span class="route-arrow">→</span>
-  </div>
-
-  <div class="group">
-    <div class="group-title"><span class="emoji">🛣</span>达达线节点（全程柏油）</div>
-
-    <div class="poi">
-      <div class="poi-name">贡格尔收费站（达达线起点）
-        <span class="tag stop">9:30</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 经棚镇 贡格尔收费站（丹锡高速）</span>
-        经棚镇南 · 出口下来正式踏上达达线 · <span class="price">最后一次加油点</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E8%BE%BD%E5%AE%81%E7%9C%81+%E7%BB%8F%E6%A3%9A%E9%95%87+%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&mode=car&src=momotrip">📱 手动搜 贡格尔收费站</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%B4%A1%E6%A0%BC%E5%B0%94+%E6%94%B6%E8%B4%B9%E7%AB%99&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">巴彦查干苏木
-        <span class="tag stop">12:00</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 巴彦查干苏木</span>
-        达达线 150km 处 · <span class="note">⚠️ 最后一个正经餐馆</span> · 手把肉+面条
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&mode=car&src=momotrip">📱 手动搜 巴彦查干苏木</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-  </div>
-
+  <!-- 景点 -->
   <div class="group">
     <div class="group-title"><span class="emoji">🏛</span>景点</div>
 
     <div class="poi">
-      <div class="poi-name">阿斯哈图石林·南门（石林驿站）
-        <span class="tag attract">13:00</span>
+      <div class="poi-name">红山军马场日出
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 阿斯哈图石林景区 南门</span>
-        南门外 5km · <b>免费远眺</b>，省 160 门票
+        <div>📍 5:30 · 私家牧场晨雾+草浪 · 免费</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统红山军马场</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97+%E5%8D%97%E9%97%A8&mode=car&src=momotrip">📱 手动搜 南门</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA&mode=car&src=momotrip">📱 手动搜 红山军马场日出</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA%E6%97%A5%E5%87%BA&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">黄岗梁森林旅游区（山顶）
-        <span class="tag attract">15:00</span>
+      <div class="poi-name">公主湖
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 黄岗梁国家森林公园 森林旅游区</span>
-        <b>导航搜"黄岗梁森林旅游区"</b>，不是"国家森林公园" · 山顶车最多处即精华 · 草甸+盘山路
+        <div>📍 8:30 · 蓝齐格格传说 · 欧式草原湖泊</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统公主湖</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&mode=car&src=momotrip">📱 手动搜 黄岗梁森林旅游区</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81+%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E5%85%AC%E4%B8%BB%E6%B9%96&mode=car&src=momotrip">📱 手动搜 公主湖</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%AC%E4%B8%BB%E6%B9%96&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">黄岗梁·盘山公路（半山腰）
-        <span class="tag attract optional">16:30</span>
+      <div class="poi-name">盘龙峡谷
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 黄岗梁 盘山公路（半山腰停车点）</span>
-        绿+雾+云海组合 · 拍照点
+        <div>📍 9:30 · 公主湖与将军泡子之间 · 野花+怪石</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统盘龙峡谷</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E9%BB%84%E5%B2%97%E6%A2%81+%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&mode=car&src=momotrip">📱 手动搜 盘山公路</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81+%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&mode=car&src=momotrip">📱 手动搜 盘龙峡谷</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">热水塘镇（温泉）
-        <span class="tag service">17:30</span>
+      <div class="poi-name">五彩山
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 热水塘镇</span>
-        解乏温泉 · <span class="price">¥150-200/人</span>
+        <div>📍 10:30 · 色彩斑斓山丘 · 摄影点</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统五彩山</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&mode=car&src=momotrip">📱 手动搜 热水塘镇</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE+%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%BA%94%E5%BD%A9%E5%B1%B1&mode=car&src=momotrip">📱 手动搜 五彩山</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%BA%94%E5%BD%A9%E5%B1%B1&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">金莲花湿地
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 15:30 · 7-8 月限定 · 漫山金莲</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统金莲花湿地</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&mode=car&src=momotrip">📱 手动搜 金莲花湿地</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">东沟
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 17:00 · 比西沟人少 70% · 野花密</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统东沟</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E4%B8%9C%E6%B2%9F&mode=car&src=momotrip">📱 手动搜 东沟</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%9C%E6%B2%9F&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">将军泡子
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 17:30 日落 · 今日重头戏</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统将军泡子</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&mode=car&src=momotrip">📱 手动搜 将军泡子</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
+  <!-- 餐厅 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏨</span>酒店（经棚镇）</div>
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
 
     <div class="poi">
-      <div class="poi-name">星程酒店（克什克腾旗店）
-        <span class="tag hotel">首选</span>
+      <div class="poi-name">蒙古牧户家
+        <span class="tag food">餐厅</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 经棚镇 星程酒店</span>
-        <span class="price">¥350-450/晚</span> · 连锁稳定
+        <div>📍 12:00 午餐 · 手把肉 80-120/人</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统蒙古牧户家</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&mode=car&src=momotrip">📱 手动搜 星程酒店</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&mode=car&src=momotrip">📱 手动搜 蒙古牧户家</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">热水塘温泉酒店
-        <span class="tag hotel optional">可选</span>
+      <div class="poi-name">铜锅涮肉
+        <span class="tag food">餐厅</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 热水塘镇 温泉酒店</span>
-        <span class="price">¥500-800/晚</span> · 住这可省去当晚返程
+        <div>📍 19:30 晚餐</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗乌兰布统铜锅涮肉</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E6%B8%A9%E6%B3%89%E9%85%92%E5%BA%97&mode=car&src=momotrip">📱 手动搜 温泉酒店</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E9%85%92%E5%BA%97&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&mode=car&src=momotrip">📱 手动搜 铜锅涮肉</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== Day 4 ========== -->
-<section class="day" id="day4">
+<section class="day" id="day3">
   <div class="day-title">
-    <span class="day-num">D4</span>
+    <span class="day-num">D3</span>
     <div class="day-info">
-      <h2>克什克腾石林 + 桦木沟 + 温泉 + 玉龙沙湖</h2>
-      <div class="meta">200km · 10h · 克什克腾深度一日</div>
+      <h2>达达线 + 热阿线环线</h2>
+      <div class="meta">约 280km · 8h · 中国最美草原公路</div>
     </div>
     <span class="route-arrow">→</span>
   </div>
 
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">贡格尔收费站
+        <span class="tag stop">驿站</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 9:30 · 出口下来 · 正式上达达线</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗贡格尔收费站</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&mode=car&src=momotrip">📱 手动搜 贡格尔收费站</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">达达线
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 10:00 · 彩虹公路 · 中国北疆风景大道</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗达达线</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E8%BE%BE%E8%BE%BE%E7%BA%BF&mode=car&src=momotrip">📱 手动搜 达达线</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E8%BE%BE%E7%BA%BF&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">阿斯哈图石林·南门
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 13:00 · 石林驿站免费远眺 · 省 160 门票</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗阿斯哈图石林南门</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%E5%8D%97%E9%97%A8&mode=car&src=momotrip">📱 手动搜 阿斯哈图石林·南门</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%C2%B7%E5%8D%97%E9%97%A8&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">黄岗梁森林旅游区
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 15:00 · 山顶观景台 · 导航搜『森林旅游区』</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗黄岗梁森林旅游区</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&mode=car&src=momotrip">📱 手动搜 黄岗梁森林旅游区</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">黄岗梁·盘山公路
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 16:30 · 半山腰 · 绿+雾+云海组合</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗黄岗梁盘山公路</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E9%BB%84%E5%B2%97%E6%A2%81%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&mode=car&src=momotrip">📱 手动搜 黄岗梁·盘山公路</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81%C2%B7%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">热水塘镇
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 17:30 · 温泉解乏（可选）</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗热水塘镇</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&mode=car&src=momotrip">📱 手动搜 热水塘镇</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+
+    <div class="poi">
+      <div class="poi-name">巴彦查干苏木
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 12:00 午餐 · 牧户家手把肉 · ⚠️ 后面无正经餐馆</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗巴彦查干苏木</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&mode=car&src=momotrip">📱 手动搜 巴彦查干苏木</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">草原牧歌蒙餐
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 晚餐 · 烤羊腿+莜面</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗经棚镇草原牧歌蒙餐</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E7%BB%8F%E6%A3%9A%E9%95%87%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&mode=car&src=momotrip">📱 手动搜 草原牧歌蒙餐</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+
+    <div class="poi">
+      <div class="poi-name">经棚镇·星程酒店
+        <span class="tag hotel">酒店</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 入住 18:30 · 连锁稳定 · 旺季提前订</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗经棚镇星程酒店</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E7%BB%8F%E6%A3%9A%E9%95%87%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&mode=car&src=momotrip">📱 手动搜 经棚镇·星程酒店</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day4">
+  <div class="day-title">
+    <span class="day-num">D4</span>
+    <div class="day-info">
+      <h2>克什克腾石阵 + 温泉 + 玉龙沙湖</h2>
+      <div class="meta">约 200km · 10h · 石林+温泉深度</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
   <div class="group">
     <div class="group-title"><span class="emoji">🏛</span>景点</div>
 
     <div class="poi">
       <div class="poi-name">桦木沟国家森林公园
-        <span class="tag attract optional">隐藏点</span>
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 桦木沟国家森林公园</span>
-        经棚镇西 30km · 8:00 · 白桦林+溪流+野蘑菇 · <span class="price">免费</span> · 人少 90%
+        <div>📍 8:00 · 白桦林+溪流+野蘑菇 · 人少 90% 的隐藏点</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗桦木沟国家森林公园</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&mode=car&src=momotrip">📱 手动搜 桦木沟国家森林公园</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E6%A1%A6%E6%9C%A8%E6%B2%9F&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&mode=car&src=momotrip">📱 手动搜 桦木沟国家森林公园</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">克什克腾石阵（阿斯哈图石林）
-        <span class="tag attract">9:30</span>
+      <div class="poi-name">克什克腾石林
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 阿斯哈图石林景区（克什克腾石阵）</span>
-        景区内 · <span class="price">¥160/人（含摆渡车）</span> · 2-3h
+        <div>📍 9:30 · 买票进 160/人 · 月亮城堡免费</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗阿斯哈图石林</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97+%E5%85%A8%E9%98%B3&mode=car&src=momotrip">📱 手动搜 全阳</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E9%98%B5&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97&mode=car&src=momotrip">📱 手动搜 克什克腾石林</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E6%9E%97&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">石林内·月亮城堡
-        <span class="tag attract optional">景区内</span>
+      <div class="poi-name">热水塘温泉
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 阿斯哈图石林景区内 月亮城堡</span>
-        景区东门进 · 问"月亮城堡方向" · 不另收费 · 像城堡的巨石阵
+        <div>📍 14:00 · 解乏神器 · 半日票 150-200/人</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗热水塘镇温泉酒店</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97+%E6%9C%88%E4%BA%AE%E5%9F%8E%E5%A0%A1&mode=car&src=momotrip">📱 手动搜 月亮城堡</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9C%88%E4%BA%AE%E5%9F%8E%E5%A0%A1+%E7%9F%B3%E6%9E%97&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87%E6%B8%A9%E6%B3%89%E9%85%92%E5%BA%97&mode=car&src=momotrip">📱 手动搜 热水塘温泉</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E6%B8%A9%E6%B3%89&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
       <div class="poi-name">玉龙沙湖
-        <span class="tag attract optional">17:00</span>
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市翁牛特旗 乌敦套海镇 玉龙沙湖</span>
-        沙漠+湖泊+骆驼 · <span class="note">雨后放弃</span>
+        <div>📍 17:00 · 沙漠+湖泊+骆驼 · 可选</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市翁牛特旗乌敦套海镇玉龙沙湖</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E8%8A%AE%E7%89%9B%E7%89%B9%E6%97%97+%E4%B9%8C%E6%95%A6%E5%A5%97%E6%B5%B7%E9%95%87+%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&mode=car&src=momotrip">📱 手动搜 玉龙沙湖</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E7%BF%81%E7%89%9B%E7%89%B9%E6%97%97%E4%B9%8C%E6%95%A6%E5%A5%97%E6%B5%B7%E9%95%87%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&mode=car&src=momotrip">📱 手动搜 玉龙沙湖</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
+  <!-- 餐厅 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">♨️</span>温泉</div>
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
 
     <div class="poi">
-      <div class="poi-name">热水塘镇温泉
-        <span class="tag service">14:00</span>
+      <div class="poi-name">经棚镇·烤羊腿
+        <span class="tag food">餐厅</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 热水塘镇 温泉</span>
-        半日票 <span class="price">¥150-200/人</span> · 解乏神器
+        <div>📍 12:00 午餐 · 克什克腾烤羊腿 · 强烈推荐</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗经棚镇烤羊腿</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E6%B8%A9%E6%B3%89&mode=car&src=momotrip">📱 手动搜 温泉</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E6%B8%A9%E6%B3%89&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E7%BB%8F%E6%A3%9A%E9%95%87%E7%83%A4%E7%BE%8A%E8%85%BF&mode=car&src=momotrip">📱 手动搜 经棚镇·烤羊腿</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E7%83%A4%E7%BE%8A%E8%85%BF&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
+  <!-- 酒店 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🍜</span>餐饮</div>
+    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
 
     <div class="poi">
-      <div class="poi-name">克什克腾烤羊腿（经棚镇）
-        <span class="tag food">必吃</span>
+      <div class="poi-name">经棚镇·夜宿
+        <span class="tag hotel">酒店</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 经棚镇 烤羊腿</span>
-        12:00 / 19:00 · 烤羊腿+莜面宴 · 人均 <span class="price">¥120</span>
+        <div>📍 20:00 入住 · 同 D3</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗经棚镇</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E7%83%A4%E7%BE%8A%E8%85%BF&mode=car&src=momotrip">📱 手动搜 烤羊腿</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E8%92%99%E9%A4%90&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">草原牧歌蒙餐（经棚镇）
-        <span class="tag food">推荐</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 经棚镇 草原牧歌蒙餐</span>
-        19:00 · 蒙餐 · 人均 <span class="price">¥100</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C&mode=car&src=momotrip">📱 手动搜 草原牧歌</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C+%E8%92%99%E9%A4%90&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="group">
-    <div class="group-title"><span class="emoji">🏨</span>酒店（经棚镇 · 同 D3）</div>
-    <div class="poi">
-      <div class="poi-name">星程酒店（克什克腾旗店）
-        <span class="tag hotel">首选</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 经棚镇 星程酒店</span>
-        <span class="price">¥350-450/晚</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&mode=car&src=momotrip">📱 手动搜 星程酒店</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E7%BB%8F%E6%A3%9A%E9%95%87&mode=car&src=momotrip">📱 手动搜 经棚镇·夜宿</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E5%A4%9C%E5%AE%BF&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== Day 5 ========== -->
 <section class="day" id="day5">
   <div class="day-title">
     <span class="day-num">D5</span>
     <div class="day-info">
       <h2>达里湖 → 锡张高速 → 北京</h2>
-      <div class="meta">660km · 8h · 走 G303 + 锡张高速（不走回头路）</div>
+      <div class="meta">约 660km · 8h · 不走回头路</div>
     </div>
     <span class="route-arrow">→</span>
   </div>
 
+  <!-- 景点 -->
   <div class="group">
     <div class="group-title"><span class="emoji">🏛</span>景点</div>
 
     <div class="poi">
-      <div class="poi-name">达里湖北岸景区
-        <span class="tag attract">⭐9:30</span>
+      <div class="poi-name">达里湖·北岸
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 达来诺日镇 达里湖 北岸景区</span>
-        草原马尔代夫 · 茅草屋+帆船 · <span class="price">¥40-60/人</span>
+        <div>📍 9:30 · 草原马尔代夫 · 茅草屋+帆船 · 今日重头戏</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗达来诺日镇达里湖北岸</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E8%BE%BE%E6%9D%A5%E8%AF%BA%E6%97%A5%E9%95%87+%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8C%97%E5%B2%B8&mode=car&src=momotrip">📱 手动搜 北岸</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8C%97%E5%B2%B8&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E8%BE%BE%E6%9D%A5%E8%AF%BA%E6%97%A5%E9%95%87%E8%BE%BE%E9%87%8C%E6%B9%96%E5%8C%97%E5%B2%B8&mode=car&src=momotrip">📱 手动搜 达里湖·北岸</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8C%97%E5%B2%B8&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
-
     <div class="poi">
-      <div class="poi-name">达里湖南岸（航拍点）
-        <span class="tag attract optional">11:00</span>
+      <div class="poi-name">达里湖·南岸
+        <span class="tag attract">景点</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区赤峰市克什克腾旗 达来诺日镇 达里湖 南岸</span>
-        火山地貌+盐碱滩 · 苍凉美 · 航拍最佳
+        <div>📍 11:00 · 火山地貌+盐碱滩 · 航拍最佳 · 可选</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区赤峰市克什克腾旗达来诺日镇达里湖南岸</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E8%BE%BE%E6%9D%A5%E8%AF%BA%E6%97%A5%E9%95%87+%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8D%97%E5%B2%B8&mode=car&src=momotrip">📱 手动搜 南岸</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8D%97%E5%B2%B8&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E8%B5%A4%E5%B3%B0%E5%B8%82%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97%E8%BE%BE%E6%9D%A5%E8%AF%BA%E6%97%A5%E9%95%87%E8%BE%BE%E9%87%8C%E6%B9%96%E5%8D%97%E5%B2%B8&mode=car&src=momotrip">📱 手动搜 达里湖·南岸</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8D%97%E5%B2%B8&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">太仆寺旗
+        <span class="tag stop">驿站</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 15:30 · 张家口方向</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区锡林郭勒盟太仆寺旗宝昌镇</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%E7%9B%9F%E5%A4%AA%E4%BB%86%E5%AF%BA%E6%97%97%E5%AE%9D%E6%98%8C%E9%95%87&mode=car&src=momotrip">📱 手动搜 太仆寺旗</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E4%BB%86%E5%AF%BA%E6%97%97&city=克什克腾旗&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">枫泉花园（终点）
+        <span class="tag end">终点</span>
+      </div>
+      <div class="poi-info">
+        <div>📍 19:30 · 抵京</div>
+        <div class="addr" style="margin-top:4px;">📌 北京市顺义区空港街道枫泉花园</div>
+      </div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%8C%97%E4%BA%AC%E5%B8%82%E9%A1%BA%E4%B9%89%E5%8C%BA%E7%A9%BA%E6%B8%AF%E8%A1%97%E9%81%93%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip">📱 手动搜 枫泉花园（终点）</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD%EF%BC%88%E7%BB%88%E7%82%B9%EF%BC%89&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
+  <!-- 餐厅 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🍜</span>餐饮（返程路上）</div>
+    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
 
     <div class="poi">
-      <div class="poi-name">锡林郭勒·额尔敦
-        <span class="tag food">13:00 午餐</span>
+      <div class="poi-name">额尔敦（锡林郭勒）
+        <span class="tag food">餐厅</span>
       </div>
       <div class="poi-info">
-        <span class="addr">内蒙古自治区锡林郭勒盟锡林浩特市 额尔敦</span>
-        传统蒙餐 · 羊排+奶茶 · 人均 <span class="price">¥130</span>
+        <div>📍 13:00 午餐 · 传统蒙餐 · 羊排+奶茶</div>
+        <div class="addr" style="margin-top:4px;">📌 内蒙古自治区锡林郭勒盟锡林浩特市额尔敦</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9%E5%B8%82+%E9%A2%9D%E5%B0%94%E6%95%A6&mode=car&src=momotrip">📱 手动搜 额尔敦</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9+%E9%A2%9D%E5%B0%94%E6%95%A6&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-
-    <div class="poi">
-      <div class="poi-name">太仆寺旗宾馆餐厅
-        <span class="tag food">15:30 补餐</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">内蒙古自治区锡林郭勒盟太仆寺旗 宝昌镇 太仆寺旗宾馆 餐厅</span>
-        家常菜 · 份量大 · 人均 <span class="price">¥60</span>
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9+%E5%A4%AA%E4%BB%93%E5%A3%AB%E6%97%97+%E5%AE%9D%E6%98%8C%E9%95%87+%E5%A4%AA%E4%BB%93%E5%A3%AB%E6%97%97%E5%AE%BE%E9%A6%86&mode=car&src=momotrip">📱 手动搜 太仓士旗宾馆</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E4%BB%93%E5%A3%AB%E6%97%97+%E5%AE%BE%E9%A6%86&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%86%85%E8%92%99%E5%8F%A4%E8%87%AA%E6%B2%BB%E5%8C%BA%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%E7%9B%9F%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9%E5%B8%82%E9%A2%9D%E5%B0%94%E6%95%A6&mode=car&src=momotrip">📱 手动搜 额尔敦（锡林郭勒）</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%A2%9D%E5%B0%94%E6%95%A6%EF%BC%88%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%EF%BC%89&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
-
+  <!-- 服务区 / 加油站 -->
   <div class="group">
     <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站</div>
 
     <div class="poi">
       <div class="poi-name">张家口服务区
-        <span class="tag service">17:00 休整</span>
+        <span class="tag service">服务区</span>
       </div>
       <div class="poi-info">
-        <span class="addr">河北省张家口市 京藏高速 张家口服务区</span>
-        大休整点 · 距北京 200km
+        <div>📍 17:00 · 大休整</div>
+        <div class="addr" style="margin-top:4px;">📌 河北省张家口市京藏高速张家口服务区</div>
       </div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E5%BC%A0%E5%AE%B6%E5%8F%A3%E5%B8%82+%E4%BA%AC%E8%97%8F%E9%AB%98%E9%80%9F+%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=momotrip">📱 手动搜 张家口服务区</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA&src=momotrip">🔍 全网搜</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="group">
-    <div class="group-title"><span class="emoji">🏠</span>终点</div>
-    <div class="poi">
-      <div class="poi-name">顺义枫泉花园
-        <span class="tag end">家</span>
-      </div>
-      <div class="poi-info">
-        <span class="addr">北京市顺义区空港街道 枫泉花园</span>
-        19:30 抵京 · 行程结束 🎉
-      </div>
-      <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E5%8C%97%E4%BA%AC%E5%B8%82%E9%A1%BA%E4%B9%89%E5%8C%BA%E7%A9%BA%E6%B8%AF%E8%A1%97%E9%81%93+%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip">📱 手动搜 枫泉花园</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%8C%97%E4%BA%AC%E5%B8%82%E9%A1%BA%E4%B9%89%E5%8C%BA+%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=momotrip">🔍 全网搜</a>
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=%E6%B2%B3%E5%8C%97%E7%9C%81%E5%BC%A0%E5%AE%B6%E5%8F%A3%E5%B8%82%E4%BA%AC%E8%97%8F%E9%AB%98%E9%80%9F%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=momotrip">📱 手动搜 张家口服务区</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA&city=克什克腾旗&src=momotrip">🔍 搜索</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== 使用说明 ========== -->
 <section class="usage">
   <h3>📱 使用说明</h3>
   <ol>
-    <li>点击任意点位的 <b>📱 手动搜 [地名]</b> 按钮，复制地名后打开高德 App 搜索</li>
-    <li>地址块可复制，方便粘贴到高德搜索框</li>
-    <li>高德会按地址链自动搜索，显示 POI 卡片</li>
-    <li>点击 POI 卡片里的 <b>"去这里"</b> → 拉起路径规划 → 开始导航</li>
-    <li>如主按钮唤起后搜不到，<b>🔍 全网搜</b> 按钮作为备选</li>
+    <li><b>点击【📱 手动搜 [地名]】</b> 按钮</li>
+    <li>浏览器打开高德网页版搜索结果页</li>
+    <li>点页面里的「打开高德地图 App」（手机会自动跳到 App）</li>
+    <li>在 App 搜索框手动输入 POI 名 → 点「去这里」开始导航</li>
   </ol>
   <div class="tip">
-    💡 小贴士：<br>
-    • <b>📱 手动搜</b> 主入口：带 city 锁旗县，命中率高（如同"克什克腾旗·公主湖"）<br>
-    • <b>🔍 全网搜</b> 备选入口：全国搜，可能出现同名 POI 干扰<br>
-    • 每个 POI 下方都有 <b>灰色地址块</b>，肉眼一眼可校验<br>
-    • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区 · 🟢 起讫<br>
-    • <b>📱 手动搜</b> 因无精确坐标，行为是"打开高德搜 → 点'去这里'开始导航"，比一步直达导航多一步（POI 名字+地址定位）
+    💡 <b>为什么不能一键直达？</b><br>
+    本攻略 POI 只有地址名（无精确经纬度），高德 deep link <code>navigation?to=经度,纬度,名称</code> 需要坐标才能直接唤起 App。如需"点按钮立刻开始导航"，需先获取精确坐标（高德 WebService API 或手动拾取）。<br><br>
+    颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区 · 🟢 起点 · 🔴 终点
   </div>
 </section>
 
