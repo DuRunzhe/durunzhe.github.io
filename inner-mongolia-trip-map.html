@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🌾 内蒙草原 5 天环线 · 高德导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 顶部 ========== */
+header {
+  background: linear-gradient(135deg, #2E7D32 0%, #66BB6A 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+header p {
+  font-size: 12px;
+  opacity: 0.95;
+}
+header p .route { font-weight: 600; }
+
+.banner-tip {
+  background: #fff8e1;
+  color: #5d4037;
+  font-size: 11px;
+  padding: 6px 14px;
+  border-bottom: 1px solid #ffe082;
+  text-align: center;
+}
+
+/* ========== 顶部导航（日期跳转） ========== */
+.day-nav {
+  background: white;
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 76px;
+  z-index: 99;
+  border-bottom: 1px solid #e8eaec;
+  -webkit-overflow-scrolling: touch;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  background: #f0f1f3;
+  color: #555;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.day-nav a.active,
+.day-nav a:active {
+  background: #2E7D32;
+  color: white;
+}
+
+/* ========== Day 区段 ========== */
+.day {
+  padding: 16px 14px;
+}
+
+.day-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(to right, #e8f5e9, white);
+  border-left: 5px solid #2E7D32;
+  border-radius: 4px;
+}
+
+.day-title .day-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2E7D32;
+  margin-right: 10px;
+}
+.day-title .day-info {
+  flex: 1;
+}
+.day-title h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.day-title .meta {
+  font-size: 11px;
+  color: #888;
+}
+.day-title .route-arrow {
+  font-size: 16px;
+  color: #2E7D32;
+  font-weight: 600;
+}
+
+/* ========== 分组 ========== */
+.group {
+  margin-bottom: 18px;
+}
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+.group-title .emoji {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* ========== POI 卡片 ========== */
+.poi {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ecedef;
+}
+
+.poi-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.poi-name .tag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.tag.attract   { background: #fef0ef; color: #c7392b; }
+.tag.hotel     { background: #f0ecfa; color: #6b46c1; }
+.tag.food      { background: #fff5e8; color: #d97706; }
+.tag.service   { background: #e0f0fc; color: #2563eb; }
+.tag.optional  { background: #f0f9ff; color: #0891b2; }
+.tag.peak      { background: #fff8e1; color: #f57f17; }
+.tag.stop      { background: #e3f2fd; color: #1565c0; }
+.tag.start     { background: #e8f5e9; color: #2d7d46; }
+.tag.end       { background: #fce4ec; color: #c62828; }
+.tag.gps       { background: #e8f5e9; color: #2d7d46; }
+.tag.search    { background: #f0f1f3; color: #555; }
+
+.poi-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.poi-info .price { color: #FF6F00; font-weight: 600; }
+.poi-info .note  { color: #c62828; }
+
+.poi-actions {
+  display: flex;
+  gap: 8px;
+}
+.poi-actions a {
+  flex: 1;
+  display: block;
+  text-align: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+.btn-nav {
+  background: #2E7D32;
+  color: white;
+}
+.btn-search {
+  background: #f0f1f3;
+  color: #555;
+}
+
+/* ========== 使用说明 ========== */
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2E7D32;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+/* ========== 浮动返回顶部按钮 ========== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #2E7D32;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部 ========== -->
+<header>
+  <h1>🌾 内蒙草原 5 天环线 · 高德导航点位</h1>
+  <p><span class="route">北京 → 承德 → 塞罕坝 → 乌兰布统 → 达达线+热阿线 → 经棚 → 达里湖 → 北京</span></p>
+  <p style="margin-top:4px;">5 天 · 1700km · 两驱 SUV · 不走回头路</p>
+</header>
+
+<div class="banner-tip">
+  💡 仅 <b>乌兰布统影视基地</b> 使用了精确经纬度导航；其他 POI 点击 <b>📍 打开高德</b> 后由高德 App 自动定位。出发前可在高德 App 拾取坐标替换。
+</div>
+
+<!-- 日期快速跳转 -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day1">D1 北京→乌兰布统</a>
+  <a href="#day2">D2 乌兰布统</a>
+  <a href="#day3">D3 达达线+热阿线</a>
+  <a href="#day4">D4 克什克腾深度</a>
+  <a href="#day5">D5 达里湖→北京</a>
+</nav>
+
+<!-- ========== Day 1 ========== -->
+<section class="day" id="day1">
+  <div class="day-title">
+    <span class="day-num">D1</span>
+    <div class="day-info">
+      <h2>北京 → 承德 → 塞罕坝 → 乌兰布统</h2>
+      <div class="meta">460km · 6.5h · 京承/承围线</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 起点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏠</span>起点</div>
+    <div class="poi">
+      <div class="poi-name">顺义枫泉花园
+        <span class="tag start">家</span>
+      </div>
+      <div class="poi-info">📍 北京市顺义区空港街道枫泉花园 · 7:30 出发</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&city=%E5%8C%97%E4%BA%AC%E5%B8%82&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点（路上三个免费加分点）</div>
+
+    <div class="poi">
+      <div class="poi-name">塞罕坝国家森林公园
+        <span class="tag attract">穿林海</span>
+      </div>
+      <div class="poi-info">📍 河北省承德市围场县 · 15:30 路过 · 落叶松林海 + 草甸过渡带 · <span class="price">免费</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9A%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&city=%E5%9B%B4%E5%9C%BA&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9A&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">塞罕坝·七星湖
+        <span class="tag attract">+1h</span>
+      </div>
+      <div class="poi-info">📍 塞罕坝内 · 16:00 · 木栈道+晨雾+落叶松 · <span class="price">免费</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9A%E4%B8%83%E6%98%9F%E6%B9%96&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%83%E6%98%9F%E6%B9%96+%E5%A1%9E%E7%BD%95%E5%9D%9A&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">御道口·月亮湖
+        <span class="tag attract">+30m</span>
+      </div>
+      <div class="poi-info">📍 御道口草原森林风景区内 · 17:00 · 月牙形草原湖 · <span class="price">塞罕坝联票</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BE%A1%E9%81%93%E5%8F%A3%E6%9C%88%E4%BA%AE%E6%B9%96&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BE%A1%E9%81%93%E5%8F%A3+%E6%9C%88%E4%BA%AE%E6%B9%96&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">乌兰布统影视基地
+        <span class="tag attract gps">⭐日落</span>
+      </div>
+      <div class="poi-info">📍 18:30 · 欧式草原+暖光铺草甸 · <b>还珠格格取景地</b> · <span class="note">已使用精确坐标</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.159839,42.544924,%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐饮</div>
+
+    <div class="poi">
+      <div class="poi-name">承德·老三羊汤
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 承德市区 · 12:00 · 羊汤+烧饼 · 人均 <span class="price">¥50</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E6%89%BF%E5%BE%B7+%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%89%BF%E5%BE%B7%E7%BE%8A%E6%B1%A4&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">老舅老蒙肉饼（红山军马场）
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 红山军马场 · 20:00 · 当地特色 · 人均 <span class="price">¥80</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC+%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店（红山军马场）</div>
+
+    <div class="poi">
+      <div class="poi-name">乌兰布统红山宾馆
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 红山军马场镇中心 · <span class="price">¥400-500/晚</span> · 老牌位置中心</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA+%E9%85%92%E5%BA%97&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">将军泡子蒙古大营
+        <span class="tag hotel optional">备选</span>
+      </div>
+      <div class="poi-info">📍 将军泡子附近 · <span class="price">¥350-450/晚</span> · 看泡子日出方便</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90%E8%92%99%E5%8F%A4%E5%A4%A7%E8%90%A5&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90+%E8%92%99%E5%8F%A4%E5%A4%A7%E8%90%A5&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 2 ========== -->
+<section class="day" id="day2">
+  <div class="day-title">
+    <span class="day-num">D2</span>
+    <div class="day-info">
+      <h2>乌兰布统核心区（柏油可达）</h2>
+      <div class="meta">80km · 12h · 公主湖+将军泡子+影视基地</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌅</span>日出 + 草原三件套</div>
+
+    <div class="poi">
+      <div class="poi-name">私家牧场（看日出）
+        <span class="tag attract">日出</span>
+      </div>
+      <div class="poi-info">📍 乌兰布统镇西 · 5:30 · 晨雾+草浪+草原日出 · <span class="price">免费</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%A7%81%E5%AE%B6%E7%89%A7%E5%9C%BA&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%89%A7%E5%9C%BA&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">公主湖
+        <span class="tag attract">8:30</span>
+      </div>
+      <div class="poi-info">📍 蓝齐格格传说 · 欧式草原湖泊 · 轻徒步 30 分钟</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E5%85%AC%E4%B8%BB%E6%B9%96&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E5%85%AC%E4%B8%BB%E6%B9%96&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">盘龙峡谷
+        <span class="tag attract optional">隐藏点</span>
+      </div>
+      <div class="poi-info">📍 公主湖与将军泡子之间 · 9:30 · 草原小峡谷+野花+怪石</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">五彩山
+        <span class="tag attract">10:30</span>
+      </div>
+      <div class="poi-info">📍 乌兰布统北 · 色彩斑斓山丘 · 摄影点</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E4%BA%94%E5%BD%A9%E5%B1%B1&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E4%BA%94%E5%BD%A9%E5%B1%B1&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">金莲花湿地（7-8 月限定）
+        <span class="tag attract peak">限季</span>
+      </div>
+      <div class="poi-info">📍 乌兰布统东北 · 15:30 · 漫山遍野金莲</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%87%91%E8%8E%B2%E8%8A%B1+%E6%B9%BF%E5%9C%B0&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">东沟
+        <span class="tag attract optional">人少</span>
+      </div>
+      <div class="poi-info">📍 乌兰布统南 · 17:00 · 比西沟人少 70%，野花密</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E4%B8%9C%E6%B2%9F&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E4%B8%9C%E6%B2%9F&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">将军泡子（⭐ 日落）
+        <span class="tag attract gps">⭐日落</span>
+      </div>
+      <div class="poi-info">📍 17:30 · 日落摄影圣地 · 马蹄踏出的湖泊</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐饮 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐饮</div>
+
+    <div class="poi">
+      <div class="poi-name">蒙古牧户家（手把肉）
+        <span class="tag food">午餐</span>
+      </div>
+      <div class="poi-info">📍 12:00 · 骨头带肉清水煮+奶茶+奶豆腐 · 人均 <span class="price">¥100</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F+%E7%89%A7%E6%88%B7+%E6%89%8B%E6%8A%8A%E8%82%89&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%92%99%E5%8F%A4%E6%89%8B%E6%8A%8A%E8%82%89&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">铜锅涮肉（红山军马场）
+        <span class="tag food">晚餐</span>
+      </div>
+      <div class="poi-info">📍 19:30 · 草原羊肉鲜嫩无膻 · 人均 <span class="price">¥120</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA+%E9%93%9C%E9%94%85%E6%BE%A1%E8%82%89&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA+%E9%93%9C%E9%94%85%E6%BE%A1%E8%82%89&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店（同 D1） -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店（红山军马场 · 同 D1）</div>
+    <div class="poi">
+      <div class="poi-name">乌兰布统红山宾馆（同 D1）
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 红山军马场 · <span class="price">¥400-500/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B9%8C%E5%85%B0%E5%B8%83%E7%BB%9F%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA+%E9%85%92%E5%BA%97&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 3 ========== -->
+<section class="day" id="day3">
+  <div class="day-title">
+    <span class="day-num">D3</span>
+    <div class="day-info">
+      <h2>达达线 + 热阿线环线（草原公路精华）</h2>
+      <div class="meta">280km · 8h · G303 → 达达线 → 热阿线 → 经棚镇</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 节点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🛣</span>达达线节点（全程柏油）</div>
+
+    <div class="poi">
+      <div class="poi-name">贡格尔收费站（达达线起点）
+        <span class="tag stop">9:30</span>
+      </div>
+      <div class="poi-info">📍 经棚镇南 · 丹锡高速出口 · 下来正式踏上达达线 · <span class="price">最后一次加油点</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%B4%A1%E6%A0%BC%E5%B0%94+%E8%BE%BE%E8%BE%BE%E7%BA%BF&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">巴彦查干苏木
+        <span class="tag stop">12:00</span>
+      </div>
+      <div class="poi-info">📍 达达线 150km 处 · <span class="note">⚠️ 最后一个正经餐馆</span> · 手把肉+面条</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">阿斯哈图石林·南门（石林驿站）
+        <span class="tag attract">13:00</span>
+      </div>
+      <div class="poi-info">📍 阿斯哈图石林景区南门外 5km · <b>免费远眺</b>，省 160 门票</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97+%E5%8D%97%E9%97%A8&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%9F%B3%E6%9E%97%E9%A9%BF%E7%AB%99&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">黄岗梁森林旅游区（山顶）
+        <span class="tag attract gps">15:00</span>
+      </div>
+      <div class="poi-info">📍 <b>导航搜"黄岗梁森林旅游区"</b>，不是"国家森林公园" · 山顶车最多处即精华 · 草甸+盘山路</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">黄岗梁·盘山公路（半山腰）
+        <span class="tag attract optional">16:30</span>
+      </div>
+      <div class="poi-info">📍 黄岗梁半山腰停车点 · 绿+雾+云海组合 · 拍照点</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81+%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81+%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">热水塘镇（温泉）
+        <span class="tag service">17:30</span>
+      </div>
+      <div class="poi-info">📍 克什克腾旗 · 解乏温泉 · <span class="price">150-200/人</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E6%B8%A9%E6%B3%89&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店（经棚镇）</div>
+
+    <div class="poi">
+      <div class="poi-name">星程酒店（克什克腾旗店）
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 经棚镇 · <span class="price">¥350-450/晚</span> · 连锁稳定</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97+%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E9%85%92%E5%BA%97&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">热水塘温泉酒店
+        <span class="tag hotel optional">可选</span>
+      </div>
+      <div class="poi-info">📍 热水塘镇 · <span class="price">¥500-800/晚</span> · 住这可省去当晚返程</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E6%B8%A9%E6%B3%89%E9%85%92%E5%BA%97&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E9%85%92%E5%BA%97&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 4 ========== -->
+<section class="day" id="day4">
+  <div class="day-title">
+    <span class="day-num">D4</span>
+    <div class="day-info">
+      <h2>克什克腾石林 + 桦木沟 + 温泉 + 玉龙沙湖</h2>
+      <div class="meta">200km · 10h · 克什克腾深度一日</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">桦木沟国家森林公园
+        <span class="tag attract optional">隐藏点</span>
+      </div>
+      <div class="poi-info">📍 经棚镇西 30km · 8:00 · 白桦林+溪流+野蘑菇 · <span class="price">免费</span> · 人少 90%</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%A1%A6%E6%9C%A8%E6%B2%9F&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">克什克腾石阵（阿斯哈图石林）
+        <span class="tag attract">9:30</span>
+      </div>
+      <div class="poi-info">📍 阿斯哈图石林景区内 · <span class="price">¥160/人（含摆渡车）</span> · 2-3h</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97+%E5%85%A8%E9%98%B3&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E9%98%B5&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">石林内·月亮城堡
+        <span class="tag attract optional">景区内</span>
+      </div>
+      <div class="poi-info">📍 景区东门进 · 问"月亮城堡方向" · 不另收费 · 像城堡的巨石阵</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97+%E6%9C%88%E4%BA%AE%E5%9F%8E%E5%A0%A1&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9C%88%E4%BA%AE%E5%9F%8E%E5%A0%A1&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">玉龙沙湖
+        <span class="tag attract optional">17:00</span>
+      </div>
+      <div class="poi-info">📍 克什克腾旗西侧 · 沙漠+湖泊+骆驼 · <span class="note">雨后放弃</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 温泉 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">♨️</span>温泉</div>
+
+    <div class="poi">
+      <div class="poi-name">热水塘镇温泉
+        <span class="tag service">14:00</span>
+      </div>
+      <div class="poi-info">📍 热水塘镇 · 半日票 <span class="price">¥150-200/人</span> · 解乏神器</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87+%E6%B8%A9%E6%B3%89&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐饮 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐饮</div>
+
+    <div class="poi">
+      <div class="poi-name">克什克腾烤羊腿（经棚镇）
+        <span class="tag food">必吃</span>
+      </div>
+      <div class="poi-info">📍 经棚镇 · 12:00 / 19:00 · 烤羊腿+莜面宴 · 人均 <span class="price">¥120</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87+%E7%83%A4%E7%BE%8A%E8%85%BF&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87+%E8%92%99%E9%A4%90&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">草原牧歌蒙餐（经棚镇）
+        <span class="tag food">推荐</span>
+      </div>
+      <div class="poi-info">📍 经棚镇 · 19:00 · 蒙餐 · 人均 <span class="price">¥100</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90+%E7%BB%8F%E6%A3%9A%E9%95%87&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店（经棚镇 · 同 D3）</div>
+    <div class="poi">
+      <div class="poi-name">星程酒店（克什克腾旗店）
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 经棚镇 · <span class="price">¥350-450/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97+%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E6%97%97+%E7%BB%8F%E6%A3%9A%E9%95%87+%E9%85%92%E5%BA%97&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Day 5 ========== -->
+<section class="day" id="day5">
+  <div class="day-title">
+    <span class="day-num">D5</span>
+    <div class="day-info">
+      <h2>达里湖 → 锡张高速 → 北京</h2>
+      <div class="meta">660km · 8h · 走 G303 + 锡张高速（不走回头路）</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 景点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+
+    <div class="poi">
+      <div class="poi-name">达里湖北岸景区
+        <span class="tag attract gps">⭐9:30</span>
+      </div>
+      <div class="poi-info">📍 克什克腾旗达里湖 · 草原马尔代夫 · 茅草屋+帆船 · <span class="price">¥40-60/人</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8C%97%E5%B2%B8&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8C%97%E5%B2%B8&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">达里湖南岸（航拍点）
+        <span class="tag attract optional">11:00</span>
+      </div>
+      <div class="poi-info">📍 达里湖南岸 · 火山地貌+盐碱滩 · 苍凉美 · 航拍最佳</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8D%97%E5%B2%B8&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96+%E5%8D%97%E5%B2%B8&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐饮 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐饮（返程路上）</div>
+
+    <div class="poi">
+      <div class="poi-name">锡林郭勒·额尔敦
+        <span class="tag food">13:00 午餐</span>
+      </div>
+      <div class="poi-info">📍 锡林浩特 · 传统蒙餐 · 羊排+奶茶 · 人均 <span class="price">¥130</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E9%A2%9D%E5%B0%94%E6%95%A6+%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9+%E8%92%99%E9%A4%90&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">太仆寺旗宾馆餐厅
+        <span class="tag food">15:30 补餐</span>
+      </div>
+      <div class="poi-info">📍 太仆寺旗 · 家常菜 · 份量大 · 人均 <span class="price">¥60</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E4%BB%93%E5%A3%AB%E6%97%97+%E9%A2%86%E9%A4%90&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E4%BB%93%E5%A3%AB%E6%97%97&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站</div>
+
+    <div class="poi">
+      <div class="poi-name">张家口服务区
+        <span class="tag service">17:00 休整</span>
+      </div>
+      <div class="poi-info">📍 京藏高速 · 大休整点 · 距北京 200km</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA+%E4%BA%AC%E8%97%8F%E9%AB%98%E9%80%9F&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 终点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏠</span>终点</div>
+    <div class="poi">
+      <div class="poi-name">顺义枫泉花园
+        <span class="tag end">家</span>
+      </div>
+      <div class="poi-info">📍 19:30 抵京 · 行程结束 🎉</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&city=%E5%8C%97%E4%BA%AC%E5%B8%82&src=momotrip">📍 打开高德</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用说明 ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li>点击任意点位的 <b>📍 打开高德</b> / <b>🚗 导航</b> 按钮</li>
+    <li>手机自动唤起高德地图 App（未装则打开网页版）</li>
+    <li>已装坐标的（乌兰布统影视基地）：点击 🚗 导航 直接拉起路径规划</li>
+    <li>未装坐标的：点击 📍 打开高德 进入 App，由高德自动定位</li>
+    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
+    <li>在 App 里可切换驾车 / 步行 / 公交</li>
+  </ol>
+  <div class="tip">
+    💡 小贴士：<br>
+    • 顶部 <b>绿色【⛳ gps】</b> 标签 = 已装精确坐标<br>
+    • 顶部 <b>绿色【⭐日落】</b> 标签 = 行程核心节点<br>
+    • 顶部 <b>【限季】【可选】</b> 标签 = 季节限定 / 弹性项目<br>
+    • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区 · 🟢 起讫<br>
+    • 想精修坐标：打开高德 App → 长按 POI → 分享位置 → 复制坐标
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const navLinks = document.querySelectorAll('.day-nav a');
+const sections = document.querySelectorAll('.day');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
