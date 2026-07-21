@@ -8,10 +8,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# 权限：pages-action 需要 PR write 权限才能在 PR 上评论部署链接
+# 权限：pages-action 默认 GITHUB_TOKEN 是 read-only，不需要写权限
+# 如果以后要加 PR 评论部署链接，需要 'deployments: write'
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   deploy:
@@ -40,4 +40,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: durunzhe-blog
           directory: ./_site
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # gitHubToken 省略 · 默认 GITHUB_TOKEN 是 read-only 会接 deploy 里的 403
