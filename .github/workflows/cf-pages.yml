@@ -26,10 +26,10 @@ jobs:
           ruby-version: '3.2'
 
       # 3. 安装 Jekyll & build
-      #    没 Gemfile 所以直接 global install；用 --safe 避免 plugin 缺失报错
+      #    _config.yml 里 theme=minima + plugins=[jekyll-feed]，一起装
       - name: Build Jekyll site
         run: |
-          gem install bundler jekyll --no-document
+          gem install bundler jekyll minima jekyll-feed --no-document
           jekyll build
 
       # 4. 把 _site/ 部署到 Cloudflare Pages
