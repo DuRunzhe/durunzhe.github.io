@@ -29,11 +29,15 @@ TAG_LABEL = {
 
 
 def render_poi(item, default_city, src_tag):
-    """混合模式 v3（精确二分）：
-      有真实坐标 → [🚗 导航][📍 标记位置]
-        📍 标记位置凭坐标精确标注，不会选错地方
+    """混合模式 v4（有坐标 3 按钮 / 无坐标 2 按钮 · 搜索永在）：
+
+      有真实坐标 → [🚗 导航][📍 标记位置][🔍 搜索]
+        📍 标记位置凭坐标精准标注，
+        🔍 搜索永在，用以查同名 POI / 收藏 / 确认
+
       无坐标     → [🚗 导航][🔍 搜索]
-        🔍 搜索用 name + city 限定，避免同名 POI 冲突
+        🚗 导航走 to=0,0,name（高德自动纠错）
+        🔍 搜索带 city 限定做兜底
 
       0,0 替代：导航走 navigation?to=0,0,name ，高德 dir 页会自动 fallback 到
       name 搜索定位（验证过的自动纠错机制）。
@@ -47,7 +51,6 @@ def render_poi(item, default_city, src_tag):
     encoded_city = urllib.parse.quote(default_city)
 
     has_coord = bool(coords and len(coords) == 2)
-    # 0,0 是赤道本初子午线交点（西非几内亚湾）— 用作 "无坐标" 时的明确占位
     lng = coords[0] if has_coord else 0
     lat = coords[1] if has_coord else 0
 
@@ -55,10 +58,12 @@ def render_poi(item, default_city, src_tag):
 
     if has_coord:
         marker_url = f'https://uri.amap.com/marker?markers={lng},{lat},{encoded_name}&src={src_tag}'
-        # 有坐标：导航 + 标记位置（坐标精准，不会选错）
+        # 有坐标：导航 + 标记位置 + 搜索（搜索必带·同名时手动确认）
         actions_html = (
             f'<a class="btn-nav" target="_blank" href="{nav_url}">🚗 导航</a>'
             f'\n        <a class="btn-marker" target="_blank" href="{marker_url}">📍 标记位置</a>'
+            f'\n        <a class="btn-search" target="_blank" '
+            f'href="https://uri.amap.com/search?keyword={encoded_name}&src={src_tag}">🔍 搜索</a>'
         )
     else:
         search_url = f'https://uri.amap.com/search?keyword={encoded_name}&city={encoded_city}&src={src_tag}'
@@ -198,10 +203,10 @@ header p .route {{ font-weight: 600; }}
 .tag.end       {{ background: #fce4ec; color: #c62828; }}
 .tag.stop      {{ background: #e3f2fd; color: #1565c0; }}
 .poi-info {{ font-size: 12px; color: #888; margin-bottom: 10px; line-height: 1.5; }}
-.poi-actions {{ display: flex; gap: 8px; }}
+.poi-actions {{ display: flex; gap: 6px; flex-wrap: wrap; }}
 .poi-actions a {{
-  flex: 1; display: block; text-align: center;
-  padding: 8px 6px; border-radius: 6px;
+  flex: 1 1 calc(50% - 3px); min-width: 88px; display: block; text-align: center;
+  padding: 8px 4px; border-radius: 6px;
   text-decoration: none; font-size: 13px; font-weight: 500;
   -webkit-tap-highlight-color: transparent;
 }}
@@ -245,9 +250,9 @@ header p .route {{ font-weight: 600; }}
   <h3>📱 使用说明</h3>
   <ol>
     <li><b>按钮选择指南：</b></li>
-    <li>所有点位都能点【🚗 导航】（无坐标时高德会自动定位/纠错）</li>
-    <li>有【📍 标记位置】的说明坐标精准，点它能在地图上精准标点</li>
-    <li>有【🔍 搜索】的说明无精确坐标，已限定到城市，多同名时手动选最准</li>
+    <li><b>🚗 导航</b> · 所有点位都有·进高德路径规划页（无坐标点高德会自动纠错）</li>
+    <li><b>🔍 搜索</b> · 所有点位都有·查看同名 POI / 收藏/确认（无坐标点已限定到所在城市）</li>
+    <li><b>📍 标记位置</b> · 仅坐标精准的点有·地图上精准标点</li>
     <li>手机会唤起高德 App；未装则跳网页版</li>
   </ol>
   <div class="tip">
