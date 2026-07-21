@@ -1,0 +1,43 @@
+name: Deploy to Cloudflare Pages
+
+# 触发条件：
+#   - push main 分支 → 自动部署到 CF Pages
+#   - 手动 dispatch（Actions tab → Run workflow）→ 也可触发
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# 权限：pages-action 需要 PR write 权限才能在 PR 上评论部署链接
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉源代码
+      - uses: actions/checkout@v4
+
+      # 2. 配 Ruby 3.2（Jekyll 4.x 需求）
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      # 3. 安装 Jekyll & build
+      #    没 Gemfile 所以直接 global install；用 --safe 避免 plugin 缺失报错
+      - name: Build Jekyll site
+        run: |
+          gem install bundler jekyll --no-document
+          jekyll build
+
+      # 4. 把 _site/ 部署到 Cloudflare Pages
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: durunzhe-blog
+          directory: ./_site
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
