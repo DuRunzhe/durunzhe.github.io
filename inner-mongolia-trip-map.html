@@ -75,10 +75,10 @@ header p .route { font-weight: 600; }
 .tag.end       { background: #fce4ec; color: #c62828; }
 .tag.stop      { background: #e3f2fd; color: #1565c0; }
 .poi-info { font-size: 12px; color: #888; margin-bottom: 10px; line-height: 1.5; }
-.poi-actions { display: flex; gap: 8px; }
+.poi-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .poi-actions a {
-  flex: 1; display: block; text-align: center;
-  padding: 8px 6px; border-radius: 6px;
+  flex: 1 1 calc(50% - 3px); min-width: 88px; display: block; text-align: center;
+  padding: 8px 4px; border-radius: 6px;
   text-decoration: none; font-size: 13px; font-weight: 500;
   -webkit-tap-highlight-color: transparent;
 }
@@ -142,6 +142,7 @@ header p .route { font-weight: 600; }
       <div class="poi-actions">
         <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip">🚗 导航</a>
         <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=momotrip">🔍 搜索</a>
       </div>
     </div>
     <div class="poi">
@@ -152,6 +153,7 @@ header p .route { font-weight: 600; }
       <div class="poi-actions">
         <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=momotrip">🚗 导航</a>
         <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&src=momotrip">🔍 搜索</a>
       </div>
     </div>
     <div class="poi">
@@ -162,6 +164,7 @@ header p .route { font-weight: 600; }
       <div class="poi-actions">
         <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip">🚗 导航</a>
         <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%83%E6%98%9F%E6%B9%96&src=momotrip">🔍 搜索</a>
       </div>
     </div>
     <div class="poi">
@@ -649,9 +652,9 @@ header p .route { font-weight: 600; }
   <h3>📱 使用说明</h3>
   <ol>
     <li><b>按钮选择指南：</b></li>
-    <li>所有点位都能点【🚗 导航】（无坐标时高德会自动定位/纠错）</li>
-    <li>有【📍 标记位置】的说明坐标精准，点它能在地图上精准标点</li>
-    <li>有【🔍 搜索】的说明无精确坐标，已限定到城市，多同名时手动选最准</li>
+    <li><b>🚗 导航</b> · 所有点位都有·进高德路径规划页（无坐标点高德会自动纠错）</li>
+    <li><b>🔍 搜索</b> · 所有点位都有·查看同名 POI / 收藏/确认（无坐标点已限定到所在城市）</li>
+    <li><b>📍 标记位置</b> · 仅坐标精准的点有·地图上精准标点</li>
     <li>手机会唤起高德 App；未装则跳网页版</li>
   </ol>
   <div class="tip">
