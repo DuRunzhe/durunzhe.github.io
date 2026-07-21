@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🚗 五台山+佛光寺·2天自驾 · 高德导航点位</title>
+<style>
+* { box-sizing: border box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 顶部 ========== */
+header {
+  background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+header p { font-size: 12px; opacity: 0.95; }
+header p .route { font-weight: 600; }
+
+/* ========== 顶部导航（日期跳转） ========== */
+.day-nav {
+  background: white;
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 76px;
+  z-index: 99;
+  border-bottom: 1px solid #e8eaec;
+  -webkit-overflow-scrolling: touch;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  background: #f0f1f3;
+  color: #555;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.day-nav a.active,
+.day-nav a:active {
+  background: #FF6F00;
+  color: white;
+}
+
+/* ========== Day 区段 ========== */
+.day { padding: 16px 14px; }
+
+.day-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(to right, #fff5e6, white);
+  border-left: 5px solid #FF6F00;
+  border-radius: 4px;
+}
+.day-title .day-num { font-size: 20px; font-weight: 700; color: #FF6F00; margin-right: 10px; }
+.day-title .day-info { flex: 1; }
+.day-title h2 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+.day-title .meta { font-size: 11px; color: #888; }
+.day-title .route-arrow { font-size: 16px; color: #FF6F00; font-weight: 600; }
+
+/* ========== 分组 ========== */
+.group { margin-bottom: 18px; }
+.group-title {
+  font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px; padding: 0 4px;
+  display: flex; align-items: center;
+}
+.group-title .emoji { margin-right: 6px; font-size: 15px; }
+
+/* ========== POI 卡片 ========== */
+.poi {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ecedef;
+}
+
+.poi-name {
+  font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.poi-name .tag {
+  font-size: 10px; font-weight: 500; padding: 2px 7px;
+  border-radius: 10px; white-space: nowrap; margin-left: 8px;
+}
+/* ========== 标签颜色 ========== */
+.tag.attract   { background: #fef0ef; color: #c7392b; }
+.tag.hotel     { background: #f0ecfa; color: #6b46c1; }
+.tag.food      { background: #fff5e8; color: #d97706; }
+.tag.service   { background: #e0f0fc; color: #2563eb; }
+.tag.optional  { background: #f0f9ff; color: #0891b2; }
+.tag.peak      { background: #fff8e1; color: #f57f17; }
+.tag.stop      { background: #e3f2fd; color: #1565c0; }
+.tag.start     { background: #e8f5e9; color: #2d7d46; }
+.tag.end       { background: #fce4ec; color: #c62828; }
+
+.poi-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.poi-info .price { color: #FF6F00; font-weight: 600; }
+
+/* ========== POI 操作按钮 ========== */
+.poi-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.poi-actions a {
+  flex: 1 1 calc(50% - 3px);
+  min-width: 88px;
+  display: block;
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+.btn-nav    { background: #FF6F00; color: white; }
+.btn-marker { background: #f0f1f3; color: #555; }
+.btn-search { background: #e8eaec; color: #555; }
+
+/* ========== 使用说明 ========== */
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #FF6F00;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+/* ========== 浮动返回顶部 ========== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FF6F00;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部 ========== -->
+<header>
+  <h1>🚗 五台山+佛光寺 · 2 天自驾</h1>
+  <p><span class="route">北京 → 五台山（核心寺院群）→ 佛光寺/南禅寺 → 北京</span></p>
+  <p style="margin-top:4px;">总里程 ~830km · 周六 06:30 出发 / 周日 19:30 到京</p>
+</header>
+
+<!-- 日期快速跳转 -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day1">D1 北京 → 五台山</a>
+  <a href="#day2">D2 五台山 → 佛光寺/南禅寺 → 北京</a>
+</nav>
+
+<!-- ========== D1 周六：北京 → 五台山核心寺院群 ========== -->
+<section class="day" id="day1">
+  <div class="day-title">
+    <span class="day-num">D1</span>
+    <div class="day-info">
+      <h2>北京 → 五台山 · 核心寺院群</h2>
+      <div class="meta">~360km · ~5h · 京昆/沧榆高速 · 寺院游</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 出发 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏁</span>出发</div>
+
+    <div class="poi">
+      <div class="poi-name">北京（顺义·枫泉花园）
+        <span class="tag start">起点</span>
+      </div>
+      <div class="poi-info">📍 北京市顺义区空港街道 · 🚗 06:30 出发</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=枫泉花园&city=北京市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 高速服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>高速服务区（自选）</div>
+
+    <div class="poi">
+      <div class="poi-name">京昆高速 · 涞源服务区
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">⛽ 加油/休息 · 顺路第一个大服务区</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,涞源服务区&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=涞源服务区&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 中午抵达 + 购票 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🎫</span>游客中心（购票）</div>
+
+    <div class="poi">
+      <div class="poi-name">五台山风景名胜区游客中心
+        <span class="tag service">购票·停</span>
+      </div>
+      <div class="poi-info">🎫 门票 ¥135（自驾必买，否则台内罚款）· ⏰ 11:30 抵达 · 🅿 大停车场</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,五台山风景名胜区游客中心&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=五台山风景名胜区游客中心&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- D1 核心寺院群 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏛</span>核心寺院群（13:00-18:30 · 顺序已优化）</div>
+
+    <!-- 五爷庙：先求财 -->
+    <div class="poi">
+      <div class="poi-name">五爷庙（求财最灵）
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">⏰ 13:00 ~30 分钟 · 🕯 香火最旺 · 一到先拜</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,五爷庙&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=五爷庙&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <!-- 显通寺 -->
+    <div class="poi">
+      <div class="poi-name">显通寺（五大禅处之首）
+        <span class="tag attract">必看</span>
+      </div>
+      <div class="poi-info">⏰ 13:30 ~2h · 🔶 青铜殿/铜塔/无量殿（国内唯一青铜建筑群）· 镇寺三宝必看</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,显通寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=显通寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <!-- 塔院寺 -->
+    <div class="poi">
+      <div class="poi-name">塔院寺（大白塔）
+        <span class="tag attract">地标</span>
+      </div>
+      <div class="poi-info">⏰ 15:30 ~30 分钟 · 🔶 五台山标志性建筑大白塔 · 转塔祈福</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,塔院寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=塔院寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <!-- 菩萨顶 -->
+    <div class="poi">
+      <div class="poi-name">菩萨顶（康熙乾隆行宫）
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">⏰ 16:00 ~30 分钟 · 🔶 黄庙领袖 · 108 级台阶 · 顺路登塔院寺后</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,菩萨顶&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=菩萨顶&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <!-- 殊像寺 -->
+    <div class="poi">
+      <div class="poi-name">殊像寺（文殊菩萨最大铜像）
+        <span class="tag attract">必看</span>
+      </div>
+      <div class="poi-info">⏰ 16:30 ~1h · 🔶 全国文殊道场 · 殿内 5 层楼高文殊铜像壮观</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,殊像寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=殊像寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <!-- 南山寺夜景 -->
+    <div class="poi">
+      <div class="poi-name">南山寺（夜景灯光）
+        <span class="tag attract">夜景</span>
+      </div>
+      <div class="poi-info">⏰ 20:00 ~1h · 🔶 亮灯到 22:00 · 免费 · 悬崖石雕精美 · 饭后散步</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,南山寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=南山寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 素斋推荐 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>素斋（推荐）</div>
+
+    <div class="poi">
+      <div class="poi-name">寿宁寺素斋 / 普化寺素斋
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">⏰ 11:30 / 17:30 开饭 · ⚠️ 错过时段吃不上 · 推荐尝试</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,寿宁寺素斋&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=寿宁寺素斋&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- D1 住宿 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>住宿 · 台内民宿（21:00 入住）</div>
+
+    <div class="poi">
+      <div class="poi-name">台怀镇/杨柏峪村民宿
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 台内最方便 · <span class="price">¥200-500/晚</span> · ⚠️ 提前 5-7 天订</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,台怀镇&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=五台山台怀镇民宿&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== D2 周日：五台山 → 佛光寺 → 南禅寺 → 北京 ========== -->
+<section class="day" id="day2">
+  <div class="day-title">
+    <span class="day-num">D2</span>
+    <div class="day-info">
+      <h2>五台山 → 佛光寺/南禅寺 → 北京</h2>
+      <div class="meta">起 05:30 · 重点佛光寺/南禅寺 · 13:30 返京</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 起早出发 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌅</span>起早出发（05:30 起床）</div>
+
+    <div class="poi">
+      <div class="poi-name">台内民宿 → 豆村镇佛光村
+        <span class="tag service">路线</span>
+      </div>
+      <div class="poi-info">🚗 ~40km 山路 · ⏰ 06:00 出发 · 📵 部分路段无信号 · 🧥 带冲锋衣（凌晨 10℃）</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,五台县豆村镇佛光村&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=豆村镇佛光村&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 佛光寺 D2 重点 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌟</span>D2 重点 · 佛光寺（07:30-09:30）</div>
+
+    <div class="poi">
+      <div class="poi-name">佛光寺（梁思成发现 · 唐代木构）
+        <span class="tag attract">国宝</span>
+      </div>
+      <div class="poi-info">⏰ 07:30 ~2h · 🔶 国宝中的国宝 · 必看三件套：东大殿（唐）/文殊殿（金）/祖师塔（北魏）· 🚫 禁止烧香 · 禁止触摸塑像 · 📞 出发前 1 周必打 0350-6554009 确认开放</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,佛光寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=佛光寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 南禅寺 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌟</span>南禅寺（10:00-11:00 · 5km 顺路）</div>
+
+    <div class="poi">
+      <div class="poi-name">南禅寺（亚洲最古老木构 · 782 年）
+        <span class="tag attract">国宝</span>
+      </div>
+      <div class="poi-info">⏰ 10:00 ~40min · 🔶 亚洲现存最古木构 · 17 尊唐代塑像（网红"翘腿美女"）· 殿不大但真迹年代感拉满 · 🎫 免费</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,南禅寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=南禅寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 加油 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>加油站（返程顺路）</div>
+
+    <div class="poi">
+      <div class="poi-name">中国石油 · 豆村加油站
+        <span class="tag service">加油</span>
+      </div>
+      <div class="poi-info">⛽ 建议加满再返程 · 高速前最便利的一站</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,中国石油豆村加油站&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=豆村加油站&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午饭 + 龙泉寺 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>午饭 + 顺路参拜</div>
+
+    <div class="poi">
+      <div class="poi-name">台怀镇（午饭）
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">⏰ 12:30 午饭 · 推荐餐厅现场选 · 抓紧时间，D2 不停</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,五台山台怀镇&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=台怀镇&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">龙泉寺（汉白玉石雕牌坊 · 山西第一）
+        <span class="tag attract optional">收尾</span>
+      </div>
+      <div class="poi-info">⏰ 13:00 ~30min · 🔶 北线特色 · 全山西最精美石雕牌坊 · 时间紧可砍</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,龙泉寺&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=龙泉寺&city=忻州市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 返京 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🛣</span>返京路线（13:30-19:30）</div>
+
+    <div class="poi">
+      <div class="poi-name">五台县 → 北京（顺义·枫泉花园）
+        <span class="tag end">回程</span>
+      </div>
+      <div class="poi-info">🚗 13:30 出发 · ~470km · 京昆 → 沧榆高速 · ⚠️ 早出发，19:30 前到京（晚高峰前）</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,枫泉花园&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=枫泉花园&city=北京市&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 高碑店服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>返京途中服务区（备用）</div>
+
+    <div class="poi">
+      <div class="poi-name">京昆高速 · 高碑店服务区
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">⛽ 加油/休整 · 离北京最近的大服务区之一</div>
+      <div class="poi-actions">
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,高碑店服务区&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=高碑店服务区&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用说明 ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li><b>按钮选择指南：</b></li>
+    <li><b>🚗 导航</b> · 所有点位都有 · 高德自动 fallback name 搜索定位</li>
+    <li><b>🔍 搜索</b> · 所有点位都有 · 查同名 POI / 收藏 / 二次确认</li>
+    <li><b>📍 标记位置</b> · 本攻略暂无（未获取精确坐标，用 0,0 兜底）</li>
+    <li>手机点按钮会唤起高德 App；未装则跳网页版</li>
+  </ol>
+  <div class="tip">
+    💡 <b>必看提醒：</b><br>
+    • 🚫 <b>五台山周末交通管制</b> · 单双号/限行路线 · 出发前 1 天查"五台山自驾最新政策"<br>
+    • 🎫 <b>自驾必买门票 ¥135</b> · 台内查到无票罚款 200+ 补票<br>
+    • 📞 <b>佛光寺预约</b> · 0350-6554009 · 出发前 1 周必打<br>
+    • 🧥 <b>高海拔防寒</b> · 五台山 1500-2500m · 凌晨 10℃ · 冲锋衣必带<br>
+    • ⏰ <b>13:30 必须返</b> · 15:00 后京昆易堵 · 提前 2h 出保险<br>
+    • 🚫 <b>佛光寺禁香禁触</b> · 古建博物馆规矩严格<br>
+    • 🚗 <b>出发前加满油</b> · 豆村/台怀镇加油站选择少<br>
+    • 🗺 颜色：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区<br>
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const navLinks = document.querySelectorAll('.day-nav a');
+const sections = document.querySelectorAll('.day');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
