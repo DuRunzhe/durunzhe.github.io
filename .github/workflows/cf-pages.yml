@@ -29,7 +29,8 @@ jobs:
       #    锁定 Jekyll 3.10.0（GitHub Pages 同款），避免 Jekyll 4.x post layout 渲染 bug
       - name: Build Jekyll site
         run: |
-          gem install bundler jekyll -v "~> 3.10.0" minima jekyll-feed --no-document
+          gem install bundler jekyll -v "~> 3.10.0" --no-document
+          gem install minima jekyll-feed --no-document
           jekyll build
 
       # 4. 把 _site/ 部署到 Cloudflare Pages
