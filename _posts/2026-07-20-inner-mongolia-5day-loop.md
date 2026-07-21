@@ -5,6 +5,166 @@ categories: [trip, self-drive]
 tags: [内蒙, 自驾, 草原, 达达线, 热阿线, 乌兰布统, 克什克腾, 达里湖]
 ---
 
+<!-- 手机友好的文章样式（参考 fujian-coast-self-drive.html pandoc 风格） -->
+<style>
+/* ----- 主体字体加粗 + 行宽限制 ----- */
+.post-content, .page-content {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #2a2a2a;
+  max-width: 38em;
+  margin: 0 auto;
+}
+.post-content p, .post-content li,
+.page-content p, .page-content li {
+  font-size: 17px;
+  line-height: 1.85;
+  margin: 0.8em 0;
+}
+
+/* ----- 标题层级加大、加色 ----- */
+.post-content h1, .page-content h1 {
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin: 1.6em 0 0.8em;
+}
+.post-content h2, .page-content h2 {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #FF6F00;
+  margin: 2em 0 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 3px solid #FF6F00;
+}
+.post-content h3, .page-content h3 {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #d96a00;
+  margin: 1.6em 0 0.6em;
+}
+.post-content h4, .page-content h4 {
+  font-size: 1.05em;
+  font-weight: 600;
+  color: #444;
+  margin: 1.3em 0 0.5em;
+  padding: 0.5em 0.8em;
+  background: #fff3e0;
+  border-left: 5px solid #FF6F00;
+}
+
+/* ----- 表格 ----- */
+.post-content table, .page-content table {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 1.4em auto;
+  width: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e6e6e6;
+  display: block;
+  overflow-x: auto;
+}
+.post-content th, .page-content th {
+  background: #FF6F00;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+.post-content td, .page-content td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+.post-content tr:nth-child(even), .page-content tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ----- 块引用高亮 ----- */
+.post-content blockquote, .page-content blockquote {
+  background: #fff8e1;
+  border-left: 5px solid #FF6F00;
+  padding: 12px 16px;
+  margin: 1.2em 0;
+  color: #555;
+  border-radius: 4px;
+}
+
+/* ----- 强调 / 链接 ----- */
+.post-content strong, .page-content strong {
+  color: #d96a00;
+}
+.post-content a, .page-content a {
+  color: #FF6F00;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ----- 行内代码 ----- */
+.post-content code, .page-content code {
+  background: #f6f6f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #c7254e;
+}
+
+/* ----- 分割 ----- */
+.post-content hr, .page-content hr {
+  border: none;
+  border-top: 1px dashed #ccc;
+  margin: 2.4em 0;
+}
+
+/* ----- 锚点跳转留出位置 (避免被浮动 TOC 遮住) ----- */
+.post-content :target, .page-content :target {
+  scroll-margin-top: 80px;
+}
+
+/* ======================================= */
+/* ============ Mobile 响应式 ============== */
+/* ======================================= */
+@media (max-width: 768px) {
+  .post-content, .page-content {
+    font-size: 16px;
+    line-height: 1.75;
+    padding: 8px;
+  }
+  .post-content p, .post-content li,
+  .page-content p, .page-content li {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .post-content h1, .page-content h1 { font-size: 1.6em; }
+  .post-content h2, .page-content h2 { font-size: 1.35em; }
+  .post-content h3, .page-content h3 { font-size: 1.18em; }
+  .post-content h4, .page-content h4 { font-size: 1em; }
+  .post-content table, .page-content table { font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .post-content, .page-content {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .post-content p, .post-content li,
+  .page-content p, .page-content li {
+    font-size: 15px;
+  }
+  .post-content h1, .page-content h1 { font-size: 1.45em; }
+  .post-content h2, .page-content h2 { font-size: 1.25em; }
+  .post-content h3, .page-content h3 { font-size: 1.1em; }
+  .post-content table, .page-content table { font-size: 12px; }
+  /* 浮动 TOC 在小屏幕下不挡视图 */
+  .toc-float .toc-panel {
+    width: calc(100vw - 32px);
+    right: -8px;
+  }
+}
+</style>
+
 > 📍 **配套高德导航页**：[inner-mongolia-trip-map.html](/inner-mongolia-trip-map.html) — 每日 POI 卡片，点击直接拉起高德 App
 >
 > （移动端打开攻略 + 配套导航页，路上直接点 POI 卡片就能跳到高德 App）
