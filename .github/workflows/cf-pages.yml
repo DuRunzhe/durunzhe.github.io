@@ -31,7 +31,13 @@ jobs:
         run: |
           gem install jekyll -v '3.10.0' --no-document
           gem install bundler minima jekyll-feed kramdown-parser-gfm --no-document
-          jekyll build
+          echo "=== Jekyll version ==="
+          jekyll --version
+          echo "=== Build ==="
+          jekyll build --verbose
+          echo "=== Check output ==="
+          ls -la _site/trip/self-drive/2026/07/20/inner-mongolia-5day-loop.html 2>/dev/null || echo "Post not found"
+          head -c 200 _site/trip/self-drive/2026/07/20/inner-mongolia-5day-loop.html 2>/dev/null || echo "Cannot read post"
 
       # 4. 把 _site/ 部署到 Cloudflare Pages
       - name: Publish to Cloudflare Pages
