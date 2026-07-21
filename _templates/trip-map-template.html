@@ -130,13 +130,15 @@ header p .route { font-weight: 600; }
 /* ========== POI 操作按钮 ========== */
 .poi-actions {
   display: flex;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 .poi-actions a {
-  flex: 1;
+  flex: 1 1 calc(50% - 3px);
+  min-width: 88px;
   display: block;
   text-align: center;
-  padding: 8px 6px;
+  padding: 8px 4px;
   border-radius: 6px;
   text-decoration: none;
   font-size: 13px;
@@ -146,14 +148,9 @@ header p .route { font-weight: 600; }
 }
 .poi-actions a:active { opacity: 0.7; }
 
-.btn-nav {
-  background: #FF6F00;
-  color: white;
-}
-.btn-search {
-  background: #f0f1f3;
-  color: #555;
-}
+.btn-nav    { background: #FF6F00; color: white; }
+.btn-marker { background: #f0f1f3; color: #555; }
+.btn-search { background: #e8eaec; color: #555; }
 
 /* ========== 使用说明 ========== */
 .usage {
@@ -207,20 +204,25 @@ header p .route { font-weight: 600; }
 
 <!--
 ================================================================
-📚 trip-map-template.html 用法（混合模式 · 福建自驾游标准版）
+📚 trip-map-template.html 用法（混合模式 v4 · 搜索必带）
 
 适用场景：完整的高德导航点位页面。
-- 有坐标的 POI → navigation?to=lng,lat,name（完美 deep link）
-- 无坐标的 POI → search?keyword=POI名&city=城市（fallback 唤起 web 版）
+- 有坐标的 POI →  [🚗 导航] [📍 标记位置] [🔍 搜索]    (3 按钮)
+- 无坐标的 POI →  [🚗 导航（0,0 占位）] [🔍 搜索（带 city）]    (2 按钮)
+
+设计原则：
+- 0,0 替代：导航走 navigation?to=0,0,name，高德 dir 页自动 fallback 到 name 搜索定位
+- 搜索永在：兜底永久·有坐标点用于查同名/收藏/确认·无坐标点带 city 限定防误选
+- 📍 标记位置只在有真实坐标时出现（0,0 标到几内亚湾比不标更糟）
 
 区别于旧版：
-- ❌ 旧版：每个 POI 都有「📍 手动搜」按钮
-- ✅ 新版：单按钮，按 URL 形态自动切文字（"🚗 导航" 或 "🔍 搜索"）
-- ✅ 新版：使用说明用简洁 4 步叙述，不写"为什么不能一键直达"长段
+- ❌ 旧版：每个 POI 单按钮，按 URL 形态切文字（"🚗 导航" 或 "🔍 搜索"）
+- ✅ 新版：按坐标可用性分 · 搜索永在 · 按钮按需填列
 
 参数：
 - 每个 .poi 卡片：替换名称、信息、tag、按需替换 URL href
 - src 参数：默认 yourtag，发布时替换成专属 utm（如 momotrip/fjtravel）
+- 0,0 占位：未获取坐标但有准确地名时用 0,0（赤道本初子午线交点），高德会自动纠错
 ================================================================
 -->
 
@@ -259,16 +261,17 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">📍 地址 · ⏰ 时间 · 门票 · 简介</div>
       <div class="poi-actions">
-        <!-- 有坐标版：点击直接唤起高德 App → 地点卡片 → "去这里" -->
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=经度,纬度,景点名称&mode=car&src=yourtag">🚗 导航</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/marker?markers=经度,纬度,景点名称&src=yourtag">📍 标记位置</a>
+        <!-- 有坐标版：3 按钮（搜索必带 · 无 city 限定） -->
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=经度,纬度,景点名称&mode=car&src=yourtag">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=经度,纬度,景点名称&src=yourtag">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=景点名称&src=yourtag">🔍 搜索</a>
       </div>
     </div>
   </div>
 
   <!-- 景点 - 无坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏛</span>景点 · 无坐标版（搜索 fallback）</div>
+    <div class="group-title"><span class="emoji">🏛</span>景点 · 无坐标版（0,0 替代 + 搜索带 city）</div>
 
     <div class="poi">
       <div class="poi-name">景点名称
@@ -276,8 +279,9 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">📍 地址 · ⏰ 时间 · 门票 · 简介</div>
       <div class="poi-actions">
-        <!-- 无坐标版：点击打开高德 web → 手动"打开 App" → App 内搜索 -->
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=景点名称&city=城市&src=yourtag">🔍 搜索</a>
+        <!-- 无坐标版：2 按钮·导航用 0,0 让高德自动纠错 · 搜索带 city 限定防误选 -->
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,景点名称&mode=car&src=yourtag">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=景点名称&city=城市&src=yourtag">🔍 搜索</a>
       </div>
     </div>
   </div>
@@ -292,15 +296,16 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">📍 地址 · <span class="price">¥价格/晚</span></div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=经度,纬度,酒店名称&mode=car&src=yourtag">🚗 导航</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/marker?markers=经度,纬度,酒店名称&src=yourtag">📍 标记位置</a>
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=经度,纬度,酒店名称&mode=car&src=yourtag">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=经度,纬度,酒店名称&src=yourtag">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=酒店名称&src=yourtag">🔍 搜索</a>
       </div>
     </div>
   </div>
 
   <!-- 酒店 - 无坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏨</span>酒店 · 无坐标版</div>
+    <div class="group-title"><span class="emoji">🏨</span>酒店 · 无坐标版（0,0 替代 + 搜索带 city）</div>
 
     <div class="poi">
       <div class="poi-name">酒店名称
@@ -308,14 +313,15 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">📍 地址 · <span class="price">¥价格/晚</span></div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=酒店名称&city=城市&src=yourtag">🔍 搜索</a>
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,酒店名称&mode=car&src=yourtag">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=酒店名称&city=城市&src=yourtag">🔍 搜索</a>
       </div>
     </div>
   </div>
 
   <!-- 餐厅 - 无坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🍜</span>餐厅 · 无坐标版</div>
+    <div class="group-title"><span class="emoji">🍜</span>餐厅 · 无坐标版（0,0 替代 + 搜索带 city）</div>
 
     <div class="poi">
       <div class="poi-name">餐厅名称
@@ -323,14 +329,15 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">📍 地址 · ⏰ 时间 · 人均 ¥</div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=餐厅名称&city=城市&src=yourtag">🔍 搜索</a>
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,餐厅名称&mode=car&src=yourtag">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=餐厅名称&city=城市&src=yourtag">🔍 搜索</a>
       </div>
     </div>
   </div>
 
   <!-- 服务区 - 无坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站</div>
+    <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站（0,0 替代 + 搜索）</div>
 
     <div class="poi">
       <div class="poi-name">服务区名称
@@ -338,7 +345,9 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">⏰ 时间 · 备注</div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=服务区名称&src=yourtag">🔍 搜索</a>
+        <!-- 服务区通常隔在跨省高速·不带 city 限定让高德自动纠错定位 -->
+        <a class="btn-nav"    target="_blank" href="https://uri.amap.com/navigation?to=0,0,服务区名称&mode=car&src=yourtag">🚗 导航</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=服务区名称&src=yourtag">🔍 搜索</a>
       </div>
     </div>
   </div>
@@ -350,16 +359,15 @@ header p .route { font-weight: 600; }
 <section class="usage">
   <h3>📱 使用说明</h3>
   <ol>
-    <li><b>点击任意点位的【🚗 导航】或【🔍 搜索】按钮</b></li>
-    <li>手机会自动唤起高德地图 App</li>
-    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
-    <li>在 App 里可切换驾车 / 步行 / 公交</li>
-    <li>如未装高德 App，会自动跳转到网页版地图</li>
+    <li><b>按钮选择指南：</b></li>
+    <li><b>🚗 导航</b> · 所有点位都有·进高德路径规划页（无坐标点高德会自动定位/纠错）</li>
+    <li><b>🔍 搜索</b> · 所有点位都有·看同名 POI / 收藏 / 确认（无坐标点已限定到城市）</li>
+    <li><b>📍 标记位置</b> · 仅坐标精准的点有·地图上精准标点</li>
+    <li>手机会唤起高德 App；未装则跳网页版</li>
   </ol>
   <div class="tip">
     💡 小贴士：<br>
-    • 提前下载高德地图 App，登录账号开启路径记录<br>
-    • 离线地图下载：行程涉及省份（自驾无忧）<br>
+    • 🚗 导航优先试·同名 POI 高德有时会弹出候选列表<br>
     • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区
   </div>
 </section>
