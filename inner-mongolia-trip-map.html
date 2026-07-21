@@ -608,6 +608,37 @@ header p .route { font-weight: 600; }
   </div>
 </section>
 
+<section class="usage" style="background:#fffbea;border:2px dashed #f0a020;padding:16px;border-radius:8px;margin:24px 0;">
+  <h3 style="margin:0 0 8px 0;">🧪 自动纠错验证（2026-07-21 调试）</h3>
+  <p style="margin:0 0 12px 0;font-size:14px;color:#666;">
+    验证"经纬度未知时用 <code>0,0</code> 替代能否触发高德自动纠错"。两条链接 URL 形态一致（<code>?to=lng,lat,name</code>），仅坐标不同：
+  </p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <a class="btn-nav" target="_blank"
+       href="https://uri.amap.com/navigation?to=0,0,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip"
+       style="background:#f0a020;">
+       🧪 A：0,0 替代（七星湖）
+    </a>
+    <a class="btn-nav" target="_blank"
+       href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip"
+       style="background:#9b9b9b;">
+       🔍 B：真实坐标（七星湖）
+    </a>
+    <a class="btn-nav" target="_blank"
+       href="https://uri.amap.com/navigation?to=0,0,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip"
+       style="background:#f0a020;">
+       🧪 A：0,0 替代（枫泉花园）
+    </a>
+    <a class="btn-nav" target="_blank"
+       href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip"
+       style="background:#9b9b9b;">
+       🔍 B：真实坐标（枫泉花园）
+    </a>
+  </div>
+  <p style="margin:12px 0 0 0;font-size:13px;color:#888;">
+    验证步骤：① 点 A → 高德 dir 页是否自动定位到正确地点（或弹纠错提示）；② 点 B 对照行为差异
+  </p>
+</section>
 <section class="usage">
   <h3>📱 使用说明</h3>
   <ol>
