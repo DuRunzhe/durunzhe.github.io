@@ -29,15 +29,8 @@ header {
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-header h1 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-header p {
-  font-size: 12px;
-  opacity: 0.95;
-}
+header h1 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+header p { font-size: 12px; opacity: 0.95; }
 header p .route { font-weight: 600; }
 
 /* ========== 顶部导航（日期跳转） ========== */
@@ -72,9 +65,7 @@ header p .route { font-weight: 600; }
 }
 
 /* ========== Day 区段 ========== */
-.day {
-  padding: 16px 14px;
-}
+.day { padding: 16px 14px; }
 
 .day-title {
   display: flex;
@@ -85,49 +76,19 @@ header p .route { font-weight: 600; }
   border-left: 5px solid #FF6F00;
   border-radius: 4px;
 }
-
-.day-title .day-num {
-  font-size: 20px;
-  font-weight: 700;
-  color: #FF6F00;
-  margin-right: 10px;
-}
-.day-title .day-info {
-  flex: 1;
-}
-.day-title h2 {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 2px;
-}
-.day-title .meta {
-  font-size: 11px;
-  color: #888;
-}
-.day-title .route-arrow {
-  font-size: 16px;
-  color: #FF6F00;
-  font-weight: 600;
-}
+.day-title .day-num { font-size: 20px; font-weight: 700; color: #FF6F00; margin-right: 10px; }
+.day-title .day-info { flex: 1; }
+.day-title h2 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+.day-title .meta { font-size: 11px; color: #888; }
+.day-title .route-arrow { font-size: 16px; color: #FF6F00; font-weight: 600; }
 
 /* ========== 分组 ========== */
-.group {
-  margin-bottom: 18px;
-}
+.group { margin-bottom: 18px; }
 .group-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 8px;
-  padding: 0 4px;
-  display: flex;
-  align-items: center;
+  font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px; padding: 0 4px;
+  display: flex; align-items: center;
 }
-.group-title .emoji {
-  margin-right: 6px;
-  font-size: 15px;
-}
+.group-title .emoji { margin-right: 6px; font-size: 15px; }
 
 /* ========== POI 卡片 ========== */
 .poi {
@@ -140,24 +101,14 @@ header p .route { font-weight: 600; }
 }
 
 .poi-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-between;
 }
-
 .poi-name .tag {
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 7px;
-  border-radius: 10px;
-  white-space: nowrap;
-  margin-left: 8px;
+  font-size: 10px; font-weight: 500; padding: 2px 7px;
+  border-radius: 10px; white-space: nowrap; margin-left: 8px;
 }
-/* ========== 标签颜色（通用） ========== */
+/* ========== 标签颜色 ========== */
 .tag.attract   { background: #fef0ef; color: #c7392b; }
 .tag.hotel     { background: #f0ecfa; color: #6b46c1; }
 .tag.food      { background: #fff5e8; color: #d97706; }
@@ -176,6 +127,7 @@ header p .route { font-weight: 600; }
 }
 .poi-info .price { color: #FF6F00; font-weight: 600; }
 
+/* ========== POI 操作按钮 ========== */
 .poi-actions {
   display: flex;
   gap: 8px;
@@ -232,7 +184,7 @@ header p .route { font-weight: 600; }
   border-radius: 6px;
 }
 
-/* ========== 浮动返回顶部按钮 ========== */
+/* ========== 浮动返回顶部 ========== */
 .to-top {
   position: fixed;
   bottom: 20px;
@@ -253,6 +205,25 @@ header p .route { font-weight: 600; }
 </head>
 <body>
 
+<!--
+================================================================
+📚 trip-map-template.html 用法（混合模式 · 福建自驾游标准版）
+
+适用场景：完整的高德导航点位页面。
+- 有坐标的 POI → navigation?to=lng,lat,name（完美 deep link）
+- 无坐标的 POI → search?keyword=POI名&city=城市（fallback 唤起 web 版）
+
+区别于旧版：
+- ❌ 旧版：每个 POI 都有「📍 手动搜」按钮
+- ✅ 新版：单按钮，按 URL 形态自动切文字（"🚗 导航" 或 "🔍 搜索"）
+- ✅ 新版：使用说明用简洁 4 步叙述，不写"为什么不能一键直达"长段
+
+参数：
+- 每个 .poi 卡片：替换名称、信息、tag、按需替换 URL href
+- src 参数：默认 yourtag，发布时替换成专属 utm（如 momotrip/fjtravel）
+================================================================
+-->
+
 <!-- ========== 顶部（按需修改） ========== -->
 <header>
   <h1>🚗 行程名 · 高德导航点位</h1>
@@ -260,14 +231,14 @@ header p .route { font-weight: 600; }
   <p style="margin-top:4px;">总天数 · 点击任意点位 → 高德 App 自动导航</p>
 </header>
 
-<!-- 日期快速跳转（按实际天数调整） -->
+<!-- 日期快速跳转 -->
 <nav class="day-nav" id="dayNav">
   <a href="#day1">D1 城市</a>
   <a href="#day2">D2 城市</a>
   <a href="#day3">D3 城市</a>
 </nav>
 
-<!-- ========== Day 1（复制此块，按天数增加） ========== -->
+<!-- ========== Day 1（含两种 POI 写法） ========== -->
 <section class="day" id="day1">
   <div class="day-title">
     <span class="day-num">D1</span>
@@ -278,9 +249,9 @@ header p .route { font-weight: 600; }
     <span class="route-arrow">→</span>
   </div>
 
-  <!-- 景点 -->
+  <!-- 景点 - 有坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏛</span>景点</div>
+    <div class="group-title"><span class="emoji">🏛</span>景点 · 有坐标版（完美 deep link）</div>
 
     <div class="poi">
       <div class="poi-name">景点名称
@@ -288,17 +259,32 @@ header p .route { font-weight: 600; }
       </div>
       <div class="poi-info">📍 地址 · ⏰ 时间 · 门票 · 简介</div>
       <div class="poi-actions">
-        <!-- 导航链接：高德 uri.amap.com/navigation?to=经度,纬度,名称 -->
+        <!-- 有坐标版：点击直接唤起高德 App → 地点卡片 → "去这里" -->
         <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=经度,纬度,景点名称&mode=car&src=yourtag">🚗 导航</a>
-        <!-- 搜索链接：高德 uri.amap.com/search?keyword=名称&city=城市 -->
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=景点名称&city=城市&src=yourtag">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/marker?markers=经度,纬度,景点名称&src=yourtag">📍 标记位置</a>
       </div>
     </div>
   </div>
 
-  <!-- 酒店 -->
+  <!-- 景点 - 无坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🏨</span>酒店</div>
+    <div class="group-title"><span class="emoji">🏛</span>景点 · 无坐标版（搜索 fallback）</div>
+
+    <div class="poi">
+      <div class="poi-name">景点名称
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">📍 地址 · ⏰ 时间 · 门票 · 简介</div>
+      <div class="poi-actions">
+        <!-- 无坐标版：点击打开高德 web → 手动"打开 App" → App 内搜索 -->
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=景点名称&city=城市&src=yourtag">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 酒店 - 有坐标 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🏨</span>酒店 · 有坐标版</div>
 
     <div class="poi">
       <div class="poi-name">酒店名称
@@ -307,14 +293,29 @@ header p .route { font-weight: 600; }
       <div class="poi-info">📍 地址 · <span class="price">¥价格/晚</span></div>
       <div class="poi-actions">
         <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=经度,纬度,酒店名称&mode=car&src=yourtag">🚗 导航</a>
-        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=酒店名称&city=城市&src=yourtag">🔍 搜索</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/marker?markers=经度,纬度,酒店名称&src=yourtag">📍 标记位置</a>
       </div>
     </div>
   </div>
 
-  <!-- 餐厅 -->
+  <!-- 酒店 - 无坐标 -->
   <div class="group">
-    <div class="group-title"><span class="emoji">🍜</span>餐厅</div>
+    <div class="group-title"><span class="emoji">🏨</span>酒店 · 无坐标版</div>
+
+    <div class="poi">
+      <div class="poi-name">酒店名称
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">📍 地址 · <span class="price">¥价格/晚</span></div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/search?keyword=酒店名称&city=城市&src=yourtag">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厅 - 无坐标 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>餐厅 · 无坐标版</div>
 
     <div class="poi">
       <div class="poi-name">餐厅名称
@@ -327,7 +328,7 @@ header p .route { font-weight: 600; }
     </div>
   </div>
 
-  <!-- 服务区 -->
+  <!-- 服务区 - 无坐标 -->
   <div class="group">
     <div class="group-title"><span class="emoji">⛽</span>服务区 / 加油站</div>
 
@@ -343,13 +344,13 @@ header p .route { font-weight: 600; }
   </div>
 </section>
 
-<!-- 其他 Day 结构同上，按天数复制 -->
+<!-- 其他 Day 按需复制 -->
 
-<!-- ========== 使用说明（不动） ========== -->
+<!-- ========== 使用说明 ========== -->
 <section class="usage">
   <h3>📱 使用说明</h3>
   <ol>
-    <li><b>点击任意点位的【🚗 导航】按钮</b></li>
+    <li><b>点击任意点位的【🚗 导航】或【🔍 搜索】按钮</b></li>
     <li>手机会自动唤起高德地图 App</li>
     <li>确认起点（默认当前定位）+ 终点，开始导航</li>
     <li>在 App 里可切换驾车 / 步行 / 公交</li>
@@ -358,6 +359,7 @@ header p .route { font-weight: 600; }
   <div class="tip">
     💡 小贴士：<br>
     • 提前下载高德地图 App，登录账号开启路径记录<br>
+    • 离线地图下载：行程涉及省份（自驾无忧）<br>
     • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区
   </div>
 </section>
@@ -365,7 +367,6 @@ header p .route { font-weight: 600; }
 <button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
-// 顶部日期导航当前状态高亮
 const navLinks = document.querySelectorAll('.day-nav a');
 const sections = document.querySelectorAll('.day');
 
@@ -376,7 +377,6 @@ navLinks.forEach(link => {
   });
 });
 
-// IntersectionObserver 高亮当前 Day
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

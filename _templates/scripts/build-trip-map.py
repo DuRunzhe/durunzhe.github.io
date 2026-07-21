@@ -29,37 +29,48 @@ TAG_LABEL = {
 
 
 def render_poi(item, default_city, src_tag):
+    """福建模式（混合）：按 coords 字段切换按钮形态。
+
+    - 有 coords（精确经纬度）：
+      btn-nav = navigation?to=lng,lat,name → 🚗 导航
+      btn-search = marker?markers=lng,lat,name → 📍 标记位置
+
+    - 无 coords（仅地址名）：
+      btn-nav = search?keyword=POI名&city=城市 → 🔍 搜索
+      btn-search 留空（无坐标不能生成 marker）
+    """
     name = item["name"]
     addr = item["addr"]
     tag = item["tag"]
     info = item.get("info", "")
-    coords = item.get("coords")  # 可选 [lng, lat] - 真坐标版
+    coords = item.get("coords")  # 可选 [lng, lat]
     encoded_name = urllib.parse.quote(name)
-    encoded_addr = urllib.parse.quote(addr)
 
-    if coords and len(coords) == 2:
-        # 真坐标模式：navigation?to=lng,lat,name（完美 deep link）
-        lng, lat = coords
+    has_coord = bool(coords and len(coords) == 2)
+
+    if has_coord:
+        lng, lat = coords[0], coords[1]
         nav_url = f'https://uri.amap.com/navigation?to={lng},{lat},{encoded_name}&mode=car&src={src_tag}'
-        search_url = f'https://uri.amap.com/search?keyword={encoded_name}&src={src_tag}'
-        btn_label = '📍 在高德查'
+        marker_url = f'https://uri.amap.com/marker?markers={lng},{lat},{encoded_name}&src={src_tag}'
+        nav_label = '🚗 导航'
+        actions_html = (
+            f'<a class="btn-nav" target="_blank" href="{nav_url}">{nav_label}</a>'
+            f'\n        <a class="btn-search" target="_blank" href="{marker_url}">📍 标记位置</a>'
+        )
     else:
-        # 地址链模式：导航页只能唤起高德 web，手动搜
-        nav_url = f'https://uri.amap.com/navigation?to={encoded_addr}&mode=car&src={src_tag}'
-        search_url = f'https://uri.amap.com/search?keyword={encoded_name}&city={default_city}&src={src_tag}'
-        btn_label = f'📱 手动搜 {name}'
+        nav_url = f'https://uri.amap.com/search?keyword={encoded_name}&city={default_city}&src={src_tag}'
+        nav_label = '🔍 搜索'
+        actions_html = (
+            f'<a class="btn-nav" target="_blank" href="{nav_url}">{nav_label}</a>'
+        )
 
     return f'''    <div class="poi">
       <div class="poi-name">{name}
         <span class="tag {tag}">{TAG_LABEL.get(tag, "POI")}</span>
       </div>
-      <div class="poi-info">
-        <div>📍 {info}</div>
-        <div class="addr" style="margin-top:4px;">📌 {addr}</div>
-      </div>
+      <div class="poi-info">📍 {info}</div>
       <div class="poi-actions">
-        <a class="btn-nav" target="_blank" href="{nav_url}">{btn_label}</a>
-        <a class="btn-search" target="_blank" href="{search_url}">🔍 搜索</a>
+        {actions_html}
       </div>
     </div>'''
 
@@ -183,7 +194,6 @@ header p .route {{ font-weight: 600; }}
 .tag.end       {{ background: #fce4ec; color: #c62828; }}
 .tag.stop      {{ background: #e3f2fd; color: #1565c0; }}
 .poi-info {{ font-size: 12px; color: #888; margin-bottom: 10px; line-height: 1.5; }}
-.poi-info .addr {{ color: #555; font-family: ui-monospace, monospace; font-size: 11px; word-break: break-all; }}
 .poi-actions {{ display: flex; gap: 8px; }}
 .poi-actions a {{
   flex: 1; display: block; text-align: center;
@@ -200,10 +210,9 @@ header p .route {{ font-weight: 600; }}
 .usage h3 {{ font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #FF6F00; }}
 .usage ol {{ padding-left: 22px; font-size: 13px; color: #555; line-height: 1.7; }}
 .usage .tip {{
-  margin-top: 10px; font-size: 12px; color: #555;
-  padding: 10px 12px; background: #fff8e1; border-radius: 6px; line-height: 1.6;
+  margin-top: 10px; font-size: 12px; color: #888;
+  padding: 8px 10px; background: #fff8e1; border-radius: 6px;
 }}
-.usage .tip b {{ color: #FF6F00; }}
 .to-top {{
   position: fixed; bottom: 20px; right: 20px;
   width: 44px; height: 44px; border-radius: 50%;
@@ -230,15 +239,17 @@ header p .route {{ font-weight: 600; }}
 <section class="usage">
   <h3>📱 使用说明</h3>
   <ol>
-    <li><b>点击【📱 手动搜 [地名]】</b> 按钮</li>
-    <li>浏览器打开高德网页版搜索结果页</li>
-    <li>点页面里的「打开高德地图 App」（手机会自动跳到 App）</li>
-    <li>在 App 搜索框手动输入 POI 名 → 点「去这里」开始导航</li>
+    <li><b>点击任意点位的【🚗 导航】或【🔍 搜索】按钮</b></li>
+    <li>手机会自动唤起高德地图 App</li>
+    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
+    <li>在 App 里可切换驾车 / 步行 / 公交</li>
+    <li>如未装高德 App，会自动跳转到网页版地图</li>
   </ol>
   <div class="tip">
-    💡 <b>为什么不能一键直达？</b><br>
-    本攻略 POI 只有地址名（无精确经纬度），高德 deep link <code>navigation?to=经度,纬度,名称</code> 需要坐标才能直接唤起 App。如需"点按钮立刻开始导航"，需先获取精确坐标（高德 WebService API 或手动拾取）。<br><br>
-    颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区 · 🟢 起点 · 🔴 终点
+    💡 小贴士：<br>
+    • 提前下载高德地图 App，登录账号开启路径记录<br>
+    • 离线地图下载：行程涉及省份（自驾无忧）<br>
+    • 颜色编码：🔴 景点 · 🟣 酒店 · 🟠 餐厅 · 🔵 服务区
   </div>
 </section>
 
