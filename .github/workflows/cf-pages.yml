@@ -20,16 +20,16 @@ jobs:
       # 1. 拉源代码
       - uses: actions/checkout@v4
 
-      # 2. 配 Ruby 3.2（Jekyll 4.x 需求）
+      # 2. 配 Ruby 3.1（Jekyll 3.10.0 需求，和 GitHub Pages 保持一致）
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.1'
 
       # 3. 安装 Jekyll & build
-      #    _config.yml 里 theme=minima + plugins=[jekyll-feed]，一起装
+      #    锁定 Jekyll 3.10.0（GitHub Pages 同款），避免 Jekyll 4.x post layout 渲染 bug
       - name: Build Jekyll site
         run: |
-          gem install bundler jekyll minima jekyll-feed --no-document
+          gem install bundler jekyll -v "~> 3.10.0" minima jekyll-feed --no-document
           jekyll build
 
       # 4. 把 _site/ 部署到 Cloudflare Pages
