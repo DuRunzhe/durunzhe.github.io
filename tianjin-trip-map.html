@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🚗 天津 1 日游 · 高德导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== 顶部 ========== */
+header {
+  background: linear-gradient(135deg, #1976D2 0%, #2196F3 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+header p {
+  font-size: 12px;
+  opacity: 0.95;
+}
+header p .route { font-weight: 600; }
+
+/* ========== 校验提示横幅 ========== */
+.verify-banner {
+  background: #fff8e1;
+  border-left: 4px solid #ffb300;
+  color: #6d4c00;
+  padding: 10px 14px;
+  font-size: 12px;
+  margin: 12px 14px 0;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+.verify-banner b { color: #c7392b; }
+
+/* ========== 顶部导航 ========== */
+.day-nav {
+  background: white;
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 76px;
+  z-index: 99;
+  border-bottom: 1px solid #e8eaec;
+  -webkit-overflow-scrolling: touch;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  background: #f0f1f3;
+  color: #555;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.day-nav a.active,
+.day-nav a:active {
+  background: #1976D2;
+  color: white;
+}
+
+/* ========== Day 区段 ========== */
+.day {
+  padding: 16px 14px;
+}
+
+.day-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(to right, #e3f2fd, white);
+  border-left: 5px solid #1976D2;
+  border-radius: 4px;
+}
+
+.day-title .day-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1976D2;
+  margin-right: 10px;
+}
+.day-title .day-info {
+  flex: 1;
+}
+.day-title h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;
+}
+.day-title .meta {
+  font-size: 11px;
+  color: #888;
+}
+.day-title .route-arrow {
+  font-size: 16px;
+  color: #1976D2;
+  font-weight: 600;
+}
+
+/* ========== 分组 ========== */
+.group {
+  margin-bottom: 18px;
+}
+.group-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+}
+.group-title .emoji {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* ========== POI 卡片 ========== */
+.poi {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ecedef;
+}
+
+.poi-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.poi-name .tag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 10px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+/* ========== 标签颜色（通用） ========== */
+.tag.attract   { background: #fef0ef; color: #c7392b; }
+.tag.hotel     { background: #f0ecfa; color: #6b46c1; }
+.tag.food      { background: #fff5e8; color: #d97706; }
+.tag.service   { background: #e0f0fc; color: #2563eb; }
+.tag.optional  { background: #f0f9ff; color: #0891b2; }
+.tag.peak      { background: #fff8e1; color: #f57f17; }
+.tag.stop      { background: #e3f2fd; color: #1565c0; }
+.tag.start     { background: #e8f5e9; color: #2d7d46; }
+.tag.end       { background: #fce4ec; color: #c62828; }
+
+.poi-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.poi-info .price { color: #1976D2; font-weight: 600; }
+
+.poi-actions {
+  display: flex;
+  gap: 8px;
+}
+.poi-actions a {
+  flex: 1;
+  display: block;
+  text-align: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+.btn-nav {
+  background: #1976D2;
+  color: white;
+}
+.btn-marker {
+  background: #f0f1f3;
+  color: #555;
+}
+.btn-search {
+  background: #f0f1f3;
+  color: #555;
+}
+
+/* ========== 使用说明 ========== */
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1976D2;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+/* ========== 浮动返回顶部按钮 ========== */
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1976D2;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部 ========== -->
+<header>
+  <h1>🚗 天津 1 日游 · 高德导航点位</h1>
+  <p><span class="route">北京顺义 → 天津市区 → 北京</span></p>
+  <p style="margin-top:4px;">1 天 · 单程约 115 km · 高速直达 · 意式风情区 + 五大道 + 之眼夜景</p>
+</header>
+
+<!-- 坐标校验提示 -->
+<div class="verify-banner">
+  ⚠️ <b>坐标校验提示</b>：本页坐标为常用近似值（精度约 ±200 m），高德会自动吸附就近道路。出发前请在 <b>高德 App 搜名称二次确认</b>，如有偏差替换即可。
+</div>
+
+<!-- 日期跳转 -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day1">D1 北京 → 天津 → 北京</a>
+</nav>
+
+<!-- ========== Day 1 ========== -->
+<section class="day" id="day1">
+  <div class="day-title">
+    <span class="day-num">D1</span>
+    <div class="day-info">
+      <h2>周日 · 北京顺义 → 天津 → 北京</h2>
+      <div class="meta">约 115 km · 1.5 h · 京津高速 → 津蓟高速出口 → 意式风情区起点</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+
+  <!-- 出发·服务区 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">⛽</span>回程服务区（备）</div>
+
+    <div class="poi">
+      <div class="poi-name">泗村店服务区（京津高速出京方向）
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">⏰ 距天津市区约 70 km · 大型服务区 · 加油 / 简餐 / 卫生间齐备</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.892,39.395,泗村店服务区&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.892,39.395,泗村店服务区&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=泗村店服务区&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 早·早餐 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🥞</span>上午 · 五大道 + 瓷房子</div>
+
+    <div class="poi">
+      <div class="poi-name">瓷房子（赤峰道）
+        <span class="tag attract">主景区</span>
+      </div>
+      <div class="poi-info">📍 和平区赤峰道 72 号 · <span class="price">门票 ¥50</span> · 9:00-18:00 · 法式建筑 + 数万件古瓷片贴面 · 网红地标</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1873,39.1154,天津瓷房子&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1873,39.1154,天津瓷房子&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=天津瓷房子&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">五大道（民园广场起点）
+        <span class="tag attract">必去</span>
+      </div>
+      <div class="poi-info">📍 和平区重庆道与常德道交口 · 免费 · 24 h · 万国建筑博览 · 可租自行车 / 马车游览</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1875,39.1192,五大道民园广场&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1875,39.1192,五大道民园广场&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=五大道民园广场&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">张学良故居博物馆
+        <span class="tag optional">加项</span>
+      </div>
+      <div class="poi-info">📍 和平区赤峰道 78 号（瓷房子隔壁）· <span class="price">门票 ¥30</span> · 9:00-17:00</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1877,39.1160,张学良故居&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1877,39.1160,张学良故居&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=张学良故居天津&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 午餐 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍜</span>午餐 · 古文化街 / 西北角</div>
+
+    <div class="poi">
+      <div class="poi-name">古文化街（天后宫）
+        <span class="tag attract">主景区</span>
+      </div>
+      <div class="poi-info">📍 南开区通北路 · 免费 · 8:30-17:30 · 天津民俗小吃聚集 · 泥人张 / 风筝魏 / 杨柳青年画</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1932,39.1430,古文化街天后宫&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1932,39.1430,古文化街天后宫&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=天津古文化街天后宫&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">耳朵眼炸糕（西北角总店）
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 红桥区西北角 · <span class="price">¥3 / 个</span> · 8:00-20:00 · 清真 · 百年老字号</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1828,39.1424,耳朵眼炸糕西北角&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1828,39.1424,耳朵眼炸糕西北角&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=耳朵眼炸糕西北角&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">狗不理（山东路总店）
+        <span class="tag food">打卡</span>
+      </div>
+      <div class="poi-info">📍 和平区山东路 77 号 · <span class="price">人均 ¥80</span> · 11:00-21:00 · 体验派 · 本地人少但游客必去</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1906,39.1234,狗不理山东路&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1906,39.1234,狗不理山东路&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=狗不理山东路总店&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 下午 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">☕</span>下午 · 意式风情区</div>
+
+    <div class="poi">
+      <div class="poi-name">意式风情区（中心广场）
+        <span class="tag attract">主景区</span>
+      </div>
+      <div class="poi-info">📍 河北区自由道与光复道交口 · 免费 · 全天 · 意大利风格建筑群 · 咖啡馆 / 西餐厅密集</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.2012,39.1210,意式风情区中心广场&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.2012,39.1210,意式风情区中心广场&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=天津意式风情区&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">曹禺故居 / 曹禺剧院
+        <span class="tag optional">加项</span>
+      </div>
+      <div class="poi-info">📍 河北区民主道 · <span class="price">门票 ¥15</span> · 9:00-17:00 · 顺路 20 min</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.2031,39.1218,曹禺故居&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.2031,39.1218,曹禺故居&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=天津曹禺故居&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 晚餐 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🍝</span>晚餐</div>
+
+    <div class="poi">
+      <div class="poi-name">起士林大饭店（小白楼总店）
+        <span class="tag food">正餐</span>
+      </div>
+      <div class="poi-info">📍 和平区小白楼解放北路 162 号 · <span class="price">人均 ¥150</span> · 11:00-21:00 · 百年德 / 俄式西餐 · 必点罐焖鸡 / 黑面包</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.1984,39.1108,起士林小白楼&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.1984,39.1108,起士林小白楼&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=起士林大饭店小白楼&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">二嫂子煎饼果子（意式区）
+        <span class="tag food">小吃</span>
+      </div>
+      <div class="poi-info">📍 河北区光复道 · <span class="price">¥10 / 个</span> · 6:00-18:00 · 网红煎饼 · 本地人推荐</div>
+      <div class="poi-actions">
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=二嫂子煎饼果子意式风情区&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 夜景 -->
+  <div class="group">
+    <div class="group-title"><span class="emoji">🌃</span>压轴 · 之眼夜景</div>
+
+    <div class="poi">
+      <div class="poi-name">天津之眼摩天轮
+        <span class="tag peak">重头</span>
+      </div>
+      <div class="poi-info">📍 红桥区三岔河口永乐桥 · <span class="price">¥70 / 人</span> · 9:30-21:30 · 跨海河 · 夜景最出片 · 建议 19:00 后到</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.2152,39.1187,天津之眼摩天轮&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.2152,39.1187,天津之眼摩天轮&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=天津之眼摩天轮&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+
+    <div class="poi">
+      <div class="poi-name">海河游船（之眼码头）
+        <span class="tag optional">加项</span>
+      </div>
+      <div class="poi-info">📍 之眼码头 · <span class="price">¥80 起 / 人</span> · 夜景航次 19:30 / 20:30 · 海河两岸灯光</div>
+      <div class="poi-actions">
+        <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.2150,39.1195,海河游船之眼码头&mode=car&src=momotrip">🚗 导航</a>
+        <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.2150,39.1195,海河游船之眼码头&src=momotrip">📍 标记位置</a>
+        <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=天津海河游船之眼码头&city=天津&src=momotrip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 使用说明 ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li><b>点击任意点位的【🚗 导航】按钮</b></li>
+    <li>手机会自动唤起高德地图 App</li>
+    <li>确认起点（默认当前定位）+ 终点，开始导航</li>
+    <li>在 App 里可切换驾车 / 步行 / 公交</li>
+    <li>如未装高德 App，会自动跳转到网页版地图</li>
+  </ol>
+  <div class="tip">
+    💡 小贴士：<br>
+    • <b>停车建议</b>：意式风情区周边有路侧停车 / 停车场，五大道周边有 "民园广场停车场"<br>
+    • <b>顺序可换</b>：上午先意式区拍照更出片，五大道放下午也合理<br>
+    • <b>之眼建议</b>：周末晚 8 点后排队 30-60 min 起步，错峰下午 5 点来人少<br>
+    • 颜色编码：🔴 景点 · 🟠 餐厅 · 🔵 服务区 · 🩵 可选 · 🟡 重头
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const navLinks = document.querySelectorAll('.day-nav a');
+const sections = document.querySelectorAll('.day');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
