@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "内蒙草原 5 天经典环线（达达线+热阿线+乌兰布统）"
 date: 2026-07-20
 categories: [trip, self-drive]
