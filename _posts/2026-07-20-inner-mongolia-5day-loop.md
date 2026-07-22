@@ -6,6 +6,13 @@ categories: [trip, self-drive]
 tags: [内蒙, 自驾, 草原, 达达线, 热阿线, 乌兰布统, 克什克腾, 达里湖]
 ---
 
+> 🆕 **v5 更新 (2026-07-22)**: 路径已重算, 99 号公路提为正式主线, D4 玉龙沙湖折返已优化 (改为 D5 返程顺路). 推荐查看配套产物:
+> - [🆕 v5 综合地图 (OSRM 实际驾车路径 + 99号公路主线)]({{ site.baseurl }}/inner-mongolia-trip-map-v5.html)
+> - [🗺 原导航点位页 (高德直接 href)]({{ site.baseurl }}/inner-mongolia-trip-map.html)
+> - [📥 下载 KML (高德地图导入)]({{ site.baseurl }}/inner-mongolia-trip.kml)
+>
+> 本攻略长文主要写"为什么去 / 怎么玩", 具体现场点位导航请用上面三个产品。
+
 <!-- 手机友好的文章样式（参考 fujian-coast-self-drive.html pandoc 风格） -->
 <style>
 /* ----- 主体字体加粗 + 行宽限制 ----- */

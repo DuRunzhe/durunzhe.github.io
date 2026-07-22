@@ -4,3 +4,12 @@ theme: minima
 markdown: kramdown
 plugins:
   - jekyll-feed
+
+# 排除不需要 Jekyll 处理的原始资源
+exclude:
+  - drafts
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - inner-mongolia-pois.json
+  - inner-mongolia-trip.kml
