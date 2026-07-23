@@ -129,34 +129,34 @@ tags: [古建筑, 佛教, 梁思成, 自驾, 五台山, 佛光寺, 南禅寺, �
 /* ======================================= */
 @media (max-width: 768px) {
   .post-content, .page-content {
-    font-size: 16px;
-    line-height: 1.75;
-    padding: 8px;
+    font-size: 17px;
+    line-height: 1.8;
+    padding: 10px;
   }
   .post-content p, .post-content li,
   .page-content p, .page-content li {
-    font-size: 16px;
-    line-height: 1.75;
+    font-size: 17px;
+    line-height: 1.8;
   }
   .post-content h1, .page-content h1 { font-size: 1.6em; }
   .post-content h2, .page-content h2 { font-size: 1.35em; }
   .post-content h3, .page-content h3 { font-size: 1.18em; }
   .post-content h4, .page-content h4 { font-size: 1em; }
-  .post-content table, .page-content table { font-size: 13px; }
+  .post-content table, .page-content table { font-size: 14px; }
 }
 @media (max-width: 480px) {
   .post-content, .page-content {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.75;
   }
   .post-content p, .post-content li,
   .page-content p, .page-content li {
-    font-size: 15px;
+    font-size: 16px;
   }
   .post-content h1, .page-content h1 { font-size: 1.45em; }
   .post-content h2, .page-content h2 { font-size: 1.25em; }
   .post-content h3, .page-content h3 { font-size: 1.1em; }
-  .post-content table, .page-content table { font-size: 12px; }
+  .post-content table, .page-content table { font-size: 13px; }
   .toc-float .toc-panel {
     width: calc(100vw - 32px);
     right: -8px;
