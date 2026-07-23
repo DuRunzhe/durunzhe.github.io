@@ -6,7 +6,223 @@ categories: [trip, self-drive]
 tags: [古建筑, 佛教, 梁思成, 自驾, 五台山, 佛光寺, 南禅寺, 显通寺, 塔院寺, 2天]
 ---
 
-## 为什么去
+<style>
+/* ----- 主体字体加粗 + 行宽限制 ----- */
+.post-content, .page-content {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #2a2a2a;
+  max-width: 38em;
+  margin: 0 auto;
+}
+.post-content p, .post-content li,
+.page-content p, .page-content li {
+  font-size: 17px;
+  line-height: 1.85;
+  margin: 0.8em 0;
+}
+
+/* ----- 标题层级加大、加色 ----- */
+.post-content h1, .page-content h1 {
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin: 1.6em 0 0.8em;
+}
+.post-content h2, .page-content h2 {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #FF6F00;
+  margin: 2em 0 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 3px solid #FF6F00;
+}
+.post-content h3, .page-content h3 {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #d96a00;
+  margin: 1.6em 0 0.6em;
+}
+.post-content h4, .page-content h4 {
+  font-size: 1.05em;
+  font-weight: 600;
+  color: #444;
+  margin: 1.3em 0 0.5em;
+  padding: 0.5em 0.8em;
+  background: #fff3e0;
+  border-left: 5px solid #FF6F00;
+}
+
+/* ----- 表格 ----- */
+.post-content table, .page-content table {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 1.4em auto;
+  width: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e6e6e6;
+  display: block;
+  overflow-x: auto;
+}
+.post-content th, .page-content th {
+  background: #FF6F00;
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+.post-content td, .page-content td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+.post-content tr:nth-child(even), .page-content tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ----- 块引用高亮 ----- */
+.post-content blockquote, .page-content blockquote {
+  background: #fff8e1;
+  border-left: 5px solid #FF6F00;
+  padding: 12px 16px;
+  margin: 1.2em 0;
+  color: #555;
+  border-radius: 4px;
+}
+
+/* ----- 强调 / 链接 ----- */
+.post-content strong, .page-content strong {
+  color: #d96a00;
+}
+.post-content a, .page-content a {
+  color: #FF6F00;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ----- 行内代码 ----- */
+.post-content code, .page-content code {
+  background: #f6f6f6;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #c7254e;
+}
+
+/* ----- 分割 ----- */
+.post-content hr, .page-content hr {
+  border: none;
+  border-top: 1px dashed #ccc;
+  margin: 2.4em 0;
+}
+
+/* ----- 锚点跳转留出位置 (避免被浮动 TOC 遮住) ----- */
+.post-content :target, .page-content :target {
+  scroll-margin-top: 80px;
+}
+
+/* ======================================= */
+/* ============ Mobile 响应式 ============== */
+/* ======================================= */
+@media (max-width: 768px) {
+  .post-content, .page-content {
+    font-size: 16px;
+    line-height: 1.75;
+    padding: 8px;
+  }
+  .post-content p, .post-content li,
+  .page-content p, .page-content li {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .post-content h1, .page-content h1 { font-size: 1.6em; }
+  .post-content h2, .page-content h2 { font-size: 1.35em; }
+  .post-content h3, .page-content h3 { font-size: 1.18em; }
+  .post-content h4, .page-content h4 { font-size: 1em; }
+  .post-content table, .page-content table { font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .post-content, .page-content {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .post-content p, .post-content li,
+  .page-content p, .page-content li {
+    font-size: 15px;
+  }
+  .post-content h1, .page-content h1 { font-size: 1.45em; }
+  .post-content h2, .page-content h2 { font-size: 1.25em; }
+  .post-content h3, .page-content h3 { font-size: 1.1em; }
+  .post-content table, .page-content table { font-size: 12px; }
+  .toc-float .toc-panel {
+    width: calc(100vw - 32px);
+    right: -8px;
+  }
+}
+</style>
+
+<!-- 浮动三级目录 -->
+<div class="toc-float">
+  <button class="toc-btn" onclick="toggleToc(event)" aria-label="目录">📋</button>
+  <div class="toc-panel" id="toc-panel">
+    <ul>
+      <li class="toc-h2"><a href="#intro">为什么去</a></li>
+      <li class="toc-h2"><a href="#route">路线总览</a></li>
+      <li class="toc-h2"><a href="#checklist">🎒 行前必带</a></li>
+      <li class="toc-h2"><a href="#d1">📅 D1 北京→五台山台怀镇</a></li>
+      <li class="toc-h2"><a href="#d2">📅 D2 佛光寺+南禅寺→返京</a></li>
+      <li class="toc-h2"><a href="#total-budget">💰 总预算</a></li>
+      <li class="toc-h2"><a href="#keypoints">🎯 节点速查</a></li>
+      <li class="toc-h2"><a href="#bonus">🌟 备选加点(2-day 跳过)</a></li>
+      <li class="toc-h2"><a href="#festival">📅 节庆查询清单</a></li>
+      <li class="toc-h2"><a href="#tips">⚠️ 专属提醒(2-day 强化版)</a></li>
+      <li class="toc-h2"><a href="#links">📎 配套产物</a></li>
+      <li class="toc-h2"><a href="#sources">📚 数据来源说明</a></li>
+    </ul>
+    <p class="toc-hint">💡 点击空白处收起</p>
+  </div>
+</div>
+
+<style>
+.toc-float { position: fixed; right: 24px; bottom: 24px; z-index: 9999; font-family: -apple-system, sans-serif; }
+.toc-float .toc-btn { width: 56px; height: 56px; border-radius: 50%; border: none; background: #FF6F00; color: #fff; font-size: 24px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.25); transition: transform 0.2s; }
+.toc-float .toc-btn:hover { transform: scale(1.05); background: #d96a00; }
+.toc-float .toc-panel { position: absolute; right: 0; bottom: 68px; width: 320px; max-height: 80vh; overflow-y: auto; background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); padding: 14px 16px; display: none; line-height: 1.7; }
+.toc-float .toc-panel.open { display: block; }
+.toc-float ul { list-style: none; padding-left: 0; margin: 0; }
+.toc-float ul ul { padding-left: 14px; }
+.toc-float a { color: #333; text-decoration: none; display: block; padding: 3px 8px; border-radius: 5px; transition: all 0.15s; }
+.toc-float a:hover { background: #fff3e0; color: #FF6F00; transform: translateX(2px); }
+.toc-float .toc-h2 { font-weight: 600; color: #FF6F00; margin: 6px 0 4px; font-size: 13px; }
+.toc-float .toc-h3 { font-size: 12px; color: #555; padding-left: 8px; }
+.toc-float .toc-h4 { font-size: 11px; color: #888; padding-left: 16px; }
+.toc-float .toc-hint { font-size: 11px; color: #999; padding: 10px 4px 0; border-top: 1px dashed #eee; margin-top: 8px; text-align: center; }
+@media (max-width: 768px) {
+  .toc-float { right: 16px; bottom: 16px; }
+  .toc-float .toc-panel { width: calc(100vw - 32px); }
+  .toc-float .toc-btn { width: 48px; height: 48px; font-size: 20px; }
+}
+</style>
+
+<script>
+function toggleToc(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('toc-panel').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var p = document.getElementById('toc-panel');
+  if (!p || !p.classList.contains('open')) return;
+  var btn = document.querySelector('.toc-float .toc-btn');
+  if (p.contains(e.target)) return;
+  if (btn && btn.contains(e.target)) return;
+  p.classList.remove('open');
+});
+</script>
+
+## 为什么去 {#intro}
 
 五台山是中国四大佛教名山之首、文殊菩萨道场,藏传汉传佛教并存。海拔 1500-2500m 的清凉世界,夏季均温 20°C,是避暑 + 深度古建的稀缺组合。
 
@@ -16,7 +232,7 @@ tags: [古建筑, 佛教, 梁思成, 自驾, 五台山, 佛光寺, 南禅寺, �
 
 台怀镇核心寺院群**显通寺**(五台山开山祖寺,东汉永平十一年/公元 68 年)和**塔院寺**(大白塔建于元大德六年/1302 年,尼泊尔匠师阿尼哥设计,通高 75.3 米)是五台山视觉地标。**2 天版本**聚焦核心:五台山寺庙群 + 佛光寺,时间紧但主体验不打折扣。
 
-## 路线总览
+## 路线总览 {#route}
 
 ```
 D1: 北京(顺义) → 京昆高速 G5 → 保定服务区 → 忻州 → 五台山台怀镇(约 360km, 5h)
@@ -28,7 +244,7 @@ D2: 五台山宾馆 05:30 起 → 佛光寺(07:30 开门) → 南禅寺 → 京�
 
 全程约 720km,环线不走回头路。**时间紧,必须早出发**。
 
-## 🎒 行前必带
+## 🎒 行前必带 {#checklist}
 
 ### 证件
 - 身份证、驾驶证、行驶证、车辆保险单(电子保单即可)
@@ -192,7 +408,7 @@ D2: 五台山宾馆 05:30 起 → 佛光寺(07:30 开门) → 南禅寺 → 京�
 10. **素斋时段**:寿宁寺素斋仅 11:30 + 17:30 两个时段,D1 17:30 必吃
 11. **2-day 心理预期**:核心体验完整(寺庙群 + 佛光寺),深度不如 3-day
 
-## 📎 配套产物
+## 📎 配套产物 {#links}
 
 - [🗺 导航点位页 (高德直接 href)]({{ site.baseurl }}/wutaishan-trip-map.html) —— 12 POI 卡片,点击直接拉起高德 App
 - [🆕 综合地图 (OSRM 实际驾车路径)]({{ site.baseurl }}/wutaishan-trip-map-v5.html) —— Leaflet 渲染,Day 切换
