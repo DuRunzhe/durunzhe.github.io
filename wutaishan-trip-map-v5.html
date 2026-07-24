@@ -141,7 +141,18 @@ header p .route { font-weight: 600; }
 }
 .poi-actions a:active { opacity: 0.7; }
 
-/* ========== 路线信息(导航距离/时长/通行费) ========== */
+/* ========== 地图路线截图(响应式+lightbox) ========== */
+.poi-route-map {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  margin: 6px 0 10px;
+  border: 1px solid #e8eaec;
+  cursor: pointer;
+}
+.poi-route-map:active { transform: scale(0.97); }
+
+/* ========== 路线信息卡片截图(旧格式) ========== */
 .poi-route-img {
   width: 100%;
   display: block;
@@ -216,6 +227,24 @@ header p .route { font-weight: 600; }
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   z-index: 50;
+}
+
+/* ========== Lightbox 全屏预览 ========== */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox-overlay img {
+  max-width: 95vw;
+  max-height: 95vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
 }
 </style>
 </head>
@@ -467,6 +496,20 @@ const observer = new IntersectionObserver((entries) => {
 }, { rootMargin: '-30% 0px -50% 0px' });
 
 sections.forEach(s => observer.observe(s));
+
+// Lightbox: 点击地图路线截图全屏查看
+const routeImgs = document.querySelectorAll('.poi-route-map');
+routeImgs.forEach(img => {
+  img.addEventListener('click', () => {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox-overlay';
+    const lbImg = document.createElement('img');
+    lbImg.src = img.src;
+    lb.appendChild(lbImg);
+    lb.onclick = () => lb.remove();
+    document.body.appendChild(lb);
+  });
+});
 </script>
 
 </body>
