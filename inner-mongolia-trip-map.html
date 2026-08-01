@@ -212,6 +212,37 @@ header p .route { font-weight: 600; }
   border-radius: 6px;
 }
 
+/* ========== 易混地名澄清 ========== */
+.name-clarify {
+  margin: 10px 12px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.name-clarify summary {
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  color: #e65100;
+  outline: none;
+}
+.name-clarify .cl-item {
+  margin: 8px 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.65;
+}
+.name-clarify .cl-item b { color: #333; }
+.name-clarify .cl-item .vs { color: #e65100; font-weight: 600; }
+.name-clarify .cl-src {
+  font-size: 11px;
+  color: #999;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed #e0d5a8;
+}
+
 .to-top {
   position: fixed;
   bottom: 20px;
@@ -265,6 +296,22 @@ header p .route { font-weight: 600; }
   <a href="#day4">D4 99 号公路 + 锡林浩特</a>
   <a href="#day5">D5 多伦 + 玉龙沙湖 + 返京</a>
 </nav>
+
+<!-- ========== 易混地名澄清 ========== -->
+<details class="name-clarify" open>
+  <summary>⚠️ 易混地名澄清（出发前看一眼，避免导航错地方）</summary>
+  <div class="cl-item"><b>达里湖</b> <span class="vs">≠</span> <b>达赉湖（呼伦湖）</b>：本页 D3 的「达里湖」在赤峰克什克腾旗（达达线起点，咸水湖）；「达赉湖」是呼伦贝尔的呼伦湖，相距 1000+km，导航时务必看清。</div>
+  <div class="cl-item"><b>乌兰布统</b> <span class="vs">=</span> <b>乌兰布通</b>：同一个地方，蒙语音译不同写法（乌兰=红，布通=坛）。D1/D2 全部点位都在乌兰布统苏木，高德搜哪个都行。</div>
+  <div class="cl-item"><b>塞罕坝</b> <span class="vs">vs</span> <b>乌兰布统</b>：塞罕坝机械林场（D1 路过）在<b>河北省</b>围场县；乌兰布统在<b>内蒙古</b>克什克腾旗。两地相邻但跨省，注意目的地省份。</div>
+  <div class="cl-item"><b>达达线</b> <span class="vs">vs</span> <b>热阿线</b>：达达线=达里湖→阿斯哈图（约 135km，贡格尔草原，辽阔）；热阿线=热水塘→阿斯哈图（约 80km，黄岗梁林场，森林山地）。本页 D3 两条都走：上午达达线，下午热阿线。</div>
+  <div class="cl-item"><b>阿斯哈图石林</b> <span class="vs">≠</span> <b>云南石林</b>：阿斯哈图是<b>花岗岩</b>石林（冰川遗迹，世界罕见），在克什克腾旗；云南石林是喀斯特石灰岩。别拿云南石林的玩法来套。</div>
+  <div class="cl-item"><b>西乌旗</b> <span class="vs">vs</span> <b>东乌旗</b>：本页 D4「西乌旗」=西乌珠穆沁旗（锡林郭勒盟，99号公路东端午餐点）；东乌珠穆沁旗在更北边，别导航错。</div>
+  <div class="cl-item"><b>99号公路</b> <span class="vs">≠</span> <b>国道 99</b>：99号公路是西乌珠穆沁旗的<b>草原旅游公路</b>（非国道编号），本页 D4 全程走它，别搜成国道。</div>
+  <div class="cl-item"><b>玉龙沙湖</b> <span class="vs">≠</span> <b>玉龙雪山</b>：玉龙沙湖在<b>赤峰翁牛特旗</b>（沙漠+湖泊，D5 返程顺路）；玉龙雪山在云南丽江，完全两回事。</div>
+  <div class="cl-item"><b>热水塘镇</b> <span class="vs">vs</span> <b>热水镇</b>：热水塘镇（克什克腾旗，硫磺温泉，D3/D4 可选泡汤）在热阿线西端；别和承德等地的「热水镇」混淆。</div>
+  <div class="cl-item"><b>经棚镇</b>：克什克腾旗政府驻地（D3 住宿在此），克旗的行政中心，导航搜「经棚镇」即可。</div>
+  <div class="cl-src">来源：维基百科 / 百度 / 搜狗检索核实（2026-08-01）</div>
+</details>
 
 <!-- ========== Day 区段 ========== -->
 <section class="day" id="day1">
