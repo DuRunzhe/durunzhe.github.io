@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>🚗 内蒙草原 5 天经典环线 B 方案（夜行承德 + 达达线+热阿线+乌兰布统） · 高德导航点位</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f6f8;
+  padding-bottom: 60px;
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background: linear-gradient(135deg, #FF6F00 0%, #FF8F00 100%);
+  color: white;
+  padding: 20px 18px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+header h1 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+header p { font-size: 12px; opacity: 0.95; }
+header p .route { font-weight: 600; }
+
+.day-nav {
+  background: white;
+  padding: 10px 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 76px;
+  z-index: 99;
+  border-bottom: 1px solid #e8eaec;
+  -webkit-overflow-scrolling: touch;
+}
+.day-nav::-webkit-scrollbar { display: none; }
+.day-nav a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-right: 6px;
+  background: #f0f1f3;
+  color: #555;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.day-nav a.active, .day-nav a:active {
+  background: #FF6F00;
+  color: white;
+}
+
+.day { padding: 16px 14px; }
+
+.day-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: linear-gradient(to right, #fff5e6, white);
+  border-left: 5px solid #FF6F00;
+  border-radius: 4px;
+}
+.day-title .day-num { font-size: 20px; font-weight: 700; color: #FF6F00; margin-right: 10px; }
+.day-title .day-info { flex: 1; }
+.day-title h2 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+.day-title .meta { font-size: 11px; color: #888; }
+.day-title .route-arrow { font-size: 16px; color: #FF6F00; font-weight: 600; }
+
+.group { margin-bottom: 18px; }
+.group-title {
+  font-size: 13px; font-weight: 600; color: #555; margin-bottom: 8px; padding: 0 4px;
+  display: flex; align-items: center;
+}
+.group-title .emoji { margin-right: 6px; font-size: 15px; }
+
+.poi {
+  background: white;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #ecedef;
+}
+
+.poi-name {
+  font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.poi-name .tag {
+  font-size: 10px; font-weight: 500; padding: 2px 7px;
+  border-radius: 10px; white-space: nowrap; margin-left: 8px;
+}
+
+.tag.attract   { background: #fef0ef; color: #c7392b; }
+.tag.hotel     { background: #f0ecfa; color: #6b46c1; }
+.tag.food      { background: #fff5e8; color: #d97706; }
+.tag.service   { background: #e0f0fc; color: #2563eb; }
+.tag.optional  { background: #f0f9ff; color: #0891b2; }
+.tag.peak      { background: #fff8e1; color: #f57f17; }
+.tag.stop      { background: #e3f2fd; color: #1565c0; }
+.tag.start     { background: #e8f5e9; color: #2d7d46; }
+.tag.end       { background: #fce4ec; color: #c62828; }
+
+.poi-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.poi-info .price { color: #FF6F00; font-weight: 600; }
+
+.poi-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.poi-actions a {
+  flex: 1 1 calc(50% - 3px);
+  min-width: 88px;
+  display: block;
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.2s;
+}
+.poi-actions a:active { opacity: 0.7; }
+
+/* ========== 地图路线截图(响应式+lightbox) ========== */
+.poi-route-map {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  margin: 6px 0 10px;
+  border: 1px solid #e8eaec;
+  cursor: pointer;
+}
+.poi-route-map:active { transform: scale(0.97); }
+
+/* ========== 路线信息卡片截图(旧格式) ========== */
+.poi-route-img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  margin: 6px 0 10px;
+  border: 1px solid #f0eae2;
+}
+.poi-route-info {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 6px 0 10px;
+  padding: 8px 10px;
+  background: #fffaf0;
+  border-radius: 6px;
+  border: 1px solid #fff0d6;
+  font-size: 12px;
+}
+.poi-route-info span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.poi-route-info .ri-dist { color: #2563eb; font-weight: 600; }
+.poi-route-info .ri-time { color: #7B1FA2; font-weight: 600; }
+.poi-route-info .ri-toll { color: #c7392b; font-weight: 600; }
+
+.btn-nav    { background: #FF6F00; color: white; }
+.btn-marker { background: #f0f1f3; color: #555; }
+.btn-search { background: #e8eaec; color: #555; }
+
+.usage {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 16px 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.usage h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #FF6F00;
+}
+.usage ol {
+  padding-left: 22px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+}
+.usage .tip {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 10px;
+  background: #fff8e1;
+  border-radius: 6px;
+}
+
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FF6F00;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 50;
+}
+
+/* ========== Lightbox 全屏预览 ========== */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox-overlay img {
+  max-width: 95vw;
+  max-height: 95vh;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部 ========== -->
+<header>
+  <h1>🚗 内蒙草原 5 天经典环线 B 方案（夜行承德 + 达达线+热阿线+乌兰布统）</h1>
+  <p><span class="route">D0 晚 20:00 北京出发 → 承德过夜 · D1 从容游塞罕坝+乌兰布统+公主湖 · D2-D5 与 A 方案一致</span></p>
+  <p style="margin-top:4px;">6 天 · 44 POI · 点击任意点位 → 高德 App 自动导航</p>
+</header>
+
+<!-- 日期快速跳转 -->
+<nav class="day-nav" id="dayNav">
+  <a href="#day0">D0 夜行 · 北京 → 承德</a>
+  <a href="#day1">D1 承德 → 塞罕坝 → 乌兰布统</a>
+  <a href="#day2">D2 乌兰布统核心区(去公主湖)</a>
+  <a href="#day3">D3 达达线 + 热阿线环线</a>
+  <a href="#day4">D4 克什克腾石阵 + 温泉 + 玉龙沙湖</a>
+  <a href="#day5">D5 达里湖 → 沽源草原天路东线 → 北京</a>
+</nav>
+
+<!-- ========== Day 区段 ========== -->
+<section class="day" id="day0">
+  <div class="day-title">
+    <span class="day-num">D0</span>
+    <div class="day-info">
+      <h2>夜行 · 北京 → 承德</h2>
+      <div class="meta">20:00 出发 · 188km/2.3h · 22:20 入住</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+  <div class="group">
+    <div class="poi">
+      <div class="poi-name">枫泉花园
+        <span class="tag start">起点</span>
+      </div>
+      <div class="poi-info">20:00 出发 · 京承高速</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">密云服务区
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">21:00 · 第一次休整</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 55km</span>
+        <span class="ri-time">⏱️ 37min</span>
+        <span class="ri-toll">💰 ¥30</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.83,40.38,%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.83,40.38,%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">承德·避暑山庄附近酒店
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">22:20 入住 · 188km/2.3h</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 155km</span>
+        <span class="ri-time">⏱️ 1h43min</span>
+        <span class="ri-toll">💰 ¥85</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.94,40.98,%E6%89%BF%E5%BE%B7%C2%B7%E9%81%BF%E6%9A%91%E5%B1%B1%E5%BA%84%E9%99%84%E8%BF%91%E9%85%92%E5%BA%97&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.94,40.98,%E6%89%BF%E5%BE%B7%C2%B7%E9%81%BF%E6%9A%91%E5%B1%B1%E5%BA%84%E9%99%84%E8%BF%91%E9%85%92%E5%BA%97&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%89%BF%E5%BE%B7%C2%B7%E9%81%BF%E6%9A%91%E5%B1%B1%E5%BA%84%E9%99%84%E8%BF%91%E9%85%92%E5%BA%97&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day1">
+  <div class="day-title">
+    <span class="day-num">D1</span>
+    <div class="day-info">
+      <h2>承德 → 塞罕坝 → 乌兰布统</h2>
+      <div class="meta">约 260km · 从容游 + 公主湖 + 日落</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+  <div class="group">
+    <div class="poi">
+      <div class="poi-name">承德·避暑山庄附近酒店
+        <span class="tag start">起点</span>
+      </div>
+      <div class="poi-info">7:30 出发 · 走承围线 G111</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.94,40.98,%E6%89%BF%E5%BE%B7%C2%B7%E9%81%BF%E6%9A%91%E5%B1%B1%E5%BA%84%E9%99%84%E8%BF%91%E9%85%92%E5%BA%97&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.94,40.98,%E6%89%BF%E5%BE%B7%C2%B7%E9%81%BF%E6%9A%91%E5%B1%B1%E5%BA%84%E9%99%84%E8%BF%91%E9%85%92%E5%BA%97&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%89%BF%E5%BE%B7%C2%B7%E9%81%BF%E6%9A%91%E5%B1%B1%E5%BA%84%E9%99%84%E8%BF%91%E9%85%92%E5%BA%97&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">塞罕坝机械林场
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">10:30 · 穿林海而过(130km/2.5h)</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 204km</span>
+        <span class="ri-time">⏱️ 2h16min</span>
+        <span class="ri-toll">💰 ¥112</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">七星湖
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">11:00 · 木栈道+晨雾+落叶松 · 免费</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 32km</span>
+        <span class="ri-time">⏱️ 21min</span>
+        <span class="ri-toll">💰 ¥18</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%83%E6%98%9F%E6%B9%96&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">御道口午餐
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">12:00 · 草原午餐 · 比承德市区体验好</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 16km</span>
+        <span class="ri-time">⏱️ 11min</span>
+        <span class="ri-toll">💰 ¥9</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%E5%8D%88%E9%A4%90&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%E5%8D%88%E9%A4%90&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BE%A1%E9%81%93%E5%8F%A3%E5%8D%88%E9%A4%90&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">御道口·月亮湖
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">12:40 · 月牙形草原湖</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">红山宾馆
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">13:40 入住 · 老牌位置中心 · 红山军马场</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 42km</span>
+        <span class="ri-time">⏱️ 28min</span>
+        <span class="ri-toll">💰 ¥23</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">公主湖
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">15:00 · 蓝齐格格传说 · 欧式草原湖泊(原D2提前)</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 16km</span>
+        <span class="ri-time">⏱️ 11min</span>
+        <span class="ri-toll">💰 ¥9</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.5544,42.6186,%E5%85%AC%E4%B8%BB%E6%B9%96&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.5544,42.6186,%E5%85%AC%E4%B8%BB%E6%B9%96&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%AC%E4%B8%BB%E6%B9%96&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">影视基地
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">18:30 · 欧式草原+暖光日落 · 今日重头戏</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 19km</span>
+        <span class="ri-time">⏱️ 13min</span>
+        <span class="ri-toll">💰 ¥10</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,42.49,%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,42.49,%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">老舅老蒙肉饼
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">20:00 晚餐 · 当地特色</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 5km</span>
+        <span class="ri-time">⏱️ 3min</span>
+        <span class="ri-toll">💰 ¥3</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,42.52,%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,42.52,%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day2">
+  <div class="day-title">
+    <span class="day-num">D2</span>
+    <div class="day-info">
+      <h2>乌兰布统核心区(去公主湖)</h2>
+      <div class="meta">约 80km · 盘龙峡谷/五彩山/东沟/将军泡子日落</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+  <div class="group">
+    <div class="poi">
+      <div class="poi-name">红山军马场日出
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">5:30 · 私家牧场晨雾+草浪 · 免费</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA%E6%97%A5%E5%87%BA&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA%E6%97%A5%E5%87%BA&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA%E6%97%A5%E5%87%BA&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">盘龙峡谷
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">9:00 · 公主湖与将军泡子之间 · 野花+怪石(提前)</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 18km</span>
+        <span class="ri-time">⏱️ 12min</span>
+        <span class="ri-toll">💰 ¥10</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.538,42.628,%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.538,42.628,%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">五彩山
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">10:00 · 色彩斑斓山丘 · 摄影点(提前)</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 9km</span>
+        <span class="ri-time">⏱️ 6min</span>
+        <span class="ri-toll">💰 ¥5</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.56,42.57,%E4%BA%94%E5%BD%A9%E5%B1%B1&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.56,42.57,%E4%BA%94%E5%BD%A9%E5%B1%B1&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%BA%94%E5%BD%A9%E5%B1%B1&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">蒙古牧户家
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">12:00 午餐 · 手把肉 80-120/人</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 3km</span>
+        <span class="ri-time">⏱️ 2min</span>
+        <span class="ri-toll">💰 ¥2</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,42.55,%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,42.55,%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">金莲花湿地
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">15:30 · 7-8 月限定 · 漫山金莲</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 4km</span>
+        <span class="ri-time">⏱️ 3min</span>
+        <span class="ri-toll">💰 ¥2</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.58,42.53,%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.58,42.53,%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">东沟
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">17:00 · 比西沟人少 70% · 野花密</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 4km</span>
+        <span class="ri-time">⏱️ 3min</span>
+        <span class="ri-toll">💰 ¥2</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.6,42.55,%E4%B8%9C%E6%B2%9F&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.6,42.55,%E4%B8%9C%E6%B2%9F&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%B8%9C%E6%B2%9F&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">将军泡子
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">17:30 日落 · 今日重头戏</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 14km</span>
+        <span class="ri-time">⏱️ 9min</span>
+        <span class="ri-toll">💰 ¥8</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.534,42.6331,%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.534,42.6331,%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">铜锅涮肉
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">19:30 晚餐</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 19km</span>
+        <span class="ri-time">⏱️ 13min</span>
+        <span class="ri-toll">💰 ¥10</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,42.51,%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,42.51,%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day3">
+  <div class="day-title">
+    <span class="day-num">D3</span>
+    <div class="day-info">
+      <h2>达达线 + 热阿线环线</h2>
+      <div class="meta">约 280km · 8h · 中国最美草原公路</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+  <div class="group">
+    <div class="poi">
+      <div class="poi-name">贡格尔收费站
+        <span class="tag stop">驿站</span>
+      </div>
+      <div class="poi-info">9:30 · 出口下来 · 正式上达达线</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.93,43.42,%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.93,43.42,%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">达达线
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">10:00 · 彩虹公路 · 中国北疆风景大道</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 8km</span>
+        <span class="ri-time">⏱️ 5min</span>
+        <span class="ri-toll">💰 ¥4</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.98,43.46,%E8%BE%BE%E8%BE%BE%E7%BA%BF&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.98,43.46,%E8%BE%BE%E8%BE%BE%E7%BA%BF&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E8%BE%BE%E7%BA%BF&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">巴彦查干苏木
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">12:00 午餐 · 手把肉 · ⚠️ 后面无正经餐馆</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 6km</span>
+        <span class="ri-time">⏱️ 4min</span>
+        <span class="ri-toll">💰 ¥3</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.0,43.5,%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.0,43.5,%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">阿斯哈图石林·南门
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">13:00 · 石林驿站免费远眺 · 省160门票</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 64km</span>
+        <span class="ri-time">⏱️ 43min</span>
+        <span class="ri-toll">💰 ¥35</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.547,43.35,%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%C2%B7%E5%8D%97%E9%97%A8&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.547,43.35,%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%C2%B7%E5%8D%97%E9%97%A8&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%C2%B7%E5%8D%97%E9%97%A8&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">黄岗梁森林旅游区
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">15:00 · 山顶观景台 · 导航设森林旅游区</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 35km</span>
+        <span class="ri-time">⏱️ 23min</span>
+        <span class="ri-toll">💰 ¥19</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.68,43.14,%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.68,43.14,%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">黄岗梁·盘山公路
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">16:30 · 半山腰 · 绿+雾+云海</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 8km</span>
+        <span class="ri-time">⏱️ 5min</span>
+        <span class="ri-toll">💰 ¥4</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.71,43.09,%E9%BB%84%E5%B2%97%E6%A2%81%C2%B7%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.71,43.09,%E9%BB%84%E5%B2%97%E6%A2%81%C2%B7%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%BB%84%E5%B2%97%E6%A2%81%C2%B7%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">热水塘镇
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">17:30 · 温泉解乏（可选）</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 13km</span>
+        <span class="ri-time">⏱️ 9min</span>
+        <span class="ri-toll">💰 ¥7</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">草原牧歌蒙餐
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">19:00 晚餐 · 烤羊腿+莜面</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 31km</span>
+        <span class="ri-time">⏱️ 21min</span>
+        <span class="ri-toll">💰 ¥17</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,43.26,%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,43.26,%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">经棚镇·星程酒店
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">入住 19:30 · 连锁稳定</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day4">
+  <div class="day-title">
+    <span class="day-num">D4</span>
+    <div class="day-info">
+      <h2>克什克腾石阵 + 温泉 + 玉龙沙湖</h2>
+      <div class="meta">约 200km · 10h · 克什克腾深度</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+  <div class="group">
+    <div class="poi">
+      <div class="poi-name">桦木沟国家森林公园
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">8:00 · 白桦林+溪流+野蘑菇 · 人少90%</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.09,42.55,%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.09,42.55,%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">克什克腾石阵（阿斯哈图石林）
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">9:30 · 买票进 160/人 · 游玩2-3h</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 130km</span>
+        <span class="ri-time">⏱️ 1h27min</span>
+        <span class="ri-toll">💰 ¥72</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.547,43.35,%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E9%98%B5%EF%BC%88%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%EF%BC%89&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.547,43.35,%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E9%98%B5%EF%BC%88%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%EF%BC%89&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E9%98%B5%EF%BC%88%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%EF%BC%89&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">经棚镇·烤羊腿
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">12:00 午餐 · 强烈推荐</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 14km</span>
+        <span class="ri-time">⏱️ 9min</span>
+        <span class="ri-toll">💰 ¥8</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E7%83%A4%E7%BE%8A%E8%85%BF&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E7%83%A4%E7%BE%8A%E8%85%BF&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E7%83%A4%E7%BE%8A%E8%85%BF&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">热水塘温泉
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">14:00 · 半日票 150-200/人</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 31km</span>
+        <span class="ri-time">⏱️ 21min</span>
+        <span class="ri-toll">💰 ¥17</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E6%B8%A9%E6%B3%89&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E6%B8%A9%E6%B3%89&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%83%AD%E6%B0%B4%E5%A1%98%E6%B8%A9%E6%B3%89&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">玉龙沙湖
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">17:00 · 沙漠+湖泊+骆驼（可选）</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 140km</span>
+        <span class="ri-time">⏱️ 1h33min</span>
+        <span class="ri-toll">💰 ¥77</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=119.0604,43.0484,%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=119.0604,43.0484,%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">经棚镇·夜宿
+        <span class="tag hotel">首选</span>
+      </div>
+      <div class="poi-info">20:00 返经棚镇 · 同D3</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 168km</span>
+        <span class="ri-time">⏱️ 1h52min</span>
+        <span class="ri-toll">💰 ¥92</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E5%A4%9C%E5%AE%BF&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E5%A4%9C%E5%AE%BF&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E5%A4%9C%E5%AE%BF&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="day" id="day5">
+  <div class="day-title">
+    <span class="day-num">D5</span>
+    <div class="day-info">
+      <h2>达里湖 → 沽源草原天路东线 → 北京</h2>
+      <div class="meta">约 820km · 11-12h · 桦皮岭日落 · 返程</div>
+    </div>
+    <span class="route-arrow">→</span>
+  </div>
+  <div class="group">
+    <div class="poi">
+      <div class="poi-name">达里湖·北岸
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">9:00 · 草原马尔代夫 · 茅草屋+帆船</div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.71,43.5,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8C%97%E5%B2%B8&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.71,43.5,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8C%97%E5%B2%B8&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8C%97%E5%B2%B8&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">达里湖·南岸
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">10:30 · 火山地貌+盐碱滩 · 航拍最佳（可选）</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 8km</span>
+        <span class="ri-time">⏱️ 5min</span>
+        <span class="ri-toll">💰 ¥4</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.71,43.45,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8D%97%E5%B2%B8&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.71,43.45,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8D%97%E5%B2%B8&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8D%97%E5%B2%B8&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">锡林郭勒午餐
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">13:00 · 额尔敦蒙餐/锡盟羊杂</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 99km</span>
+        <span class="ri-time">⏱️ 1h06min</span>
+        <span class="ri-toll">💰 ¥54</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.09,43.93,%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%E5%8D%88%E9%A4%90&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.09,43.93,%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%E5%8D%88%E9%A4%90&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%E5%8D%88%E9%A4%90&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">太仆寺旗
+        <span class="tag stop">驿站</span>
+      </div>
+      <div class="poi-info">15:00 · 分叉点：右转沽源方向（不去张北）</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 319km</span>
+        <span class="ri-time">⏱️ 3h33min</span>
+        <span class="ri-toll">💰 ¥175</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.28,41.89,%E5%A4%AA%E4%BB%86%E5%AF%BA%E6%97%97&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=115.28,41.89,%E5%A4%AA%E4%BB%86%E5%AF%BA%E6%97%97&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E5%A4%AA%E4%BB%86%E5%AF%BA%E6%97%97&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">沽源县
+        <span class="tag food">餐厅</span>
+      </div>
+      <div class="poi-info">16:00 · 滦河神韵/五花草甸 · 进天路前补给</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 56km</span>
+        <span class="ri-time">⏱️ 37min</span>
+        <span class="ri-toll">💰 ¥31</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.68,41.67,%E6%B2%BD%E6%BA%90%E5%8E%BF&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=115.68,41.67,%E6%B2%BD%E6%BA%90%E5%8E%BF&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%B2%BD%E6%BA%90%E5%8E%BF&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">草原天路东线
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">16:30 · 沽源→桦皮岭 95km · 风车群+林海</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 50km</span>
+        <span class="ri-time">⏱️ 33min</span>
+        <span class="ri-toll">💰 ¥28</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.55,41.35,%E8%8D%89%E5%8E%9F%E5%A4%A9%E8%B7%AF%E4%B8%9C%E7%BA%BF&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=115.55,41.35,%E8%8D%89%E5%8E%9F%E5%A4%A9%E8%B7%AF%E4%B8%9C%E7%BA%BF&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E8%8D%89%E5%8E%9F%E5%A4%A9%E8%B7%AF%E4%B8%9C%E7%BA%BF&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">桦皮岭
+        <span class="tag attract">景点</span>
+      </div>
+      <div class="poi-info">19:30 · 天路东入口 · 拍日落</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 47km</span>
+        <span class="ri-time">⏱️ 31min</span>
+        <span class="ri-toll">💰 ¥26</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.44,41.05,%E6%A1%A6%E7%9A%AE%E5%B2%AD&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=115.44,41.05,%E6%A1%A6%E7%9A%AE%E5%B2%AD&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%A1%A6%E7%9A%AE%E5%B2%AD&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">京礼高速
+        <span class="tag service">服务区</span>
+      </div>
+      <div class="poi-info">20:00 · 崇礼方向 · 全程高速</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 18km</span>
+        <span class="ri-time">⏱️ 12min</span>
+        <span class="ri-toll">💰 ¥10</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=115.35,40.95,%E4%BA%AC%E7%A4%BC%E9%AB%98%E9%80%9F&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=115.35,40.95,%E4%BA%AC%E7%A4%BC%E9%AB%98%E9%80%9F&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E4%BA%AC%E7%A4%BC%E9%AB%98%E9%80%9F&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+    <div class="poi">
+      <div class="poi-name">枫泉花园（终点）
+        <span class="tag end">回程</span>
+      </div>
+      <div class="poi-info">22:30 抵京</div>
+      <div class="poi-route-info">
+        <span class="ri-dist">🛣️ 189km</span>
+        <span class="ri-time">⏱️ 2h06min</span>
+        <span class="ri-toll">💰 ¥104</span>
+      </div>
+      <div class="poi-actions">
+    <a class="btn-nav" target="_blank" href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD%EF%BC%88%E7%BB%88%E7%82%B9%EF%BC%89&mode=car&src=trip">🚗 导航</a>
+    <a class="btn-marker" target="_blank" href="https://uri.amap.com/marker?markers=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD%EF%BC%88%E7%BB%88%E7%82%B9%EF%BC%89&src=trip">📍 标记位置</a>
+    <a class="btn-search" target="_blank" href="https://uri.amap.com/search?keyword=%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD%EF%BC%88%E7%BB%88%E7%82%B9%EF%BC%89&src=trip">🔍 搜索</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== 使用说明 ========== -->
+<section class="usage">
+  <h3>📱 使用说明</h3>
+  <ol>
+    <li><b>🚗 导航</b> · 所有点位都有 · 高德自动 fallback name 搜索定位</li>
+    <li><b>🔍 搜索</b> · 所有点位都有 · 查同名 POI / 收藏 / 二次确认</li>
+    <li><b>📍 标记位置</b> · 仅坐标精准的点有 · 地图上精准标点</li>
+    <li>手机点按钮会唤起高德 App；未装则跳网页版</li>
+  </ol>
+  <div class="tip">
+    💡 <b>坐标质量提示</b> · 半透明的卡片为 fallback 坐标,真实出行前建议用 web_search 校核到 known 级别
+  </div>
+</section>
+
+<button class="to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const navLinks = document.querySelectorAll('.day-nav a');
+const sections = document.querySelectorAll('.day');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Lightbox: 点击地图路线截图全屏查看
+const routeImgs = document.querySelectorAll('.poi-route-map');
+routeImgs.forEach(img => {
+  img.addEventListener('click', () => {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox-overlay';
+    const lbImg = document.createElement('img');
+    lbImg.src = img.dataset.full || img.src;
+    lb.appendChild(lbImg);
+    lb.onclick = () => lb.remove();
+    document.body.appendChild(lb);
+  });
+});
+</script>
+
+</body>
+</html>
