@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "内蒙草原 5 天经典环线 B 方案（夜行承德版）"
-date: 2026-08-04
+date: 2026-08-03
 categories: [trip, self-drive]
 tags: [内蒙, 自驾, 草原, 达达线, 热阿线, 乌兰布统, 克什克腾, 达里湖, 沽源天路]
 ---
