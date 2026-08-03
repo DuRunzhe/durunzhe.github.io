@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <name>内蒙草原 5 天经典环线(达达线+热阿线+99号公路+乌兰布统)</name>
-  <description>北京出发 5 天草原环线 · 顺时针不走回头路 · GCJ-02/WGS-84 双坐标系 · OSRM 实际驾车路径</description>
+  <name>内蒙草原 5 天经典环线（达达线+热阿线+乌兰布统）</name>
+  <description>北京出发 5 天草原环线 · 顺时针不走回头路 · GCJ-02/WGS-84 双坐标系 · D5 沽源草原天路东线</description>
   <Folder>
     <name>D1 北京 → 乌兰布统</name>
-    <description>约 480km · 6.5h · 林海 + 草原初见</description>
+    <description>约 460km · 6.5h · 林海 + 草原初见</description>
     <Placemark>
       <name>D1 行程连线</name>
       <Style><LineStyle><color>ff3539E5</color><width>3</width></LineStyle></Style>
@@ -13,55 +13,55 @@
     </Placemark>
     <Placemark>
       <name>1. 枫泉花园</name>
-      <description><![CDATA[起点 7:30 · 走京承高速<br/><br/>标签: start<br/>坐标(GCJ-02): 116.548094, 40.084943<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[起点 7:30 · 走京承高速<br/><br/>标签: start<br/>坐标(GCJ-02): 116.548094, 40.084943<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff00C853</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>116.548094,40.084943,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>2. 密云服务区</name>
-      <description><![CDATA[9:30 · 第一次休整 · 60km 处<br/><br/>标签: service<br/>坐标(GCJ-02): 116.83, 40.38<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.83,40.38,%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[9:30 · 第一次休整 · 60km 处<br/><br/>标签: service<br/>坐标(GCJ-02): 116.83, 40.38<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.83,40.38,%E5%AF%86%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff1976D2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>116.83,40.38,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>3. 老三羊汤</name>
-      <description><![CDATA[12:00 午餐 · 羊汤+烧饼 · 承德<br/><br/>标签: food<br/>坐标(GCJ-02): 117.93, 40.97<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.93,40.97,%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[12:00 午餐 · 羊汤+烧饼 · 承德<br/><br/>标签: food<br/>坐标(GCJ-02): 117.93, 40.97<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.93,40.97,%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.93,40.97,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>4. 塞罕坝机械林场</name>
-      <description><![CDATA[15:30 · 穿林海而过<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.284168, 42.248837<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[15:30 · 穿林海而过<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.284168, 42.248837<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.284168,42.248837,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>5. 七星湖</name>
-      <description><![CDATA[16:00 · 木栈道+晨雾+落叶松 · 免费<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.162602, 42.439959<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[16:00 · 木栈道+晨雾+落叶松 · 免费<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.162602, 42.439959<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.162602,42.439959,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>6. 御道口·月亮湖</name>
-      <description><![CDATA[17:00 · 月牙形草原湖<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.24, 42.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[17:00 · 月牙形草原湖<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.24, 42.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.24,42.35,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>7. 红山宾馆</name>
-      <description><![CDATA[入住 17:30 · 老牌位置中心 · 红山军马场<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.55, 42.51<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[入住 17:30 · 老牌位置中心 · 红山军马场<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.55, 42.51<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%AE%BE%E9%A6%86&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,42.51,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>8. 影视基地</name>
-      <description><![CDATA[18:30 · 欧式草原+暖光日落 · 今日重头戏<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.55, 42.49<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.49,%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[18:30 · 欧式草原+暖光日落 · 今日重头戏<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.55, 42.49<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.49,%E5%BD%B1%E8%A7%86%E5%9F%BA%E5%9C%B0&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,42.49,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>9. 老舅老蒙肉饼</name>
-      <description><![CDATA[20:00 晚餐 · 当地特色<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 42.52<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.52,%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[20:00 晚餐 · 当地特色<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 42.52<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.52,%E8%80%81%E8%88%85%E8%80%81%E8%92%99%E8%82%89%E9%A5%BC&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,42.52,0</coordinates></Point>
     </Placemark>
@@ -75,232 +75,229 @@
       <LineString><tessellate>1</tessellate><coordinates>117.55,42.51,0 117.5544,42.6186,0 117.538,42.628,0 117.56,42.57,0 117.55,42.55,0 117.58,42.53,0 117.6,42.55,0 117.534,42.6331,0 117.55,42.51,0</coordinates></LineString>
     </Placemark>
     <Placemark>
-      <name>1. 红山军马场日出</name>
-      <description><![CDATA[5:30 · 私家牧场晨雾+草浪 · 免费<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.55, 42.51<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA%E6%97%A5%E5%87%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>10. 红山军马场日出</name>
+      <description><![CDATA[5:30 · 私家牧场晨雾+草浪 · 免费<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.55, 42.51<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.51,%E7%BA%A2%E5%B1%B1%E5%86%9B%E9%A9%AC%E5%9C%BA%E6%97%A5%E5%87%BA&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,42.51,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>2. 公主湖</name>
-      <description><![CDATA[8:30 · 蓝齐格格传说 · 欧式草原湖泊<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.5544, 42.6186<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.5544,42.6186,%E5%85%AC%E4%B8%BB%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>11. 公主湖</name>
+      <description><![CDATA[8:30 · 蓝齐格格传说 · 欧式草原湖泊<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.5544, 42.6186<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.5544,42.6186,%E5%85%AC%E4%B8%BB%E6%B9%96&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.5544,42.6186,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>3. 盘龙峡谷</name>
-      <description><![CDATA[9:30 · 公主湖与将军泡子之间 · 野花+怪石<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.538, 42.628<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.538,42.628,%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>12. 盘龙峡谷</name>
+      <description><![CDATA[9:30 · 公主湖与将军泡子之间 · 野花+怪石<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.538, 42.628<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.538,42.628,%E7%9B%98%E9%BE%99%E5%B3%A1%E8%B0%B7&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.538,42.628,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>4. 五彩山</name>
-      <description><![CDATA[10:30 · 色彩斑斓山丘 · 摄影点<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.56, 42.57<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.56,42.57,%E4%BA%94%E5%BD%A9%E5%B1%B1&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>13. 五彩山</name>
+      <description><![CDATA[10:30 · 色彩斑斓山丘 · 摄影点<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.56, 42.57<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.56,42.57,%E4%BA%94%E5%BD%A9%E5%B1%B1&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.56,42.57,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>5. 蒙古牧户家</name>
-      <description><![CDATA[12:00 午餐 · 手把肉 80-120/人<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 42.55<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.55,%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>14. 蒙古牧户家</name>
+      <description><![CDATA[12:00 午餐 · 手把肉 80-120/人<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 42.55<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.55,%E8%92%99%E5%8F%A4%E7%89%A7%E6%88%B7%E5%AE%B6&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,42.55,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>6. 金莲花湿地</name>
-      <description><![CDATA[15:30 · 7-8 月限定 · 漫山金莲<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.58, 42.53<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.58,42.53,%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>15. 金莲花湿地</name>
+      <description><![CDATA[15:30 · 7-8 月限定 · 漫山金莲<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.58, 42.53<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.58,42.53,%E9%87%91%E8%8E%B2%E8%8A%B1%E6%B9%BF%E5%9C%B0&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.58,42.53,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>7. 东沟</name>
-      <description><![CDATA[17:00 · 比西沟人少 70% · 野花密<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.6, 42.55<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.6,42.55,%E4%B8%9C%E6%B2%9F&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>16. 东沟</name>
+      <description><![CDATA[17:00 · 比西沟人少 70% · 野花密<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.6, 42.55<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.6,42.55,%E4%B8%9C%E6%B2%9F&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.6,42.55,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>8. 将军泡子</name>
-      <description><![CDATA[17:30 日落 · 今日重头戏<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.534, 42.6331<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.534,42.6331,%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>17. 将军泡子</name>
+      <description><![CDATA[17:30 日落 · 今日重头戏<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.534, 42.6331<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.534,42.6331,%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.534,42.6331,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>9. 铜锅涮肉</name>
-      <description><![CDATA[19:30 晚餐<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 42.51<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.51,%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>18. 铜锅涮肉</name>
+      <description><![CDATA[19:30 晚餐<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 42.51<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,42.51,%E9%93%9C%E9%94%85%E6%B6%AE%E8%82%89&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,42.51,0</coordinates></Point>
     </Placemark>
   </Folder>
   <Folder>
-    <name>D3 达达线 + 阿斯哈图石林</name>
-    <description>约 350km · 8h · 中国最美草原公路 + 达里湖</description>
+    <name>D3 达达线 + 热阿线环线</name>
+    <description>约 280km · 8h · 中国最美草原公路</description>
     <Placemark>
       <name>D3 行程连线</name>
       <Style><LineStyle><color>ff47A043</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>116.71,43.5,0 116.71,43.45,0 116.93,43.42,0 117.0,43.5,0 117.547,43.35,0 117.71,43.09,0 117.79,43.15,0 117.55,43.26,0 117.55,43.26,0</coordinates></LineString>
+      <LineString><tessellate>1</tessellate><coordinates>116.93,43.42,0 116.98,43.46,0 117.0,43.5,0 117.547,43.35,0 117.68,43.14,0 117.71,43.09,0 117.79,43.15,0 117.55,43.26,0 117.55,43.26,0</coordinates></LineString>
     </Placemark>
     <Placemark>
-      <name>1. 达里湖·北岸</name>
-      <description><![CDATA[8:30 · 达达线起点 · 火山地貌<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.71, 43.5<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.71,43.5,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8C%97%E5%B2%B8&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.71,43.5,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>2. 达里湖·南岸</name>
-      <description><![CDATA[10:00 · 鸟岛+浅滩<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.71, 43.45<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.71,43.45,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8D%97%E5%B2%B8&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.71,43.45,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>3. 贡格尔收费站</name>
-      <description><![CDATA[10:30 · 出口下来 · 正式上达达线<br/><br/>标签: stop<br/>坐标(GCJ-02): 116.93, 43.42<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.93,43.42,%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>19. 贡格尔收费站</name>
+      <description><![CDATA[9:30 · 出口下来 · 正式上达达线<br/><br/>标签: stop<br/>坐标(GCJ-02): 116.93, 43.42<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.93,43.42,%E8%B4%A1%E6%A0%BC%E5%B0%94%E6%94%B6%E8%B4%B9%E7%AB%99&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff00838F</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>116.93,43.42,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>4. 巴彦查干苏木</name>
-      <description><![CDATA[12:00 午餐 · 牧户家手把肉 · ⚠️ 后面无正经餐馆<br/><br/>标签: food<br/>坐标(GCJ-02): 117.0, 43.5<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.0,43.5,%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>20. 达达线</name>
+      <description><![CDATA[10:00 · 彩虹公路 · 中国北疆风景大道<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.98, 43.46<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.98,43.46,%E8%BE%BE%E8%BE%BE%E7%BA%BF&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>116.98,43.46,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>21. 巴彦查干苏木</name>
+      <description><![CDATA[12:00 午餐 · 手把肉 · ⚠️ 后面无正经餐馆<br/><br/>标签: food<br/>坐标(GCJ-02): 117.0, 43.5<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.0,43.5,%E5%B7%B4%E5%BD%A6%E6%9F%A5%E5%B9%B2%E8%8B%8F%E6%9C%A8&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.0,43.5,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>5. 阿斯哈图石林·南门</name>
-      <description><![CDATA[14:00 · 石林驿站免费远眺 · 省 160 门票<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.547, 43.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.547,43.35,%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%C2%B7%E5%8D%97%E9%97%A8&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>22. 阿斯哈图石林·南门</name>
+      <description><![CDATA[13:00 · 石林驿站免费远眺 · 省160门票<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.547, 43.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.547,43.35,%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%C2%B7%E5%8D%97%E9%97%A8&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.547,43.35,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>6. 黄岗梁·盘山公路</name>
-      <description><![CDATA[16:00 · 半山腰 · 绿+雾+云海组合<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.71, 43.09<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.71,43.09,%E9%BB%84%E5%B2%97%E6%A2%81%C2%B7%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>23. 黄岗梁森林旅游区</name>
+      <description><![CDATA[15:00 · 山顶观景台 · 导航设森林旅游区<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.68, 43.14<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.68,43.14,%E9%BB%84%E5%B2%97%E6%A2%81%E6%A3%AE%E6%9E%97%E6%97%85%E6%B8%B8%E5%8C%BA&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.68,43.14,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>24. 黄岗梁·盘山公路</name>
+      <description><![CDATA[16:30 · 半山腰 · 绿+雾+云海<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.71, 43.09<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.71,43.09,%E9%BB%84%E5%B2%97%E6%A2%81%C2%B7%E7%9B%98%E5%B1%B1%E5%85%AC%E8%B7%AF&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.71,43.09,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>7. 热水塘镇</name>
-      <description><![CDATA[17:00 · 温泉解乏（可选）<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.79, 43.15<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>25. 热水塘镇</name>
+      <description><![CDATA[17:30 · 温泉解乏（可选）<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.79, 43.15<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.79,43.15,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>8. 草原牧歌蒙餐</name>
-      <description><![CDATA[19:00 晚餐 · 烤羊腿+莜面<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 43.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.26,%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>26. 草原牧歌蒙餐</name>
+      <description><![CDATA[19:00 晚餐 · 烤羊腿+莜面<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 43.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.26,%E8%8D%89%E5%8E%9F%E7%89%A7%E6%AD%8C%E8%92%99%E9%A4%90&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,43.26,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>9. 经棚镇·星程酒店</name>
-      <description><![CDATA[入住 19:30 · 连锁稳定 · 旺季提前订<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.55, 43.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>27. 经棚镇·星程酒店</name>
+      <description><![CDATA[入住 19:30 · 连锁稳定<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.55, 43.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.55,43.26,0</coordinates></Point>
     </Placemark>
   </Folder>
   <Folder>
-    <name>D4 99 号公路 + 锡林浩特</name>
-    <description>约 350km · 8h · ★ 99 号公路正式主线 ★</description>
+    <name>D4 克什克腾石阵 + 温泉 + 玉龙沙湖</name>
+    <description>约 200km · 10h · 克什克腾深度</description>
     <Placemark>
       <name>D4 行程连线</name>
       <Style><LineStyle><color>ff008CFB</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>117.79,43.15,0 117.55,43.3,0 117.85,43.95,0 117.61,44.58,0 116.0869,43.9333,0 116.0869,43.9333,0 116.09,43.93,0</coordinates></LineString>
+      <LineString><tessellate>1</tessellate><coordinates>117.09,42.55,0 117.547,43.35,0 117.55,43.26,0 117.79,43.15,0 119.0604,43.0484,0 117.55,43.26,0</coordinates></LineString>
     </Placemark>
     <Placemark>
-      <name>1. 热水塘温泉</name>
-      <description><![CDATA[8:00 · 早起泡汤(可选) · 硫磺<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.79, 43.15<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E6%B8%A9%E6%B3%89&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>28. 桦木沟国家森林公园</name>
+      <description><![CDATA[8:00 · 白桦林+溪流+野蘑菇 · 人少90%<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.09, 42.55<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.09,42.55,%E6%A1%A6%E6%9C%A8%E6%B2%9F%E5%9B%BD%E5%AE%B6%E6%A3%AE%E6%9E%97%E5%85%AC%E5%9B%AD&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.09,42.55,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>29. 克什克腾石阵（阿斯哈图石林）</name>
+      <description><![CDATA[9:30 · 买票进 160/人 · 游玩2-3h<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.547, 43.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.547,43.35,%E5%85%8B%E4%BB%80%E5%85%8B%E8%85%BE%E7%9F%B3%E9%98%B5%EF%BC%88%E9%98%BF%E6%96%AF%E5%93%88%E5%9B%BE%E7%9F%B3%E6%9E%97%EF%BC%89&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.547,43.35,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>30. 经棚镇·烤羊腿</name>
+      <description><![CDATA[12:00 午餐 · 强烈推荐<br/><br/>标签: food<br/>坐标(GCJ-02): 117.55, 43.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E7%83%A4%E7%BE%8A%E8%85%BF&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.55,43.26,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>31. 热水塘温泉</name>
+      <description><![CDATA[14:00 · 半日票 150-200/人<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.79, 43.15<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.79,43.15,%E7%83%AD%E6%B0%B4%E5%A1%98%E6%B8%A9%E6%B3%89&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.79,43.15,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>2. 99 号公路入口</name>
-      <description><![CDATA[9:00 · 经棚镇出发 · 正式进入 99 号公路<br/><br/>标签: stop<br/>坐标(GCJ-02): 117.55, 43.3<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.3,99%20%E5%8F%B7%E5%85%AC%E8%B7%AF%E5%85%A5%E5%8F%A3&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ff00838F</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>117.55,43.3,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>3. 半拉山</name>
-      <description><![CDATA[11:00 · 99 号公路中点 · 标志性观景台 ★ 新增<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.85, 43.95<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.85,43.95,%E5%8D%8A%E6%8B%89%E5%B1%B1&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>117.85,43.95,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>4. 西乌旗</name>
-      <description><![CDATA[12:30 午餐 · 蒙古早茶 · 99 号公路东端<br/><br/>标签: food<br/>坐标(GCJ-02): 117.61, 44.58<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.61,44.58,%E8%A5%BF%E4%B9%8C%E6%97%97&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>117.61,44.58,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>5. 锡林浩特中央广场</name>
-      <description><![CDATA[17:00 · 那达慕周可观演 · ★ 升级<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.0869, 43.9333<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.0869,43.9333,%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9%E4%B8%AD%E5%A4%AE%E5%B9%BF%E5%9C%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.0869,43.9333,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>6. 锡林浩特住宿(那达慕周 5x)</name>
-      <description><![CDATA[入住 18:00 · 蒙餐+夜景<br/><br/>标签: hotel<br/>坐标(GCJ-02): 116.0869, 43.9333<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.0869,43.9333,%E9%94%A1%E6%9E%97%E6%B5%A9%E7%89%B9%E4%BD%8F%E5%AE%BF%28%E9%82%A3%E8%BE%BE%E6%85%95%E5%91%A8%205x%29&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.0869,43.9333,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>7. 额尔敦(锡林郭勒)</name>
-      <description><![CDATA[19:30 晚餐 · 蒙餐老字号<br/><br/>标签: food<br/>坐标(GCJ-02): 116.09, 43.93<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.09,43.93,%E9%A2%9D%E5%B0%94%E6%95%A6%28%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%29&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.09,43.93,0</coordinates></Point>
-    </Placemark>
-  </Folder>
-  <Folder>
-    <name>D5 多伦 + 玉龙沙湖 + 返京</name>
-    <description>约 500km · 8h · 顺路返程不绕路</description>
-    <Placemark>
-      <name>D5 行程连线</name>
-      <Style><LineStyle><color>ffAA248E</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>116.47,42.18,0 116.47,42.18,0 116.47,42.18,0 119.0604,43.0484,0 118.89,42.26,0 114.88,40.83,0 116.548094,40.084943,0</coordinates></LineString>
-    </Placemark>
-    <Placemark>
-      <name>1. 多伦湖</name>
-      <description><![CDATA[8:30 · 路过 · 草原水库 · ★ 升级<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.47, 42.18<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.47,42.18,%E5%A4%9A%E4%BC%A6%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.47,42.18,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>2. 多伦县博物馆</name>
-      <description><![CDATA[9:30 · 路过 · 认脸熟 · ★ 升级<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.47, 42.18<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.47,42.18,%E5%A4%9A%E4%BC%A6%E5%8E%BF%E5%8D%9A%E7%89%A9%E9%A6%86&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.47,42.18,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>3. 多伦(午餐)</name>
-      <description><![CDATA[11:00 午餐 · 莜面+牛羊肉<br/><br/>标签: food<br/>坐标(GCJ-02): 116.47, 42.18<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.47,42.18,%E5%A4%9A%E4%BC%A6%28%E5%8D%88%E9%A4%90%29&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.47,42.18,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>4. 玉龙沙湖</name>
-      <description><![CDATA[13:30 · 沙漠+湖水 · ★ 路径优化<br/><br/>标签: attract<br/>坐标(GCJ-02): 119.0604, 43.0484<br/>高德导航: <a href="https://uri.amap.com/navigation?to=119.0604,43.0484,%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>32. 玉龙沙湖</name>
+      <description><![CDATA[17:00 · 沙漠+湖泊+骆驼（可选）<br/><br/>标签: attract<br/>坐标(GCJ-02): 119.0604, 43.0484<br/>高德导航: <a href="https://uri.amap.com/navigation?to=119.0604,43.0484,%E7%8E%89%E9%BE%99%E6%B2%99%E6%B9%96&mode=car&src=trip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>119.0604,43.0484,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>5. 赤峰</name>
-      <description><![CDATA[16:00 · 路过 · 简单休息<br/><br/>标签: attract<br/>坐标(GCJ-02): 118.89, 42.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=118.89,42.26,%E8%B5%A4%E5%B3%B0&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>118.89,42.26,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>6. 张家口服务区</name>
-      <description><![CDATA[18:30 · 京藏高速休整<br/><br/>标签: service<br/>坐标(GCJ-02): 114.88, 40.83<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.88,40.83,%E5%BC%A0%E5%AE%B6%E5%8F%A3%E6%9C%8D%E5%8A%A1%E5%8C%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ff1976D2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>114.88,40.83,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>7. 枫泉花园(终点)</name>
-      <description><![CDATA[20:30 抵达<br/><br/>标签: end<br/>坐标(GCJ-02): 116.548094, 40.084943<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD%28%E7%BB%88%E7%82%B9%29&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffD50000</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.548094,40.084943,0</coordinates></Point>
+      <name>33. 经棚镇·夜宿</name>
+      <description><![CDATA[20:00 返经棚镇 · 同D3<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.55, 43.26<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.55,43.26,%E7%BB%8F%E6%A3%9A%E9%95%87%C2%B7%E5%A4%9C%E5%AE%BF&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.55,43.26,0</coordinates></Point>
     </Placemark>
   </Folder>
   <Folder>
-    <name>★ 99号公路</name>
-    <description>99号公路</description>
+    <name>D5 达里湖 → 沽源草原天路东线 → 北京</name>
+    <description>约 820km · 11-12h · 桦皮岭日落 · 返程</description>
     <Placemark>
-      <name>99号公路</name>
-      <Style><LineStyle><color>ff631EE9</color><width>5</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>117.54325804714773,43.257849048766374,0 117.64322987071812,43.4978498701596,0 117.74303148696896,43.747797593533384,0 117.84322485339153,43.948040741888214,0 117.79303890751424,44.19810159654632,0 117.69297431197793,44.39819685122928,0 117.60312238098125,44.57838182131596,0 117.29287637160552,44.4981501343548,0 116.99314909667771,44.298130473657025,0 116.49342058912656,44.0980343443723,0 116.08310765164516,43.927757384855646,0</coordinates></LineString>
+      <name>D5 行程连线</name>
+      <Style><LineStyle><color>ffAA248E</color><width>3</width></LineStyle></Style>
+      <LineString><tessellate>1</tessellate><coordinates>116.71,43.5,0 116.71,43.45,0 116.09,43.93,0 115.28,41.89,0 115.68,41.67,0 115.55,41.35,0 115.44,41.05,0 115.35,40.95,0 116.548094,40.084943,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>34. 达里湖·北岸</name>
+      <description><![CDATA[9:00 · 草原马尔代夫 · 茅草屋+帆船<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.71, 43.5<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.71,43.5,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8C%97%E5%B2%B8&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>116.71,43.5,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>35. 达里湖·南岸</name>
+      <description><![CDATA[10:30 · 火山地貌+盐碱滩 · 航拍最佳（可选）<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.71, 43.45<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.71,43.45,%E8%BE%BE%E9%87%8C%E6%B9%96%C2%B7%E5%8D%97%E5%B2%B8&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>116.71,43.45,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>36. 锡林郭勒午餐</name>
+      <description><![CDATA[13:00 · 额尔敦蒙餐/锡盟羊杂<br/><br/>标签: food<br/>坐标(GCJ-02): 116.09, 43.93<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.09,43.93,%E9%94%A1%E6%9E%97%E9%83%AD%E5%8B%92%E5%8D%88%E9%A4%90&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>116.09,43.93,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>37. 太仆寺旗</name>
+      <description><![CDATA[15:00 · 分叉点：右转沽源方向（不去张北）<br/><br/>标签: stop<br/>坐标(GCJ-02): 115.28, 41.89<br/>高德导航: <a href="https://uri.amap.com/navigation?to=115.28,41.89,%E5%A4%AA%E4%BB%86%E5%AF%BA%E6%97%97&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff00838F</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>115.28,41.89,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>38. 沽源县</name>
+      <description><![CDATA[16:00 · 滦河神韵/五花草甸 · 进天路前补给<br/><br/>标签: food<br/>坐标(GCJ-02): 115.68, 41.67<br/>高德导航: <a href="https://uri.amap.com/navigation?to=115.68,41.67,%E6%B2%BD%E6%BA%90%E5%8E%BF&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>115.68,41.67,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>39. 草原天路东线</name>
+      <description><![CDATA[16:30 · 沽源→桦皮岭 95km · 风车群+林海<br/><br/>标签: attract<br/>坐标(GCJ-02): 115.55, 41.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=115.55,41.35,%E8%8D%89%E5%8E%9F%E5%A4%A9%E8%B7%AF%E4%B8%9C%E7%BA%BF&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>115.55,41.35,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>40. 桦皮岭</name>
+      <description><![CDATA[19:30 · 天路东入口 · 拍日落<br/><br/>标签: attract<br/>坐标(GCJ-02): 115.44, 41.05<br/>高德导航: <a href="https://uri.amap.com/navigation?to=115.44,41.05,%E6%A1%A6%E7%9A%AE%E5%B2%AD&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>115.44,41.05,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>41. 京礼高速</name>
+      <description><![CDATA[20:00 · 崇礼方向 · 全程高速<br/><br/>标签: service<br/>坐标(GCJ-02): 115.35, 40.95<br/>高德导航: <a href="https://uri.amap.com/navigation?to=115.35,40.95,%E4%BA%AC%E7%A4%BC%E9%AB%98%E9%80%9F&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff1976D2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>115.35,40.95,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>42. 枫泉花园（终点）</name>
+      <description><![CDATA[22:30 抵京<br/><br/>标签: end<br/>坐标(GCJ-02): 116.548094, 40.084943<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.548094,40.084943,%E6%9E%AB%E6%B3%89%E8%8A%B1%E5%9B%AD%EF%BC%88%E7%BB%88%E7%82%B9%EF%BC%89&mode=car&src=trip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffD50000</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>116.548094,40.084943,0</coordinates></Point>
     </Placemark>
   </Folder>
 </Document>
