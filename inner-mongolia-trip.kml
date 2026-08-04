@@ -4,12 +4,12 @@
   <name>内蒙草原 5 天经典环线 A6 修正版（达达线+热阿线+乌兰布统）</name>
   <description>北京出发 5 天草原环线 · 高德驾车导航实测校正 · 桦木沟移 D2 · 玉龙沙湖移除</description>
   <Folder>
-    <name>D1 北京 → 乌兰布统</name>
-    <description>约 450km · 11h · 林海 + 草原初见</description>
+    <name>D1 北京 → 围场县城 → 乌兰布统</name>
+    <description>约 510km · 12.5h · 围场午餐 + 月亮湖先玩</description>
     <Placemark>
       <name>D1 行程连线</name>
       <Style><LineStyle><color>ff3539E5</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>116.548094,40.084943,0 116.83,40.38,0 117.93,40.97,0 117.284168,42.248837,0 117.162602,42.439959,0 117.24,42.35,0 117.55,42.51,0 117.55,42.49,0 117.55,42.52,0</coordinates></LineString>
+      <LineString><tessellate>1</tessellate><coordinates>116.548094,40.084943,0 116.83,40.38,0 117.764488,41.924206,0 117.284168,42.248837,0 117.24,42.35,0 117.162602,42.439959,0 117.55,42.51,0 117.55,42.49,0 117.55,42.52,0</coordinates></LineString>
     </Placemark>
     <Placemark>
       <name>1. 枫泉花园</name>
@@ -24,10 +24,10 @@
       <Point><coordinates>116.83,40.38,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>3. 老三羊汤</name>
-      <description><![CDATA[12:00 午餐 · 羊汤+烧饼 · 承德<br/><br/>标签: food<br/>坐标(GCJ-02): 117.93, 40.97<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.93,40.97,%E8%80%81%E4%B8%89%E7%BE%8A%E6%B1%A4&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>3. 围场县城午餐</name>
+      <description><![CDATA[11:30 午餐 · 满族八大碗/涮肉 · 加满油<br/><br/>标签: food<br/>坐标(GCJ-02): 117.764488, 41.924206<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.764488,41.924206,%E5%9B%B4%E5%9C%BA%E5%8E%BF%E5%9F%8E%E5%8D%88%E9%A4%90&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>117.93,40.97,0</coordinates></Point>
+      <Point><coordinates>117.764488,41.924206,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>4. 塞罕坝机械林场</name>
@@ -36,16 +36,16 @@
       <Point><coordinates>117.284168,42.248837,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>5. 七星湖</name>
-      <description><![CDATA[16:00 · 木栈道+晨雾+落叶松 · 免费<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.162602, 42.439959<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>117.162602,42.439959,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>6. 御道口·月亮湖</name>
-      <description><![CDATA[17:00 · 月牙形草原湖<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.24, 42.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>5. 御道口·月亮湖</name>
+      <description><![CDATA[14:45 · 月牙形草原湖（先玩，顺序更优）<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.24, 42.35<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.24,42.35,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.24,42.35,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>6. 七星湖</name>
+      <description><![CDATA[15:30 · 木栈道+落叶松<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.162602, 42.439959<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.162602,42.439959,%E4%B8%83%E6%98%9F%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.162602,42.439959,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>7. 红山宾馆</name>
