@@ -12,6 +12,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - inner-mongolia-pois.json
-  - inner-mongolia-trip.kml
   - wutaishan-pois.json
-  - wutaishan-trip.kml
