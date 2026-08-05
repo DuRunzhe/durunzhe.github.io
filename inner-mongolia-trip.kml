@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <name>内蒙草原 5 天经典环线 A10 修正版（D4 修正绕路）</name>
-  <description>北京出发 5 天草原环线 · A10：D4 砍乌兰五台绕路，改走99号公路主线（入口→瞭望山→蒙古汗城）；D5 锡林浩特段里程修正 148km</description>
+  <name>内蒙草原 5 天经典环线 A11 修正版（D2 补将军泡子+蛤蟆坝）</name>
+  <description>北京出发 5 天草原环线 · A11：D2 补乌兰布统将军泡子（康熙古战场）+ 蛤蟆坝（摄影宝地），热水塘入住顺延至 18:40</description>
   <Folder>
     <name>D1 北京 → 塞罕坝/御道口 → 乌兰布统</name>
     <description>约 500km · 12.5h · 月亮湖午餐（围场县城午餐已取消）</description>
@@ -67,12 +67,12 @@
     </Placemark>
   </Folder>
   <Folder>
-    <name>D2 乌兰布统核心区 + 傍晚赴热水塘</name>
-    <description>约 290km · 14h · 精简版 · 16:30 出发热水塘（温泉镇，明早 D3 起点）</description>
+    <name>D2 乌兰布统核心区（含将军泡子+蛤蟆坝）+ 傍晚赴热水塘</name>
+    <description>约 320km · 14.5h · 精简版+将军泡子+蛤蟆坝 · 16:15 后赴热水塘（123km）</description>
     <Placemark>
       <name>D2 行程连线</name>
       <Style><LineStyle><color>ffE5881E</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>117.198032,42.533941,0 117.132131,42.657018,0 117.200252,42.650586,0 117.134699,42.505298,0 117.14,42.52,0 117.160836,42.54563,0 117.158137,42.59376,0 117.728453,43.458378,0</coordinates></LineString>
+      <LineString><tessellate>1</tessellate><coordinates>117.198032,42.533941,0 117.132131,42.657018,0 117.200252,42.650586,0 117.134699,42.505298,0 117.14,42.52,0 117.160836,42.54563,0 117.158137,42.59376,0 117.157799,42.593039,0 117.341487,42.691885,0 117.728453,43.458378,0</coordinates></LineString>
     </Placemark>
     <Placemark>
       <name>1. 红山军马场日出</name>
@@ -117,8 +117,20 @@
       <Point><coordinates>117.158137,42.59376,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>8. 热水塘镇·温泉酒店</name>
-      <description><![CDATA[18:10 入住 · 温泉解乏 · 明早 D3 从这里出发（热阿线起点）<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.728453, 43.458378<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.728453,43.458378,%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87%C2%B7%E6%B8%A9%E6%B3%89%E9%85%92%E5%BA%97&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>8. 将军泡子</name>
+      <description><![CDATA[15:15 · 康熙古战场 · 群马入水马踏水花 · 晚霞最佳<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.157799, 42.593039<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.157799,42.593039,%E5%B0%86%E5%86%9B%E6%B3%A1%E5%AD%90&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.157799,42.593039,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>9. 蛤蟆坝</name>
+      <description><![CDATA[16:15 · 摄影宝地 · 原始村落+风车花海（桦木沟方向，去热水塘顺路）<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.341487, 42.691885<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.341487,42.691885,%E8%9B%A4%E8%9F%86%E5%9D%9D&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.341487,42.691885,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>10. 热水塘镇·温泉酒店</name>
+      <description><![CDATA[18:40 入住 · 温泉解乏 · 明早 D3 从这里出发（热阿线起点）<br/><br/>标签: hotel<br/>坐标(GCJ-02): 117.728453, 43.458378<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.728453,43.458378,%E7%83%AD%E6%B0%B4%E5%A1%98%E9%95%87%C2%B7%E6%B8%A9%E6%B3%89%E9%85%92%E5%BA%97&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.728453,43.458378,0</coordinates></Point>
     </Placemark>
