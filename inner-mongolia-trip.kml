@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <name>内蒙草原 5 天经典环线 A9 修正版（D2住热水塘+D3反转）</name>
-  <description>北京出发 5 天草原环线 · A9：D2 晚住热水塘温泉镇，D3 从热水塘出发反转热阿线+达达线环线，D4/D5 不变</description>
+  <name>内蒙草原 5 天经典环线 A10 修正版（D4 修正绕路）</name>
+  <description>北京出发 5 天草原环线 · A10：D4 砍乌兰五台绕路，改走99号公路主线（入口→瞭望山→蒙古汗城）；D5 锡林浩特段里程修正 148km</description>
   <Folder>
     <name>D1 北京 → 塞罕坝/御道口 → 乌兰布统</name>
     <description>约 500km · 12.5h · 月亮湖午餐（围场县城午餐已取消）</description>
@@ -181,12 +181,12 @@
     </Placemark>
   </Folder>
   <Folder>
-    <name>D4 达里湖 + 西乌旗99号公路（方案B）</name>
-    <description>约 400km · 12h · 达里湖+彩虹公路 · 夜宿西乌旗（石阵深度取消）</description>
+    <name>D4 达里湖 + 西乌旗99号公路（修正版）</name>
+    <description>约 410km · 12h · 达里湖+99号公路主线（瞭望山→蒙古汗城）· 夜宿西乌旗</description>
     <Placemark>
       <name>D4 行程连线</name>
       <Style><LineStyle><color>ff008CFB</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>116.697951,43.382669,0 116.712783,43.335712,0 116.09,43.93,0 116.98385,44.264945,0 117.32,44.52,0 117.661355,44.458171,0 117.618115,44.587811,0</coordinates></LineString>
+      <LineString><tessellate>1</tessellate><coordinates>116.697951,43.382669,0 116.712783,43.335712,0 116.09,43.93,0 117.5,44.55,0 117.32,44.52,0 117.661355,44.458171,0 117.618115,44.587811,0</coordinates></LineString>
     </Placemark>
     <Placemark>
       <name>1. 达里湖·北岸</name>
@@ -207,20 +207,20 @@
       <Point><coordinates>116.09,43.93,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>4. 乌兰五台</name>
-      <description><![CDATA[14:30 · 99号公路西段 · 红五台+大敖包<br/><br/>标签: attract<br/>坐标(GCJ-02): 116.98385, 44.264945<br/>高德导航: <a href="https://uri.amap.com/navigation?to=116.98385,44.264945,%E4%B9%8C%E5%85%B0%E4%BA%94%E5%8F%B0&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>116.98385,44.264945,0</coordinates></Point>
+      <name>4. 99号公路入口</name>
+      <description><![CDATA[15:00 · G207 巴拉嘎尔高勒西收费站前右拐 · 彩虹线起点（勿进县城）<br/><br/>标签: stop<br/>坐标(GCJ-02): 117.5, 44.55<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.5,44.55,99%E5%8F%B7%E5%85%AC%E8%B7%AF%E5%85%A5%E5%8F%A3&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff00838F</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.5,44.55,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>5. 成吉思汗瞭望山</name>
-      <description><![CDATA[15:30 · 99号公路精华 · 俯瞰草原全景<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.32, 44.52<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.32,44.52,%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97%E7%9E%AD%E6%9C%9B%E5%B1%B1&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[15:15 · 99号公路第一站 · 俯瞰草原全景<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.32, 44.52<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.32,44.52,%E6%88%90%E5%90%89%E6%80%9D%E6%B1%97%E7%9E%AD%E6%9C%9B%E5%B1%B1&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.32,44.52,0</coordinates></Point>
     </Placemark>
     <Placemark>
       <name>6. 蒙古汗城</name>
-      <description><![CDATA[16:15 · 99号公路中点 · AAAA 草原宫殿 · 彩虹线<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.661355, 44.458171<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.661355,44.458171,%E8%92%99%E5%8F%A4%E6%B1%97%E5%9F%8E&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[16:00 · 99号公路中点 · AAAA 草原宫殿 · 那达慕表演<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.661355, 44.458171<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.661355,44.458171,%E8%92%99%E5%8F%A4%E6%B1%97%E5%9F%8E&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.661355,44.458171,0</coordinates></Point>
     </Placemark>
@@ -233,7 +233,7 @@
   </Folder>
   <Folder>
     <name>D5 西乌旗 → 沽源天路东线 → 北京</name>
-    <description>约 830km · 14h · 桦皮岭日落 · 6:30 出发</description>
+    <description>约 790km · 14h · 锡林浩特实测148km · 桦皮岭日落 · 6:30 出发</description>
     <Placemark>
       <name>D5 行程连线</name>
       <Style><LineStyle><color>ffAA248E</color><width>3</width></LineStyle></Style>
@@ -241,7 +241,7 @@
     </Placemark>
     <Placemark>
       <name>1. 西乌旗·星程酒店出发</name>
-      <description><![CDATA[6:30 出发 · 回锡林浩特方向<br/><br/>标签: stop<br/>坐标(GCJ-02): 117.618115, 44.587811<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.618115,44.587811,%E8%A5%BF%E4%B9%8C%E6%97%97%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97%E5%87%BA%E5%8F%91&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[6:45 出发 · 回锡林浩特（实测 148km/1.8h）<br/><br/>标签: stop<br/>坐标(GCJ-02): 117.618115, 44.587811<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.618115,44.587811,%E8%A5%BF%E4%B9%8C%E6%97%97%C2%B7%E6%98%9F%E7%A8%8B%E9%85%92%E5%BA%97%E5%87%BA%E5%8F%91&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ff00838F</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.618115,44.587811,0</coordinates></Point>
     </Placemark>
