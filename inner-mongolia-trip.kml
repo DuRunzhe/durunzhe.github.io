@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
-  <name>内蒙草原 5 天经典环线 A6 修正版（达达线+热阿线+乌兰布统）</name>
-  <description>北京出发 5 天草原环线 · 高德驾车导航实测校正 · 桦木沟移 D2 · 玉龙沙湖移除</description>
+  <name>内蒙草原 5 天经典环线 A7 修正版（达达线+热阿线+乌兰布统）</name>
+  <description>北京出发 5 天草原环线 · 高德驾车导航实测校正 · D1 午餐改御道口月亮湖（取消围场县城）</description>
   <Folder>
-    <name>D1 北京 → 围场县城 → 乌兰布统</name>
-    <description>约 510km · 12.5h · 围场午餐 + 月亮湖先玩</description>
+    <name>D1 北京 → 塞罕坝/御道口 → 乌兰布统</name>
+    <description>约 500km · 12.5h · 月亮湖午餐（围场县城午餐已取消）</description>
     <Placemark>
       <name>D1 行程连线</name>
       <Style><LineStyle><color>ff3539E5</color><width>3</width></LineStyle></Style>
-      <LineString><tessellate>1</tessellate><coordinates>116.548094,40.084943,0 116.83,40.38,0 117.764488,41.924206,0 117.284168,42.248837,0 117.389724,42.349946,0 117.162602,42.439959,0 117.234977,42.533354,0 117.160836,42.54563,0 117.234977,42.533354,0</coordinates></LineString>
+      <LineString><tessellate>1</tessellate><coordinates>116.548094,40.084943,0 116.83,40.38,0 117.284168,42.248837,0 117.389724,42.349946,0 117.389724,42.349946,0 117.162602,42.439959,0 117.234977,42.533354,0 117.160836,42.54563,0 117.234977,42.533354,0</coordinates></LineString>
     </Placemark>
     <Placemark>
       <name>1. 枫泉花园</name>
@@ -24,20 +24,20 @@
       <Point><coordinates>116.83,40.38,0</coordinates></Point>
     </Placemark>
     <Placemark>
-      <name>3. 围场县城午餐</name>
-      <description><![CDATA[11:30 午餐 · 满族八大碗/涮肉 · 加满油<br/><br/>标签: food<br/>坐标(GCJ-02): 117.764488, 41.924206<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.764488,41.924206,%E5%9B%B4%E5%9C%BA%E5%8E%BF%E5%9F%8E%E5%8D%88%E9%A4%90&mode=car&src=momotrip">点这里导航</a>]]></description>
-      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
-      <Point><coordinates>117.764488,41.924206,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>4. 塞罕坝机械林场</name>
-      <description><![CDATA[15:30 · 穿林海而过<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.284168, 42.248837<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <name>3. 塞罕坝机械林场</name>
+      <description><![CDATA[13:15 · 穿林海而过（密云直达，不停围场县城）<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.284168, 42.248837<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.284168,42.248837,%E5%A1%9E%E7%BD%95%E5%9D%9D%E6%9C%BA%E6%A2%B0%E6%9E%97%E5%9C%BA&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.284168,42.248837,0</coordinates></Point>
     </Placemark>
     <Placemark>
+      <name>4. 御道口·月亮湖午餐</name>
+      <description><![CDATA[13:50 午餐 · 月亮湖景区周边农家乐/御道口镇<br/><br/>标签: food<br/>坐标(GCJ-02): 117.389724, 42.349946<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.389724,42.349946,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96%E5%8D%88%E9%A4%90&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>117.389724,42.349946,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
       <name>5. 御道口·月亮湖</name>
-      <description><![CDATA[14:45 · 月牙形草原湖（先玩，顺序更优）<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.389724, 42.349946<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.389724,42.349946,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
+      <description><![CDATA[14:30 · 月牙形草原湖 · 午餐后游玩<br/><br/>标签: attract<br/>坐标(GCJ-02): 117.389724, 42.349946<br/>高德导航: <a href="https://uri.amap.com/navigation?to=117.389724,42.349946,%E5%BE%A1%E9%81%93%E5%8F%A3%C2%B7%E6%9C%88%E4%BA%AE%E6%B9%96&mode=car&src=momotrip">点这里导航</a>]]></description>
       <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
       <Point><coordinates>117.389724,42.349946,0</coordinates></Point>
     </Placemark>
