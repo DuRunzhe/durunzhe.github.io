@@ -108,7 +108,82 @@ categories: ai
 
 横向结论：
 
-![主流模型 API 价格对比（对数刻度）](/img/deepseek-price-compare.png)
+<div style="margin:16px auto;">
+<svg viewBox="0 0 800 438" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto;max-width:760px;font-family:-apple-system,Segoe UI,Microsoft YaHei,sans-serif;">
+<text x="160" y="20" font-size="15" font-weight="bold" fill="#222">元 / 百万 tokens（对数刻度）</text>
+<line x1="160.0" y1="38" x2="160.0" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="160.0" y="34" font-size="9" fill="#999" text-anchor="middle">0.5</text>
+<line x1="216.5" y1="38" x2="216.5" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="216.5" y="34" font-size="9" fill="#999" text-anchor="middle">1</text>
+<line x1="306.2" y1="38" x2="306.2" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="306.2" y="34" font-size="9" fill="#999" text-anchor="middle">3</text>
+<line x1="404.4" y1="38" x2="404.4" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="404.4" y="34" font-size="9" fill="#999" text-anchor="middle">10</text>
+<line x1="494.0" y1="38" x2="494.0" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="494.0" y="34" font-size="9" fill="#999" text-anchor="middle">30</text>
+<line x1="592.2" y1="38" x2="592.2" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="592.2" y="34" font-size="9" fill="#999" text-anchor="middle">100</text>
+<line x1="681.8" y1="38" x2="681.8" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="681.8" y="34" font-size="9" fill="#999" text-anchor="middle">300</text>
+<line x1="780.0" y1="38" x2="780.0" y2="412" stroke="#ddd" stroke-width="1"/>
+<text x="780.0" y="34" font-size="9" fill="#999" text-anchor="middle">1000</text>
+<text x="142" y="66" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">DeepSeek V4 Flash</text>
+<rect x="160.0" y="48" width="235.8" height="14" fill="#1f77b4" rx="2" opacity="0.9"/>
+<rect x="160.0" y="48" width="179.2" height="14" fill="#1f77b4" rx="2" opacity="0.45"/>
+<text x="401.8" y="59" font-size="10.5" fill="#333">4.5~9</text>
+<text x="160.0" y="41" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="68" width="146.2" height="10" fill="#1f77b4" rx="2" opacity="0.35"/>
+<text x="312.2" y="76" font-size="9.5" fill="#666">1.5~3</text>
+<text x="160.0" y="62" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<text x="142" y="118" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">DeepSeek V4 Pro</text>
+<rect x="160.0" y="100" width="325.4" height="14" fill="#1f77b4" rx="2" opacity="0.9"/>
+<rect x="160.0" y="100" width="268.8" height="14" fill="#1f77b4" rx="2" opacity="0.45"/>
+<text x="491.4" y="111" font-size="10.5" fill="#333">13.5~27</text>
+<text x="160.0" y="93" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="120" width="235.8" height="10" fill="#1f77b4" rx="2" opacity="0.35"/>
+<text x="401.8" y="128" font-size="9.5" fill="#666">4.5~9</text>
+<text x="160.0" y="114" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<text x="142" y="170" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GPT-5.6 Luna</text>
+<rect x="160.0" y="152" width="230.1" height="14" fill="#2ca02c" rx="2" opacity="0.9"/>
+<text x="396.1" y="163" font-size="10.5" fill="#333">8.4</text>
+<text x="160.0" y="145" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="172" width="84.0" height="10" fill="#2ca02c" rx="2" opacity="0.35"/>
+<text x="250.0" y="180" font-size="9.5" fill="#666">1.4</text>
+<text x="160.0" y="166" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<text x="142" y="222" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Qwen3.8 Max</text>
+<rect x="160.0" y="204" width="348.8" height="14" fill="#ff7f0e" rx="2" opacity="0.9"/>
+<text x="514.8" y="215" font-size="10.5" fill="#333">36</text>
+<text x="160.0" y="197" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="224" width="259.2" height="10" fill="#ff7f0e" rx="2" opacity="0.35"/>
+<text x="425.2" y="232" font-size="9.5" fill="#666">12</text>
+<text x="160.0" y="218" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<text x="142" y="274" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Claude Sonnet 5</text>
+<rect x="160.0" y="256" width="403.1" height="14" fill="#d62728" rx="2" opacity="0.9"/>
+<text x="569.1" y="267" font-size="10.5" fill="#333">70</text>
+<text x="160.0" y="249" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="276" width="271.8" height="10" fill="#d62728" rx="2" opacity="0.35"/>
+<text x="437.8" y="284" font-size="9.5" fill="#666">14</text>
+<text x="160.0" y="270" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<text x="142" y="326" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GPT-5.6 Terra</text>
+<rect x="160.0" y="308" width="418.0" height="14" fill="#2ca02c" rx="2" opacity="0.9"/>
+<text x="584.0" y="319" font-size="10.5" fill="#333">84</text>
+<text x="160.0" y="301" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="328" width="271.8" height="10" fill="#2ca02c" rx="2" opacity="0.35"/>
+<text x="437.8" y="336" font-size="9.5" fill="#666">14</text>
+<text x="160.0" y="322" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<text x="142" y="378" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Claude Fable 5</text>
+<rect x="160.0" y="360" width="534.4" height="14" fill="#d62728" rx="2" opacity="0.9"/>
+<text x="700.4" y="371" font-size="10.5" fill="#333">350</text>
+<text x="160.0" y="353" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="380" width="403.1" height="10" fill="#d62728" rx="2" opacity="0.35"/>
+<text x="569.1" y="388" font-size="9.5" fill="#666">70</text>
+<text x="160.0" y="374" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<rect x="160.0" y="411" width="14" height="8" fill="#1f77b4" rx="1" opacity="0.9"/>
+<text x="178.0" y="418" font-size="9.5" fill="#555">输出价（深色条=空闲，浅色叠层=高峰）</text>
+<rect x="350.0" y="411" width="14" height="8" fill="#1f77b4" rx="1" opacity="0.35"/>
+<text x="368.0" y="418" font-size="9.5" fill="#555">输入价（缓存未命中）</text>
+</svg>
+</div>
 
 > 📌 **怎么读这张图**：横轴是模型，纵轴是元/百万 tokens（对数刻度，每格差 10 倍）。每个模型左侧浅色条=输入（缓存未命中），右侧深色条=输出；DeepSeek 的条是「空闲~高峰」区间（淡色到深色）。一眼可见：**DeepSeek 两条柱在最底部，Claude Fable 5 在最顶部（差约 40~70 倍）**。
 
@@ -144,15 +219,48 @@ categories: ai
 
 > 不同任务对延迟、质量、成本的要求不同，**没有「最好的模型」，只有「最合适的选择」**。下面按任务类型给出推荐（2026-08-17 涨价后）：
 
-![按任务类型选模型性价比决策图](/img/deepseek-task-plan.png)
-
-| 任务类型 | 推荐模型 | 价格参考 | 理由 |
-|---|---|---|---|
-| 批量/离线任务（夜间跑批、数据清洗） | **V4 Flash 空闲时段** | ≈4.5 元/百万输出 | 谷价=峰价一半，非实时任务错峰立省 50% |
-| 高频实时对话（客服、聊天机器人） | **V4 Flash** | 9 元/百万输出（峰） | 2500 并发，千 token 输出≈0.009 元 |
-| Agent 多轮任务（编码助手、工具调用） | **V4 Flash + 高缓存命中** | 命中输入仅 0.05 元 | 固定前缀→命中率 60%+，输入几乎免费 |
-| 复杂推理/长文档（分析、总结、结构化） | **V4 Pro 空闲时段** | 13.5 元/百万输出 | 性能≈Claude Fable 5 的 97%，价格仅 1/26 |
-| 高质量编码/深度研究（关键场景不差钱） | GPT-5.6 Terra / Claude Fable 5 | 84~350 元 | 能力天花板，稳定性与生态更成熟 |
+<table style="width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;line-height:1.6;">
+<thead>
+<tr style="background:#f5f5f5;">
+<th style="padding:8px 12px;text-align:left;border:1px solid #e0e0e0;">任务类型</th>
+<th style="padding:8px 12px;text-align:left;border:1px solid #e0e0e0;">推荐模型</th>
+<th style="padding:8px 12px;text-align:left;border:1px solid #e0e0e0;">价格参考</th>
+<th style="padding:8px 12px;text-align:left;border:1px solid #e0e0e0;">理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #1f77b4;font-weight:bold;">批量/离线任务<br><span style="font-weight:normal;color:#888;font-size:12px;">夜间跑批、数据清洗</span></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>V4 Flash 空闲时段</b></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">≈4.5 元/百万输出</td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">谷价=峰价一半，非实时任务错峰立省 50%</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #4fa3d1;font-weight:bold;">高频实时对话<br><span style="font-weight:normal;color:#888;font-size:12px;">客服、聊天机器人</span></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>V4 Flash</b></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">9 元/百万输出（峰）</td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">2500 并发，千 token 输出≈0.009 元</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #66b3ff;font-weight:bold;">Agent 多轮任务<br><span style="font-weight:normal;color:#888;font-size:12px;">编码助手、工具调用</span></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>V4 Flash + 高缓存命中</b></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">命中输入仅 0.05 元</td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">固定前缀→命中率 60%+，输入几乎免费</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #ff9f43;font-weight:bold;">复杂推理/长文档<br><span style="font-weight:normal;color:#888;font-size:12px;">分析、总结、结构化</span></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>V4 Pro 空闲时段</b></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">13.5 元/百万输出</td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">性能≈Claude Fable 5 的 97%，价格仅 1/26</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #d62728;font-weight:bold;">高质量编码/深度研究<br><span style="font-weight:normal;color:#888;font-size:12px;">关键场景不差钱</span></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>GPT-5.6 Terra / Claude Fable 5</b></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">84~350 元</td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">能力天花板，稳定性与生态更成熟</td>
+</tr>
+</tbody>
+</table>
 
 **核心原则：**
 1. **能错峰就错峰**——非实时任务全部挪到 18:00 后跑，成本直接减半
