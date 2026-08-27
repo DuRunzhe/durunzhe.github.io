@@ -1,10 +1,12 @@
 ---
-title: "DeepSeek API 涨价全解析：峰谷分时、涨幅矩阵与「60倍价差」的真相"
+title: "主流大模型价格·能力·性价比横评（2026-08）：DeepSeek 涨价与 GLM-5.3-Flash 入局"
 date: 2026-08-17
 categories: ai
 ---
 
-# DeepSeek API 涨价全解析
+# 主流大模型价格、能力与性价比横评
+
+> 📌 **版本 v2.0** · 初版 2026-08-17 · 更新 2026-08-27（新增 GLM-5.3-Flash 对比，定位改为主流大模型横评）
 
 2026 年 8 月 13 日，DeepSeek 官宣 API 调价，8 月 17 日（北京时间零点）正式生效。这次不是一刀切翻倍，而是「峰谷分时 + 分档差异化」的组合拳。本文把新价、旧价、涨幅矩阵、同类型模型横评一次讲清，并勘误一篇流传甚广的公众号文章。
 
@@ -15,7 +17,8 @@ categories: ai
 1. **涨幅从 1.5 倍到 12 倍不等**，取决于「哪个模型、缓存命中还是未命中、高峰还是空闲」。
 2. **涨得最狠的是「缓存命中」这一档**（Pro 涨 6 倍），过去近乎免费的那档成了最大涨幅来源，直接打击 Agent 类重缓存负载。
 3. **涨得最少的是「缓存未命中」输入**（统一 1.5 倍），输出统一涨 2.25 倍。
-4. **即便涨完，DeepSeek 仍是全球最便宜**——但在**高峰时段，Flash 档输出价已被 GPT-5.6 Luna 反超**，「便宜」只在空闲时段成立。
+4. **即便涨完，DeepSeek 仍是全球最便宜的「旗舰双线」之一**——但在**高峰时段，Flash 档输出价已被 GPT-5.6 Luna 反超**，「便宜」只在空闲时段成立。
+5. **8/26 智谱发布并开源 GLM-5.3-Flash（即匿名模型「牛来」Ox Alpha）**——输出约 3.5 元/百万 token（无峰谷），比 V4-Flash 空闲价还低 22%，官方称仅 DeepSeek 的 1/7（对应 V4-Pro 高峰价）；但「缓存命中」输入档 DeepSeek 仍更便宜。详见第十章。
 
 ---
 
@@ -102,6 +105,7 @@ categories: ai
 |---|---|---|---|
 | DeepSeek V4-Flash | 1.5 / 3.0 | 4.5 / 9.0 | 空闲 / 高峰 |
 | DeepSeek V4-Pro | 4.5 / 9.0 | 13.5 / 27.0 | 空闲 / 高峰 |
+| GLM-5.3-Flash（智谱） | ≈1.05 | ≈3.5 | 8/26 发布即开源，无峰谷 |
 | GPT-5.6 Luna（OpenAI） | ≈1.4 | ≈8.4 | 7 月底刚降 80% |
 | GPT-5.6 Terra（OpenAI） | ≈14 | ≈84 | 旗舰档 |
 | Claude Sonnet 5（Anthropic） | ≈14 | ≈70 | 8/31 后涨到 ≈21/105 |
@@ -111,87 +115,106 @@ categories: ai
 横向结论：
 
 <div style="margin:16px auto;">
-<svg viewBox="0 0 800 438" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto;max-width:760px;font-family:-apple-system,Segoe UI,Microsoft YaHei,sans-serif;">
+<svg viewBox="0 0 800 490" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto;max-width:760px;font-family:-apple-system,Segoe UI,Microsoft YaHei,sans-serif;">
 <text x="160" y="20" font-size="15" font-weight="bold" fill="#222">元 / 百万 tokens（对数刻度）</text>
-<line x1="160.0" y1="38" x2="160.0" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="160.0" y1="38" x2="160.0" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="160.0" y="34" font-size="9" fill="#999" text-anchor="middle">0.5</text>
-<line x1="216.5" y1="38" x2="216.5" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="216.5" y1="38" x2="216.5" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="216.5" y="34" font-size="9" fill="#999" text-anchor="middle">1</text>
-<line x1="306.2" y1="38" x2="306.2" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="306.2" y1="38" x2="306.2" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="306.2" y="34" font-size="9" fill="#999" text-anchor="middle">3</text>
-<line x1="404.4" y1="38" x2="404.4" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="404.4" y1="38" x2="404.4" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="404.4" y="34" font-size="9" fill="#999" text-anchor="middle">10</text>
-<line x1="494.0" y1="38" x2="494.0" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="494.0" y1="38" x2="494.0" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="494.0" y="34" font-size="9" fill="#999" text-anchor="middle">30</text>
-<line x1="592.2" y1="38" x2="592.2" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="592.2" y1="38" x2="592.2" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="592.2" y="34" font-size="9" fill="#999" text-anchor="middle">100</text>
-<line x1="681.8" y1="38" x2="681.8" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="681.8" y1="38" x2="681.8" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="681.8" y="34" font-size="9" fill="#999" text-anchor="middle">300</text>
-<line x1="780.0" y1="38" x2="780.0" y2="412" stroke="#ddd" stroke-width="1"/>
+<line x1="780.0" y1="38" x2="780.0" y2="460" stroke="#ddd" stroke-width="1"/>
 <text x="780.0" y="34" font-size="9" fill="#999" text-anchor="middle">1000</text>
-<text x="142" y="66" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">DeepSeek V4 Flash</text>
-<rect x="160.0" y="48" width="235.8" height="14" fill="#1f77b4" rx="2" opacity="0.9"/>
-<rect x="160.0" y="48" width="179.2" height="14" fill="#1f77b4" rx="2" opacity="0.45"/>
-<text x="401.8" y="59" font-size="10.5" fill="#333">4.5~9</text>
+<text x="142" y="66" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GLM-5.3 Flash</text>
+<rect x="160.0" y="48" width="158.7" height="14" fill="#9467bd" rx="2" opacity="0.9"/>
+<text x="324.7" y="59" font-size="10.5" fill="#333">3.5</text>
 <text x="160.0" y="41" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="68" width="146.2" height="10" fill="#1f77b4" rx="2" opacity="0.35"/>
-<text x="312.2" y="76" font-size="9.5" fill="#666">1.5~3</text>
+<rect x="160.0" y="68" width="60.5" height="10" fill="#9467bd" rx="2" opacity="0.35"/>
+<text x="226.5" y="76" font-size="9.5" fill="#666">1.05</text>
 <text x="160.0" y="62" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<text x="142" y="118" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">DeepSeek V4 Pro</text>
-<rect x="160.0" y="100" width="325.4" height="14" fill="#1f77b4" rx="2" opacity="0.9"/>
-<rect x="160.0" y="100" width="268.8" height="14" fill="#1f77b4" rx="2" opacity="0.45"/>
-<text x="491.4" y="111" font-size="10.5" fill="#333">13.5~27</text>
+<text x="142" y="118" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">DeepSeek V4 Flash</text>
+<rect x="160.0" y="100" width="235.8" height="14" fill="#1f77b4" rx="2" opacity="0.9"/>
+<rect x="160.0" y="100" width="179.2" height="14" fill="#1f77b4" rx="2" opacity="0.45"/>
+<text x="401.8" y="111" font-size="10.5" fill="#333">4.5~9</text>
 <text x="160.0" y="93" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="120" width="235.8" height="10" fill="#1f77b4" rx="2" opacity="0.35"/>
-<text x="401.8" y="128" font-size="9.5" fill="#666">4.5~9</text>
+<rect x="160.0" y="120" width="146.2" height="10" fill="#1f77b4" rx="2" opacity="0.35"/>
+<text x="312.2" y="128" font-size="9.5" fill="#666">1.5~3</text>
 <text x="160.0" y="114" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<text x="142" y="170" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GPT-5.6 Luna</text>
-<rect x="160.0" y="152" width="230.1" height="14" fill="#2ca02c" rx="2" opacity="0.9"/>
-<text x="396.1" y="163" font-size="10.5" fill="#333">8.4</text>
+<text x="142" y="170" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">DeepSeek V4 Pro</text>
+<rect x="160.0" y="152" width="325.4" height="14" fill="#1f77b4" rx="2" opacity="0.9"/>
+<rect x="160.0" y="152" width="268.8" height="14" fill="#1f77b4" rx="2" opacity="0.45"/>
+<text x="491.4" y="163" font-size="10.5" fill="#333">13.5~27</text>
 <text x="160.0" y="145" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="172" width="84.0" height="10" fill="#2ca02c" rx="2" opacity="0.35"/>
-<text x="250.0" y="180" font-size="9.5" fill="#666">1.4</text>
+<rect x="160.0" y="172" width="235.8" height="10" fill="#1f77b4" rx="2" opacity="0.35"/>
+<text x="401.8" y="180" font-size="9.5" fill="#666">4.5~9</text>
 <text x="160.0" y="166" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<text x="142" y="222" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Qwen3.8 Max</text>
-<rect x="160.0" y="204" width="348.8" height="14" fill="#ff7f0e" rx="2" opacity="0.9"/>
-<text x="514.8" y="215" font-size="10.5" fill="#333">36</text>
+<text x="142" y="222" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GPT-5.6 Luna</text>
+<rect x="160.0" y="204" width="230.1" height="14" fill="#2ca02c" rx="2" opacity="0.9"/>
+<text x="396.1" y="215" font-size="10.5" fill="#333">8.4</text>
 <text x="160.0" y="197" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="224" width="259.2" height="10" fill="#ff7f0e" rx="2" opacity="0.35"/>
-<text x="425.2" y="232" font-size="9.5" fill="#666">12</text>
+<rect x="160.0" y="224" width="84.0" height="10" fill="#2ca02c" rx="2" opacity="0.35"/>
+<text x="250.0" y="232" font-size="9.5" fill="#666">1.4</text>
 <text x="160.0" y="218" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<text x="142" y="274" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Claude Sonnet 5</text>
-<rect x="160.0" y="256" width="403.1" height="14" fill="#d62728" rx="2" opacity="0.9"/>
-<text x="569.1" y="267" font-size="10.5" fill="#333">70</text>
+<text x="142" y="274" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Qwen3.8 Max</text>
+<rect x="160.0" y="256" width="348.8" height="14" fill="#ff7f0e" rx="2" opacity="0.9"/>
+<text x="514.8" y="267" font-size="10.5" fill="#333">36</text>
 <text x="160.0" y="249" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="276" width="271.8" height="10" fill="#d62728" rx="2" opacity="0.35"/>
-<text x="437.8" y="284" font-size="9.5" fill="#666">14</text>
+<rect x="160.0" y="276" width="259.2" height="10" fill="#ff7f0e" rx="2" opacity="0.35"/>
+<text x="425.2" y="284" font-size="9.5" fill="#666">12</text>
 <text x="160.0" y="270" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<text x="142" y="326" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GPT-5.6 Terra</text>
-<rect x="160.0" y="308" width="418.0" height="14" fill="#2ca02c" rx="2" opacity="0.9"/>
-<text x="584.0" y="319" font-size="10.5" fill="#333">84</text>
+<text x="142" y="326" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Claude Sonnet 5</text>
+<rect x="160.0" y="308" width="403.1" height="14" fill="#d62728" rx="2" opacity="0.9"/>
+<text x="569.1" y="319" font-size="10.5" fill="#333">70</text>
 <text x="160.0" y="301" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="328" width="271.8" height="10" fill="#2ca02c" rx="2" opacity="0.35"/>
+<rect x="160.0" y="328" width="271.8" height="10" fill="#d62728" rx="2" opacity="0.35"/>
 <text x="437.8" y="336" font-size="9.5" fill="#666">14</text>
 <text x="160.0" y="322" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<text x="142" y="378" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Claude Fable 5</text>
-<rect x="160.0" y="360" width="534.4" height="14" fill="#d62728" rx="2" opacity="0.9"/>
-<text x="700.4" y="371" font-size="10.5" fill="#333">350</text>
+<text x="142" y="378" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">GPT-5.6 Terra</text>
+<rect x="160.0" y="360" width="418.0" height="14" fill="#2ca02c" rx="2" opacity="0.9"/>
+<text x="584.0" y="371" font-size="10.5" fill="#333">84</text>
 <text x="160.0" y="353" font-size="8.5" fill="#999">输出</text>
-<rect x="160.0" y="380" width="403.1" height="10" fill="#d62728" rx="2" opacity="0.35"/>
-<text x="569.1" y="388" font-size="9.5" fill="#666">70</text>
+<rect x="160.0" y="380" width="271.8" height="10" fill="#2ca02c" rx="2" opacity="0.35"/>
+<text x="437.8" y="388" font-size="9.5" fill="#666">14</text>
 <text x="160.0" y="374" font-size="8.5" fill="#aaa">输入(未命中)</text>
-<rect x="160.0" y="411" width="14" height="8" fill="#1f77b4" rx="1" opacity="0.9"/>
-<text x="178.0" y="418" font-size="9.5" fill="#555">输出价（深色条=空闲，浅色叠层=高峰）</text>
-<rect x="350.0" y="411" width="14" height="8" fill="#1f77b4" rx="1" opacity="0.35"/>
-<text x="368.0" y="418" font-size="9.5" fill="#555">输入价（缓存未命中）</text>
+<text x="142" y="430" font-size="12.5" fill="#333" text-anchor="end" font-weight="bold">Claude Fable 5</text>
+<rect x="160.0" y="412" width="534.4" height="14" fill="#d62728" rx="2" opacity="0.9"/>
+<text x="700.4" y="423" font-size="10.5" fill="#333">350</text>
+<text x="160.0" y="405" font-size="8.5" fill="#999">输出</text>
+<rect x="160.0" y="432" width="403.1" height="10" fill="#d62728" rx="2" opacity="0.35"/>
+<text x="569.1" y="440" font-size="9.5" fill="#666">70</text>
+<text x="160.0" y="426" font-size="8.5" fill="#aaa">输入(未命中)</text>
+<rect x="160.0" y="463" width="14" height="8" fill="#1f77b4" rx="1" opacity="0.9"/>
+<text x="178.0" y="470" font-size="9.5" fill="#555">输出价（深色条=空闲，浅色叠层=高峰）</text>
+<rect x="350.0" y="463" width="14" height="8" fill="#1f77b4" rx="1" opacity="0.35"/>
+<text x="368.0" y="470" font-size="9.5" fill="#555">输入价（缓存未命中）</text>
+<rect x="540.0" y="463" width="14" height="8" fill="#9467bd" rx="1" opacity="0.9"/>
+<text x="558.0" y="470" font-size="9.5" fill="#555">GLM-5.3 Flash（无峰谷）</text>
 </svg>
 </div>
 
-> 📌 **怎么读这张图**：横轴是模型，纵轴是元/百万 tokens（对数刻度，每格差 10 倍）。每个模型左侧浅色条=输入（缓存未命中），右侧深色条=输出；DeepSeek 的条是「空闲~高峰」区间（淡色到深色）。一眼可见：**DeepSeek 两条柱在最底部，Claude Fable 5 在最顶部（差约 40~70 倍）**。
+> 📌 **怎么读这张图**：横轴是模型，纵轴是元/百万 tokens（对数刻度，每格差 10 倍）。每个模型左侧浅色条=输入（缓存未命中），右侧深色条=输出；DeepSeek 的条是「空闲~高峰」区间（淡色到深色），紫色条 GLM-5.3-Flash 为单一定价。一眼可见：**GLM-5.3-Flash 与 DeepSeek 两条柱在最底部，Claude Fable 5 在最顶部（差约 100 倍）**。
 
-- **空闲时段**：DeepSeek 仍是绝对地板价。Flash 输出 4.5 元，比 Qwen3.8-Max（36 元）便宜 8 倍、比 GPT-5.6 Terra（84 元）便宜 18 倍。
-- **高峰时段**：Flash 输出 9 元 **已被 GPT-5.6 Luna（≈8.4 元）反超**；Pro 输出 27 元与 Qwen3.8-Max（36 元）差距缩到 1.3 倍。
+- **空闲时段**：**地板价易主**——GLM-5.3-Flash 输出 3.5 元（无峰谷）比 V4-Flash 空闲 4.5 元还低 22%，成了新的输出地板价；DeepSeek Flash 则比 Qwen3.8-Max（36 元）便宜 8 倍、比 GPT-5.6 Terra（84 元）便宜 18 倍。
+- **高峰时段**：V4-Flash 输出 9 元 **已被 GPT-5.6 Luna（≈8.4 元）反超**，更被 GLM-5.3-Flash（3.5 元）甩开 2.6 倍；Pro 输出 27 元与 Qwen3.8-Max（36 元）差距缩到 1.3 倍。
 - **第三方托管**（OpenRouter 上的 DeepInfra 等）：Flash 档第三方普遍更便宜（输入 $0.08~0.14 vs 官方高峰 $0.44），Pro 档官方空闲价仍无人能敌。
+
+### 厂商官网 / API 购买地址
+
+| 厂商 | 模型 | 官网 / 购买地址 |
+|---|---|---|
+| DeepSeek | V4-Flash / V4-Pro | [platform.deepseek.com](https://platform.deepseek.com)（API 平台） |
+| OpenAI | GPT-5.6 Luna / Terra | [platform.openai.com](https://platform.openai.com)（API 平台） |
+| Anthropic | Claude Sonnet 5 / Fable 5 / Opus 4.8 | [console.anthropic.com](https://console.anthropic.com)（Console） |
+| 阿里云 | Qwen3.8-Max | [bailian.console.aliyun.com](https://bailian.console.aliyun.com)（百炼） |
+| 智谱 | GLM-5.3-Flash / GLM-5.3 | [open.bigmodel.cn](https://open.bigmodel.cn)（开放平台） · 国际站 [z.ai](https://z.ai) |
 
 ---
 
@@ -264,6 +287,12 @@ categories: ai
 <td style="padding:8px 12px;border:1px solid #e0e0e0;">固定前缀→命中率 60%+，输入几乎免费</td>
 </tr>
 <tr>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #9467bd;font-weight:bold;">高性价比 Agent / 批量<br><span style="font-weight:normal;color:#888;font-size:12px;">8/26 新增选项</span></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>GLM-5.3-Flash（智谱）</b></td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">≈3.5 元/百万输出</td>
+<td style="padding:8px 12px;border:1px solid #e0e0e0;">输出比 V4-Flash 空闲价低 22%，开源 MIT 可自托管；缓存命中输入不如 DeepSeek 划算</td>
+</tr>
+<tr>
 <td style="padding:8px 12px;border:1px solid #e0e0e0;border-left:6px solid #ff9f43;font-weight:bold;">复杂推理/长文档<br><span style="font-weight:normal;color:#888;font-size:12px;">分析、总结、结构化</span></td>
 <td style="padding:8px 12px;border:1px solid #e0e0e0;"><b>V4 Pro 空闲时段</b></td>
 <td style="padding:8px 12px;border:1px solid #e0e0e0;">13.5 元/百万输出</td>
@@ -286,8 +315,85 @@ categories: ai
 
 ---
 
+## 十、新变量：GLM-5.3-Flash 把「最便宜」也卷走了（8/26 补充）
+
+> 本章为 8 月 26 日智谱发布 GLM-5.3-Flash 后追加。前九章基于 8/17 生效价的分析不变，但「DeepSeek 是全球最便宜」的结论需要在此更新口径。
+
+### 「牛来」掉马：Ox Alpha = GLM-5.3-Flash
+
+8 月 26 日，智谱正式发布并开源 GLM-5.3-Flash。官方确认，此前突然出现在 OpenCode 和 OpenRouter、被全网猜测的神秘匿名模型 Ox Alpha（网友称「牛来」），其实就是 GLM-5.3-Flash 的匿名预览版。匿名测试期间它很快成为当周最受欢迎的模型之一——**且所有真实用户流量全部跑在国产 AI 芯片上**。
+
+### 价格：输出档全面低于 DeepSeek（含逐档对照）
+
+GLM-5.3-Flash 标准 API 定价（美元/百万 token，人民币按 ≈7 折算，无峰谷、单一价）：
+
+| 计费项 | 美元 | 人民币≈ |
+|---|---|---|
+| 输入（缓存未命中） | 0.15 | ≈1.05 |
+| 输出 | 0.50 | ≈3.5 |
+| 输入（缓存命中） | 0.03 | ≈0.21 |
+
+官方定位：正常价仅 GLM-5.3 的 1/10，限时折扣更低到 1/20；约 Claude Opus 4.8 的 1/40、DeepSeek 的 1/7。
+
+**与 DeepSeek 逐档对照**（元/百万 token；DeepSeek 为 空闲/高峰）：
+
+| 计费项 | GLM-5.3-Flash | V4-Flash | V4-Pro |
+|---|---|---|---|
+| 输入（缓存命中） | 0.21 | 0.05 / 0.10 | 0.15 / 0.30 |
+| 输入（缓存未命中） | 1.05 | 1.5 / 3.0 | 4.5 / 9.0 |
+| 输出 | 3.5 | 4.5 / 9.0 | 13.5 / 27.0 |
+
+三点结论：
+
+1. **输出价全面更低**：GLM 3.5 元 < V4-Flash 空闲 4.5 元（低 22%）< V4-Flash 高峰 9.0 元（低 61%）< V4-Pro 高峰 27 元（低 87%）。「DeepSeek 是输出地板价」的位置就此易主。
+2. **缓存命中档 DeepSeek 反而更便宜**：0.05~0.30 元 vs GLM 0.21 元。DeepSeek 命中/未命中价差 30 倍，GLM 只有 5 倍——对重缓存 Agent 负载（多轮对话、工具循环），**DeepSeek 仍是输入成本之王**；GLM 的便宜主要落在输出侧。
+3. **官方「1/7」的口径**：约对应 V4-Pro 高峰输出价（27 ÷ 3.5 ≈ 7.7）；若拿 V4-Flash 空闲输出比，实际只有 1/1.3。做成本对比时先确认基准，别被单一倍数带偏。
+
+### 能力：57 分进入第一梯队（含对比）
+
+Artificial Analysis 综合智能指数 57 分，与 Claude Opus 4.8 处于同一分数水平；AA 测试中每任务折扣成本仅约 $0.045（≈0.3 元）。
+
+| 指标 | GLM-5.3-Flash | 对比对象 |
+|---|---|---|
+| AA 综合智能指数 | 57 | ≈ Claude Opus 4.8（同水平） |
+| DeepSWE v1.1 | 63.4（GLM-5.2 为 46.2） | DeepSeek V4 Pro 报道口径 62.7，同水平* |
+| AutomationBench | 48.8（GLM-5.2 为 26.2） | — |
+| Z.ai Code Bench（最高推理） | 29.0 | Claude Opus 4.8 = 29.5 |
+
+> *DeepSWE 两项数据来源版本/口径不同（V4 Pro 为媒体报道的 DeepSWE 得分，GLM 为智谱公布的 v1.1），不宜直接断言谁强，仅作量级参考。**可以确定的是**：达到这一档 Agent 编码能力，GLM 的 API 输出价只有 DeepSeek 的几分之一。另注意 Z.ai Code Bench 是智谱自家 benchmark，29.0 vs 29.5 要留一点余地看。
+
+### 为什么便宜：320B 只激活 18B + 混合注意力
+
+- **参数**：320B 总参数、每次只激活 18B（GLM-4.5 为 355B/32B），层数 92 → 45。模型变「轻」，能力反而超过 GLM-5.2，编程和 Agent 能力逼近 Claude Opus 4.8。
+- **架构**：首次采用稀疏注意力 + 线性注意力混合架构——长上下文不再全量昂贵计算，相比 GLM-5.3，Attention 计算量降至约 1/3，KV Cache 占用降约 4.4 倍。
+- **定性**：不是 GLM-5.3 的「青春版」，而是重新设计的效率架构——**旗舰的能力，Flash 的成本**。
+
+### 原生多模态 + 100 万上下文
+
+GLM-5 系列第一个原生多模态模型：预训练阶段就融合文本/图片等多模态数据（预训练数据 30T Token），支持最高 100 万 Token 上下文。Agent 可以直接看网页、理解界面并点击操作，也能根据视觉反馈检查自己刚生成的内容再修改——定位不仅是 Coding，而是「看得见、点得动、做得完」的 Agent 底座。
+
+### 全部跑在国产芯片上（容易被忽略的细节）
+
+Ox Alpha 匿名测试期间，所有真实用户流量由国产 AI 芯片承载：基于 SGLang 的推理系统（编码/预填充/解码分阶段优化），运行在数万张国产加速卡上，实现约 3 倍端到端服务性能提升。模型 + 芯片 + 推理框架 + 大规模真实流量，国产组合完成了一次实战验证。
+
+### 发布即开源
+
+与 GLM-5.3 发布时还要等两周才开放权重不同，GLM-5.3-Flash 直接开放权重：Hugging Face 已上线（huggingface.co/zai-org/GLM-5.3-Flash），MIT License，本地部署支持 SGLang、vLLM、TokenSpeed。
+
+### 对 DeepSeek 定价的影响（个人判断）
+
+- DeepSeek 8/17 刚涨完价，8/26 GLM 就以更低的输出价入场，且开源、可自托管——「涨价护城河」被削了一刀。
+- 短期：DeepSeek 的缓存命中档（0.05 元）仍是 Agent 输入侧最优，加上 2500 并发，重缓存负载不必迁移；但输出侧和自部署场景，GLM-5.3-Flash 是直接替代项。
+- 中长期：价格战进入「同样一块钱能买到多少智能」的阶段；若 GLM 低价策略持续，DeepSeek 的峰谷涨价逻辑可能反过来被压出「Flash 特惠档」。
+
+---
+
 ## 数据来源
 
 - DeepSeek 官方定价页（api-docs.deepseek.com，8/17 已更新）
 - 新浪财经、Reuters、Pandaily 报道
 - ofox.io、aireiter.com 逐档价格核对
+- 智谱官方发布（z.ai/blog/glm-5.3-flash，8/26）
+- Hugging Face：huggingface.co/zai-org/GLM-5.3-Flash（MIT License）
+- Artificial Analysis 综合智能指数
+- 微信公众号文章《GLM-5.3 Flash 来了！比 DeepSeek 更强、更便宜》（8/27 阅读，含官方口径与 benchmark 数据）
