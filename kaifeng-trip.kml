@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>开封 2 天 1 晚 · 一天一园（清明上河园 + 万岁山武侠城）</name>
+  <description></description>
+  <Folder>
+    <name>D1 西平 → 开封 · 清明上河园</name>
+    <description>约 200km · 清明上河园白天游园 + 夜场《大宋·东京梦华》19:20 + 鼓楼夜市宵夜</description>
+    <Placemark>
+      <name>D1 行程连线</name>
+      <Style><LineStyle><color>ff3539E5</color><width>3</width></LineStyle></Style>
+      <LineString><tessellate>1</tessellate><coordinates>113.92321036803023,33.388747370313375,0 113.81265307044899,34.29683111301082,0 114.35236779045849,34.79682554677069,0 114.3400247146828,34.80903754258529,0 114.35576332110358,34.7955013313861,0 114.31003578967517,34.800731746796174,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>1. 西平县城(柏城街道)</name>
+      <description><![CDATA[河南省驻马店市西平县 · 06:30 出发 · 约 200km / 2h44min · 国庆高速免费<br/><br/>标签: start<br/>坐标(GCJ-02): 113.92321036803023, 33.388747370313375<br/>高德导航: <a href="https://uri.amap.com/navigation?to=113.92321036803023,33.388747370313375,%E8%A5%BF%E5%B9%B3%E5%8E%BF%E5%9F%8E%28%E6%9F%8F%E5%9F%8E%E8%A1%97%E9%81%93%29&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff00C853</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>113.92321036803023,33.388747370313375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>2. 许昌服务区(京港澳高速)</name>
+      <description><![CDATA[08:00 · 途中休整 15min · 加油/卫生间 · 连续驾驶每 2h 必停一次<br/><br/>标签: service<br/>坐标(GCJ-02): 113.81265307044899, 34.29683111301082<br/>高德导航: <a href="https://uri.amap.com/navigation?to=113.81265307044899,34.29683111301082,%E8%AE%B8%E6%98%8C%E6%9C%8D%E5%8A%A1%E5%8C%BA%28%E4%BA%AC%E6%B8%AF%E6%BE%B3%E9%AB%98%E9%80%9F%29&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff1976D2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>113.81265307044899,34.29683111301082,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>3. 黄家老店(中山路店)· 午餐</name>
+      <description><![CDATA[11:30 · 开封老字号灌汤包 · 人均约 40-60 元 · 与第一楼齐名 · [待核实]国庆是否需要排队取号<br/><br/>标签: food<br/>坐标(GCJ-02): 114.35236779045849, 34.79682554677069<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.35236779045849,34.79682554677069,%E9%BB%84%E5%AE%B6%E8%80%81%E5%BA%97%28%E4%B8%AD%E5%B1%B1%E8%B7%AF%E5%BA%97%29%C2%B7%20%E5%8D%88%E9%A4%90&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.35236779045849,34.79682554677069,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>4. 清明上河园</name>
+      <description><![CDATA[12:30 入园 · 白天游园约 4-5h → 夜场《大宋·东京梦华》约 20:10-21:30 · 【票价】日场 120 元/人；《东京梦华》演出票 249-999 元/人 —— 持演出票可入园、无需再买白天票（8:30 后即可入园，但中途不能出园）· [待核实]国庆场次与预约时段<br/><br/>标签: attract<br/>坐标(GCJ-02): 114.3400247146828, 34.80903754258529<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.3400247146828,34.80903754258529,%E6%B8%85%E6%98%8E%E4%B8%8A%E6%B2%B3%E5%9B%AD&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.3400247146828,34.80903754258529,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>5. 鼓楼夜市</name>
+      <description><![CDATA[21:45 宵夜（可选，看完夜场后）· 开封最热闹夜市 · 灌汤包/炒凉粉/杏仁茶/羊肉炕馍<br/><br/>标签: food<br/>坐标(GCJ-02): 114.35576332110358, 34.7955013313861<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.35576332110358,34.7955013313861,%E9%BC%93%E6%A5%BC%E5%A4%9C%E5%B8%82&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.35576332110358,34.7955013313861,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>6. 开封中州国际饭店(宿)</name>
+      <description><![CDATA[23:00 入住 · 大梁路一带 · 自驾停车方便 · 国庆房源紧张务必提前订<br/><br/>标签: hotel<br/>坐标(GCJ-02): 114.31003578967517, 34.800731746796174<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.31003578967517,34.800731746796174,%E5%BC%80%E5%B0%81%E4%B8%AD%E5%B7%9E%E5%9B%BD%E9%99%85%E9%A5%AD%E5%BA%97%28%E5%AE%BF%29&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.31003578967517,34.800731746796174,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+  <Folder>
+    <name>D2 万岁山武侠城 → 返程西平</name>
+    <description>约 210km · 4A 武侠实景演艺城全天（3000+ 场演出）· 西司门午餐 · 16:00 返程</description>
+    <Placemark>
+      <name>D2 行程连线</name>
+      <Style><LineStyle><color>ffE5881E</color><width>3</width></LineStyle></Style>
+      <LineString><tessellate>1</tessellate><coordinates>114.31003578967517,34.800731746796174,0 114.35027039370944,34.81962229796036,0 114.33890244092746,34.79488819432418,0 113.81265307044899,34.29683111301082,0 113.92321036803023,33.388747370313375,0</coordinates></LineString>
+    </Placemark>
+    <Placemark>
+      <name>1. 开封中州国际饭店(出发)</name>
+      <description><![CDATA[08:00 退房出发 · 前往万岁山武侠城 约 5km / 15min<br/><br/>标签: hotel<br/>坐标(GCJ-02): 114.31003578967517, 34.800731746796174<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.31003578967517,34.800731746796174,%E5%BC%80%E5%B0%81%E4%B8%AD%E5%B7%9E%E5%9B%BD%E9%99%85%E9%A5%AD%E5%BA%97%28%E5%87%BA%E5%8F%91%29&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff7B1FA2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.31003578967517,34.800731746796174,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>2. 万岁山武侠城</name>
+      <description><![CDATA[08:30 入园 · 4A 大宋武侠实景演艺城 · 3000+ 场实景演出 · 全天可玩 · 【票价】全价票 100 元/人，三日内无限次入园（含万岁山 + 翰园碑林 + 开封城墙）· ⚠️[待核实]法定节假日期间入园政策可能不同<br/><br/>标签: attract<br/>坐标(GCJ-02): 114.35027039370944, 34.81962229796036<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.35027039370944,34.81962229796036,%E4%B8%87%E5%B2%81%E5%B1%B1%E6%AD%A6%E4%BE%A0%E5%9F%8E&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFF6F00</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.35027039370944,34.81962229796036,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>3. 西司门美食街 · 午餐</name>
+      <description><![CDATA[12:00 · 开封西司/包公湖一带小吃街 · 黄家老店西司店即在此 · 人均约 40-60 元 · 距万岁山约 3km<br/><br/>标签: food<br/>坐标(GCJ-02): 114.33890244092746, 34.79488819432418<br/>高德导航: <a href="https://uri.amap.com/navigation?to=114.33890244092746,34.79488819432418,%E8%A5%BF%E5%8F%B8%E9%97%A8%E7%BE%8E%E9%A3%9F%E8%A1%97%20%C2%B7%20%E5%8D%88%E9%A4%90&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffFFB300</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>114.33890244092746,34.79488819432418,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>4. 许昌服务区(返程休整)</name>
+      <description><![CDATA[15:30 · 返程休整 15min · 加油/卫生间<br/><br/>标签: service<br/>坐标(GCJ-02): 113.81265307044899, 34.29683111301082<br/>高德导航: <a href="https://uri.amap.com/navigation?to=113.81265307044899,34.29683111301082,%E8%AE%B8%E6%98%8C%E6%9C%8D%E5%8A%A1%E5%8C%BA%28%E8%BF%94%E7%A8%8B%E4%BC%91%E6%95%B4%29&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ff1976D2</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>113.81265307044899,34.29683111301082,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>5. 西平县城(返程终点)</name>
+      <description><![CDATA[18:00 抵达 · 往返全程约 410km · 国庆 10-01 至 10-07 高速免费<br/><br/>标签: end<br/>坐标(GCJ-02): 113.92321036803023, 33.388747370313375<br/>高德导航: <a href="https://uri.amap.com/navigation?to=113.92321036803023,33.388747370313375,%E8%A5%BF%E5%B9%B3%E5%8E%BF%E5%9F%8E%28%E8%BF%94%E7%A8%8B%E7%BB%88%E7%82%B9%29&mode=car&src=durunzhe">点这里导航</a>]]></description>
+      <Style><IconStyle><color>ffD50000</color><scale>1.0</scale><Icon><href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href></Icon></IconStyle></Style>
+      <Point><coordinates>113.92321036803023,33.388747370313375,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>
