@@ -19,6 +19,7 @@
   th, td { overflow-wrap: anywhere; word-break: break-word; }
   tr:nth-child(even) td { background: #fafafa; }
   .badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+  .mobile-hint { display: none; }
   .info-box { background: #f9f9fb; border-left: 4px solid #007aff; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 14px; }
   img { max-width: 100%; height: auto; }
   pre { background: #f4f4f7; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
@@ -34,8 +35,12 @@
   em { color: #666; }
   @media (max-width: 600px) {
     .container { padding: 24px 20px; }
-    table { font-size: 13px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    th, td { padding: 6px 8px; }
+    table { font-size: 12px; display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    th, td { padding: 5px 7px; }
+    /* 横向滚动时冻结第一列,避免看串行 */
+    th:first-child, td:first-child { position: sticky; left: 0; background: #fff; z-index: 3; }
+    tr:nth-child(even) td:first-child { background: #fafafa; }
+    .mobile-hint { display: block; font-size: 12px; color: #86868b; margin: 8px 0 -4px; }
     body { padding: 12px 8px 24px; }
 
     /* TOC 移动端适配 */
@@ -8502,6 +8507,7 @@
 <p><strong>⚠️ 法规前提</strong>:新国标电动自行车(绿牌)≤25km/h、≤400W、锂电整车 ≤55kg、48V、有脚踏,<strong>物理上无法满足 50km/h</strong>;要 50km/h+ 只能走<strong>电动摩托车(京B 黄牌 + E 照)</strong>,而京B <strong>不得进入四环(不含辅路)</strong>,二三四五环主路全天禁摩,长安街五棵松—四惠禁行。外地户籍上京B,居住证地址须在远郊区县(顺义在内)。</p>
 </blockquote>
 <h3 id="-电摩版本对照">📋 电摩版本对照(2026 年新车型)</h3>
+<p class="mobile-hint">📱 表格共 10 列,可左右滑动查看 →</p>
 <table>
 <thead>
 <tr>
